@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ToggleButton } from "./timetable_toggleButton.jsx"
+import { Timetable } from "./timetable.jsx";
 
 export function TimetableDisplay(){
     const now = new Date()
@@ -13,6 +14,7 @@ export function TimetableDisplay(){
     return(
         <>
             <ToggleButton day={day} onClick={toggleValue}/>
+            <Timetable day={day}/>
         </>
-    )
+    );
 }
