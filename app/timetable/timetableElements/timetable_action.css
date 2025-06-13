@@ -1,0 +1,6 @@
+.closed_inTimetable .detailsColumn{
+    display: none; 
+}
+:not(.closed_inTimetable .open_button).open_button{
+    display: none;
+}

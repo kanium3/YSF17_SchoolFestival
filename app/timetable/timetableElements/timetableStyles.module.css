@@ -1,0 +1,5 @@
+.programContent{
+    /*flexBox*/
+    display: flex;
+    width: fit-content;
+}

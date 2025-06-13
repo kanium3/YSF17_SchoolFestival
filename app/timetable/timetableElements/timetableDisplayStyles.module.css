@@ -1,0 +1,5 @@
+.wholeTable{
+    width:95%;
+    overflow-x: scroll;
+    height: max-content;
+}

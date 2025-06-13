@@ -1,0 +1,26 @@
+.headingBoard{
+    position: relative;
+    width: 98%;
+    margin: 1%;
+    aspect-ratio: 8 / 5;
+    background-color: darkgray;
+    color: white;
+}
+.teamName{
+    font-weight: 500;
+    font-size: 1.25rem;
+    padding-left: .3rem;
+}
+.summary{
+    font-size: 1rem;
+    padding-left: .3rem;
+}
+.hashtags{
+    font-size: 0.8rem;
+    padding-left: 1rem;
+}
+.expandButton{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}

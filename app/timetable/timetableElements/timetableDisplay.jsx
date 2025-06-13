@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { ToggleButton } from "./timetable_toggleButton.jsx"
 import { Timetable } from "./timetable.jsx";
+import styles from "./timetableDisplayStyles.module.css";
 
 export function TimetableDisplay(){
     const now = new Date()
@@ -14,7 +15,7 @@ export function TimetableDisplay(){
     return(
         <>
             <ToggleButton day={day} onClick={toggleValue}/>
-            <Timetable day={day}/>
+            <div className={styles.wholeTable}><Timetable day={day}/></div>
         </>
     );
 }
