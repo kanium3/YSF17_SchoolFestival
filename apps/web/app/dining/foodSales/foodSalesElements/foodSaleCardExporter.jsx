@@ -78,12 +78,12 @@ export function Ingredient(menu) {
           className={styles.ingredient}
         >
           <tr>
-            <th>特定原材料27品目:</th>
+            <th className={styles.ingredientTitle}>特定原材料27品目:</th>
             <td>{ menu.menu.specificIngredients.join("、") }</td>
           </tr>
           <tr>
-            <th>原材料名:</th>
-            <td><p className={styles.ingredientP}>{ menu.menu.ingredients.join("、") }</p></td>
+            <th className={styles.ingredientTitle}>原材料名:</th>
+            <td className={styles.ingredientTd}><p className={styles.ingredientP}>{ menu.menu.ingredients.join("、ああああああああああ") }</p></td>
           </tr>
         </table>
       </tr>

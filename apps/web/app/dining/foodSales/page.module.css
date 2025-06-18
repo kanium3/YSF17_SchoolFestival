@@ -107,12 +107,16 @@
 /**一つの食べ物の原材料とかを囲む*/
 .ingredient {
   width: max-content;
-  table-layout: fixed;
   /**padding-left: 0em;
   padding-right: 0em;*/
 }
-.ingredient th {
+.ingredientTitle {
   padding-right: 1em;
+  font-weight: bold;
+}
+
+.ingredientTd {
+  overflow-wrap : break-word;
 }
 
 .ingredientP {
