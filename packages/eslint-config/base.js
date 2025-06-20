@@ -39,7 +39,6 @@ export const config = [
       'import-x/resolver-next': [
         createTypeScriptImportResolver({
           project: [
-            '{ts,js}config.json',
             'packages/*/{ts,js}config.json',
             'apps/*/{ts,js}config.json',
           ],
@@ -48,12 +47,6 @@ export const config = [
       ],
       'import-x/order': [
         'error',
-      ],
-      'import-x/extensions': [
-        '.js',
-        '.jsx',
-        '.ts',
-        '.tsx',
       ],
     },
   },
@@ -97,7 +90,6 @@ export const config = [
       parserOptions: {
         tsconfigRootDir: import.meta.dirname,
         project: [
-          '{ts,js}config.json',
           'packages/*/{ts,js}config.json',
           'apps/web/{ts,js}config.json',
         ],
