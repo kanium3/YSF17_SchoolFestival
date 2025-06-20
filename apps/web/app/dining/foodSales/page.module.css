@@ -104,6 +104,20 @@
   width: 100%;
   max-width: 100%;
 }
+
+.ingredientTable {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.15em;
+  column-gap: 0.1em;
+}
+
+.ingredientFoodName {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding-left: 0em;
+  font-weight: bold;
+}
 /**一つの食べ物の原材料とかを囲む*/
 .ingredient {
   width: max-content;
@@ -123,4 +137,11 @@
   padding-left: 0%;
   width: 100%;
   /**display: block;*/
+}
+
+
+.divtable {
+  padding-left: 0.125em;
+  padding-top: 0.13em;
+  padding-bottom: 0.13em;
 }

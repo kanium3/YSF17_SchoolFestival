@@ -67,7 +67,7 @@ export function NameAndPrice(menu) {
 //商品名とその原材料
 export function Ingredient(menu) {
   return (
-    <table className={styles.foodIngredient}>
+    /**<table className={styles.foodIngredient}>
       <tbody>
       <tr>
         <th>{ menu.menu.name }</th>
@@ -88,7 +88,19 @@ export function Ingredient(menu) {
         </table>
       </tr>
       </tbody>
-    </table>
+    </table>*/
+    <div className={`${styles.foodIngredient} ${styles.divtable}`}>
+      <p className={styles.ingredientFoodName}>{ menu.menu.name }</p>
+      <div className={`${styles.ingredientTable} ${styles.divtable}`} style={{ marginLeft: "0.5em" }}>
+
+        <div className={styles.ingredientTitle}>特定原材料27品目:</div>
+        <div>{ menu.menu.specificIngredients.join("、") }</div>
+
+        <div className={styles.ingredientTitle}>原材料名:</div>
+        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{ menu.menu.ingredients.join("、") }</p></div>
+
+      </div>
+    </div>
   )
 }
 
