@@ -1,8 +1,6 @@
-"use client";
+'use client'
 
-import styles from "./select.module.css";
-import {useContext, useMemo, useState} from "react";
-import { MdCheck } from "react-icons/md";
+import { useContext } from 'react'
 import {
   Button,
   Label,
@@ -10,8 +8,8 @@ import {
   ListBoxItem,
   Popover,
   Select, SelectStateContext,
-  SelectValue
-} from "react-aria-components";
+  SelectValue,
+} from 'react-aria-components'
 
 /**
  *
@@ -20,12 +18,12 @@ import {
  * @returns {React.ReactNode}
  * @constructor
  */
-export function SelectMenu({ children, ...props }) {
+export function SelectMenu({ children, ...properties }) {
   return (
-      <Select {...props}>
-          {children}
-      </Select>
-  );
+    <Select {...properties}>
+      {children}
+    </Select>
+  )
 }
 
 /**
@@ -35,7 +33,7 @@ export function SelectMenu({ children, ...props }) {
  */
 export function SelectLabel({ children }) {
   return (
-      <Label>{children}</Label>
+    <Label>{children}</Label>
   )
 }
 
@@ -45,10 +43,10 @@ export function SelectLabel({ children }) {
  */
 export function SelectButton() {
   return (
-      <Button>
-        <SelectValue />
-        <span aria-hidden="true">▼</span>
-      </Button>
+    <Button>
+      <SelectValue />
+      <span aria-hidden="true">▼</span>
+    </Button>
 
   )
 }
@@ -62,18 +60,18 @@ export function SelectButton() {
  * @constructor
  */
 export function SelectItems({ children, onSelected, selected }) {
-  const selectState = useContext(SelectStateContext) ?? {};
+  const selectState = useContext(SelectStateContext) ?? {}
   if (selectState.selectedItem) {
-    onSelected((prev) => {
-      prev.add(selectState?.selectedItem.textValue);
+    onSelected((previous) => {
+      previous.add(selectState?.selectedItem.textValue)
     })
   }
   return (
-      <Popover>
-        <ListBox selectionMode={"single"} selectedKeys={selected}>
-          {children}
-        </ListBox>
-      </Popover>
+    <Popover>
+      <ListBox selectionMode="single" selectedKeys={selected}>
+        {children}
+      </ListBox>
+    </Popover>
   )
 }
 
@@ -89,5 +87,5 @@ export function SelectItem({ value, children }) {
     <ListBoxItem textValue={value} key={value}>
       {children}
     </ListBoxItem>
-  );
+  )
 }

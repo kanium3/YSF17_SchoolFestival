@@ -1,4 +1,4 @@
-import styles from "./callout.module.css";
+import styles from './callout.module.css'
 
 /**
  * @typedef {"warn" | "info" | "default"} calloutKind
@@ -10,13 +10,13 @@ import styles from "./callout.module.css";
  * @param {calloutKind} [kind="default"]
  * @constructor
  */
-export function Callout({ children, kind = "default" }) {
+export function Callout({ children, kind = 'default' }) {
   return (
     <div className={styles.callout}>
       <CalloutIcon kind={kind} />
       {children}
     </div>
-  );
+  )
 }
 
 /**
@@ -24,14 +24,16 @@ export function Callout({ children, kind = "default" }) {
  * @param {calloutKind} [kind="default"]
  * @constructor
  */
-function CalloutIcon({ kind = "default" }) {
+function CalloutIcon({ kind = 'default' }) {
   switch (kind) {
-    case "info":
-      return <span className={styles.calloutIcon}>💡</span>;
-    case "warn":
-      return <span className={styles.calloutIcon}>⚠️</span>;
-    case "default":
-    default:
-      return <span className={styles.calloutIcon}></span>;
+    case 'info': {
+      return <span className={styles.calloutIcon}>💡</span>
+    }
+    case 'warn': {
+      return <span className={styles.calloutIcon}>⚠️</span>
+    }
+    default: {
+      return <span className={styles.calloutIcon}></span>
+    }
   }
 }

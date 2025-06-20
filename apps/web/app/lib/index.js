@@ -1,5 +1,5 @@
 import nextConfig from '@/next.config.js'
-import path from 'path'
+import path from 'node:path'
 
 export * from '@latimeria/core'
 
@@ -9,8 +9,8 @@ export * from '@latimeria/core'
  * @param {string} src
  * @return {string}
  */
-export function solveBasePath(src) {
+export function solveBasePath(source) {
   return process.env.NODE_ENV === 'production'
-    ? path.join(nextConfig.basePath || '', src)
-    : src
+    ? path.join(nextConfig.basePath || '', source)
+    : source
 }

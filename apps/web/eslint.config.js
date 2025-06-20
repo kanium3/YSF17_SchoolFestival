@@ -1,5 +1,6 @@
 import { FlatCompat } from '@eslint/eslintrc'
 import { config } from '@latimeria/eslint-config/base'
+// eslint-disable-next-line unicorn/import-style
 import { dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
