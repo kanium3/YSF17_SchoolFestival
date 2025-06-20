@@ -11,7 +11,7 @@
     "format": "next lint --fix"
   },
   "dependencies": {
-    "@latimeria/core": "*",
+    "@latimeria/core": "^0.1.0",
     "jotai": "^2.12.5",
     "next": "15.3.3",
     "react": "^19.0.0",

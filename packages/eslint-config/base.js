@@ -4,7 +4,7 @@ import turboPlugin from 'eslint-plugin-turbo'
 import { configs as tsconfigs, parser as tsparser } from 'typescript-eslint'
 import globals from 'globals'
 import unusedPlugin from 'eslint-plugin-unused-imports'
-import { importX } from 'eslint-plugin-import-x'
+import { importX, createNodeResolver } from 'eslint-plugin-import-x'
 import { createTypeScriptImportResolver } from 'eslint-import-resolver-typescript'
 import vitest from '@vitest/eslint-plugin'
 import eslintPluginUnicorn from 'eslint-plugin-unicorn'
@@ -38,11 +38,22 @@ export const config = [
     settings: {
       'import-x/resolver-next': [
         createTypeScriptImportResolver({
-          project: ['packages/*/{ts,js}config.json', 'app/*/{ts,js}config.json'],
+          project: [
+            '{ts,js}config.json',
+            'packages/*/{ts,js}config.json',
+            'apps/*/{ts,js}config.json',
+          ],
         }),
+        createNodeResolver(),
       ],
       'import-x/order': [
         'error',
+      ],
+      'import-x/extensions': [
+        '.js',
+        '.jsx',
+        '.ts',
+        '.tsx',
       ],
     },
   },
@@ -86,8 +97,9 @@ export const config = [
       parserOptions: {
         tsconfigRootDir: import.meta.dirname,
         project: [
+          '{ts,js}config.json',
           'packages/*/{ts,js}config.json',
-          'app/*/{ts,js}config.json',
+          'apps/web/{ts,js}config.json',
         ],
       },
     },
