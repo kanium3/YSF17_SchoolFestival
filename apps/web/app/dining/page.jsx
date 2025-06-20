@@ -1,12 +1,12 @@
-import styles from "./page.module.css";
-import { solveBasePath } from "@/app/lib/index.js";
-import Image from "next/image";
-import Link from "next/link";
+import styles from './page.module.css'
+import { solveBasePath } from '@/app/lib/index.js'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export const metadata = {
-  title: "蒼煌祭17th非公式ページ｜食事",
-  description: "蒼煌祭17thの食事についての非公式のページです。",
-};
+  title: '蒼煌祭17th非公式ページ｜食事',
+  description: '蒼煌祭17thの食事についての非公式のページです。',
+}
 
 export default function Dining() {
   return (
@@ -19,12 +19,12 @@ export default function Dining() {
         <Link href="/dining/cafeteria">
           {/** たくさんの席を写したカフェテリアの写真とか？ */}
           <Image
-            src={solveBasePath("/dining/cafeteria.png")}
+            src={solveBasePath('/dining/cafeteria.png')}
             alt="いい感じのカフェテリアの画像"
             className={styles.imagebuttonImage}
             width={560}
             height={330}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: 'cover' }}
           />
         </Link>
         <h1>カフェテリア</h1>
@@ -33,16 +33,16 @@ export default function Dining() {
         <Link href="/dining/foodSales">
           {/** 食販 */}
           <Image
-            src={solveBasePath("/dining/foodSales.png")}
+            src={solveBasePath('/dining/foodSales.png')}
             alt="いい感じの食販の画像"
             className={styles.imagebuttonImage}
             width={560}
             height={330}
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: 'cover' }}
           />
         </Link>
         <h1>食販</h1>
       </div>
     </div>
-  );
+  )
 }

@@ -1,5 +1,5 @@
-import styles from "./program_view.module.css";
-import Link from "next/link";
+import styles from './program-view.module.css'
+import Link from 'next/link'
 
 /**
  *
@@ -7,7 +7,7 @@ import Link from "next/link";
  * @constructor
  */
 export default function ProgramView({ programs }) {
-  const programsArray = Array.from(programs.iter());
+  const programsArray = [...programs.iter()]
   return (
     <div className={styles.list}>
       <ol>
@@ -18,13 +18,13 @@ export default function ProgramView({ programs }) {
                 <div className={styles.card}>
                   <h2>{program.name}</h2>
                   <p>{program.location}</p>
-                  <p>{program.prText || ""}</p>
+                  <p>{program.prText || ''}</p>
                 </div>
               </Link>
             </li>
-          );
+          )
         })}
       </ol>
     </div>
-  );
+  )
 }

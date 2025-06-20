@@ -1,7 +1,7 @@
 export const metadata = {
-  title: "蒼煌祭17th非公式ページ｜合唱祭",
-  description: "蒼煌祭17thの合唱祭についての非公式のページです。",
-};
+  title: '蒼煌祭17th非公式ページ｜合唱祭',
+  description: '蒼煌祭17thの合唱祭についての非公式のページです。',
+}
 
 export default function Chorous() {
   return (
@@ -33,5 +33,5 @@ export default function Chorous() {
         </dl>
       </div>
     </div>
-  );
+  )
 }
