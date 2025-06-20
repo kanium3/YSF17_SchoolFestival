@@ -81,8 +81,8 @@
 }
 .ingredients[open] {
   background-color: #00000011;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .ingredientsSummary {
   width: 100%;
