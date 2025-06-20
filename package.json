@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
-    "lint": "turbo run lint",
-    "format": "turbo run format",
+    "lint": "turbo run lint --continue=always",
+    "format": "turbo run format --continue=always",
     "syncPublic": "latimeria  --sync-dir=apps/web/public"
   },
   "devDependencies": {

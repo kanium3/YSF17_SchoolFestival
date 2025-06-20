@@ -1,3 +1,1 @@
-import { config } from '@latimeria/eslint-config/base'
-
-export default config
+export { config as default } from '@latimeria/eslint-config/base'
