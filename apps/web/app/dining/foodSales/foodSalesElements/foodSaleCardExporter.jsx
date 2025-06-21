@@ -1,3 +1,6 @@
+"use client"
+
+import { useEffect, useRef, useState } from 'react';
 import styles from "../page.module.css";
 import Link from "next/link";
 
@@ -46,16 +49,47 @@ export function FoodSalesCardExporter(cardData = {
 
 //商品名とその価格
 export function NameAndPrice(menu) {
+  const bodyRef = useRef(null);
+  //最初に表示されてるやつにつくやつ
+  const defaultBarRef = useRef(null);
+  const defaultPriceRef = useRef(null);
+  //下につくやつ
+  const subRef = useRef(null);
+
+  const [defaultDisplay, setDefaultDisplay] = useState("table-cell");
+
+  const emSize = window.getComputedStyle(document.documentElement).fontSize;
+  useEffect(() => {
+    console.log("offsetHeight: " + bodyRef.current.offsetHeight);
+    console.log ("emSize: "+ 2.5 * parseInt(emSize));
+    if (bodyRef.current.offsetHeight > 2.5 * parseInt(emSize)) {
+      //いらないやつをuseStateでdisplay: noneにしたい
+      setDefaultDisplay("none");
+    } 
+    }, [])
+
+
   return (
     <tbody>
-    <tr>
-      <th scope="row" className={styles.foodSalesMenuName}>
+    <tr ref={bodyRef}>
+      <th scope="row" className={styles.foodSalesMenuName} colSpan={defaultDisplay == "table-cell" ? 1 : 3}>
         <p className={styles.foodSalesMenuBigChars}>{ menu.menu.name }</p>
       </th>
-      <td className={styles.foodSalesMenuName2Price}>
+      <td className={styles.foodSalesMenuName2Price} style={{display: `${defaultDisplay}`}}>
         <p className={styles.foodSalesMenuBigChars}>―</p>
       </td>
-      <td className={styles.foodSalesMenuPrice}>
+      <td className={styles.foodSalesMenuPrice} style={{display: `${defaultDisplay}`}}>
+        <p className={styles.foodSalesMenuBigChars}>{ menu.menu.price }円</p>
+      </td>
+    </tr>
+    <tr style={{display: `${defaultDisplay == "table-cell" ? "none" : "table-row"}`}}>
+      <th className={styles.foodSalesSpaceFor2Rows}>
+        {/**空けとく空間 */}
+      </th>
+      <td className={styles.foodSalesMenuName2Price} style={{display: `${defaultDisplay == "table-cell" ? "none" : "table-cell"}`}}>
+        <p className={styles.foodSalesMenuBigChars}>―</p>
+      </td>
+      <td className={styles.foodSalesMenuPrice} style={{display: `${defaultDisplay == "table-cell" ? "none" : "table-cell"}`}}>
         <p className={styles.foodSalesMenuBigChars}>{ menu.menu.price }円</p>
       </td>
     </tr>
