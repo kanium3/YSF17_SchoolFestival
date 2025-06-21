@@ -1,5 +1,7 @@
 import { TimetableDisplay } from './timetableElements/timetable-display.jsx'
 import { PickupSlide } from './pickupSlide/pickup-slide.jsx'
+import './timetableElements/timetable-action.css'
+import './timetableElements/timetable-common.css'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜タイムテーブル',
