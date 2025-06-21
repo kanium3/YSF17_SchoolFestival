@@ -48,6 +48,7 @@ export function FoodSalesCardExporter(cardData = {
 }
 
 //商品名とその価格
+//スマホの画面の回転のような再読み込みせずに画面幅が変わるようなことがあっても再描画されないので、レイアウトが崩れる可能性はある
 export function NameAndPrice(menu) {
   const bodyRef = useRef(null);
   //最初に表示されてるやつにつくやつ
