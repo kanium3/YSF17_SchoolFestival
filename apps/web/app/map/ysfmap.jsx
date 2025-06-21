@@ -4,10 +4,10 @@ import React from 'react'
 import { MapContainer, ImageOverlay, LayersControl, Marker, Popup, LayerGroup } from 'react-leaflet'
 import Link from 'next/link'
 import Image from 'next/image'
-import './map.css'
+import './ysfmap.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
 
-export default function Map() {
+export default function Ysfmap() {
   const picwidth = 960
   const picheight = 540
   const position1 = [picheight / 2, picwidth / 2]
