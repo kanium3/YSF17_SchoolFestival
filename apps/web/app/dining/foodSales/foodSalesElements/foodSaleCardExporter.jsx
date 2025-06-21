@@ -51,18 +51,11 @@ export function FoodSalesCardExporter(cardData = {
 //スマホの画面の回転のような再読み込みせずに画面幅が変わるようなことがあっても再描画されないので、レイアウトが崩れる可能性はある
 export function NameAndPrice(menu) {
   const bodyRef = useRef(null);
-  //最初に表示されてるやつにつくやつ
-  const defaultBarRef = useRef(null);
-  const defaultPriceRef = useRef(null);
-  //下につくやつ
-  const subRef = useRef(null);
-
+  
   const [defaultDisplay, setDefaultDisplay] = useState("table-cell");
 
   const emSize = window.getComputedStyle(document.documentElement).fontSize;
   useEffect(() => {
-    console.log("offsetHeight: " + bodyRef.current.offsetHeight);
-    console.log ("emSize: "+ 2.5 * parseInt(emSize));
     if (bodyRef.current.offsetHeight > 2.5 * parseInt(emSize)) {
       //いらないやつをuseStateでdisplay: noneにしたい
       setDefaultDisplay("none");
