@@ -6,6 +6,7 @@ import ProgramSample from '@/app/program.mock.json'
 import styles from '@/app/program/programs.module.css'
 import { parseProgramsData, Tags } from '@latimeria/core'
 import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai'
+import { atomWithReset, useResetAtom } from 'jotai/utils'
 import {
   Button,
   ListBox,
@@ -14,14 +15,21 @@ import {
   Select,
   SelectValue,
 } from 'react-aria-components'
+import { MdOutlineCancel } from 'react-icons/md'
 
 // TODO:サンプルデータにつきデータ取り扱いの正式な方式を考慮必要
 const programsAtom = atom(parseProgramsData(ProgramSample))
-const tagsAtom = atom(new Tags([]))
+const tagsAtom = atomWithReset(new Tags([]))
+const kindAtom = atomWithReset('')
+const placeAtom = atomWithReset('')
 const matchedProgramsAtom = atom((get) => {
   const programs = get(programsAtom)
   const tags = get(tagsAtom)
-  return tags.size > 0 ? programs.matchPrograms(tags) : programs
+  const kind = get(kindAtom)
+  const place = get(placeAtom)
+  const kindAndTags = kind ? new Tags([...tags, kind]) : tags
+  const placeAndKindAndTags = place ? new Tags([...kindAndTags, place]) : kindAndTags
+  return kindAndTags.size > 0 ? programs.matchPrograms(placeAndKindAndTags) : programs
 })
 
 /**
@@ -39,6 +47,7 @@ export function ProgramsView() {
       <div className={styles.programSearchLine}>
         <KindSelectMenu />
         <PlaceSelectMenu />
+        <SearchQueryClearButton />
       </div>
       <ProgramView programs={matchedPrograms} />
     </div>
@@ -50,12 +59,10 @@ export function ProgramsView() {
  * @constructor
  */
 function KindSelectMenu() {
-  const setTags = useSetAtom(tagsAtom)
+  const setKind = useSetAtom(kindAtom)
   return (
     <Select
-      onSelectionChange={(selected) => {
-        setTags(previous => new Tags([...previous, selected]))
-      }}
+      onSelectionChange={selected => setKind(selected)}
       placeholder="種類"
     >
       <Button className={styles.programSelectPullDown}>
@@ -81,12 +88,10 @@ function KindSelectMenu() {
  * @constructor
  */
 function PlaceSelectMenu() {
-  const setTags = useSetAtom(tagsAtom)
+  const setPlace = useSetAtom(placeAtom)
   return (
     <Select
-      onSelectionChange={(selected) => {
-        setTags(previous => new Tags([...previous, selected]))
-      }}
+      onSelectionChange={selected => setPlace(selected)}
       placeholder="場所"
     >
       <Button className={styles.programSelectPullDown}>
@@ -106,5 +111,24 @@ function PlaceSelectMenu() {
         </ListBox>
       </Popover>
     </Select>
+  )
+}
+
+function SearchQueryClearButton() {
+  const resetTags = useResetAtom(tagsAtom)
+  const resetKind = useResetAtom(kindAtom)
+  const resetPlace = useResetAtom(placeAtom)
+  return (
+    <Button
+      onPress={() => {
+        resetTags()
+        resetKind()
+        resetPlace()
+      }}
+      className={styles.programSelectResetButton}
+    >
+      <MdOutlineCancel />
+      条件をクリアする
+    </Button>
   )
 }

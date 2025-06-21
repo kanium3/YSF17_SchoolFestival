@@ -28,3 +28,15 @@
   z-index: 1;
   white-space: nowrap;
 }
+
+.programSelectResetButton {
+  font-size: 1rem;
+  background: none;
+  color: #42507B;
+  border: none;
+}
+
+.programSelectResetButton svg {
+  vertical-align: sub;
+  margin-right: 0.15em;
+}
