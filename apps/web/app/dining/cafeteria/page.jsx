@@ -1,10 +1,10 @@
-import styles from "./page.module.css";
-import TitleBarWithBack from "@/app/compoent/title_bar";
+import styles from './page.module.css'
+import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
 
 export const metadata = {
-  title: "蒼煌祭17th非公式ページ｜カフェテリア",
-  description: "蒼煌祭17thのカフェテリアについての情報の非公式のページです。",
-};
+  title: '蒼煌祭17th非公式ページ｜カフェテリア',
+  description: '蒼煌祭17thのカフェテリアについての情報の非公式のページです。',
+}
 
 export default function Cafeteria() {
   return (
@@ -15,8 +15,8 @@ export default function Cafeteria() {
         {/** ysf at wikiの情報を使用、値上げ後の値段が不明。 */}
         {/** メニューすら覚えていないので暫定 */}
         {/** CSSいい感じにお願いします */}
-        <div className={styles.priceTable} style={{ maxWidth: "100vw" }}>
-          <table className={styles.priceTable} style={{ maxWidth: "100vw" }}>
+        <div className={styles.priceTable} style={{ maxWidth: '100vw' }}>
+          <table className={styles.priceTable} style={{ maxWidth: '100vw' }}>
             <tr>
               <th scope="row" className={styles.priceTable}>
                 <ul className={styles.bulletedTable}>
@@ -45,7 +45,7 @@ export default function Cafeteria() {
         </div>
       </div>
       <div>
-        <h1 style={{ paddingTop: "1rem" }}>注意事項</h1>
+        <h1 style={{ paddingTop: '1rem' }}>注意事項</h1>
         <ul className={styles.bulletedList}>
           {/** 箇条書きのルールも必要？ */}
           <li>非公式情報です。情報に誤りがある可能性があります。</li>
@@ -56,5 +56,5 @@ export default function Cafeteria() {
         </ul>
       </div>
     </div>
-  );
+  )
 }

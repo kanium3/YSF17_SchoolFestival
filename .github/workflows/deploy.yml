@@ -58,6 +58,9 @@ jobs:
         run: |
           GOOGLE_APPLICATION_CREDENTIALS=${{ steps.google-auth.outputs.credentials_file_path }} npm run syncPublic -- --noOAuth
 
+      - name: build core package
+        run: npx turbo run @latimeria/core#build
+
       - name: Build with Next.js
         run: npm run build
 

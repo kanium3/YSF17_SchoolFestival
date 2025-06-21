@@ -1,134 +1,110 @@
-"use client";
+'use client'
 
-import ProgramInput from "@/app/compoent/program/program_input.jsx";
-import ProgramView from "@/app/compoent/program/program_view.jsx";
+import ProgramInput from '@/app/compoent/program/program-input.jsx'
+import ProgramView from '@/app/compoent/program/program-view.jsx'
+import ProgramSample from '@/app/program.mock.json'
+import styles from '@/app/program/programs.module.css'
+import { parseProgramsData, Tags } from '@latimeria/core'
+import { atom, useAtom, useAtomValue, useSetAtom } from 'jotai'
 import {
-  OptionsInSelectAtom,
-  SelectItem,
-  SelectMenu,
-} from "@/app/compoent/select.jsx";
-import ProgramSample from "@/app/program.mock.json";
-import styles from "@/app/program/programs.module.css";
-import { parseProgramsData, Tags } from "@latimeria/core";
-import { atom, createStore, Provider, useAtom, useAtomValue } from "jotai";
-import { useMemo } from "react";
+  Button,
+  ListBox,
+  ListBoxItem,
+  Popover,
+  Select,
+  SelectValue,
+} from 'react-aria-components'
 
-// State atoms
-const tagsAtom = atom(new Tags([]));
-const kindsSelectStore = createStore();
-const placesSelectStore = createStore();
 // TODO:サンプルデータにつきデータ取り扱いの正式な方式を考慮必要
-const programsAtom = atom(parseProgramsData(ProgramSample));
+const programsAtom = atom(parseProgramsData(ProgramSample))
+const tagsAtom = atom(new Tags([]))
+const matchedProgramsAtom = atom((get) => {
+  const programs = get(programsAtom)
+  const tags = get(tagsAtom)
+  return tags.size > 0 ? programs.matchPrograms(tags) : programs
+})
 
 /**
  * @returns {JSX.Element}
  * @constructor
  */
-export default function ProgramsView() {
-  const [tags, setTags] = useAtom(tagsAtom);
-  const kindOptions = useAtomValue(OptionsInSelectAtom, {
-    store: kindsSelectStore,
-  });
-  const placeOptions = useAtomValue(OptionsInSelectAtom, {
-    store: placesSelectStore,
-  });
-  const programs = useAtomValue(
-    useMemo(() => {
-      return atom((get) => {
-        const programs = get(programsAtom);
-        const unionKindTags = tags.union(kindOptions);
-        const placeKindTags = unionKindTags.union(placeOptions);
-        return tags.size !== 0
-          ? programs.matchPrograms(placeKindTags)
-          : programs;
-      });
-    }, [tags, kindOptions, placeOptions]),
-  );
+export function ProgramsView() {
+  const [tags, setTags] = useAtom(tagsAtom)
+  const matchedPrograms = useAtomValue(matchedProgramsAtom)
 
   return (
     <div>
+      <h2>企画一覧/検索</h2>
       <ProgramInput onchange={setTags} tags={tags} />
       <div className={styles.programSearchLine}>
         <KindSelectMenu />
         <PlaceSelectMenu />
       </div>
-      <ProgramView programs={programs} />
+      <ProgramView programs={matchedPrograms} />
     </div>
-  );
+  )
 }
 
 /**
  * @returns {JSX.Element}
  * @constructor
  */
-function KindSelectMenu({}) {
-  const visibleAtom = useMemo(() => atom(false), []);
-  const [isVisible, setIsVisible] = useAtom(visibleAtom);
-  const kinds = useAtomValue(
-    useMemo(() => atom((get) => get(OptionsInSelectAtom)), []),
-    { store: kindsSelectStore },
-  );
-  const showKind =
-    kinds.size >= 2
-      ? `${kinds.keys().next().value}...`
-      : kinds.size === 0
-        ? "形態"
-        : kinds.keys().next().value;
+function KindSelectMenu() {
+  const setTags = useSetAtom(tagsAtom)
   return (
-    <Provider store={kindsSelectStore}>
-      <SelectMenu multiple={true}>
-        <div className={styles.programSelectPullDown}>
-          <p onClick={() => setIsVisible((prev) => !prev)}>{showKind} ▼</p>
-          <div
-            className={
-              isVisible
-                ? styles.programSelectPullDownItems
-                : styles.programSelectPullDownItemsHide
-            }
-          >
-            <SelectItem value="体験">体験</SelectItem>
-            <SelectItem value="展示">展示</SelectItem>
-            <SelectItem value="上演">上演</SelectItem>
-            <SelectItem value="販売">販売</SelectItem>
-            <SelectItem value="配布">配布</SelectItem>
-          </div>
-        </div>
-      </SelectMenu>
-    </Provider>
-  );
+    <Select
+      onSelectionChange={(selected) => {
+        setTags(previous => new Tags([...previous, selected]))
+      }}
+      placeholder="種類"
+    >
+      <Button className={styles.programSelectPullDown}>
+        <SelectValue />
+        <span aria-hidden="true">▼</span>
+      </Button>
+      <Popover>
+        <ListBox className={styles.programSelectPullDownItems}>
+          <ListBoxItem id="体験">体験</ListBoxItem>
+          <ListBoxItem id="展示">展示</ListBoxItem>
+          <ListBoxItem id="上演">上演</ListBoxItem>
+          <ListBoxItem id="販売">販売</ListBoxItem>
+          <ListBoxItem id="配布">配布</ListBoxItem>
+          <ListBoxItem id="募金">募金</ListBoxItem>
+        </ListBox>
+      </Popover>
+    </Select>
+  )
 }
 
 /**
- *
  * @returns {JSX.Element}
  * @constructor
  */
-function PlaceSelectMenu({}) {
-  const visibleAtom = useMemo(() => atom(false), []);
-  const [isVisible, setIsVisible] = useAtom(visibleAtom);
+function PlaceSelectMenu() {
+  const setTags = useSetAtom(tagsAtom)
   return (
-    <Provider store={placesSelectStore}>
-      <SelectMenu multiple={true}>
-        <div className={styles.programSelectPullDown}>
-          <p onClick={() => setIsVisible((prev) => !prev)}>場所 ▼</p>
-          <div
-            className={
-              isVisible
-                ? styles.programSelectPullDownItems
-                : styles.programSelectPullDownItemsHide
-            }
-          >
-            <SelectItem value="1F">1F</SelectItem>
-            <SelectItem value="2F">2F</SelectItem>
-            <SelectItem value="3F">3F</SelectItem>
-            <SelectItem value="4F">4F</SelectItem>
-            <SelectItem value="5F">5F</SelectItem>
-            <SelectItem value="屋上">屋上</SelectItem>
-            <SelectItem value="体育館">体育館</SelectItem>
-            <SelectItem value="交流センター">交流センター</SelectItem>
-          </div>
-        </div>
-      </SelectMenu>
-    </Provider>
-  );
+    <Select
+      onSelectionChange={(selected) => {
+        setTags(previous => new Tags([...previous, selected]))
+      }}
+      placeholder="場所"
+    >
+      <Button className={styles.programSelectPullDown}>
+        <SelectValue />
+        <span aria-hidden="true">▼</span>
+      </Button>
+      <Popover>
+        <ListBox className={styles.programSelectPullDownItems}>
+          <ListBoxItem id="1F">1F</ListBoxItem>
+          <ListBoxItem id="2F">2F</ListBoxItem>
+          <ListBoxItem id="3F">3F</ListBoxItem>
+          <ListBoxItem id="4F">4F</ListBoxItem>
+          <ListBoxItem id="5F">5F</ListBoxItem>
+          <ListBoxItem id="屋上">屋上</ListBoxItem>
+          <ListBoxItem id="体育館">体育館</ListBoxItem>
+          <ListBoxItem id="交流センター">交流センター</ListBoxItem>
+        </ListBox>
+      </Popover>
+    </Select>
+  )
 }

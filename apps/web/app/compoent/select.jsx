@@ -1,59 +1,78 @@
-"use client";
+'use client'
 
-import styles from "./select.module.css";
-import { atom, useAtom, useAtomValue, useSetAtom } from "jotai";
-import { useMemo } from "react";
-import { MdCheck } from "react-icons/md";
-
-export const OptionsInSelectAtom = atom(/** @type {Set<string>} */ new Set());
-export const OptionsAtom = atom(
-  (get) => get(OptionsInSelectAtom),
-  /**
-   * @param {import("jotai").Getter} get
-   * @param {import("jotai").Setter} set
-   * @param {string} option
-   * @param {boolean} multiple
-   */
-  (get, set, option, multiple) => {
-    if (multiple) {
-      const prevOptions = get(OptionsInSelectAtom);
-      if (prevOptions.has(option)) {
-        prevOptions.delete(option);
-        set(OptionsInSelectAtom, prevOptions);
-      } else {
-        const newOptions = prevOptions.add(option);
-        set(OptionsInSelectAtom, newOptions);
-      }
-    } else {
-      set(OptionsInSelectAtom, new Set([option]));
-    }
-  },
-);
-const IsMultipleAtom = atom(false);
-const MultipleAtom = atom(
-  (get) => get(IsMultipleAtom),
-  /**
-   * @param {import("jotai").Getter} get
-   * @param {import("jotai").Setter} set
-   * @param {boolean} multiple
-   */
-  (get, set, multiple) => {
-    set(IsMultipleAtom, multiple);
-  },
-);
+import { useContext } from 'react'
+import {
+  Button,
+  Label,
+  ListBox,
+  ListBoxItem,
+  Popover,
+  Select, SelectStateContext,
+  SelectValue,
+} from 'react-aria-components'
 
 /**
  *
  * @param {Object} args
  * @param {React.ReactNode} args.children
- * @param {boolean} args.multiple
  * @returns {React.ReactNode}
  * @constructor
  */
-export function SelectMenu({ children, multiple }) {
-  const setMultiple = useSetAtom(MultipleAtom);
-  setMultiple(multiple);
-  return <>{children}</>;
+export function SelectMenu({ children, ...properties }) {
+  return (
+    <Select {...properties}>
+      {children}
+    </Select>
+  )
+}
+
+/**
+ * @param {React.ReactNode} children
+ * @return {JSX.Element}
+ * @constructor
+ */
+export function SelectLabel({ children }) {
+  return (
+    <Label>{children}</Label>
+  )
+}
+
+/**
+ * @return {JSX.Element}
+ * @constructor
+ */
+export function SelectButton() {
+  return (
+    <Button>
+      <SelectValue />
+      <span aria-hidden="true">▼</span>
+    </Button>
+
+  )
+}
+
+/**
+ * @param {Object} props
+ * @param {React.ReactNode} props.children
+ * @param {(args: (((prev: Set<string>) => Set<string>) | Set<string>)) => void} props.onSelected
+ * @param {Set<string>} props.selected
+ * @return {JSX.Element}
+ * @constructor
+ */
+export function SelectItems({ children, onSelected, selected }) {
+  const selectState = useContext(SelectStateContext) ?? {}
+  if (selectState.selectedItem) {
+    onSelected((previous) => {
+      previous.add(selectState?.selectedItem.textValue)
+    })
+  }
+  return (
+    <Popover>
+      <ListBox selectionMode="single" selectedKeys={selected}>
+        {children}
+      </ListBox>
+    </Popover>
+  )
 }
 
 /**
@@ -64,21 +83,9 @@ export function SelectMenu({ children, multiple }) {
  * @constructor
  */
 export function SelectItem({ value, children }) {
-  const chosen = useMemo(() => atom(false), []);
-  const [isChosen, setChoose] = useAtom(chosen);
-  const toggleChoose = () => setChoose((prev) => !prev);
-  const ableMultiple = useAtomValue(IsMultipleAtom);
-  const setOption = useSetAtom(OptionsAtom);
   return (
-    <span
-      className={styles.itemSelected}
-      onClick={() => {
-        setOption(value, ableMultiple);
-        toggleChoose();
-      }}
-    >
+    <ListBoxItem textValue={value} key={value}>
       {children}
-      {isChosen ? <MdCheck /> : ""}
-    </span>
-  );
+    </ListBoxItem>
+  )
 }

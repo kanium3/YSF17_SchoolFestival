@@ -25,16 +25,16 @@ const app = defineCommand({
     },
   },
   run({ args }) {
-    if (!args.noOAuth) {
-      authorize()
-        .then(v => driveHandler(v, args.syncDir, args.driveId, args.force))
-        .catch(console.error)
-    }
-    else {
+    if (args.noOAuth) {
       authorizeAuto()
         .then((v) => {
           driveHandler(v, args.syncDir, args.driveId, args.force)
         })
+        .catch(console.error)
+    }
+    else {
+      authorize()
+        .then(v => driveHandler(v, args.syncDir, args.driveId, args.force))
         .catch(console.error)
     }
   },

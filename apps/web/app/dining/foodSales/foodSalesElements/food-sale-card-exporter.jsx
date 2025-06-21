@@ -38,9 +38,7 @@ export function FoodSalesCardExporter(cardData = {
       <details className={styles.ingredients}>
         <summary className={styles.ingredientsSummary}>アレルギー・原材料情報</summary>
         <div className={styles.ingredientsTable}>
-          
           { Ingredients }
-
         </div>
       </details>
     </div>
@@ -129,7 +127,6 @@ export function Ingredient(menu) {
 
       </div>
     </div>
-  )
 }
 
 /**

@@ -45,7 +45,7 @@ function resolve_path_from_cwd(absolve_path) {
 /**
  * Reads previously authorized credentials from the save file.
  *
- * @return {Promise<import("google-auth-library").OAuth2Client | null>}
+ * @return {Promise<import("google-auth-library").OAuth2Client | undefined>}
  */
 async function loadSavedCredentialsIfExist() {
   try {
@@ -53,8 +53,8 @@ async function loadSavedCredentialsIfExist() {
     const credentials = JSON.parse(content)
     return google.auth.fromJSON(credentials)
   }
-  catch {
-    return null
+  catch (error) {
+    console.error(error)
   }
 }
 
@@ -161,22 +161,22 @@ class SyncAgent {
         /** @type SyncFileSchema */
         const localFileInfo = await this.db.get(filePath)
         /** @type SyncFileSchema */
-        const doc = {
+        const document_ = {
           _id: filePath,
           hash: hash,
           date: new Date().toISOString(),
           _rev: localFileInfo._rev,
         }
-        await this.db.put(doc)
+        await this.db.put(document_)
       }
       catch {
         /** @type SyncFileSchema */
-        const doc = {
+        const document_ = {
           _id: filePath,
           hash: hash,
           date: new Date().toISOString(),
         }
-        await this.db.put(doc)
+        await this.db.put(document_)
       }
     }
   }
@@ -237,18 +237,18 @@ class SyncAgent {
 /**
  * The handler
  * @param {import("google-auth-library").OAuth2Client | import("google-auth-library").JSONClient} authClient An authorized OAuth2 client.
- * @param {string | undefined} syncDir
+ * @param {string | undefined} syncDirectory
  * @param {string} driveId
  * @param {boolean} force
  */
-export async function driveHandler(authClient, syncDir, driveId, force) {
+export async function driveHandler(authClient, syncDirectory, driveId, force) {
   const drive = google.drive({ version: 'v3', auth: authClient })
-  const resolveSyncDir = syncDir ? syncDir : resolve_path_from_cwd('/public')
+  const resolveSyncDirectory = syncDirectory ?? resolve_path_from_cwd('/public')
   const agent = new SyncAgent({
     folderID: driveId,
     force: force,
     matchRule: DEFAULT_SYNC_FILE_REGEXP,
-    realSyncPath: resolveSyncDir,
+    realSyncPath: resolveSyncDirectory,
   })
   await agent.setup()
   await agent.sync(drive)

@@ -104,12 +104,7 @@ export class Programs {
   programs: Set<Program>
 
   constructor(init?: Program[]) {
-    if (init) {
-      this.programs = new Set(init)
-    }
-    else {
-      this.programs = new Set()
-    }
+    this.programs = init ? new Set(init) : new Set()
   }
 
   /**
@@ -121,11 +116,9 @@ export class Programs {
     const matchedPrograms = new Programs([])
     for (const program of this.programs) {
       const programTags = program.tags
-      if (is_complete) {
-        if (tags.isSupersetOf(programTags)) {
-          matchedPrograms.programs.add(program)
-          continue
-        }
+      if (is_complete && tags.isSupersetOf(programTags)) {
+        matchedPrograms.programs.add(program)
+        continue
       }
       if (!tags.isDisjointFrom(programTags)) {
         matchedPrograms.programs.add(program)
