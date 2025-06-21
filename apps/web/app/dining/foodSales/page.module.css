@@ -36,8 +36,9 @@
 .foodSalesMenuBox {
   padding-top: 1em;
   padding-bottom: 0.5em;
+  max-width: calc(100% - 1em);
   width: calc(100% - 1em);
-  min-width: fit-content;
+  /**min-width: fit-content;*/
   text-align: left;
 }
 
@@ -68,6 +69,10 @@
   padding-left: 0%;
 }
 
+.foodSalesSpaceFor2Rows {
+  width: calc(100% - 10em);
+}
+
 .line {
   margin-left: 5%;
   max-width: calc(90%);
@@ -81,8 +86,8 @@
 }
 .ingredients[open] {
   background-color: #00000011;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
 .ingredientsSummary {
   width: 100%;
@@ -104,19 +109,44 @@
   width: 100%;
   max-width: 100%;
 }
+
+.ingredientTable {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.15em;
+  column-gap: 0.1em;
+}
+
+.ingredientFoodName {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding-left: 0em;
+  font-weight: bold;
+}
 /**一つの食べ物の原材料とかを囲む*/
 .ingredient {
   width: max-content;
-  table-layout: fixed;
   /**padding-left: 0em;
   padding-right: 0em;*/
 }
-.ingredient th {
+.ingredientTitle {
   padding-right: 1em;
+  font-weight: bold;
+}
+
+.ingredientTd {
+  overflow-wrap : break-word;
 }
 
 .ingredientP {
   padding-left: 0%;
   width: 100%;
   /**display: block;*/
+}
+
+
+.divtable {
+  padding-left: 0.125em;
+  padding-top: 0.13em;
+  padding-bottom: 0.13em;
 }
