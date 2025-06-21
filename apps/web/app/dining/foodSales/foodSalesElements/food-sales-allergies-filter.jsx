@@ -2,7 +2,7 @@ import styles from '../page.module.css';
 import { foodSalesMenu } from './food-sales-menus';
 import { FoodSalesCardExporter } from './food-sale-card-exporter';
 
-export function FoodSalesAllergiesFilter(allergies = []) {
+export function FoodSalesAllergiesFilter(_allergies = []) {
   const Cards = foodSalesMenu().map(item => <FoodSalesCardExporter cardData={item}/>);
   return (
     //とりあえずそのまま横流し
