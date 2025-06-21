@@ -38,8 +38,8 @@ export default function Map() {
             <Marker position={position1} icon={ICON}>
               <Popup>
                 <Image src="https://raw.githubusercontent.com/proirok/buffer/refs/heads/main/map_pin.svg" alt="マップピンアイコン画像" width={200} height={100} />
-                <Link href="https://www.mrchildren.jp/" target="blank" rel="noopener noreferrer">
-                  Mr.Childrenのホームページ
+                <Link href="https://unofficialsoukoufest.github.io/YSF17_SchoolFestival/program/29fe6fea-c849-7ae3-03b5-528493e7a8bf" target="blank" rel="noopener noreferrer">
+                  食販2 - デフォ子
                 </Link>
               </Popup>
             </Marker>
