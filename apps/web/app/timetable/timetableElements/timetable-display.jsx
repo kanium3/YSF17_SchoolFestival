@@ -11,7 +11,7 @@ export function TimetableDisplay() {
   function toggleValue() {
     setDay(3 - day)
     // 詳細を全て畳む
-    const elements = document.getElementsByClassName('timetable_column');
+    const elements = document.querySelectorAll('.timetable_column')
     for (const element1 of elements) {
       element1.classList.add('closed_inTimetable')
     }
