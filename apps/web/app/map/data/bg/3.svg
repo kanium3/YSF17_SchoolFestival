@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1093"
+   height="1279"
+   version="1.1"
+   id="svg282"
+   viewBox="0 0 1093 1279"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs286">
+    <pattern
+       xlink:href="#Strips1_1"
+       id="pattern8677"
+       patternTransform="matrix(10.965904,2.4296147,-4.3823163,6.0796437,18.044576,-0.21544905)" />
+    <pattern
+       patternUnits="userSpaceOnUse"
+       width="2"
+       height="1"
+       patternTransform="translate(0,0) scale(10,10)"
+       id="Strips1_1">
+      <rect
+         style="fill:black;stroke:none;fill-opacity:0.3"
+         x="0"
+         y="0"
+         width="2"
+         height="1"
+         id="backgroundRect" />
+      <rect
+         style="fill:black;stroke:none"
+         x="0"
+         y="-0.5"
+         width="1"
+         height="2"
+         id="rect2137" />
+    </pattern>
+  </defs>
+  <g
+     id="floor_3"
+     style="display:inline">
+    <g
+       transform="translate(20)"
+       style="display:inline"
+       id="bg3">
+      <!-- 3階 -->
+      <path
+         fill="#e0ffff"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 16,977 v 302 H 1073 V 977 Z"
+         id="path161" />
+      <!-- プール -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____pool"
+         d="m 16,977 v 302 H 250 V 977 Z" />
+      <path
+         id="____riverside3"
+         style="display:inline;fill:#ffffe0;fill-opacity:1;stroke:none"
+         d="M 0,74 V 184 H 60 V 74 Z m 30,215 v 74 H 0 V 473 H 60 V 289 Z m 0,289 v 74 H 0 V 762 H 60 V 578 Z" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 776,762 H 909 V 289 H 804 V 0 h -28 z"
+         id="____trainside3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 25,184 V 289 H 65 V 184 Z m 476,0 v 105 h 55 V 184 Z M 25,473 V 578 H 65 V 473 Z m 476,0 v 105 h 55 V 473 Z"
+         id="____passage3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 65,255 h 15 v -18 h 50 V 219 H 65 Z m 436,-36 h -65 v 18 h 50 v 18 h 15 z m 210,0 v 36 h 65 V 219 Z M 65,508 v 36 h 65 v -36 z"
+         id="____staircases3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 60,578 V 762 H 776 V 578 Z"
+         id="____S3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 60,289 V 473 H 776 V 289 Z"
+         id="____C3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="#ffffe0"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 60,0 V 184 H 776 V 0 Z"
+         id="____N3"
+         style="display:inline;stroke:none" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 60,74 0,0 H 60 L 0,74 V 0 Z M 60,0 V 74 H 0 Z M 30,363 0,289 H 30 L 0,363 v -74 z m 0,-74 v 74 H 0 Z M 30,652 0,578 H 30 L 0,652 v -74 z m 0,-74 v 74 H 0 Z"
+         id="____atriums3"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 65,184 h 436 v 35 h -65 v 18 h 50 v 18 h 15 v 34 H 65 v -34 h 15 v -18 h 50 V 219 H 65 Z m 491,0 h 220 v 35 h -65 v 36 h 65 v 34 H 556 Z M 65,473 H 501 V 578 H 65 v -34 h 65 V 508 H 65 Z m 491,0 V 578 H 776 V 473 Z"
+         id="____inner3"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="M 0,0 H 804 V 289 H 909 V 762 H 0 V 578 H 25 V 473 H 0 V 289 H 25 V 184 H 0 Z"
+         id="____outer3"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 646,578 v 74 z m 40,0 v 74 z m -20,19 v 36 z m -20,0 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 20 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 40,-24 -20,-3 z"
+         id="____staircase31"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 146,578 v 74 z m 40,0 v 74 z m -20,19 v 36 z m -20,0 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 20,3 h 20 z m -20,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,3 h 40 z m 0,-24 20,-3 z"
+         id="____staircase32"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 80,526 h 36 z m 0,-18 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,18 v 18 z m 3,-18 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m -12,0 3,18 z"
+         id="____staircase33"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 725,237 h 36 z m 0,-18 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,18 v 18 z m 3,-18 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m 3,0 v 36 z m -24,0 -3,18 z"
+         id="____staircase34"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 436,237 h 50 z m 29,-18 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 36 z m -24,0 -3,18 z"
+         id="____staircase35"
+         style="display:inline" />
+      <path
+         fill="none"
+         stroke="#000000"
+         stroke-width="1px"
+         d="m 80,237 h 50 z m 0,-18 v 36 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,0 v 18 z m 3,18 z m 0,-18 3,18 z"
+         id="____staircase36"
+         style="display:inline" />
+      <path
+         fill="#ffd080"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____veranda10"
+         d="M -20,578 V 762 H 0 V 578 Z"
+         style="display:inline" />
+      <path
+         fill="#ffd080"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____veranda9"
+         d="M -20,289 V 473 H 0 V 289 Z"
+         style="display:inline" />
+      <path
+         fill="#ffd080"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____veranda8"
+         d="M -20,0 V 184 H 0 V 0 Z"
+         style="display:inline" />
+      <path
+         fill="#ffd080"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____veranda7"
+         d="m 556,214 v 45 h 20 v -45 z"
+         style="display:inline" />
+      <path
+         fill="#ffd080"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____veranda6"
+         d="m 481,503 v 45 h 20 v -45 z"
+         style="display:inline" />
+      <!-- EV -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____EV31"
+         d="m 686,615 v 37 h 29 v -37 z"
+         style="display:inline" />
+      <!-- WC -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____WC31"
+         d="m 686,578 h 90 v 74 h -61 v -37 h -29 z"
+         style="display:inline" />
+      <!-- WC -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____WC32"
+         d="m 60,578 h 86 v 37 h -29 v 37 H 60 v -37 z"
+         style="display:inline" />
+      <!-- EV -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____EV32"
+         d="m 416,110 v 37 h 29 v -37 z"
+         style="display:inline" />
+      <!-- WC -->
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____WC33"
+         d="m 506,184 h -90 v -37 h 29 v -37 h 61 z"
+         style="display:inline" />
+      <!-- 生徒会室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Student_Council_Room"
+         d="m 823,289 v 74 h 86 v -74 z"
+         style="display:inline" />
+      <!-- 進路相談室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Students_Guidance_Dept_Office"
+         d="m 823,363 v 73 h 86 v -73 z"
+         style="display:inline" />
+      <!-- 進路学習室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Students_Guidance_Room"
+         d="m 823,436 v 142 h 86 V 436 Z"
+         style="display:inline" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko3"
+         d="m 823,578 v 37 h 86 v -37 z"
+         style="display:inline" />
+      <!-- PTA室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="PTA_Room"
+         d="m 823,615 v 73 h 86 v -73 z"
+         style="display:inline" />
+      <!-- 同窓会室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Alumni_Association_Room"
+         d="m 823,688 v 74 h 86 v -74 z"
+         style="display:inline" />
+      <!-- S32  S31 -->
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S31"
+         d="m 686,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S32"
+         d="m 596,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S33"
+         d="m 506,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S34"
+         d="m 416,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S35"
+         d="m 326,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S36"
+         d="m 236,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S37"
+         d="m 146,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffb0b0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Room_S38"
+         d="m 56,688 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <!-- S35  S34  S33 -->
+      <!-- S38  S37  S36 -->
+      <!-- レクチャールーム -->
+      <path
+         d="m 416,578 v 74 h 90 v -74 z"
+         id="Lecture_Room_1"
+         style="display:inline;fill:#b0d0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         d="m 326,578 v 74 h 90 v -74 z"
+         id="Lecture_Room_2"
+         style="display:inline;fill:#b0d0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko4"
+         d="m 281,578 v 74 h 45 v -74 z"
+         style="display:inline" />
+      <!-- 暗\n室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Dark_Room"
+         d="m 731,399 v 74 h 45 v -74 z"
+         style="display:inline" />
+      <!-- 地学実験室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Earth_Science_Lab"
+         d="m 551,399 v 74 h 180 v -74 z m 135,0 v 74 z"
+         style="display:inline" />
+      <!-- 課題研究室 -->
+      <path
+         fill="#b0ffb0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Science_Research_Lab"
+         d="m 326,399 v 74 h 180 v -74 z"
+         style="display:inline" />
+      <!-- 生命科学\n実験室 -->
+      <path
+         fill="#b0ffb0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Life_Science_Lab"
+         d="m 146,399 v 74 h 180 v -74 z m 135,0 v 74 z"
+         style="display:inline" />
+      <!-- C32\n\n\nC31 -->
+      <path
+         d="m 60,399 v 74 h 86 v -74 z"
+         id="Room_C31"
+         style="display:inline;fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <!-- 物理実験室 -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Physics_Lab"
+         d="m 596,289 v 74 h 180 v -74 z m 135,0 v 74 z"
+         style="display:inline" />
+      <!-- ２ 生物実験室 １ -->
+      <path
+         fill="#b0d0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Biology_Lab"
+         d="m 191,289 v 74 h 315 v -74 z m 135,0 v 74 h 45 v -74 z"
+         style="display:inline" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko6"
+         d="m 146,289 v 74 h 45 v -74 z"
+         style="display:inline" />
+      <path
+         d="m 60,289 v 74 h 86 v -74 z"
+         id="Room_C32"
+         style="display:inline;fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko7"
+         d="m 731,110 v 74 h 45 v -74 z"
+         style="display:inline" />
+      <!-- 化学\n実験室 -->
+      <path
+         d="m 596,110 v 74 h 135 v -74 z"
+         id="Chemistry_Lab_1"
+         style="display:inline;fill:#b0d0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <!-- 低温\n実験室\n  -->
+      <path
+         fill="#d0b0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Low_temperature_Lab"
+         d="m 365,32 v 42 h 51 V 32 Z"
+         style="display:inline" />
+      <!-- 環境生命\n実験室 -->
+      <path
+         fill="#b0ffb0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Environmental_Biosciences_Lab"
+         d="m 236,32 h 129 v 42 h 51 v 110 h -31 v 21 H 350 V 184 H 236 Z m 24,53 h 45 z m 35,0 v 35 z m 20,0 h 11 z m 11,0 V 32 Z m 39,0 v 75 z m 0,50 h -15 z m 0,-10 h 40 z m 20,59 h -20 z m -59,0 v -74 z m 0,-49 h 14 z m -31,49 V 130 Z M 236,85 h 14 z"
+         style="display:inline" />
+      <!-- クリーン\nベンチ\nルーム -->
+      <path
+         fill="#b0ffb0"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Clean_Bench_Room"
+         d="m 146,110 v 74 h 90 v -74 z"
+         style="display:inline" />
+      <!-- N32\n\n\nN31 -->
+      <path
+         d="m 60,110 v 74 h 86 v -74 z"
+         id="Room_N31"
+         style="display:inline;fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____chogo"
+         d="m 731,0 v 74 h 45 V 0 Z"
+         style="display:inline" />
+      <path
+         d="m 686,0 v 74 h 45 V 0 Z"
+         id="Chemistry_Dept_Office"
+         style="display:inline;fill:#b0d0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         d="M 551,0 V 74 H 686 V 0 Z"
+         id="Chemistry_Lab_2"
+         style="display:inline;fill:#b0d0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <!-- 教職員\nステー\nション -->
+      <path
+         fill="#d0b0ff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="Staff_Station"
+         d="m 506,0 v 74 h 45 V 0 Z"
+         style="display:inline" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko8"
+         d="m 461,0 v 74 h 45 V 0 Z"
+         style="display:inline" />
+      <path
+         fill="#ffffff"
+         stroke="#000000"
+         stroke-width="1px"
+         id="____souko5"
+         d="m 146,0 v 74 h 45 V 0 Z"
+         style="display:inline" />
+      <path
+         d="m 60,0 v 74 h 86 V 0 Z"
+         id="Room_N32"
+         style="display:inline;fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
+      <path
+         id="path353"
+         style="display:inline;fill:url(#pattern8677);fill-rule:evenodd;stroke-width:0;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers stroke fill"
+         d="m 60,0 h 804 l 1,289 h -29 v -34 h -65 v -36 h 65 V 184 H 445 v 21 H 410 V 184 H 60 Z"
+         class="UnoptimicedTransforms"
+         transform="translate(-60)" />
+    </g>
+  </g>
+</svg>

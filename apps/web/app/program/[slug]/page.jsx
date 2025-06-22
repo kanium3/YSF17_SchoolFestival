@@ -1,25 +1,26 @@
-import styles from "../slug_page.module.css";
-import TitleBarWithBack from "@/app/compoent/title_bar";
-import { parseProgramsData, solveBasePath } from "@/app/lib/index.js";
-import ProgramSample from "@/app/program.mock.json";
-import Image from "next/image";
+import styles from '../slug_page.module.css'
+import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
+import { parseProgramsData, solveBasePath } from '@/app/lib/index.js'
+import ProgramSample from '@/app/program.mock.json'
+import Image from 'next/image'
 
 export async function generateMetadata({ params }) {
   // read route params
-  const { slug } = await params;
+  const { slug } = await params
 
   // fetch data
-  const programs = parseProgramsData(ProgramSample);
-  const program = programs.find((program) => program.id === slug);
+  const programs = parseProgramsData(ProgramSample)
+  const program = programs.iter().find(program => program.id === slug)
   return {
     title: `蒼煌祭17th非公式ページ｜${program.name}`,
     description: `蒼煌祭17thの企画「${program.name}」についての非公式のページです。`,
-  };
+  }
 }
 
+// eslint-disable-next-line unicorn/prevent-abbreviations
 export async function generateStaticParams() {
-  const programs = parseProgramsData(ProgramSample);
-  return programs.map((program) => ({ slug: program.id }));
+  const programs = parseProgramsData(ProgramSample)
+  return programs.iter().map(program => ({ slug: program.id }))
 }
 
 /**
@@ -29,41 +30,41 @@ export async function generateStaticParams() {
  * @constructor
  */
 export default async function Program({ params }) {
-  const { slug } = await params;
-  const programs = parseProgramsData(ProgramSample);
-  const program = programs.find((program) => program.id === slug);
+  const { slug } = await params
+  const programs = parseProgramsData(ProgramSample)
+  const program = programs.iter().find(program => program.id === slug)
 
   return (
     <>
       <TitleBarWithBack backpage="/program" pagename={program.name} />
       <Image
         src={solveBasePath(program.imagePath)}
-        alt={program.name + " の画像"}
+        alt={program.name + ' の画像'}
         width={240}
         height={240}
-        className={styles["pr-image"]}
+        className={styles['pr-image']}
       />
-      <div className={styles["pr-tags"]}>
+      <div className={styles['pr-tags']}>
         {program.programType.map((type) => {
           return (
             /* タグ検索できるようにしたらここを書き換える */
-            <div key={type} className={styles["pr-tag"]}>
+            <div key={type} className={styles['pr-tag']}>
               {type}
             </div>
-          );
+          )
         })}
       </div>
-      <div className={styles["pr-content"]}>
-        <div className={styles["pr-subject"]}>
+      <div className={styles['pr-content']}>
+        <div className={styles['pr-subject']}>
           <h3>{program.name}</h3>
-          <h3 style={{ marginLeft: "auto" }}>
-            {program.floor + "階 @" + program.location}
+          <h3 style={{ marginLeft: 'auto' }}>
+            {program.aria + '階 @' + program.location}
           </h3>
         </div>
-        <div className={styles["pr-text"]}>{program.prText || ""}</div>
+        <div className={styles['pr-text']}>{program.prText || ''}</div>
       </div>
-      {/*地図も作りましょう*/}
-      <div style={{ marginTop: "1em" }}>位置を示す地図</div>
+      {/* 地図も作りましょう */}
+      <div style={{ marginTop: '1em' }}>位置を示す地図</div>
     </>
-  );
+  )
 }

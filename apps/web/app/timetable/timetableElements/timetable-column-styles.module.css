@@ -1,0 +1,95 @@
+.column {
+    /*flexBox*/
+    display: flex;
+}
+
+.even {
+    background-color: var(--backgroundColor);
+}
+
+.odd {
+    background-color: var(--backgroundColor);
+}
+
+
+
+.column_main {
+    width: 170px;
+    margin-bottom: 2rem;
+}
+
+.timeBoard {
+    height: calc(5*4*2.1rem);
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(60, 0.7rem);
+    /*5時間を5分刻みで*/
+
+    margin-top: 20px;
+}
+
+.line_1hour {
+    grid-column: 1 / 2;
+    top: 0px;
+    height: 0;
+    width: 100%;
+
+    margin: 0;
+    outline: solid 1px hsl(226deg, 30%, 37%);
+}
+
+.startTime {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    position: relative;
+    top: -1rem;
+    left: -3%;
+
+    font-size: 0.8rem;
+    color: hsl(226deg, 30%, 37%);
+}
+
+.endTime {
+    grid-column: 1 / 2;
+    grid-row: -2 / -1;
+    position: relative;
+    top: 1rem;
+    left: -3%;
+
+    font-size: 0.8rem;
+    color: hsl(226deg, 30%, 37%);
+}
+
+.column_details {
+    position: relative;
+    width: 170px;
+    margin-top: 3px;
+
+    animation-duration: 0.2s;
+    animation-name: open_details;
+}
+
+@keyframes open_details {
+    from {
+        left: -10%;
+        opacity: 0.3;
+        backdrop-filter: blur(4px);
+    }
+
+    to {
+        left: 0px;
+        opacity: 1;
+        backdrop-filter: blur(4px);
+    }
+}
+
+.details_background {
+    position: relative;
+    margin: 0px auto;
+
+    color: white;
+
+    background-color: hsla(0deg, 0%, 32%, 40%);
+    background: linear-gradient(to right, hsla(0deg, 0%, 32%, 37%), hsla(0deg, 0%, 32%, 40%) 80%);
+    backdrop-filter: blur(4px);
+}

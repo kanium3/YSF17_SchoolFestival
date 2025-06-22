@@ -1,0 +1,24 @@
+.button {
+    position: relative;
+    --mainColor: hsl(219deg, 91%, 59%);
+    width: min(70%, 340px);
+    height: 2.25rem;
+    margin: 20px;
+
+    color: var(--mainColor);
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    border-radius: 2rem;
+    border: solid 3px var(--mainColor);
+    background-color: white;
+}
+
+.icon {
+    --height: 2.25rem;
+    position: absolute;
+    height: 98%;
+    aspect-ratio: 1 / 1;
+    top: 1%;
+    left: calc(2px + var(--height)*0.01);
+}

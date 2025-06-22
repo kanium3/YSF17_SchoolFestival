@@ -11,17 +11,19 @@
     "format": "next lint --fix"
   },
   "dependencies": {
+    "@latimeria/core": "^0.1.0",
     "jotai": "^2.12.5",
     "next": "15.3.3",
     "react": "^19.0.0",
+    "react-aria": "^3.41",
+    "react-aria-components": "^1.10",
     "react-dom": "^19.0.0",
-    "react-icons": "^5.5.0",
-    "@latimeria/core": "*"
+    "react-icons": "^5.5.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@latimeria/eslint-config": "*",
     "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "@latimeria/eslint-config": "*"
+    "eslint-config-next": "15.3.3"
   }
 }

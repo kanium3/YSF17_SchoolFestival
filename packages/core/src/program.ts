@@ -1,64 +1,89 @@
-// UUID型
-export type UUID = string;
+import * as v from 'valibot'
 
-// ProgramOption型
-export interface ProgramOption {
-  id: UUID;
-  name: string;
-  team: string;
-  imagePath?: string;
-  programType: string[];
-  optionalTag?: string[];
-  location: string;
-  floor: number;
-  prText?: string;
-}
+export const programType = {
+  workshop: '体験',
+  donation: '募金',
+  sale: '販売',
+  exhibition: '展示',
+  performance: 'パフォーマンス',
+  publishing: '出版',
+  other: 'その他',
+} as const
+
+export const ariaType = {
+  '1F': '1F',
+  '2F': '2F',
+  '3F': '3F',
+  '4F': '4F',
+  '5F': '5F',
+  'hall': 'ホール',
+  'cafeteria': 'カフェテリア',
+  'gym': '体育館',
+  'rooftop': '屋上',
+} as const
+
+export const programSchema = v.object({
+  id: v.pipe(v.string(), v.nonEmpty(), v.slug()),
+  name: v.pipe(v.string(), v.nonEmpty()),
+  team: v.pipe(v.string(), v.nonEmpty()),
+  imagePath: v.optional(v.pipe(v.string(), v.nonEmpty())),
+  programType: v.array(v.enum(programType)),
+  aria: v.enum(ariaType),
+  location: v.pipe(v.string(), v.nonEmpty(), v.description('教室や部屋の番号')),
+  prText: v.optional(v.pipe(v.string(), v.nonEmpty())),
+  tag: v.optional(v.array(v.pipe(v.string(), v.maxLength(20), v.description('企画に結びつくタグ')))),
+  dates: v.pipe(v.array(v.pipe(v.string(), v.isoDate())), v.minLength(0), v.maxLength(3), v.description('企画を開催する日付の配列')),
+})
+
+export type ProgramData = v.InferInput<typeof programSchema>
 
 // Tagsクラス
 export class Tags extends Set<string> {
   constructor(init: string[]) {
-    super(init);
+    super(init)
   }
 
   // 指定したタグ集合がこの集合のスーパーセットか判定
   isSupersetOf(other: Tags): boolean {
     for (const tag of other) {
-      if (!this.has(tag)) return false;
+      if (!this.has(tag)) return false
     }
-    return true;
+    return true
   }
 
   // 指定したタグ集合とこの集合が互いに素か判定
   isDisjointFrom(other: Tags): boolean {
     for (const tag of other) {
-      if (this.has(tag)) return false;
+      if (this.has(tag)) return false
     }
-    return true;
+    return true
   }
 }
 
 // Programクラス
 export class Program {
-  id: UUID;
-  name: string;
-  team: string;
-  floor: number;
-  location: string;
-  programType: string[];
-  imagePath?: string;
-  prText?: string;
-  optionalTag?: string[];
+  id: string
+  name: string
+  team: string
+  location: string
+  aria: string
+  programType: string[]
+  imagePath?: string
+  prText?: string
+  optionalTag?: string[]
+  dates: Date[]
 
-  constructor(option: ProgramOption) {
-    this.id = option.id;
-    this.name = option.name;
-    this.team = option.team;
-    this.floor = option.floor;
-    this.location = option.location;
-    this.programType = option.programType;
-    this.imagePath = option.imagePath;
-    this.prText = option.prText;
-    this.optionalTag = option.optionalTag;
+  constructor(option: ProgramData) {
+    this.id = option.id
+    this.name = option.name
+    this.team = option.team
+    this.location = option.location
+    this.aria = option.aria
+    this.programType = option.programType
+    this.imagePath = option.imagePath
+    this.prText = option.prText
+    this.optionalTag = option.tag
+    this.dates = option.dates.map(v => new Date(v))
   }
 
   /**
@@ -67,23 +92,19 @@ export class Program {
   get tags(): Tags {
     return new Tags([
       ...this.programType,
-      this.floor.toString(),
+      this.aria,
       this.location,
       ...(this.optionalTag || []),
-    ]);
+    ])
   }
 }
 
 // Programsクラス
 export class Programs {
-  programs: Set<Program>;
+  programs: Set<Program>
 
   constructor(init?: Program[]) {
-    if (init) {
-      this.programs = new Set(init);
-    } else {
-      this.programs = new Set();
-    }
+    this.programs = init ? new Set(init) : new Set()
   }
 
   /**
@@ -92,33 +113,33 @@ export class Programs {
    * @param is_complete すべてのタグが完全に一致したもののみを返すか
    */
   matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
-    const matchedPrograms = new Programs([]);
+    const matchedPrograms = new Programs([])
     for (const program of this.programs) {
-      const programTags = program.tags;
-      if (is_complete) {
-        if (tags.isSupersetOf(programTags)) {
-          matchedPrograms.programs.add(program);
-          continue;
-        }
+      const programTags = program.tags
+      if (is_complete && tags.isSupersetOf(programTags)) {
+        matchedPrograms.programs.add(program)
+        continue
       }
       if (!tags.isDisjointFrom(programTags)) {
-        matchedPrograms.programs.add(program);
+        matchedPrograms.programs.add(program)
       }
     }
-    return matchedPrograms;
+    return matchedPrograms
   }
 
   /**
    * 企画のイテレータを返します。
    */
   iter(): IterableIterator<Program> {
-    return this.programs.values();
+    return this.programs.values()
   }
 }
 
 /**
  * 企画データのJSONをパースします
  */
-export function parseProgramsData(content: ProgramOption[]): Program[] {
-  return content.map((item) => new Program(item));
+export function parseProgramsData(input: string): Programs {
+  const programsSchema = v.array(programSchema)
+  const data = v.parse(programsSchema, input)
+  return new Programs(data.map(programData => new Program(programData)))
 }

@@ -1,0 +1,41 @@
+.headingBoard {
+    position: relative;
+    width: 94%;
+    margin: 0 auto;
+    margin-top: 5px;
+    aspect-ratio: 8 / 5;
+    background-color: var(--headingColor);
+    color: white;
+}
+
+.teamName {
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding-left: .3rem;
+}
+
+.summary {
+    font-size: 0.8rem;
+    padding-left: .8rem;
+}
+
+.extraInfo {
+    position: relative;
+    font-size: 0.8rem;
+}
+
+.expandButton {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 4.5rem;
+    height: 2rem;
+
+    background-color: transparent;
+    border: none;
+
+    color: white;
+    text-align: right;
+    padding-right: 2%;
+    font-size: .8rem;
+}

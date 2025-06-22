@@ -54,5 +54,5 @@ export default function Footer(){
         </ul>
       </nav>
     </footer>
-  )
+  );
 }

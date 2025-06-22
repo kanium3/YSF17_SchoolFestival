@@ -1,16 +1,15 @@
-import nextConfig from "@/next.config.js";
-import path from "path";
+import nextConfig from '@/next.config.js'
 
-export * from "@latimeria/core";
+export * from '@latimeria/core'
 
 /**
  * URLパスを取得する。
  * `NODE_ENV`が有効時、`next.config.js`の`basePath`を参照してそこから始まるパスを返します。開発時は`src`をそのまま返します。
- * @param {string} src
+ * @param {string} source
  * @return {string}
  */
-export function solveBasePath(src) {
-  return process.env.NODE_ENV === "production"
-    ? path.join(nextConfig.basePath || "", src)
-    : src;
+export function solveBasePath(source) {
+  return process.env.NODE_ENV === 'production'
+    ? `${nextConfig.basePath}${source}`
+    : source
 }

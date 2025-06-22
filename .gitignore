@@ -14,13 +14,13 @@
 /coverage
 
 # next.js
-/.next/
-/out/
+**/.next/**
+**/out/**
 .turbo
 
 # production
-/build
-**/dist
+**/build/**
+**/dist/**
 
 # misc
 .DS_Store
@@ -54,6 +54,7 @@ latimeriadb
 
 # VSCode
 /.vscode/
+/.idea/
 
 # Eslint
 .eslintcache

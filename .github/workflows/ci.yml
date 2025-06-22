@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: build core package
+        run: npx turbo run @latimeria/core#build
+
       - name: Run lint for JavaScript files
         run: npm run lint
 
@@ -71,9 +74,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: build core package
+        run: npx turbo run @latimeria/core#build
+
       - name: Run format
         run: npm run format
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Apply Prettier Change
+          commit_message: Apply Eslint Change

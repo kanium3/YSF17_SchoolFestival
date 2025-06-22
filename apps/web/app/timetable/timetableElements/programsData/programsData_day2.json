@@ -1,0 +1,170 @@
+[
+    {
+        "team": "サイエンス委員会",
+        "summary": "科学実験",
+        "hashtag": "常設展示実施中",
+        "Id": "<program.mock.jsonでのId>",
+        "timetable": [
+            {
+                "name": "時計反応",
+                "type": "event",
+                "description": "",
+                "location": "1階視聴覚室",
+                "eventId": "<eventId>",
+                "start": "11:30",
+                "end": "12:00"
+            },
+            {
+                "name": "真空砲",
+                "type": "event",
+                "description": "",
+                "location": "1階視聴覚室",
+                "eventId": "<eventId>",
+                "start": "14:00",
+                "end": "14:30"
+            }
+        ]
+    },
+    {
+        "team": "自然科学部",
+        "summary": "生物実験",
+        "hashtag": "葉脈・DNA・解剖",
+        "Id": "<program.mock.jsonでのId>",
+        "timetable": [
+            {
+                "name": "整理券配布③",
+                "type": "ticketDistribution",
+                "description": "",
+                "location": "3階 C棟の廊下",
+                "eventId": "<eventId>",
+                "start": "10:00",
+                "end": "11:00"
+            },
+            {
+                "name": "実験③",
+                "type": "event",
+                "description": "解剖",
+                "location": "3階 生物実験室2",
+                "eventId": "<eventId>",
+                "start": "11:00",
+                "end": "11:30"
+            },
+            {
+                "name": "整理券配布②",
+                "type": "ticketDistribution",
+                "description": "",
+                "location": "3階 C棟の廊下",
+                "eventId": "<eventId>",
+                "start": "13:00",
+                "end": "14:00"
+            },
+            {
+                "name": "実験②",
+                "type": "event",
+                "description": "DNA抽出",
+                "location": "3階 生物実験室2",
+                "eventId": "<eventId>",
+                "start": "14:00",
+                "end": "14:30"
+            }
+        ]
+    },
+    {
+        "team": "天文部",
+        "summary": "プラネタリウム",
+        "hashtag": "自作プラネタリウム",
+        "Id": "<program.mock.jsonでのId>",
+        "timetable": [
+            {
+                "name": "整理券配布(一日中)",
+                "type": "ticketDistribution",
+                "description": "",
+                "location": "3階 S33",
+                "eventId": "<eventId>",
+                "start": "10:00",
+                "end": "15:00"
+            },
+            {
+                "name": "プラネタリウム①",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "10:15",
+                "end": "10:30"
+            },
+            {
+                "name": "プラネタリウム②",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "10:35",
+                "end": "10:50"
+            },
+            {
+                "name": "プラネタリウム③",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "10:55",
+                "end": "11:10"
+            },
+            {
+                "name": "プラネタリウム④",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "11:15",
+                "end": "11:30"
+            },
+            {
+                "name": "プラネタリウム⑤",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "11:55",
+                "end": "12:10"
+            },
+            {
+                "name": "プラネタリウム⑥",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "13:15",
+                "end": "13:30"
+            },
+            {
+                "name": "プラネタリウム⑦",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "13:35",
+                "end": "13:50"
+            },
+            {
+                "name": "プラネタリウム⑧",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "13:55",
+                "end": "14:10"
+            },
+            {
+                "name": "プラネタリウム⑨",
+                "type": "event",
+                "description": "",
+                "location": "3階 暗室",
+                "eventId": "<eventId>",
+                "start": "14:15",
+                "end": "14:30"
+            }
+        ]
+    }
+]

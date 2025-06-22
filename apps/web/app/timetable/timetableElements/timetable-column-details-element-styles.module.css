@@ -1,0 +1,30 @@
+.Column_detailsElement {
+    grid-column: 1 / 2;
+}
+
+.up {
+    position: relative;
+    top: -2.5rem;
+}
+
+.name_text {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0rem;
+}
+
+.explanation_text {
+    margin-top: 0.2rem;
+    line-height: 1rem;
+    margin-bottom: 0.2rem;
+
+    font-size: .9rem;
+    font-weight: 400;
+}
+
+.place_text {
+    margin-top: -0.2rem;
+
+    font-size: .8rem;
+    font-weight: 400;
+}

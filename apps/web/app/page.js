@@ -1,14 +1,14 @@
-import "./home.css";
-import styles from "./page.module.css";
-import { Callout } from "@/app/compoent/callout.jsx";
-import { Countdown } from "@/app/compoent/countdown.jsx";
-import { solveBasePath } from "@/app/lib/index.js";
-import Image from "next/image";
+import './home.css'
+import styles from './page.module.css'
+import { Callout } from '@/app/compoent/callout.jsx'
+import { Countdown } from '@/app/compoent/countdown.jsx'
+import { solveBasePath } from '@/app/lib/index.js'
+import Image from 'next/image'
 
 export const metadata = {
-  title: "蒼煌祭17th非公式ページ｜トップ",
-  description: "蒼煌祭17thの非公式のページのトップです。",
-};
+  title: '蒼煌祭17th非公式ページ｜トップ',
+  description: '蒼煌祭17thの非公式のページのトップです。',
+}
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <div id="top_visual">
         {/* 仮作成のトップです */}
         <Image
-          src={solveBasePath("/ysf_top.png")}
+          src={solveBasePath('/ysf_top.png')}
           alt="横浜サイエンスフロンティア高校の画像です"
           width={780}
           height={450}
@@ -72,7 +72,8 @@ export default function Home() {
             mozallowfullscreen="true"
             webkitallowfullscreen="true"
             className="slide"
-          ></iframe>
+          >
+          </iframe>
         </div>
       </div>
 
@@ -86,7 +87,8 @@ export default function Home() {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+          >
+          </iframe>
         </div>
         <div>
           <h3>時刻表</h3>
@@ -108,5 +110,5 @@ export default function Home() {
         <p>情報源</p>
       </div>
     </div>
-  );
+  )
 }

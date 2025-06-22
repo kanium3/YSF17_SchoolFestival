@@ -1,0 +1,23 @@
+.even {
+    --backgroundColor: hsl(201deg, 47%, 81%);
+    --stripColor: hsl(201deg, 61%, 65%);
+    --headingColor: hsl(201deg, 84%, 49%);
+}
+
+.odd {
+    --backgroundColor: hsl(236deg, 35%, 76%);
+    --stripColor: hsl(236deg, 58%, 63%);
+    --headingColor: hsl(236deg, 61%, 53%);
+}
+
+.even * {
+    --backgroundColor: hsl(201deg, 47%, 81%);
+    --stripColor: hsl(201deg, 61%, 65%);
+    --headingColor: hsl(201deg, 84%, 49%);
+}
+
+.odd * {
+    --backgroundColor: hsl(236deg, 35%, 76%);
+    --stripColor: hsl(236deg, 58%, 63%);
+    --headingColor: hsl(236deg, 61%, 53%);
+}
