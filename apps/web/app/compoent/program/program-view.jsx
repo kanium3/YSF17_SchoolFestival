@@ -1,8 +1,10 @@
+import { ariaType } from '@latimeria/core'
 import styles from './program-view.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
 
-const ariaOrder = ['1F', '2F', '3F', '4F', '5F', '屋上', '体育館', '交流センター']
+/** @type {string[]} */
+const ariaOrder = Object.values(ariaType)
 
 function groupArray(array) {
   const groups = {}
