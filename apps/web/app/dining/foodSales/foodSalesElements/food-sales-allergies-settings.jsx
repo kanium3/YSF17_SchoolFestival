@@ -98,7 +98,8 @@ export function FoodSalesAllergiesSettings() {
               )}
             </ListBox>
         </details>
-        {/** 「選択しない」ならば表示しない */}{[...selected][0] != 0 ? <h3>{[...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name).join('、')}を含まない：</h3> : <></>}
+        {/** 「選択しない」ならば表示しない */}
+        {[...selected][0] != 0 ? <h3>{[...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name).join('、')}を含まない：</h3> : <></>}
       </div>
 
       <FoodSalesAllergiesFilter />
