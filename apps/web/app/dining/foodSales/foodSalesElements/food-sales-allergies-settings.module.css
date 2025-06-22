@@ -1,0 +1,21 @@
+.reactAriaHeader {
+  font-size: 1.143rem;
+  font-weight: bold;
+  padding: 0 0.714rem;
+}
+
+.reactAriaListBoxSection:not(:first-child) {
+  margin-top: 12px;
+}
+
+.listBox {
+  background-color: #ffffff;
+  border: #000000 1px solid;
+  padding: 0.5em;
+  overflow-y: auto;
+  height: 500px;
+}
+
+.items[data-focused="true"] {
+  background: #ff0000;
+}
