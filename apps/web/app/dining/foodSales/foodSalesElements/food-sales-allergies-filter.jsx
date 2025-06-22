@@ -54,10 +54,9 @@ export function FoodSalesAllergiesFilter(allergies = []) {
       <div id="foodSaleMenus" className={styles.foodSalesMenuArea}>
         { safeCards }
       </div>
-      {/** 下はアレルギー物質を「含む」やつ */}
+      {/** 下はアレルギー物質を「含む」やつ
       <div id="foodSaleMenus" className={styles.foodSalesMenuArea}>
-
-      </div>
+      </div> */}
     </div>
   )
 }
