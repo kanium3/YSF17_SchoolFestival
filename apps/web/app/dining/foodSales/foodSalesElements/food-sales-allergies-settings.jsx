@@ -76,7 +76,7 @@ export function FoodSalesAllergiesSettings() {
     <div>
       {/** アレルギー選択部分 */}
       <div id="AllergiesSlection">
-        <details>
+        <details className={styles.allergiesSelectingTab}>
           <summary>アレルギーでフィルター：</summary>
           <p>以下で選択されたアレルゲンが使われていないメニューを表示します(複数選択可)。</p>
           <ListBox
