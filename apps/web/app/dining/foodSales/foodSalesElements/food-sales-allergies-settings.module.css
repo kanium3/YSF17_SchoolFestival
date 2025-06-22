@@ -13,7 +13,8 @@
   border: #000000 1px solid;
   padding: 0.5em;
   overflow-y: auto;
-  height: 500px;
+  height: 300px;
+  width: fit-content;
 }
 
 .items[data-focused="true"] {
