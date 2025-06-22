@@ -59,8 +59,8 @@ export function NameAndPrice(menu) {
 
   const [defaultDisplay, setDefaultDisplay] = useState('table-cell')
 
-  const emSize = globalThis.getComputedStyle(document.documentElement).fontSize
   useEffect(() => {
+    const emSize = globalThis.getComputedStyle(document.documentElement).fontSize
     if (bodyReference.current.offsetHeight > 2.5 * Number.parseInt(emSize)) {
       // いらないやつをuseStateでdisplay: noneにしたい
       setDefaultDisplay('none')
