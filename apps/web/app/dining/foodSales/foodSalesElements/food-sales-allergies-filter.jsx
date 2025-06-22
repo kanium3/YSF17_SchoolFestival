@@ -1,6 +1,6 @@
 import styles from '../page.module.css'
 import { foodSalesMenu } from './food-sales-menus'
-import { FoodSalesCardExporter } from './food-sale-card-exporter'
+import { FoodSalesCardExporter } from './food-sales-card-exporter'
 
 export function FoodSalesAllergiesFilter(_allergies = []) {
   const Cards = foodSalesMenu().map(item => <FoodSalesCardExporter cardData={item} key={item.name} />)
