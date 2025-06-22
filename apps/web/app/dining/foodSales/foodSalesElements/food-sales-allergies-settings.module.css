@@ -29,6 +29,7 @@
   height: 300px;
   width: 100%;
 } */
+/** +20品目のところとか2,3列横に伸ばしたかったけどやり方がよくわからない */
 @media (min-width: 582px) { /** 194px * 3 */
   .listBox {
     background-color: #ffffff;
