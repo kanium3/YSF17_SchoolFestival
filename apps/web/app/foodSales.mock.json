@@ -16,8 +16,8 @@
       {
         "name": "コシヒカリのおにぎり",
         "price": 100,
-        "specificIngredients": [],
-        "ingredients": ["米", "海苔"]
+        "specificIngredients": ["さけ"],
+        "ingredients": ["米", "海苔", "さけ"]
       },
       {
         "name": "あきたこまちのおにぎり",
