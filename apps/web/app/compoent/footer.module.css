@@ -13,6 +13,11 @@
   height: 100%;
   width: 100%;
 }
+@media (prefers-color-scheme: dark) {
+  .ft-blur {
+    background-color: hsla(0, 0%, 0%, 0.85);
+  }
+}
 
 .ft-main {
   position: absolute; /* ft基準 */
@@ -42,6 +47,11 @@
 .ft-item-normal {
   /* backgroundなし */
   color: var(--foreground);
+}
+@media (prefers-color-scheme: dark) {
+  .ft-item-active {
+    background-color: var(--foreground);
+  }
 }
 
 .ft-icon {
