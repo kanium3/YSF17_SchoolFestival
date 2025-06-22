@@ -4,19 +4,61 @@
   padding: 0 0.714rem;
 }
 
-.reactAriaListBoxSection:not(:first-child) {
+.reactAriaListBoxSection {/** :not(:first-child) { */
   margin-top: 12px;
 }
+.reactAriaListBoxSection:not(:first-child) {
+  border-left: #000000 1px solid;
+}
+
 
 .listBox {
   background-color: #ffffff;
   border: #000000 1px solid;
   padding: 0.5em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  scrollbar-gutter: auto;
   overflow-y: auto;
   height: 300px;
   width: fit-content;
 }
 
-.items[data-focused="true"] {
-  background: #ff0000;
+.itemCollection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.items {
+  margin: 0.15em;
+  padding: 0.35em;
+  padding-left: 0.7em;
+  border-radius: 5px;
+
+  /*padding: 0 0.571rem 0 1.571rem;*/
+
+  &[data-focus-visible] {
+    outline: none;
+  }
+
+  &[data-selected] {
+    font-weight: 600;
+    background: #228b22;/** forest green */
+    color: #ffffff;
+
+    &::before {
+      content: '✓';
+      content: '✓' / '';
+      alt: ' ';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+    }
+  }
+
+  /**&[data-focused]
+  &[data-pressed] {
+    background: #00ff00;
+    color: unset;
+  }*/
 }

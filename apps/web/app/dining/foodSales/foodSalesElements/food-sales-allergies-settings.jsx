@@ -42,7 +42,7 @@ export function FoodSalesAllergiesSettings() {
   ]
 
   const specificSubstanceTable = [
-    { name: '', children: [
+    { name: 'アレルゲンを選択', children: [
     ] },
     { name: '特定原材料8品目', children: [
     ] },
@@ -50,7 +50,7 @@ export function FoodSalesAllergiesSettings() {
     ] },
   ]
   for (let specificSubstance of specificSubstanceTable) {
-    if (specificSubstance.name == '') {
+    if (specificSubstance.name == 'アレルゲンを選択') {
       specificSubstance.children.push({ id: 0, name: `${specificSubstanceList.find(item => item.id == 0).name}` })
     }
     else if (specificSubstance.name == '特定原材料8品目') {
@@ -89,8 +89,8 @@ export function FoodSalesAllergiesSettings() {
             {specificSubstanceTable.map(item => (
               <ListBoxSection id={item.name} className={styles.reactAriaListBoxSection} key={item.name}>
                 <Header className={styles.reactAriaHeader}>{item.name}</Header>
-                <Collection>
-                  {item.children.map(itemc => <ListBoxItem id={itemc.id} key={itemc.name}>{itemc.name}</ListBoxItem>)}
+                <Collection className={styles.itemCollection}>
+                  {item.children.map(itemc => <ListBoxItem className={styles.items} id={itemc.id} key={itemc.name}>{itemc.name}</ListBoxItem>)}
                 </Collection>
               </ListBoxSection>
             ),
