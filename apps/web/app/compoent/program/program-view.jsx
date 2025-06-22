@@ -2,6 +2,7 @@ import { ariaType } from '@latimeria/core'
 import styles from './program-view.module.css'
 import Link from 'next/link'
 import Image from 'next/image'
+import { solveBasePath } from '@/app/lib/index.js'
 
 /** @type {string[]} */
 const ariaOrder = Object.values(ariaType)
@@ -40,7 +41,7 @@ export default function ProgramView({ programs }) {
                       <div className={styles.card}>
                         <div className={styles.cardTitle}>
                           <div className={styles.imageInCard}>
-                            <Image src="/latimeria_logo.png" alt="仮企画ロゴです" fill={true} />
+                            <Image src={solveBasePath('/latimeria_logo.png')} alt="仮企画ロゴです" fill={true} />
                           </div>
                           <div className={styles.cardDescription}>
                             <h2>{program.name}</h2>
