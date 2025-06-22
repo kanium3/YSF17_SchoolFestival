@@ -1,6 +1,6 @@
 import * as v from 'valibot'
 
-const programType = {
+export const programType = {
   workshop: '体験',
   donation: '募金',
   sale: '販売',
@@ -10,16 +10,16 @@ const programType = {
   other: 'その他',
 } as const
 
-const ariaType = {
+export const ariaType = {
+  '1F': '1F',
+  '2F': '2F',
+  '3F': '3F',
+  '4F': '4F',
+  '5F': '5F',
   'hall': 'ホール',
   'cafeteria': 'カフェテリア',
   'gym': '体育館',
   'rooftop': '屋上',
-  '5F': '5F',
-  '4F': '4F',
-  '3F': '3F',
-  '2F': '2F',
-  '1F': '1F',
 } as const
 
 export const programSchema = v.object({
