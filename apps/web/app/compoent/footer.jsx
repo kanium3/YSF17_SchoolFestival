@@ -42,7 +42,7 @@ export default function Footer(){
               <li key={href}>
                 <Link
                   href={href}
-                  onClick={() => setActivePage(href)}
+                  //onClick={() => setActivePage(href)}
                   className={`${styles["ft-item"]} ${isActive ? styles["ft-item-active"] : styles["ft-item-normal"]}`}
                 >
                   <Icon size={40} className={styles["ft-icon"]} />
