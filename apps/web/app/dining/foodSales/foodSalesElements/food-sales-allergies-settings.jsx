@@ -3,7 +3,7 @@
 import styles from './food-sales-allergies-settings.module.css'
 import { useState } from 'react'
 import { FoodSalesAllergiesFilter } from './food-sales-allergies-filter.jsx'
-import {ListBox, ListBoxItem, ListBoxSection, Header, Collection} from 'react-aria-components'
+import { ListBox, ListBoxItem, ListBoxSection, Header, Collection } from 'react-aria-components'
 // import type {ListBoxItemProps, SelectProps, ValidationResult} from 'react-aria-components'
 
 export function FoodSalesAllergiesSettings() {
@@ -54,13 +54,13 @@ export function FoodSalesAllergiesSettings() {
       specificSubstance.children.push({ id: 0, name: `${specificSubstanceList.find(item => item.id == 0).name}` })
     }
     else if (specificSubstance.name == '特定原材料8品目') {
-      for (let j = 1; j < 8; j++) {
-        specificSubstance.children.push({ id: j, name: `${specificSubstanceList.find(item => item.id == j).name}` })
+      for (let index = 1; index < 8; index++) {
+        specificSubstance.children.push({ id: index, name: `${specificSubstanceList.find(item => item.id == index).name}` })
       }
     }
     else if (specificSubstance.name == '特定原材料+20品目') {
-      for (let j = 9; j < 28; j++) {
-        specificSubstance.children.push({ id: j, name: `${specificSubstanceList.find(item => item.id == j).name}` })
+      for (let index = 9; index < 28; index++) {
+        specificSubstance.children.push({ id: index, name: `${specificSubstanceList.find(item => item.id == index).name}` })
       }
     }
   }
@@ -98,10 +98,17 @@ export function FoodSalesAllergiesSettings() {
           </ListBox>
         </details>
         {/** 「選択しない」ならば表示しない */}
-        {[...selected][0] == 0 ? <></> : <h3>{[...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name).join('、')}を含まない：</h3>}
+        {[...selected][0] == 0
+          ? <></>
+          : (
+              <h3>
+                {[...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name).join('、')}
+                を含まない：
+              </h3>
+            )}
       </div>
 
-      <FoodSalesAllergiesFilter allergies={[...selected][0] != 0 ? [...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name) : []}/>
+      <FoodSalesAllergiesFilter allergies={[...selected][0] == 0 ? [] : [...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name)} />
     </div>
   )
 }
