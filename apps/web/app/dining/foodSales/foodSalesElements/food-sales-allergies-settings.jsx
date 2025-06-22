@@ -54,12 +54,12 @@ export function FoodSalesAllergiesSettings() {
       specificSubstance.children.push({ id: 0, name: `${specificSubstanceList.find(item => item.id == 0).name}` })
     }
     else if (specificSubstance.name == '特定原材料8品目') {
-      for (let index = 1; index < 8; index++) {
+      for (let index = 1; index < 9; index++) {
         specificSubstance.children.push({ id: index, name: `${specificSubstanceList.find(item => item.id == index).name}` })
       }
     }
     else if (specificSubstance.name == '特定原材料+20品目') {
-      for (let index = 9; index < 28; index++) {
+      for (let index = 9; index < 29; index++) {
         specificSubstance.children.push({ id: index, name: `${specificSubstanceList.find(item => item.id == index).name}` })
       }
     }
