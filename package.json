@@ -10,16 +10,12 @@
   },
   "devDependencies": {
     "@latimeria/latimeria-cli": "^0.1.0",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "vitest": "^3.2.4"
   },
   "packageManager": "npm@10.9.2",
   "workspaces": [
     "apps/*",
     "packages/*"
-  ],
-  "dependencies": {
-    "leaflet": "^1.9.4",
-    "react-device-detect": "^2.2.3",
-    "react-leaflet": "^5.0.0"
-  }
+  ]
 }
