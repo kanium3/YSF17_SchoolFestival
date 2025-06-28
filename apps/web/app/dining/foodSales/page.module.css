@@ -71,8 +71,9 @@
 }
 .foodSalesMenuName2PriceWithSecondRow {
   text-align: center;
-  width: max-content;
-  padding-left: calc(100% - 10em);
+  width: fit-content;
+  min-width: min-content;
+  padding-left: calc(100% - 12em);
   /**padding-left: 1.5em;
   padding-right: 1.5em;**/
 }

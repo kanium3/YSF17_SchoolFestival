@@ -75,6 +75,7 @@ export function NameAndPrice(menu_filteringSubstances) {
   const [defaultDisplay, setDefaultDisplay] = useState('table-cell')
 
   useEffect(() => {
+    console.log('re-rendered.')
     const emSize = globalThis.getComputedStyle(document.documentElement).fontSize
     if (bodyReference.current.offsetHeight > 2.5 * Number.parseInt(emSize)) {
       // いらないやつをuseStateでdisplay: noneにしたい
@@ -88,7 +89,7 @@ export function NameAndPrice(menu_filteringSubstances) {
         <th scope="row" style={{ display: `${menu_filteringSubstances.filteringSubstances.length > 0 ? 'table-cell' : 'none'}` }} className={styles.foodSalesMenuSign}>
           <span className={styles.foodSalesMenuBigChars} style={{ borderRight: ' #000000 solid 1px', paddingRight: '0.25em' }}>{ArrayArrayMach(menu_filteringSubstances.menu.mayContain, menu_filteringSubstances.filteringSubstances) ? '△' : 'ー'}</span>
         </th>
-        <td scope="row" className={menu_filteringSubstances.filteringSubstances.length > 0 ? styles.foodSalesMenuNameAllergy : styles.foodSalesMenuNameNormal} colSpan={defaultDisplay == 'table-cell' ? 1 : 3}>
+        <td scope="row" className={menu_filteringSubstances.filteringSubstances.length > 0 ? styles.foodSalesMenuNameAllergy : styles.foodSalesMenuNameNormal} colSpan={defaultDisplay == 'table-cell' ? 2 : 3}>
           <p className={styles.foodSalesMenuBigChars}>{menu_filteringSubstances.menu.name}</p>
         </td>
         <td className={styles.foodSalesMenuName2Price} style={{ display: `${defaultDisplay}` }}>
@@ -105,7 +106,7 @@ export function NameAndPrice(menu_filteringSubstances) {
         {/** <th className={styles.foodSalesSpaceFor2Rows} colSpan={2}>
           {/** 空けとく空間 /}
         </th> */}
-        <td className={styles.foodSalesMenuName2PriceWithSecondRow} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>
+        <td className={styles.foodSalesMenuName2PriceWithSecondRow} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }} colSpan={2}>
           <p className={styles.foodSalesMenuBigChars}>―</p>
         </td>
         <td className={styles.foodSalesMenuPrice} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>

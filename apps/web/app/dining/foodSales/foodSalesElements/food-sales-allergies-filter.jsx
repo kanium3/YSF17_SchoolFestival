@@ -49,7 +49,6 @@ export function FoodSalesAllergiesFilter(allergies = []) {
   safeCards = allergies.allergies.length > 0 ? safemenus[0].map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />) : safemenus.map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />)
 
   return (
-    // とりあえずそのまま横流し
     <div>
       {/** アレルギー物質を「含まない」やつ */}
       <div id="foodSaleMenus" className={styles.foodSalesMenuArea}>
