@@ -97,7 +97,7 @@ export function FoodSalesAllergiesSettings() {
             )}
           </ListBox>
           <p style={{ paddingLeft: '0em' }}>△...調理工程で混入する可能性があります</p>
-          <p style={{ paddingLeft: '0em' }}>ー...調理工程での混入の限りなく低いです</p>
+          <p style={{ paddingLeft: '0em' }}>ー...調理工程での混入の可能性は限りなく低いです</p>
         </details>
         {/** 「選択しない」ならば表示しない */}
         {[...selected][0] == 0
