@@ -3,32 +3,45 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from '../page.module.css'
 import Link from 'next/link'
+import foodMenus from '../../../foodSales.mock.json'
 
 /* eslint-disable-next-line unicorn/no-object-as-default-parameter */
 export function FoodSalesCardExporter(cardData_filteringSubstances = {
-  teamId: 'xxxx',
-  team: 'unknown_team',
-  name: 'unknown_name',
-  menus: [
-    {
-      name: 'unknown_food',
-      price: 500,
-      specificIngredients: ['卵', 'りんご'],
-      ingredients: ['卵', '米', 'りんご'],
-    },
-  ],
+  cardData: {
+    teamId: 'xxxx',
+    team: 'unknown_team',
+    name: 'unknown_name',
+    menus: [
+      {
+        name: 'unknown_food',
+        price: 500,
+        specificIngredients: ['卵', 'りんご'],
+        ingredients: ['卵', '米', 'りんご'],
+      },
+    ],
+  },
+  filteringSubstances: ['小麦'],
 }) { // , removedCount
   /* eslint-disable-next-line react/jsx-key */
   const NameAndPrices = cardData_filteringSubstances.cardData.menus?.map(item => <NameAndPrice menu={item} filteringSubstances={cardData_filteringSubstances.filteringSubstances} keys={item.name} />)// メニューを生成してそれを配列化
   /* eslint-disable-next-line react/jsx-key */
   const Ingredients = cardData_filteringSubstances.cardData.menus?.map(item => <Ingredient menu={item} />)// 原材料表示を生成してそれを配列化
 
+  // 除外された数を計算
+  const menuCount = foodMenus.find(item => item.id == cardData_filteringSubstances.cardData.teamId).menus.length
+  const gavemenuCount = cardData_filteringSubstances.cardData.menus.length
+
   return (
     <div className={styles.foodSalesMenuCard}>
+      <p className={styles.foodSalesMenuTitle}>
+        <Link href={`/program/${cardData_filteringSubstances.cardData.teamId}`}>{cardData_filteringSubstances.cardData.team}</Link>
+        :&nbsp;&nbsp;
+        {cardData_filteringSubstances.cardData.name}
+      </p>
       <table className={styles.foodSalesMenuBox}>
-        <thread>
+        {/** <thread>
           <tr>
-            <th scope="row" colSpan={6}>
+            <th scope="row" colSpan={2}>
               <p>
                 <Link href={`/program/${cardData_filteringSubstances.cardData.teamId}`}>{cardData_filteringSubstances.cardData.team}</Link>
                 :&nbsp;&nbsp;
@@ -36,13 +49,13 @@ export function FoodSalesCardExporter(cardData_filteringSubstances = {
               </p>
             </th>
           </tr>
-        </thread>
+        </thread> */}
 
         {NameAndPrices}
 
       </table>
       {/** 「合計」を入れることで品目の「目」で「nつ目の品目」と見えることを防ぐ */}
-      <p>{cardData_filteringSubstances.filteringSubstances.length > 0 ? `合計${2}つの品目が除外されました` : ''}</p>
+      { cardData_filteringSubstances.filteringSubstances.length > 0 ? <p style={{ textAlign: 'end', paddingRight: '1em' }}>{cardData_filteringSubstances.filteringSubstances.length > 0 ? `合計${menuCount - gavemenuCount}つの品目が除外されました` : ''}</p> : <></>}
       <div className={styles.line} />
       <details className={styles.ingredients}>
         <summary className={styles.ingredientsSummary}>アレルギー・原材料情報</summary>
@@ -73,7 +86,7 @@ export function NameAndPrice(menu_filteringSubstances) {
     <tbody>
       <tr ref={bodyReference}>
         <th scope="row" style={{ display: `${menu_filteringSubstances.filteringSubstances.length > 0 ? 'table-cell' : 'none'}` }} className={styles.foodSalesMenuSign}>
-          <span className={styles.foodSalesMenuBigChars}>{ArrayArrayMach(menu_filteringSubstances.menu.mayContain, menu_filteringSubstances.filteringSubstances) ? '△' : 'ー'}</span>
+          <span className={styles.foodSalesMenuBigChars} style={{ borderRight: ' #000000 solid 1px', paddingRight: '0.25em' }}>{ArrayArrayMach(menu_filteringSubstances.menu.mayContain, menu_filteringSubstances.filteringSubstances) ? '△' : 'ー'}</span>
         </th>
         <td scope="row" className={menu_filteringSubstances.filteringSubstances.length > 0 ? styles.foodSalesMenuNameAllergy : styles.foodSalesMenuNameNormal} colSpan={defaultDisplay == 'table-cell' ? 1 : 3}>
           <p className={styles.foodSalesMenuBigChars}>{menu_filteringSubstances.menu.name}</p>
@@ -89,10 +102,10 @@ export function NameAndPrice(menu_filteringSubstances) {
         </td>
       </tr>
       <tr style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-row'}` }}>
-        <th className={styles.foodSalesSpaceFor2Rows} colSpan={2}>
-          {/** 空けとく空間 */}
-        </th>
-        <td className={styles.foodSalesMenuName2Price} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>
+        {/** <th className={styles.foodSalesSpaceFor2Rows} colSpan={2}>
+          {/** 空けとく空間 /}
+        </th> */}
+        <td className={styles.foodSalesMenuName2PriceWithSecondRow} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>
           <p className={styles.foodSalesMenuBigChars}>―</p>
         </td>
         <td className={styles.foodSalesMenuPrice} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>

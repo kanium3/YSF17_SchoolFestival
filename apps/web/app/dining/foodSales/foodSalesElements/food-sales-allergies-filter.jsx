@@ -18,6 +18,7 @@ export function FoodSalesAllergiesFilter(allergies = []) {
         for (let menu of menus) {
           // そのクラスのメニュー一つ一つ
           let okmenu = []
+
           for (let classmenu of menu.menus) {
             if (classmenu.specificIngredients.includes(allergy) == false)
               okmenu.push(classmenu)
