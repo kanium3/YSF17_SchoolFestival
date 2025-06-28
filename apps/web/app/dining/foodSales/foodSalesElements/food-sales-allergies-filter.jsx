@@ -18,6 +18,7 @@ export function FoodSalesAllergiesFilter(allergies = []) {
         for (let menu of menus) {
           // そのクラスのメニュー一つ一つ
           let okmenu = []
+
           for (let classmenu of menu.menus) {
             if (classmenu.specificIngredients.includes(allergy) == false)
               okmenu.push(classmenu)
@@ -45,10 +46,9 @@ export function FoodSalesAllergiesFilter(allergies = []) {
   else safemenus = foodSalesMenu()
 
   let safeCards
-  safeCards = allergies.allergies.length > 0 ? safemenus[0].map(item => <FoodSalesCardExporter cardData={item} key={item.name} />) : safemenus.map(item => <FoodSalesCardExporter cardData={item} key={item.name} />)
+  safeCards = allergies.allergies.length > 0 ? safemenus[0].map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />) : safemenus.map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />)
 
   return (
-    // とりあえずそのまま横流し
     <div>
       {/** アレルギー物質を「含まない」やつ */}
       <div id="foodSaleMenus" className={styles.foodSalesMenuArea}>

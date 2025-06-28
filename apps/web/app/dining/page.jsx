@@ -11,7 +11,7 @@ export const metadata = {
 export default function Dining() {
   return (
     <div>
-      <h1>食事</h1>
+      <h2>食事</h2>
       <p>食販やカフェテリアの情報です</p>
       {/** 別に絶対写真を使いたいわけではない */}
       {/** 画像に薄めの白/黒を重ねたかったけどやり方が分からなかった */}
