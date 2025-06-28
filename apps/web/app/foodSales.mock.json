@@ -6,7 +6,9 @@
         "name": "食べ物1",
         "price": 500,
         "specificIngredients": ["卵", "りんご"],
-        "ingredients": ["卵", "米", "りんご"]
+        "mayContain":[],
+        "ingredients": ["卵", "米", "りんご"],
+        "compositeIngredients":[]
       }
     ]
   },
@@ -16,20 +18,28 @@
       {
         "name": "コシヒカリのおにぎり",
         "price": 100,
-        "specificIngredients": [],
-        "ingredients": ["米", "海苔"]
+        "specificIngredients": ["さけ"],
+        "mayContain":["小麦"],
+        "ingredients": ["米", "海苔", "さけ"],
+        "compositeIngredients":[]
       },
       {
         "name": "あきたこまちのおにぎり",
         "price": 100,
         "specificIngredients": [],
-        "ingredients": ["米", "海苔"]
+        "mayContain":["小麦"],
+        "ingredients": ["米", "海苔"],
+        "compositeIngredients":[]
       },
       {
         "name": "醤油おにぎり",
         "price": 200,
         "specificIngredients": ["小麦"],
-        "ingredients": ["米", "海苔", "大豆", "小麦"]
+        "mayContain":[],
+        "ingredients": ["米", "海苔", "醤油"],
+        "compositeIngredients":{
+          "醤油":["大豆", "小麦"]
+        }
       }
     ]
   },
@@ -40,19 +50,25 @@
         "name": "水色の金平糖",
         "price": 50,
         "specificIngredients": [],
-        "ingredients": ["砂糖", "着色料"]
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
       },
       {
         "name": "ピンク色の金平糖",
         "price": 30,
         "specificIngredients": [],
-        "ingredients": ["砂糖", "着色料"]
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
       },
       {
         "name": "黄色の金平糖",
         "price": 40,
         "specificIngredients": [],
-        "ingredients": ["砂糖", "着色料"]
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
       }
     ]
   }
