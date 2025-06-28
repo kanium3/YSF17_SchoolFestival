@@ -45,7 +45,7 @@ export function FoodSalesAllergiesFilter(allergies = []) {
   else safemenus = foodSalesMenu()
 
   let safeCards
-  safeCards = allergies.allergies.length > 0 ? safemenus[0].map(item => <FoodSalesCardExporter cardData={item} key={item.name} />) : safemenus.map(item => <FoodSalesCardExporter cardData={item} key={item.name} />)
+  safeCards = allergies.allergies.length > 0 ? safemenus[0].map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />) : safemenus.map(item => <FoodSalesCardExporter cardData={item} filteringSubstances={allergies.allergies} key={item.name} />)
 
   return (
     // とりあえずそのまま横流し

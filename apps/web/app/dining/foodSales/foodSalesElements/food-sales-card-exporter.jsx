@@ -5,7 +5,7 @@ import styles from '../page.module.css'
 import Link from 'next/link'
 
 /* eslint-disable-next-line unicorn/no-object-as-default-parameter */
-export function FoodSalesCardExporter(cardData = {
+export function FoodSalesCardExporter(cardData_filteringSubstances = {
   teamId: 'xxxx',
   team: 'unknown_team',
   name: 'unknown_name',
@@ -17,22 +17,22 @@ export function FoodSalesCardExporter(cardData = {
       ingredients: ['卵', '米', 'りんご'],
     },
   ],
-}) {
+}) { // , removedCount
   /* eslint-disable-next-line react/jsx-key */
-  const NameAndPrices = cardData.cardData.menus?.map(item => <NameAndPrice menu={item} />)// メニューを生成してそれを配列化
+  const NameAndPrices = cardData_filteringSubstances.cardData.menus?.map(item => <NameAndPrice menu={item} filteringSubstances={cardData_filteringSubstances.filteringSubstances} keys={item.name} />)// メニューを生成してそれを配列化
   /* eslint-disable-next-line react/jsx-key */
-  const Ingredients = cardData.cardData.menus?.map(item => <Ingredient menu={item} />)// 原材料表示を生成してそれを配列化
+  const Ingredients = cardData_filteringSubstances.cardData.menus?.map(item => <Ingredient menu={item} />)// 原材料表示を生成してそれを配列化
 
   return (
     <div className={styles.foodSalesMenuCard}>
       <table className={styles.foodSalesMenuBox}>
         <thread>
           <tr>
-            <th scope="row" colSpan={3}>
+            <th scope="row" colSpan={6}>
               <p>
-                <Link href={`/program/${cardData.cardData.teamId}`}>{cardData.cardData.team}</Link>
+                <Link href={`/program/${cardData_filteringSubstances.cardData.teamId}`}>{cardData_filteringSubstances.cardData.team}</Link>
                 :&nbsp;&nbsp;
-                {cardData.cardData.name}
+                {cardData_filteringSubstances.cardData.name}
               </p>
             </th>
           </tr>
@@ -41,6 +41,8 @@ export function FoodSalesCardExporter(cardData = {
         {NameAndPrices}
 
       </table>
+      {/** 「合計」を入れることで品目の「目」で「nつ目の品目」と見えることを防ぐ */}
+      <p>{cardData_filteringSubstances.filteringSubstances.length > 0 ? `合計${2}つの品目が除外されました` : ''}</p>
       <div className={styles.line} />
       <details className={styles.ingredients}>
         <summary className={styles.ingredientsSummary}>アレルギー・原材料情報</summary>
@@ -54,7 +56,7 @@ export function FoodSalesCardExporter(cardData = {
 
 // 商品名とその価格
 // スマホの画面の回転のような再読み込みせずに画面幅が変わるようなことがあっても再描画されないので、レイアウトが崩れる可能性はある
-export function NameAndPrice(menu) {
+export function NameAndPrice(menu_filteringSubstances) {
   const bodyReference = useRef(null)
 
   const [defaultDisplay, setDefaultDisplay] = useState('table-cell')
@@ -65,26 +67,29 @@ export function NameAndPrice(menu) {
       // いらないやつをuseStateでdisplay: noneにしたい
       setDefaultDisplay('none')
     }
-  }, [])
+  }, [menu_filteringSubstances.filteringSubstances])
 
   return (
     <tbody>
       <tr ref={bodyReference}>
-        <th scope="row" className={styles.foodSalesMenuName} colSpan={defaultDisplay == 'table-cell' ? 1 : 3}>
-          <p className={styles.foodSalesMenuBigChars}>{menu.menu.name}</p>
+        <th scope="row" style={{ display: `${menu_filteringSubstances.filteringSubstances.length > 0 ? 'table-cell' : 'none'}` }} className={styles.foodSalesMenuSign}>
+          <span className={styles.foodSalesMenuBigChars}>{ArrayArrayMach(menu_filteringSubstances.menu.mayContain, menu_filteringSubstances.filteringSubstances) ? '△' : 'ー'}</span>
         </th>
+        <td scope="row" className={menu_filteringSubstances.filteringSubstances.length > 0 ? styles.foodSalesMenuNameAllergy : styles.foodSalesMenuNameNormal} colSpan={defaultDisplay == 'table-cell' ? 1 : 3}>
+          <p className={styles.foodSalesMenuBigChars}>{menu_filteringSubstances.menu.name}</p>
+        </td>
         <td className={styles.foodSalesMenuName2Price} style={{ display: `${defaultDisplay}` }}>
           <p className={styles.foodSalesMenuBigChars}>―</p>
         </td>
         <td className={styles.foodSalesMenuPrice} style={{ display: `${defaultDisplay}` }}>
           <p className={styles.foodSalesMenuBigChars}>
-            {menu.menu.price}
+            {menu_filteringSubstances.menu.price}
             円
           </p>
         </td>
       </tr>
       <tr style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-row'}` }}>
-        <th className={styles.foodSalesSpaceFor2Rows}>
+        <th className={styles.foodSalesSpaceFor2Rows} colSpan={2}>
           {/** 空けとく空間 */}
         </th>
         <td className={styles.foodSalesMenuName2Price} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>
@@ -92,7 +97,7 @@ export function NameAndPrice(menu) {
         </td>
         <td className={styles.foodSalesMenuPrice} style={{ display: `${defaultDisplay == 'table-cell' ? 'none' : 'table-cell'}` }}>
           <p className={styles.foodSalesMenuBigChars}>
-            {menu.menu.price}
+            {menu_filteringSubstances.menu.price}
             円
           </p>
         </td>
@@ -139,6 +144,16 @@ export function Ingredient(menu) {
       </div>
     </div>
   )
+}
+
+function ArrayArrayMach(a1, a2) {
+  let mach = false
+  for (let a1content of a1) {
+    if (a2.includes(a1content))
+      mach = true
+  }
+
+  return mach
 }
 
 /**

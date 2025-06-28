@@ -42,9 +42,19 @@
   text-align: left;
 }
 
-.foodSalesMenuName {
+.foodSalesMenuSign {
+  width: 0;
+  max-width: 1em;
+  padding-left: 1.5em;
+}
+.foodSalesMenuNameNormal {
   max-width: max-content;
   padding-left: 1.5em;
+  /**font-size: 1.5em;*/
+}
+.foodSalesMenuNameAllergy {
+  max-width: max-content;
+  padding-left: 0.5em;
   /**font-size: 1.5em;*/
 }
 

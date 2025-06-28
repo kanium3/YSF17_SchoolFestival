@@ -96,6 +96,7 @@ export function FoodSalesAllergiesSettings() {
             ),
             )}
           </ListBox>
+          <p>△:調理工程で混入する可能性があります&nbsp;&nbsp;ー:調理工程で混入する可能性がありません</p>
         </details>
         {/** 「選択しない」ならば表示しない */}
         {[...selected][0] == 0
