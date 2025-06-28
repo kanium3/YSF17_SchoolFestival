@@ -46,9 +46,12 @@ export default function AllergyTable() {
   return (
     <div>
       <h2>アレルギー表</h2>
-      <p>〇...そのアレルゲンが使われています。</p>
-      <p>△...そのアレルゲンが調理過程で混入する可能性があります。</p>
-      <p>ー...そのアレルゲンは使われていません。</p>
+      <div className={styles.howToSee}>
+        <p>〇...そのアレルゲンが使われています。</p>
+        <p>△...そのアレルゲンが調理過程で混入する可能性があります。</p>
+        <p>ー...そのアレルゲンは使われていません。</p>
+      </div>
+      <p>←表が画面内に収まっていない場合、スライドできます→</p>
       <div className={styles.divtable}>
         <table className={styles.table}>
           <thead>
