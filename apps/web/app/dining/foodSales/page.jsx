@@ -22,7 +22,7 @@ export default function FoodSales() {
 
         <p>
           アレルギー表は
-          <Link href="/dining/foodSales/allergyTable">こちら</Link>
+          <Link href="/dining/foodSales/allergyTable" target="_blank" rel="noopener noreferrer">こちら(新規タブで開きます)</Link>
         </p>
         <FoodSalesElement />
 
