@@ -75,7 +75,6 @@ export function NameAndPrice(menu_filteringSubstances) {
   const [defaultDisplay, setDefaultDisplay] = useState('table-cell')
 
   useEffect(() => {
-    console.log('re-rendered.')
     const emSize = globalThis.getComputedStyle(document.documentElement).fontSize
     if (bodyReference.current.offsetHeight > 2.5 * Number.parseInt(emSize)) {
       // いらないやつをuseStateでdisplay: noneにしたい
