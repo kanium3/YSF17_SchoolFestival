@@ -31,10 +31,14 @@
     /**max-width: fit-content;*/
     /**min-width: 272px;/**calc(100vw - 2em);*/
     /** min-width: fit-content; */
-  }
+}
 
-.foodSalesMenuBox {
+.foodSalesMenuTitle {
+  font-weight: bold;
   padding-top: 1em;
+  padding-left: 1.125em;
+}
+.foodSalesMenuBox {
   padding-bottom: 0.5em;
   max-width: calc(100% - 1em);
   width: calc(100% - 1em);
@@ -42,15 +46,34 @@
   text-align: left;
 }
 
-.foodSalesMenuName {
+.foodSalesMenuSign {
+  width: 2em;
+  padding-left: 1.5em;
+}
+.foodSalesMenuNameNormal {
   max-width: max-content;
   padding-left: 1.5em;
+  font-weight: bold;
+  /**font-size: 1.5em;*/
+}
+.foodSalesMenuNameAllergy {
+  max-width: max-content;
+  padding-left: 0.25em;
+  font-weight: bold;
   /**font-size: 1.5em;*/
 }
 
 .foodSalesMenuName2Price {
   text-align: center;
   width: max-content;
+  /**padding-left: 1.5em;
+  padding-right: 1.5em;**/
+}
+.foodSalesMenuName2PriceWithSecondRow {
+  text-align: center;
+  width: fit-content;
+  min-width: min-content;
+  padding-left: calc(100% - 12em);
   /**padding-left: 1.5em;
   padding-right: 1.5em;**/
 }
