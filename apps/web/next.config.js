@@ -14,9 +14,9 @@ const nextConfig = {
 
     config.module.rules.push(
       {
-        ...fileLoaderRule,
         test: /\.svg$/i,
         resourceQuery: /url/, // *.svg?url
+        type: 'asset/resource',
       },
       {
         test: /\.svg$/i,
@@ -25,6 +25,7 @@ const nextConfig = {
         use: ['@svgr/webpack'],
       },
       {
+        test: /\.svg$/i,
         resourceQuery: /raw/, // *.*?raw
         type: 'asset/source',
       },
