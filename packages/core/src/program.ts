@@ -22,20 +22,26 @@ export const ariaType = {
   'rooftop': '屋上',
 } as const
 
+export const programOptionsSchema = v.objectWithRest({
+  room: v.pipe(v.optional(v.string()), v.description('SVG上の部屋ID')),
+  imagePath: v.optional(v.string()),
+}, v.string())
+
 export const programSchema = v.object({
   id: v.pipe(v.string(), v.nonEmpty(), v.slug()),
   name: v.pipe(v.string(), v.nonEmpty()),
   team: v.pipe(v.string(), v.nonEmpty()),
-  imagePath: v.optional(v.pipe(v.string(), v.nonEmpty())),
   programType: v.array(v.enum(programType)),
   aria: v.enum(ariaType),
   location: v.pipe(v.string(), v.nonEmpty(), v.description('教室や部屋の番号')),
   prText: v.optional(v.pipe(v.string(), v.nonEmpty())),
   tag: v.optional(v.array(v.pipe(v.string(), v.maxLength(20), v.description('企画に結びつくタグ')))),
   dates: v.pipe(v.array(v.pipe(v.string(), v.isoDate())), v.minLength(0), v.maxLength(3), v.description('企画を開催する日付の配列')),
+  options: v.pipe(v.optional(programOptionsSchema), v.description('企画のオプション情報。SVGのIDや画像パスなどの内部的な情報を含みます')),
 })
 
 export type ProgramData = v.InferInput<typeof programSchema>
+export type ProgramDataOptions = v.InferOutput<typeof programOptionsSchema>
 
 // Tagsクラス
 export class Tags extends Set<string> {
@@ -68,10 +74,10 @@ export class Program {
   location: string
   aria: string
   programType: string[]
-  imagePath?: string
   prText?: string
   optionalTag?: string[]
   dates: Date[]
+  options?: ProgramDataOptions
 
   constructor(option: ProgramData) {
     this.id = option.id
@@ -80,10 +86,10 @@ export class Program {
     this.location = option.location
     this.aria = option.aria
     this.programType = option.programType
-    this.imagePath = option.imagePath
     this.prText = option.prText
     this.optionalTag = option.tag
     this.dates = option.dates.map(v => new Date(v))
+    this.options = option.options
   }
 
   /**

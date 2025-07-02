@@ -10,7 +10,7 @@ export async function generateMetadata({ params }) {
 
   // fetch data
   const programs = parseProgramsData(ProgramSample)
-  const program = programs.iter().find(program => program.id === slug)
+  const program = [...programs.iter()].find(program => program.id === slug)
   return {
     title: `蒼煌祭17th非公式ページ｜${program.name}`,
     description: `蒼煌祭17thの企画「${program.name}」についての非公式のページです。`,
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
 // eslint-disable-next-line unicorn/prevent-abbreviations
 export async function generateStaticParams() {
   const programs = parseProgramsData(ProgramSample)
-  return programs.iter().map(program => ({ slug: program.id }))
+  return [...programs.iter()].map(program => ({ slug: program.id }))
 }
 
 /**
@@ -32,13 +32,13 @@ export async function generateStaticParams() {
 export default async function Program({ params }) {
   const { slug } = await params
   const programs = parseProgramsData(ProgramSample)
-  const program = programs.iter().find(program => program.id === slug)
+  const program = [...programs.iter()].find(program => program.id === slug)
 
   return (
     <>
       <TitleBarWithBack backpage="/program" pagename={program.name} />
       <Image
-        src={solveBasePath(program.imagePath)}
+        src={solveBasePath(program.options.imagePath)}
         alt={program.name + ' の画像'}
         width={240}
         height={240}
