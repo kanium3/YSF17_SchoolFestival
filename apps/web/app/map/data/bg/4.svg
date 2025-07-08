@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
-   width="1094"
-   height="1281.4"
+   width="1087"
+   height="1279"
    version="1.1"
    id="svg282"
-   viewBox="0 0 1094 1281.4"
+   viewBox="0 0 1087 1279"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
@@ -12,109 +12,92 @@
   <!-- 1階 -->
   <g
      id="floor_4"
-     style="display:inline"
-     transform="translate(-1.5,1.8999995)">
+     style="display:inline">
     <g
-       transform="translate(20)"
        id="bg4">
       <!-- 4階 -->
       <path
          fill="#ffffe0"
-         d="M 56,578 V 762 H 776 V 578 Z"
+         d="M 74,578 V 762 H 794 V 578 Z"
          id="path238" />
       <path
          fill="none"
          stroke="#000000"
-         stroke-width="1px"
-         d="m 641,578 v 74 z m 42,0 v 74 z m -21,19 v 36 z m -21,0 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 21 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 42,-24 -21,-3 z"
+         d="m 659,578 v 74 z m 42,0 v 74 z m -21,19 v 36 z m -21,0 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 21 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 42,-24 -21,-3 z"
          id="____staircase41" />
       <path
          fill="none"
          stroke="#000000"
-         stroke-width="1px"
-         d="m 149,578 v 74 z m 42,0 v 74 z m -21,19 v 36 z m -21,0 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 21,3 h 21 z m -21,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,-24 21,-3 z"
+         d="m 167,578 v 74 z m 42,0 v 74 z m -21,19 v 36 z m -21,0 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 21,3 h 21 z m -21,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,3 h 42 z m 0,-24 21,-3 z"
          id="____staircase42" />
       <!-- テラス -->
       <path
          fill="#ffd080"
          stroke="#000000"
-         stroke-width="1px"
          id="____terrace3"
-         d="m 329,578 v 74 h 174 v -74 z" />
+         d="m 347,578 v 74 h 174 v -74 z" />
       <!-- EV -->
       <path
          fill="#ffffff"
          stroke="#000000"
-         stroke-width="1px"
          id="____EV41"
-         d="m 683,615 v 37 h 29 v -37 z" />
+         d="m 701,615 v 37 h 29 v -37 z" />
       <!-- WC -->
       <path
          fill="#ffffff"
          stroke="#000000"
-         stroke-width="1px"
          id="____WC41"
-         d="m 683,578 h 92 v 74 h -63 v -37 h -29 z" />
+         d="m 701,578 h 92 v 74 h -63 v -37 h -29 z" />
       <!-- WC -->
       <path
          fill="#ffffff"
          stroke="#000000"
-         stroke-width="1px"
          id="____WC42"
-         d="m 57,578 h 92 v 37 h -29 v 37 H 57 Z" />
+         d="m 75,578 h 92 v 37 h -29 v 37 H 75 Z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S41"
-         d="m 686,688 v 74 h 89 v -74 z" />
+         d="m 704,688 v 74 h 89 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S42"
-         d="m 596,688 v 74 h 90 v -74 z" />
+         d="m 614,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S43"
-         d="m 506,688 v 74 h 90 v -74 z" />
+         d="m 524,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S44"
-         d="m 416,688 v 74 h 90 v -74 z" />
+         d="m 434,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S45"
-         d="m 326,688 v 74 h 90 v -74 z" />
+         d="m 344,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S46"
-         d="m 236,688 v 74 h 90 v -74 z" />
+         d="m 254,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S47"
-         d="m 146,688 v 74 h 90 v -74 z" />
+         d="m 164,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
-         stroke-width="1px"
          id="Room_S48"
-         d="m 57,688 v 74 h 89 v -74 z" />
+         d="m 75,688 v 74 h 89 v -74 z" />
       <path
          fill="none"
          stroke="#000000"
-         stroke-width="1px"
-         d="M 57,578 V 762 H 775 V 578 Z"
+         d="M 75,578 V 762 H 793 V 578 Z"
          id="__outer4" />
       <!-- S42  S41 -->
       <!-- S45  S44  S43 -->
