@@ -16,6 +16,8 @@ export default mergeConfig(
           name: 'browser',
         },
       ],
+    },
+    resolve: {
       alias: {
         '@': path.resolve(import.meta.dirname, './'),
       },

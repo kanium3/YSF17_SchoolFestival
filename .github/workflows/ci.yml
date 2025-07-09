@@ -20,7 +20,7 @@ jobs:
         run: npm ci
 
       - name: build core package
-        run: npx turbo run @latimeria/core#build
+        run: npx turbo run @latimeria/core#build @latimeria/ganoine#build
 
       - name: Run lint for JavaScript files
         run: npm run lint
@@ -46,7 +46,7 @@ jobs:
         run: npm ci
 
       - name: build core package
-        run: npx turbo run @latimeria/core#build
+        run: npx turbo run @latimeria/core#build @latimeria/ganoine#build
 
       - name: Run format
         run: npm run format

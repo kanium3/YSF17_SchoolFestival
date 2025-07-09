@@ -58,3 +58,6 @@ latimeriadb
 
 # Eslint
 .eslintcache
+
+*storybook.log
+storybook-static

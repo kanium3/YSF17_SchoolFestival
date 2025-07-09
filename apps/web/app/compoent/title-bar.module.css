@@ -11,16 +11,9 @@
   flex: 1;
   font-weight: bold;
 }
-.back-button {
-  color: #008;
-  display: flex;
-}
 
 @media (prefers-color-scheme: dark) {
   .page-title {
     color: #ededed; /* @/app/global.cssに合わせました */
-  }
-  .back-button {
-    color: #8ff;
   }
 }

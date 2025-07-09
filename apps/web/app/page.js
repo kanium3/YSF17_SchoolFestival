@@ -1,6 +1,6 @@
 import './home.css'
 import styles from './page.module.css'
-import { Callout } from '@/app/compoent/callout.jsx'
+import WarnCallout from '@/app/compoent/warn-callout.jsx'
 import { Countdown } from '@/app/compoent/countdown.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
@@ -30,13 +30,13 @@ export default function Home() {
       </div>
 
       <div className="contentBox">
-        <Callout kind="warn">
+        <WarnCallout>
           <p>
             このサイトは非公式の有志による情報まとめサイトです。
             正確な情報提供を目指していますが、不確実な情報が含まれているかもしれません。
             確実な情報はこちら(公式ホームページ)からご覧ください。
           </p>
-        </Callout>
+        </WarnCallout>
       </div>
 
       <div id="home_index" className="contentBox">

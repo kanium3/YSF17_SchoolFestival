@@ -1,0 +1,10 @@
+.back-button {
+  color: #008;
+  display: flex;
+}
+
+@media (prefers-color-scheme: dark) {
+  .back-button {
+    color: #8ff;
+  }
+}

@@ -1,13 +1,15 @@
+'use client'
+
 import styles from './callout.module.css'
 
 /**
- * @typedef {"warn" | "info" | "default"} calloutKind
+ * @typedef {"warn" | "info" | "default"} calloutKind コールアウトの種類
  */
 
 /**
- *
- * @param children
- * @param {calloutKind} [kind="default"]
+ * @param {Object} props
+ * @param {React.ReactNode} props.children
+ * @param {calloutKind} [props.kind="default"] コールアウトの種類
  * @constructor
  */
 export function Callout({ children, kind = 'default' }) {
