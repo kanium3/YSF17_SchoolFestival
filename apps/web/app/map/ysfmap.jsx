@@ -18,6 +18,39 @@ import FiveFloorMapRaw from './data/bg/5.svg?raw'
 import RoofTopMap from './data/bg/6.svg?url'
 import RoofTopMapRaw from './data/bg/6.svg?raw'
 
+const Maplist = [
+  {
+    floor: "1F",
+    url: OneFloorMap,
+    raw: OneFloorMapRaw
+  },
+  {
+    floor: "2F",
+    url: TwoFloorMap,
+    raw: TwoFloorMapRaw
+  },
+  {
+    floor: "3F",
+    url: ThreeFloorMap,
+    raw: ThreeFloorMapRaw
+  },
+  {
+    floor: "4F",
+    url: FourFloorMap,
+    raw: FourFloorMapRaw
+  },
+  {
+    floor: "5F",
+    url: FiveFloorMap,
+    raw: FiveFloorMapRaw
+  },
+  {
+    floor: "屋上",
+    url: RoofTopMap,
+    raw: RoofTopMapRaw
+  }
+]
+
 import styles from './ysfmap.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
 import Image from 'next/image'
@@ -46,7 +79,7 @@ export default function Ysfmap() {
   const picheight = 540
   const programsArray = [...programsParse.iter()].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
   /** @type {[{aria:string , item:Program[]}]} */
-  const ariaGroups = groupArray(programsArray)
+  const areaGroups = groupArray(programsArray)
   return (
     <div className={styles.leafletMap}>
       <MapContainer
@@ -57,7 +90,27 @@ export default function Ysfmap() {
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
         <LayersControl position="bottomright" collapsed="false">
-          {areaGroups.map(({area, item},))}
+          {Maplist.map((item)=>{
+            item.floor===1?
+            (<LayersControl.BaseLayer checked name = {item.floor}>
+              <FloorLayerGroupProvider value={{
+            src: item.url,
+            content: item.raw,
+            picheight: picheight,
+            picwidth: picwidth,
+          }}
+          >
+            <FloorLayer>
+              {areaGroups.map(({area, item}, index => {
+                
+              }))}
+            </FloorLayer>
+          </FloorLayerGroupProvider>
+             </LayersControl.BaseLayer>)
+          :(
+            
+          )
+          })}
         </LayersControl>
       </MapContainer>
     </div>
