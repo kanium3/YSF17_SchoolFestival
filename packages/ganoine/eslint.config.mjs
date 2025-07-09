@@ -1,5 +1,6 @@
 import { config } from '@latimeria/eslint-config/base'
 import reactPlugin from 'eslint-plugin-react'
+// eslint-disable-next-line import-x/default
 import reactHooks from 'eslint-plugin-react-hooks'
 
 export default [
