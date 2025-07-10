@@ -21,8 +21,7 @@ export default function FoodSales() {
         {/** スマホ想定の文字サイズ */}
 
         <p>
-          アレルギー表は
-          <Link href="/dining/foodSales/allergyTable" target="_blank" rel="noopener noreferrer">こちら(新規タブで開きます)</Link>
+          <Link href="/dining/foodSales/allergyTable" target="_blank" rel="noopener noreferrer">アレルギー表はこちら(新規タブで開きます)</Link>
         </p>
         <FoodSalesElement />
 
