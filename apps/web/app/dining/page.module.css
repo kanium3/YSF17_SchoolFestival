@@ -1,13 +1,30 @@
 .imagebutton {
+  overflow: hidden;
   position: relative;
+  width: 560px;
+  border-radius: 10px;
+  height: 330px;
+  margin-top: 1rem;
 }
 
 .imagebutton h1 {
+  color: black;
+  background-color: #ffffffaa;
   position: absolute;
   top: 0;
   left: 0;
+
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin: 0.1rem;
 }
 
 .imagebuttonImage {
-  color: #ffffff;
+  background-color: #ffffff55;
+  width: 100%;
+  height: 100%;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
 }
