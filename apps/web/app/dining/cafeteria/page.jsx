@@ -1,3 +1,4 @@
+import cafeteria from '../../cafeteria.mock.json'
 import styles from './page.module.css'
 import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
 import { MenuExporter } from './cafeteriamenu-exporter'
@@ -28,11 +29,16 @@ export default function Cafeteria() {
         <h1 style={{ paddingTop: '1rem' }}>注意事項</h1>
         <ul className={styles.bulletedList}>
           {/** 箇条書きのルールも必要？ */}
-          <li>非公式情報です。情報に誤りがある可能性があります。</li>
+
+          {cafeteria.notes.map(item => (
+            <li key={item}>{item}</li>
+          ))}
+
+          {/** <li>非公式情報です。情報に誤りがある可能性があります。</li>
           <li>
             食券を買い、そのメニューの列に並んでください。途中、通路がありますので詰めすぎないようにお気を付けください。
           </li>
-          <li>容器は使い捨てです。</li>
+          <li>容器は使い捨てです。</li> */}
         </ul>
       </div>
     </div>
