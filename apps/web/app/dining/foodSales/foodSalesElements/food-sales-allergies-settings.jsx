@@ -78,7 +78,7 @@ export function FoodSalesAllergiesSettings() {
       <div id="AllergiesSlection">
         <details className={styles.allergiesSelectingTab}>
           <summary>アレルギーでフィルター：</summary>
-          <p>以下で選択されたアレルゲンが使われていないメニューを表示します(複数選択可)。</p>
+          <p>以下の28品目から選択されたアレルゲンが使われていないメニューを表示します(複数選択可)。</p>
           <ListBox
             aria-label="アレルゲン"
             selectionMode="multiple"
