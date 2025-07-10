@@ -1,5 +1,6 @@
 import styles from './page.module.css'
 import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
+import { MenuExporter } from './cafeteriamenu-exporter'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜カフェテリア',
@@ -17,30 +18,9 @@ export default function Cafeteria() {
         {/** CSSいい感じにお願いします */}
         <div className={styles.priceTable} style={{ maxWidth: '100vw' }}>
           <table className={styles.priceTable} style={{ maxWidth: '100vw' }}>
-            <tr>
-              <th scope="row" className={styles.priceTable}>
-                <ul className={styles.bulletedTable}>
-                  <li>カレー</li>
-                </ul>
-              </th>
-              <td className={styles.priceTable}>/430円</td>
-            </tr>
-            <tr>
-              <th scope="row" className={styles.priceTable}>
-                <ul>
-                  <li className={styles.bulletedTable}>カツカレー</li>
-                </ul>
-              </th>
-              <td className={styles.priceTable}>/450円</td>
-            </tr>
-            <tr>
-              <th scope="row" className={styles.priceTable}>
-                <ul>
-                  <li className={styles.bulletedTable}>カツサンド</li>
-                </ul>
-              </th>
-              <td className={styles.priceTable}>/370円?</td>
-            </tr>
+
+            <MenuExporter />
+
           </table>
         </div>
       </div>
