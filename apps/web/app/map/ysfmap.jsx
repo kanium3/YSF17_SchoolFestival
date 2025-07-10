@@ -101,9 +101,13 @@ export default function Ysfmap() {
           }}
           >
             <FloorLayer>
-              {areaGroups.map(({area, item}, index => {
-                
-              }))}
+              {areaGroups.map(({area, program}, index) => {
+                program.map((details) => {
+                  <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
+                    <Image />
+                  </PlacePolygon>
+                })
+              })}
             </FloorLayer>
           </FloorLayerGroupProvider>
              </LayersControl.BaseLayer>)
