@@ -19,29 +19,30 @@ export default function Dining() {
         <Link href="/dining/cafeteria">
           {/** たくさんの席を写したカフェテリアの写真とか？ */}
           <Image
-            src={solveBasePath('/dining/cafeteria.png')}
+            src={solveBasePath('/dining/cafeteria.webp')}
             alt="いい感じのカフェテリアの画像"
-            className={styles.imagebuttonImage}
             width={560}
             height={330}
             style={{ objectFit: 'cover' }}
           />
+          <div className={styles.imagebuttonImage}></div>
+          <h1>カフェテリア</h1>
         </Link>
-        <h1>カフェテリア</h1>
       </div>
       <div className={styles.imagebutton}>
         <Link href="/dining/foodSales">
           {/** 食販 */}
           <Image
-            src={solveBasePath('/dining/foodSales.png')}
+            src={solveBasePath('/dining/foodSales.webp')}
             alt="いい感じの食販の画像"
             className={styles.imagebuttonImage}
             width={560}
             height={330}
             style={{ objectFit: 'cover' }}
           />
+          <div className={styles.imagebuttonImage}></div>
+          <h1>食販</h1>
         </Link>
-        <h1>食販</h1>
       </div>
     </div>
   )
