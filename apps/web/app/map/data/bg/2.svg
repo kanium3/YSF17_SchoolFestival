@@ -309,6 +309,7 @@
       <path
          fill="#ffffff"
          stroke="#000000"
+         stroke-width="3"
          id="Library_of_Science"
          d="m 75,688 v 92 h 272 v -92 z" />
       <path
@@ -342,15 +343,18 @@
          id="Talk_Room_1"
          style="fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
       <!-- ３   ２\n情報教室\n１ -->
-      <path
-         d="m 344,399 v 74 h 183 v -74 z"
-         id="Computer_Room_1"
-         style="fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1" />
       <!-- C23  C22  C21 -->
       <path
          style="fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          d="m 254,399 v 74 h 90 v -74 z"
          id="Seminar_Room_C21" />
+      <path
+         d="m 344,399 v 74 h 183 v -74 z"
+         fill="#d0b0ff"
+         stroke="#000000"
+         stroke-width="3"
+         id="Computer_Room_1"
+         style="display:inline" />
       <path
          style="fill:#d0b0ff;fill-opacity:1;stroke:#000000;stroke-opacity:1"
          d="m 164,399 v 74 h 90 v -74 z"

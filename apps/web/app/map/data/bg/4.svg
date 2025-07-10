@@ -18,7 +18,7 @@
       <!-- 4階 -->
       <path
          fill="#ffffe0"
-         d="M 74,578 V 762 H 794 V 578 Z"
+         d="M 75,578 V 762 H 793 V 578 Z"
          id="path238" />
       <path
          fill="none"
@@ -67,31 +67,37 @@
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S43"
          d="m 524,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S44"
          d="m 434,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S45"
          d="m 344,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S46"
          d="m 254,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S47"
          d="m 164,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S48"
          d="m 75,688 v 74 h 89 v -74 z" />
       <path

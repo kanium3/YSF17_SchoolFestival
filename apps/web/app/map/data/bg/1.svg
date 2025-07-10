@@ -291,6 +291,7 @@
          id="Fieldwork_Lab"
          fill="#b0ffb0"
          stroke="#000000"
+         stroke-width="3"
          d="m 75,688 v 74 h 89 v -74 z" />
       <!-- 科学\n技術\n顧問室 -->
       <path
@@ -308,6 +309,7 @@
          id="Audio_Visual_Room"
          fill="#d0b0ff"
          stroke="#000000"
+         stroke-width="3"
          d="m 209,578 v 74 h 135 v -74 z" />
       <!-- 音楽室 -->
       <path
@@ -354,6 +356,7 @@
          id="Tea_Ceremony_Room"
          fill="#d0b0ff"
          stroke="#000000"
+         stroke-width="3"
          d="m 611,289 h 23 v -10 h 50 v 10 h 20 v 65 h 16 v 9 H 611 Z" />
       <!-- 電子\n顕微鏡\n室 -->
       <path
@@ -417,7 +420,8 @@
          id="Calligraphy_Room"
          fill="#d0b0ff"
          stroke="#000000"
-         d="M 391,0 V 74 H 526 V 0 Z m 0,35 v 39 h 29 V 35 Z" />
+         stroke-width="3"
+         d="M 389,0 V 74 H 526 V 0 Z m 31,74 V 35 m 0,0 h -31" />
       <!-- 金工・木工室 -->
       <path
          id="Metalworking_Woodworking_Woom"
@@ -438,7 +442,8 @@
          id="____backyard11"
          fill="url(#backyard)"
          d="m 75,0 h 314 v 110 h 45 v 74 H 391 75 Z"
-         class="UnoptimicedTransforms" />
+         class="UnoptimicedTransforms"
+         style="display:inline" />
       <path
          id="____backyard12"
          fill="url(#backyard)"
@@ -447,7 +452,7 @@
       <path
          id="____backyard13"
          fill="url(#backyard)"
-         d="M 524,0 H 823 V 289 H 930 V 436 H 826 V 688 H 793 V 578 H 659 V 473 h -93 v -74 h 154 v -45 h -16 v -65 h 83 v -34 h -60 v -36 h 60 V 184 H 611 V 74 h -87 z"
+         d="M 526,0 H 823 V 289 H 930 V 436 H 826 V 688 H 793 V 578 H 659 V 473 h -93 v -74 h 154 v -45 h -16 v -65 h 83 v -34 h -60 v -36 h 60 V 184 H 611 V 74 h -85 z"
          class="UnoptimicedTransforms" />
     </g>
   </g>

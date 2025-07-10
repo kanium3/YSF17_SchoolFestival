@@ -18,7 +18,7 @@
       <!-- 5階 -->
       <path
          id="path254"
-         d="M 74,578 V 762 H 344 524 794 V 578 H 524 v 74 H 344 v -74 z"
+         d="M 75,578 V 762 H 344 524 793 V 578 H 521 v 74 H 347 v -74 z"
          style="fill:#ffffe0;fill-opacity:1;stroke:none" />
       <path
          fill="none"
@@ -66,31 +66,37 @@
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S53"
          d="m 524,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S54"
          d="m 434,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S55"
          d="m 344,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S56"
          d="m 254,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S57"
          d="m 164,688 v 74 h 90 v -74 z" />
       <path
          fill="#ffb0b0"
          stroke="#000000"
+         stroke-width="3"
          id="Room_S58"
          d="m 75,688 v 74 h 89 v -74 z" />
       <path
