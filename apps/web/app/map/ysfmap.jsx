@@ -58,28 +58,13 @@ import Link from 'next/link'
 
 import programs from '../program.mock.json'
 import { parseProgramsData } from '@latimeria/core'
-import { ariaType } from '@latimeria/core'
-
-const ariaOrder = Object.values(ariaType)
-
-function groupArray(array) {
-  const groups = {}
-  for (const item of array) {
-    if (!groups[item.aria]) {
-      groups[item.aria] = []
-    }
-    groups[item.aria].push(item)
-  }
-  return Object.entries(groups).map(([aria, item]) => ({ aria, item }))
-}
 
 export default function Ysfmap() {
   const programsParse = parseProgramsData(programs)
   const picwidth = 500
   const picheight = 540
-  const programsArray = [...programsParse.iter()].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
+  const programsList = [...programsParse.iter()]
   /** @type {[{aria:string , item:Program[]}]} */
-  const areaGroups = groupArray(programsArray)
   return (
     <div className={styles.leafletMap}>
       <MapContainer
@@ -91,8 +76,8 @@ export default function Ysfmap() {
       >
         <LayersControl position="bottomright" collapsed="false">
           {Maplist.map((item)=>{
-            item.floor===1?
-            (<LayersControl.BaseLayer checked name = {item.floor}>
+            return item.floor===1?
+            (<LayersControl.BaseLayer checked name = {item.floor} key={item.floor}>
               <FloorLayerGroupProvider value={{
             src: item.url,
             content: item.raw,
@@ -101,19 +86,37 @@ export default function Ysfmap() {
           }}
           >
             <FloorLayer>
-              {areaGroups.map(({area, program}, index) => {
-                program.map((details) => {
-                  <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
-                    <Image />
-                  </PlacePolygon>
-                })
-              })}
+              {programsList.filter((place) => place.aria.includes(item.floor)).map((content) => 
+              <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
+                <Image src={content["option"]["imagepath"]} key={content.id} />
+                <Link href={`/program/${content.id}`}>
+                {content.name}
+                </Link>
+              </PlacePolygon>)}
             </FloorLayer>
           </FloorLayerGroupProvider>
-             </LayersControl.BaseLayer>)
-          :(
-            
-          )
+                          </LayersControl.BaseLayer>)
+              :(
+                  <LayersControl.BaseLayer name = {item.floor} key={item.floor}>
+                    <FloorLayerGroupProvider value={{
+                      src: item.url,
+                      content: item.raw,
+                      picheight: picheight,
+                      picwidth: picwidth,
+                    }}
+                    >
+                      <FloorLayer>
+                        {programsList.filter(content => content.aria.includes(item.floor)).map(content => {
+                          <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
+                            <Image src={content['option']['imagepath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
+                            <Link href={`/program/${content.id}`}>
+                              {content.name}
+                            </Link>
+                          </PlacePolygon> })}
+                      </FloorLayer>
+                    </FloorLayerGroupProvider>
+                  </LayersControl.BaseLayer>
+                )
           })}
         </LayersControl>
       </MapContainer>
