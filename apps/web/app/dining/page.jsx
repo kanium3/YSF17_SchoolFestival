@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import { ImageButton } from './image-button'
+import { ImageButton } from './image-button.jsx'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜食事',
@@ -17,7 +17,6 @@ export default function Dining() {
         <ImageButton name="カフェテリア" pageUrl="/dining/cafeteria" imageSrc="/dining.cafeteria.webp" />
         <ImageButton name="食販" pageUrl="/dining/foodSales" imageSrc="/dining.foodSales.webp" />
       </div>
-
     </div>
   )
 }
