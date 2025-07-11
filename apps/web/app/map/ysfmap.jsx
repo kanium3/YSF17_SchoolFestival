@@ -50,7 +50,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import programs from '../program.mock.json'
-import { parseProgramsData } from '../../../../packages/core/src/program'
+import { parseProgramsData } from '@latimeria/core'
 
 export default function Ysfmap() {
   const programsParse = parseProgramsData(programs)
@@ -69,25 +69,29 @@ export default function Ysfmap() {
       >
         <LayersControl position="bottomright" collapsed="false">
           {mapList.map((item) => {
-            <LayersControl.BaseLayer checked={item.floor === '1F' ? true : undefined} name={item.floor} key={item.floor}>
-              <FloorLayerGroupProvider value={{
-                src: item.url,
-                content: item.raw,
-                picheight: picheight,
-                picwidth: picwidth }}
-              >
-                <FloorLayer>
-                  {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
-                    <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                      <Image src={content.options['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                      <Link href={`/program/${content.id}`}>
-                        {content.name}
-                      </Link>
-                    </PlacePolygon>
-                  })}
-                </FloorLayer>
-              </FloorLayerGroupProvider>
-            </LayersControl.BaseLayer>
+            return (
+              <LayersControl.BaseLayer checked={item.floor === '1F'} name={item.floor} key={item.floor}>
+                <FloorLayerGroupProvider value={{
+                  src: item.url,
+                  content: item.raw,
+                  picheight: picheight,
+                  picwidth: picwidth }}
+                >
+                  <FloorLayer>
+                    {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
+                      return (
+                        <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
+                          <Image src={content.options['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
+                          <Link href={`/program/${content.id}`}>
+                            {content.name}
+                          </Link>
+                        </PlacePolygon>
+                      )
+                    })}
+                  </FloorLayer>
+                </FloorLayerGroupProvider>
+              </LayersControl.BaseLayer>
+            )
           })}
         </LayersControl>
       </MapContainer>

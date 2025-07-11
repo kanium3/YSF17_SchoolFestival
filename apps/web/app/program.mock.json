@@ -10,7 +10,8 @@
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "tag": ["一攫千金", "怪しい"],
     "options": {
-      "imagePath": "example.png"
+      "imagePath": "example.png",
+      "room": "Room_S46"
     }
   },
   {
@@ -23,7 +24,8 @@
     "prText": "競人2",
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "options": {
-      "imagePath": "example.png"
+      "imagePath": "example.png",
+      "room": "Room_S36"
     }
   },
   {
@@ -37,7 +39,8 @@
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "tag": ["環境"],
     "options": {
-      "imagePath": "/tyu-wa_tekitei.png"
+      "imagePath": "/tyu-wa_tekitei.png",
+      "room": "Studio"
     }
   },
   {
@@ -50,7 +53,8 @@
     "prText": "食販用テストデータです。idはfoodSales.mock.jsonのidと同じとします。",
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "options": {
-      "imagePath": "example.png"
+      "imagePath": "example.png",
+      "room": "Cafeteria"
     }
   },
   {
@@ -64,7 +68,8 @@
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "tag": ["おにぎり"],
     "options": {
-      "imagePath": "example.png"
+      "imagePath": "example.png",
+      "room": "Communication_Center"
     }
   },
   {
@@ -77,7 +82,8 @@
     "prText": "あまり知られていませんが桃音モモは金平糖が好きです。ちなみに金平糖って作るのがすごく難しいらしいです。",
     "dates": ["2025-09-05","2025-09-06","2025-09-07"],
     "options": {
-      "imagePath": "example.png"
+      "imagePath": "example.png",
+      "room": "____terrace1"
     }
   }
 ]
