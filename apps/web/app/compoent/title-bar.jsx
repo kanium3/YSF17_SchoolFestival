@@ -1,25 +1,22 @@
-'use client'
-
+'use client';
 /* 帯としての可認識性を付与するためにページのカラーを少し暗くした背景色か(上)下の枠線が欲しいかもしれない */
 import styles from './title-bar.module.css'
-import { BackButton } from '@latimeria/ganoine'
+import { useRouter } from 'next/navigation'
+import { IoChevronBackOutline } from 'react-icons/io5'
 
 /**
  * 上部の戻るボタン＋ページ名
- * @param {Object} props
- * @param {string} props.backpage - 戻る先のパス
- * @param {string} props.pagename - ページ名
- * @param {string} props.themeColor - テーマカラー
+ * @param {string} pagename - ページ名
+ * @param {string} themeColor - テーマカラー
  * @returns {JSX.Element}
  */
 export default function TitleBarWithBack({
-  backpage = '/',
   pagename = '無題',
   themeColor,
 }) {
   return (
     <header className={styles['title-bar']}>
-      <BackButton to={backpage} arrowColor={themeColor} />
+      <BackButton arrowColor={themeColor} />
       <div
         className={styles['page-title']}
         style={{
@@ -30,5 +27,20 @@ export default function TitleBarWithBack({
         {pagename}
       </div>
     </header>
+  )
+}
+
+/**
+ * 左上の矢印戻るボタン
+ * @param {string} to - 戻る先のパス
+ * @param {string} arrowColor - 矢印の色
+ * @returns {JSX.Element}
+ */
+function BackButton({ arrowColor }) {
+  const router = useRouter()
+  return (
+    <span onClick={() => router.back()} role="link" className={styles['back-button']}>
+      <IoChevronBackOutline size={44} color={arrowColor} />
+    </span>
   )
 }

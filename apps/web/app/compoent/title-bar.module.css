@@ -11,6 +11,10 @@
   flex: 1;
   font-weight: bold;
 }
+.back-button {
+  color: #008;
+  cursor: pointer;
+}
 
 @media (prefers-color-scheme: dark) {
   .page-title {
