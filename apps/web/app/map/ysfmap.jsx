@@ -18,38 +18,31 @@ import FiveFloorMapRaw from './data/bg/5.svg?raw'
 import RoofTopMap from './data/bg/6.svg?url'
 import RoofTopMapRaw from './data/bg/6.svg?raw'
 
-const Maplist = [
+const mapList = [
   {
     floor: '1F',
     url: OneFloorMap,
-    raw: OneFloorMapRaw,
-  },
+    raw: OneFloorMapRaw },
   {
     floor: '2F',
     url: TwoFloorMap,
-    raw: TwoFloorMapRaw,
-  },
+    raw: TwoFloorMapRaw },
   {
     floor: '3F',
     url: ThreeFloorMap,
-    raw: ThreeFloorMapRaw,
-  },
+    raw: ThreeFloorMapRaw },
   {
     floor: '4F',
     url: FourFloorMap,
-    raw: FourFloorMapRaw,
-  },
+    raw: FourFloorMapRaw },
   {
     floor: '5F',
     url: FiveFloorMap,
-    raw: FiveFloorMapRaw,
-  },
+    raw: FiveFloorMapRaw },
   {
     floor: '屋上',
     url: RoofTopMap,
-    raw: RoofTopMapRaw,
-  },
-]
+    raw: RoofTopMapRaw }]
 
 import styles from './ysfmap.module.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
@@ -75,52 +68,26 @@ export default function Ysfmap() {
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
         <LayersControl position="bottomright" collapsed="false">
-          {Maplist.map((item) => {
-            return item.floor === 1
-              ? (
-                  <LayersControl.BaseLayer checked name={item.floor} key={item.floor}>
-                    <FloorLayerGroupProvider value={{
-                      src: item.url,
-                      content: item.raw,
-                      picheight: picheight,
-                      picwidth: picwidth,
-                    }}
-                    >
-                      <FloorLayer>
-                        {programsList.filter(place => place.aria.includes(item.floor)).map((content) => {
-                          <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                            <Image src={content['option']['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                            <Link href={`/program/${content.id}`}>
-                              {content.name}
-                            </Link>
-                          </PlacePolygon>
-                        })}
-                      </FloorLayer>
-                    </FloorLayerGroupProvider>
-                  </LayersControl.BaseLayer>
-                )
-              : (
-                  <LayersControl.BaseLayer name={item.floor} key={item.floor}>
-                    <FloorLayerGroupProvider value={{
-                      src: item.url,
-                      content: item.raw,
-                      picheight: picheight,
-                      picwidth: picwidth,
-                    }}
-                    >
-                      <FloorLayer>
-                        {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
-                          <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                            <Image src={content['option']['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                            <Link href={`/program/${content.id}`} key={content.id}>
-                              {content.name}
-                            </Link>
-                          </PlacePolygon>
-                        })}
-                      </FloorLayer>
-                    </FloorLayerGroupProvider>
-                  </LayersControl.BaseLayer>
-                )
+          {mapList.map((item) => {
+            <LayersControl.BaseLayer checked={item.floor === '1F' ? true : undefined} name={item.floor} key={item.floor}>
+              <FloorLayerGroupProvider value={{
+                src: item.url,
+                content: item.raw,
+                picheight: picheight,
+                picwidth: picwidth }}
+              >
+                <FloorLayer>
+                  {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
+                    <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
+                      <Image src={content.options['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
+                      <Link href={`/program/${content.id}`}>
+                        {content.name}
+                      </Link>
+                    </PlacePolygon>
+                  })}
+                </FloorLayer>
+              </FloorLayerGroupProvider>
+            </LayersControl.BaseLayer>
           })}
         </LayersControl>
       </MapContainer>
