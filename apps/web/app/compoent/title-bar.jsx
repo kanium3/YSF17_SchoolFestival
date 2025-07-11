@@ -1,4 +1,4 @@
-'use client';
+'use client'
 /* 帯としての可認識性を付与するためにページのカラーを少し暗くした背景色か(上)下の枠線が欲しいかもしれない */
 import styles from './title-bar.module.css'
 import { useRouter } from 'next/navigation'
