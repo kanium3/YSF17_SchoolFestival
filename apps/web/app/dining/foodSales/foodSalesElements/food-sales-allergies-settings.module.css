@@ -43,7 +43,7 @@
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (min-width: 388px) and (max-width: 581px) { /** 194px * 2 */
+/** @media (min-width: 388px) and (max-width: 581px) { /** 194px * 2 
   .listBox {
     background-color: #ffffff;
     border: #000000 1px solid;
@@ -55,8 +55,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
-}
-@media (max-width: 387px) {
+} */
+@media (max-width: 581px) { /** (max-width: 387px) { */
   .listBox {
     background-color: #ffffff;
     border: #000000 1px solid;

@@ -1,9 +1,9 @@
 .imagebutton {
   overflow: hidden;
   position: relative;
-  width: 560px;
+  width: minmax(560px, calc(100%));/** 560px; */
   border-radius: 10px;
-  height: 330px;
+  height: calc(minmax(560px, calc(100%)) * 56 / 33);/** 330px; */
   margin-top: 1rem;
 }
 
