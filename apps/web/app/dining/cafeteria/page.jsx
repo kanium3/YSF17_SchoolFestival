@@ -2,6 +2,7 @@ import cafeteria from '../../cafeteria.mock.json'
 import styles from './page.module.css'
 import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
 import { MenuExporter } from './cafeteriamenu-exporter'
+import { solveBasePath } from '@/app/lib/index.js'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜カフェテリア',
@@ -11,7 +12,7 @@ export const metadata = {
 export default function Cafeteria() {
   return (
     <div>
-      <TitleBarWithBack backpage="/dining" pagename="カフェテリア" />
+      <TitleBarWithBack backpage={solveBasePath('/dining')} pagename="カフェテリア" />
       <div>
         <h1>メニュー</h1>
         {/** ysf at wikiの情報を使用、値上げ後の値段が不明。 */}

@@ -1,6 +1,7 @@
 import { FoodSalesElement } from './food-sales.jsx'
 import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
 import Link from 'next/link'
+import { solveBasePath } from '@/app/lib/index.js'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜食販',
@@ -10,7 +11,7 @@ export const metadata = {
 export default function FoodSales() {
   return (
     <div>
-      <TitleBarWithBack backpage="/dining" pagename="食品販売" />
+      <TitleBarWithBack backpage={solveBasePath('/dining')} pagename="食品販売" />
       {/** こういう場合Linkとaどっちのほうがいいんだろ */}
       <p>
         <Link href="#how-to-use-foodSales">食販の使い方</Link>
