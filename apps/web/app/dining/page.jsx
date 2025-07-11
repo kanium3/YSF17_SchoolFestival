@@ -19,7 +19,7 @@ export default function Dining() {
         <Link href="/dining/cafeteria">
           {/** たくさんの席を写したカフェテリアの写真とか？ */}
           <Image
-            src={solveBasePath('/dining/cafeteria.webp')}
+            src={solveBasePath('/dining.cafeteria.webp')}
             alt="いい感じのカフェテリアの画像"
             width={560}
             height={330}
@@ -33,7 +33,7 @@ export default function Dining() {
         <Link href="/dining/foodSales">
           {/** 食販 */}
           <Image
-            src={solveBasePath('/dining/foodSales.webp')}
+            src={solveBasePath('/dining.foodSales.webp')}
             alt="いい感じの食販の画像"
             className={styles.imagebuttonImage}
             width={560}
