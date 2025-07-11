@@ -8,10 +8,10 @@ import { useEffect, useRef, useState } from 'react'
 
 export function ImageButton(property) {
   const bodyReference = useRef(null)
-  const [Width, setWidth] = useState(1)
+  const [imageWidth, setImageWidth] = useState(1)
 
   useEffect(() => {
-    setWidth(bodyReference.current.offsetWidth)
+    setImageWidth(bodyReference.current.offsetWidth)
   }, [])
 
   return (
@@ -20,8 +20,8 @@ export function ImageButton(property) {
         <Image
           src={solveBasePath(property.imageSrc)}
           alt={`いい感じの${property.name}の画像`}
-          width={Width}// 560
-          height={Width * 33 / 56}// 330
+          width={imageWidth}// 560
+          height={imageWidth * 33 / 56}// 330
           style={{ objectFit: 'cover' }}
         />
         <div className={styles.imagebuttonImage}></div>
