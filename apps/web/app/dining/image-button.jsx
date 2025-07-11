@@ -15,7 +15,7 @@ export function ImageButton(property) {
   }, [])
 
   return (
-    <div className={styles.imagebutton} ref={bodyReference}>
+    <div className={`${styles.imagebutton} touchable`} ref={bodyReference}>
       <Link href={solveBasePath(property.pageUrl)}>
         <Image
           src={solveBasePath(property.imageSrc)}
