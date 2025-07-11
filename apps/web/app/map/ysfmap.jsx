@@ -22,27 +22,33 @@ const mapList = [
   {
     floor: '1F',
     url: OneFloorMap,
-    raw: OneFloorMapRaw },
+    raw: OneFloorMapRaw,
+  },
   {
     floor: '2F',
     url: TwoFloorMap,
-    raw: TwoFloorMapRaw },
+    raw: TwoFloorMapRaw,
+  },
   {
     floor: '3F',
     url: ThreeFloorMap,
-    raw: ThreeFloorMapRaw },
+    raw: ThreeFloorMapRaw,
+  },
   {
     floor: '4F',
     url: FourFloorMap,
-    raw: FourFloorMapRaw },
+    raw: FourFloorMapRaw,
+  },
   {
     floor: '5F',
     url: FiveFloorMap,
-    raw: FiveFloorMapRaw },
+    raw: FiveFloorMapRaw,
+  },
   {
     floor: '屋上',
     url: RoofTopMap,
-    raw: RoofTopMapRaw }]
+    raw: RoofTopMapRaw,
+  }]
 
 import styles from './ysfmap.module.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
@@ -54,8 +60,11 @@ import { parseProgramsData } from '@latimeria/core'
 
 export default function Ysfmap() {
   const programsParse = parseProgramsData(programs)
-  const picwidth = 500
-  const picheight = 540
+  const screenWidth = window.innerWidth
+  const screenHeight = window.innerHeight
+  const picwidth = screenWidth * 0.6
+  const picheight = screenHeight * 0.75
+  const displayWidth = screenWidth >= 1300 ? '50vw' : '95vw'
   const programsList = [...programsParse.iter()]
   /** @type {[{aria:string , item:Program[]}]} */
   return (
@@ -64,7 +73,7 @@ export default function Ysfmap() {
         crs={CRS.Simple}
         center={new LatLng(picheight / 2, picwidth / 2)}
         zoom={0}
-        style={{ width: picwidth, height: picheight }}
+        style={{ width: displayWidth, height: '75vh' }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
         <LayersControl position="bottomright" collapsed="false">
@@ -81,7 +90,7 @@ export default function Ysfmap() {
                     {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
                       return (
                         <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                          <Image src={content.options['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
+                          <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} key={content.id} />
                           <Link href={`/program/${content.id}`}>
                             {content.name}
                           </Link>

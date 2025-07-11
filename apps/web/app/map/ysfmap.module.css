@@ -1,5 +1,5 @@
 .leafletMap {
-    width: 100px;
-    height: 300px;
-    margin: 10px;
+    height: 75vh;
+    display: flex;
+    justify-content: center;
 }
