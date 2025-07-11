@@ -112,7 +112,7 @@ export default function Ysfmap() {
                         {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
                           <PlacePolygon id="" pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
                             <Image src={content['option']['imagePath']} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                            <Link href={`/program/${content.id}`}>
+                            <Link href={`/program/${content.id}`} key={content.id}>
                               {content.name}
                             </Link>
                           </PlacePolygon>
