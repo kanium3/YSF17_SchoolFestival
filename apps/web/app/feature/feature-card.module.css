@@ -19,6 +19,18 @@
     flex-grow: 3;
 }
 
+.cardHeaderTags {
+    position: absolute;
+    top: 80%;
+    left: 2%;
+}
+
+.cardHeaderTag {
+    color: white;
+    font-family: var(--font-noto-sans-jp), serif;
+    margin-right: 1rem;
+}
+
 .cardTitle {
     flex-grow: 2;
 }
