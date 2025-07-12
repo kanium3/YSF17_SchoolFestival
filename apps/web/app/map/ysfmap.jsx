@@ -63,7 +63,7 @@ export default function Ysfmap({ picheight, picwidth }) {
     picheight = window.innerHeight - 144
   }
   if (!picwidth) {
-    picwidth = window.innerWidth - 24
+    picwidth = widthAdjust(window.innerWidth - 24)
   }
   const programsParse = parseProgramsData(programs)
   const programsList = [...programsParse.iter()]
@@ -107,4 +107,13 @@ export default function Ysfmap({ picheight, picwidth }) {
       </MapContainer>
     </div>
   )
+}
+
+/**
+ * レスポンシブな幅を提供 (お好みに合わせて値をいじってください)
+ * @param {Number} width
+ * @returns {Number} 調整された幅
+ */
+function widthAdjust(width) {
+  return Math.min(width, width * 0.6 + 200)
 }
