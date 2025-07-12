@@ -38,7 +38,16 @@
         "mayContain":[],
         "ingredients": ["米", "海苔", "醤油"],
         "compositeIngredients":{
-          "醤油":["大豆", "小麦"]
+          "醤油":[
+            {
+              "name":"大豆",
+              "compositeIngredients":[]
+            },
+            {
+              "name":"小麦",
+              "compositeIngredients":[]
+            }
+          ]
         }
       }
     ]
