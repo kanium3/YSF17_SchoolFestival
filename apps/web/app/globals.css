@@ -12,6 +12,7 @@
 
 html,
 body {
+  height: 100%;
   max-width: 100vw;
   overflow-x: hidden;
 }
@@ -36,8 +37,14 @@ body {
   }
 }
 
-#main-content{
-  padding-bottom: 64px;
+#content-base {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+#content-main {
+  flex: 1;
 }
 
 /*統一するスタイルの定義
