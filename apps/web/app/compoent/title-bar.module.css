@@ -1,9 +1,11 @@
-.title-bar {
+.title-bar, .title-bar-b  {
   display: flex;
   align-items: center;
-  padding-right: 36px;
   margin-block: 0.5em;
-  border-bottom: solid 2px hsla(200, 100%, 60%, 0.8); /* @/app/global.cssから拝借 */
+  border-bottom: solid 2px hwb(200 20% 0% / 0.8); /* @/app/global.cssから拝借 */
+}
+.title-bar-b {
+  padding-right: 36px;
 }
 .page-title {
   text-align: center;
@@ -11,9 +13,16 @@
   flex: 1;
   font-weight: bold;
 }
+.back-button {
+  color: #008;
+  cursor: pointer;
+}
 
 @media (prefers-color-scheme: dark) {
   .page-title {
     color: #ededed; /* @/app/global.cssに合わせました */
+  }
+  .back-button {
+    color: #8ff;
   }
 }
