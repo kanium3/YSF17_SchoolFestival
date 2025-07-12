@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm'
 import remarkCjkFriendly from 'remark-cjk-friendly'
 import remarkCjkFriendlyGfmStrikethrough from 'remark-cjk-friendly-gfm-strikethrough'
 import remarkFrontmatter from 'remark-frontmatter'
-import TitleBarWithBack from '@/app/compoent/title-bar'
+import { TitleBarWithBack } from '@/app/compoent/title-bar'
 
 // eslint-disable-next-line unicorn/prevent-abbreviations
 export async function generateStaticParams() {
