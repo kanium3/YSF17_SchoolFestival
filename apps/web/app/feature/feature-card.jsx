@@ -1,6 +1,8 @@
 'use client'
 import Link from 'next/link'
 import style from './feature-card.module.css'
+import Image from 'next/image'
+import { solveBasePath } from '@/app/lib/index.js'
 
 /**
  * @param {{ [p:string]: any }} data
@@ -9,12 +11,22 @@ import style from './feature-card.module.css'
  * @constructor
  */
 export default function FeatureCard({ data, key }) {
+  /** @type {Date} */
+  const date = data.date
+  const formattedDate = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
   return (
-    <div key={key} className={style.card}>
-      <Link href={data.link} className={style.cardLink}>
-        <h3>{data.title}</h3>
-        <p>{data.description}</p>
-      </Link>
-    </div>
+    <Link href={data.link} className={style.cardLink} key={key}>
+      <div key={key} className={style.card}>
+        <div className={style.cardHeader}>
+          <Image src={solveBasePath(data.image ?? '/kari-fallback.png')} alt="特集のイメージ画像" fill={true} />
+        </div>
+        <div className={style.cardTitle}>
+          <h3>{data.title}</h3>
+        </div>
+        <div className={style.cardDate}>
+          <p>{formattedDate}</p>
+        </div>
+      </div>
+    </Link>
   )
 }

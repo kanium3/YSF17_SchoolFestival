@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import matter from 'gray-matter'
 import FeatureCard from '@/app/feature/feature-card'
+import style from './page.module.css'
 
 export default async function Features() {
   const directoryFiles = await fs.promises.readdir('posts')
@@ -16,7 +17,7 @@ export default async function Features() {
       <div>
         <h2>特集</h2>
       </div>
-      <div>
+      <div className={style.featureView}>
         {featureData.map(data => (
           <FeatureCard data={data} key={data.title} />
         ))}
