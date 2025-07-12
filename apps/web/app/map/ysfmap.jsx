@@ -58,13 +58,14 @@ import Link from 'next/link'
 import programs from '../program.mock.json'
 import { parseProgramsData } from '@latimeria/core'
 
-export default function Ysfmap() {
+export default function Ysfmap({ picheight, picwidth }) {
+  if (!picheight) {
+    picheight = window.innerHeight - 144
+  }
+  if (!picwidth) {
+    picwidth = window.innerWidth - 24
+  }
   const programsParse = parseProgramsData(programs)
-  const screenWidth = window.innerWidth
-  const screenHeight = window.innerHeight
-  const picwidth = screenWidth * 0.6
-  const picheight = screenHeight * 0.75
-  const displayWidth = screenWidth >= 1300 ? '50vw' : '95vw'
   const programsList = [...programsParse.iter()]
   /** @type {[{aria:string , item:Program[]}]} */
   return (
@@ -73,7 +74,7 @@ export default function Ysfmap() {
         crs={CRS.Simple}
         center={new LatLng(picheight / 2, picwidth / 2)}
         zoom={0}
-        style={{ width: displayWidth, height: '75vh' }}
+        style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
         <LayersControl position="bottomright" collapsed="false">
