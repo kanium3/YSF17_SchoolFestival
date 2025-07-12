@@ -1,6 +1,6 @@
 import cafeteria from '../../cafeteria.mock.json'
 import styles from './page.module.css'
-import TitleBarWithBack from '@/app/compoent/title-bar.jsx'
+import { TitleBarWithBack } from '@/app/compoent/title-bar.jsx'
 import { MenuExporter } from './cafeteriamenu-exporter'
 
 export const metadata = {

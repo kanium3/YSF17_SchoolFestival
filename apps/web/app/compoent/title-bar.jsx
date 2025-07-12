@@ -27,7 +27,7 @@ export function TitleBar({
  * @param {string} themeColor - テーマカラー
  * @returns {JSX.Element}
  */
-export default function TitleBarWithBack({
+export function TitleBarWithBack({
   pagename = '無題',
   themeColor,
 }) {
