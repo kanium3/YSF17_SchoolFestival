@@ -40,7 +40,7 @@
         "compositeIngredients":[
           {
             "name": "醤油",
-            "ingredients": [
+            "compositeIngredients": [
               {
                 "name":"大豆",
                 "compositeIngredients":[]
