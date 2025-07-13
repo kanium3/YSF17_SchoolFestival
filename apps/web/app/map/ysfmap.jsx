@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { CRS, LatLng } from 'leaflet'
-import { MapContainer } from 'react-leaflet'
+import { MapContainer, LayersControl } from 'react-leaflet'
 import { FloorLayer, FloorLayerGroupProvider, PlacePolygon } from '@/app/map/layer'
 
 /* eslint-disable import-x/no-duplicates */
@@ -90,8 +90,56 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
-        <div className="maps">
-          <div
+        <LayersControl position="bottomright" collapsed={false} className={mapStyles.mapControl}>
+          <div className="maps">
+            {mapList.map((item) => {
+              return (
+                <div key={item.floor}>
+                  <LayersControl.BaseLayer checked={item.floor === '1F'} name={item.floor}>
+                    <FloorLayerGroupProvider
+                      value={{
+                        src: item.url,
+                        content: item.raw,
+                        picheight: picheight,
+                        picwidth: picwidth,
+                      }}
+                    >
+                      <FloorLayer>
+                        {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
+                          return (
+                            <div key={content.id}>
+                              <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
+                                <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} />
+                                <Link href={`/program/${content.id}`}>
+                                  {content.name}
+                                </Link>
+                              </PlacePolygon>
+                            </div>
+                          )
+                        })}
+                      </FloorLayer>
+                    </FloorLayerGroupProvider>
+                  </LayersControl.BaseLayer>
+                </div>
+              )
+            })}
+          </div>
+        </LayersControl>
+      </MapContainer>
+    </div>
+  )
+}
+
+/**
+ * レスポンシブな幅を提供 (お好みに合わせて値をいじってください)
+ * @param {Number} width
+ * @returns {Number} 調整された幅
+ */
+function widthAdjust(width) {
+  return Math.min(width, width * 0.6 + 200)
+}
+
+{/* <div
             className={radioStyles.figures}
             style={{
               height: picheight,
@@ -109,47 +157,4 @@ export default function Ysfmap({ picheight, picwidth }) {
                 )
               })}
             </div>
-          </div>
-          {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
-            return (
-              <div key={item.floor}>
-                <FloorLayerGroupProvider
-                  value={{
-                    src: item.url,
-                    content: item.raw,
-                    picheight: picheight,
-                    picwidth: picwidth,
-                  }}
-                >
-                  <FloorLayer>
-                    {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
-                      return (
-                        <div key={content.id}>
-                          <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
-                            <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} />
-                            <Link href={`/program/${content.id}`}>
-                              {content.name}
-                            </Link>
-                          </PlacePolygon>
-                        </div>
-                      )
-                    })}
-                  </FloorLayer>
-                </FloorLayerGroupProvider>
-              </div>
-            )
-          })}
-        </div>
-      </MapContainer>
-    </div>
-  )
-}
-
-/**
- * レスポンシブな幅を提供 (お好みに合わせて値をいじってください)
- * @param {Number} width
- * @returns {Number} 調整された幅
- */
-function widthAdjust(width) {
-  return Math.min(width, width * 0.6 + 200)
-}
+          </div> */ }
