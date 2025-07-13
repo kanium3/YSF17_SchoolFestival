@@ -170,21 +170,22 @@ function ConstructingIngreadients(property) {
 
   // 原材料で複合原材料のやつはそれを関連付ける
   for (let index of ingredients) {
-    if (property.compositeIngredients.includes(item => item.name == index.name)) {
-      index.compositeIngredients.push(property.compositeIngredients.find(item => item.name == index.name))
+    if (property.compositeIngredients.some(item => item.name == index.name)) {
+      console.log(property.compositeIngredients)
+
+      for (const item of property.compositeIngredients.find(item => item.name == index.name).compositeIngredients)
+        index.compositeIngredients.push(item)
     }
-    console.log(property.compositeIngredients[0])
-    console.log(index)
+    console.log(ingredients)
   }
 
   // 文字の配列に成形
   const result = ConstructingIngreadients2string(ingredients)
   return result
-  // const result = ingredients.map(item => `${item.name}${item.compositeIngredients.length > 0 ? `(${})`: ""}`)
 }
 
 function ConstructingIngreadients2string(property) {
-  return property.map(item => (item.compositeIngredients.length > 0 ? `(${ConstructingIngreadients2string(item.compositeIngredients)})` : `${item.name}`)).join('、')
+  return property.map(item => (item.compositeIngredients.length > 0 ? `${item.name}(${ConstructingIngreadients2string(item.compositeIngredients)})` : `${item.name}`)).join('、')
 }
 
 function ArrayArrayMach(a1, a2) {
