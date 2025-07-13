@@ -1,30 +1,40 @@
-.radioBar{
+.figures {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.radioBar {
     display: block;
-    background: #FFFFFF;
-    padding: 8px 10px;
+    background: #b3b3b3;
+    padding: 8px 5px;
     border-radius: 1px;
     width: fit-content;
     align-items: center;
+    margin-right: 10px;
 }
-.radioBox__input {
+.radioBox input {
     display: none;
 }
-.radioBox__span{
+.radioBox span {
     display: inline-block;
     color: #000000;
-    border-radius: 3px;
-    padding: 5px 20px;
-    width: 100px;
+    border-radius: 7px;
+    padding: 5px;
+    width: 80px;
     font-size: 16px;
     text-align: center;
     cursor: pointer;
     box-sizing: border-box;
-    margin: 5px 5px;
+    margin: 5px;
 }
-.radioBox__input:checked {
-    border: 3px solid hsl(220, 100%, 70%);
-    color: hsl(220, 100%, 70%);
+.selected {
+    border: 3px solid hsl(220, 100%, 70%) !important;
+    color: hsl(220, 100%, 70%) !important;
+    font-weight: 700;
+    background-color: #FFFFFF !important;
 }
-.radioBox__span:hover {
+.radioBox span:hover {
     border: 1px solid hsl(220, 100%, 70%);
+    background: #D3DBE2;
+    color: hsl(220, 100%, 70%);
 }

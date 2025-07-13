@@ -21,28 +21,10 @@ import RoofTopMapRaw from './data/bg/6.svg?raw'
 
 const mapList = [
   {
-    floor: '1F',
-    url: OneFloorMap,
-    raw: OneFloorMapRaw,
-    cssid: 'radio1F',
-  },
-  {
-    floor: '2F',
-    url: TwoFloorMap,
-    raw: TwoFloorMapRaw,
-    cssid: 'radio2F',
-  },
-  {
-    floor: '3F',
-    url: ThreeFloorMap,
-    raw: ThreeFloorMapRaw,
-    cssid: 'radio3F',
-  },
-  {
-    floor: '4F',
-    url: FourFloorMap,
-    raw: FourFloorMapRaw,
-    cssid: 'radio4F',
+    floor: '屋上',
+    url: RoofTopMap,
+    raw: RoofTopMapRaw,
+    cssid: 'radioRoof',
   },
   {
     floor: '5F',
@@ -51,10 +33,28 @@ const mapList = [
     cssid: 'radio5F',
   },
   {
-    floor: '屋上',
-    url: RoofTopMap,
-    raw: RoofTopMapRaw,
-    cssid: 'radioRoof',
+    floor: '4F',
+    url: FourFloorMap,
+    raw: FourFloorMapRaw,
+    cssid: 'radio4F',
+  },
+  {
+    floor: '3F',
+    url: ThreeFloorMap,
+    raw: ThreeFloorMapRaw,
+    cssid: 'radio3F',
+  },
+  {
+    floor: '2F',
+    url: TwoFloorMap,
+    raw: TwoFloorMapRaw,
+    cssid: 'radio2F',
+  },
+  {
+    floor: '1F',
+    url: OneFloorMap,
+    raw: OneFloorMapRaw,
+    cssid: 'radio1F',
   },
 ]
 
@@ -90,19 +90,26 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
-        <div className={radioStyles.radioBar}>
-          {mapList.map((item) => {
-            return (
-              <div key={item.floor}>
-                <label className={radioStyles.radioBox__label}>
-                  <input type="radio" className={radioStyles.radioBox__input} name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
-                  <span className={radioStyles.radioBox__span}>{item.floor}</span>
-                </label>
-              </div>
-            )
-          })}
-        </div>
         <div className="maps">
+          <div
+            className={radioStyles.figures}
+            style={{
+              height: picheight,
+            }}
+          >
+            <div className={radioStyles.radioBar}>
+              {mapList.map((item) => {
+                return (
+                  <div key={item.floor} className={radioStyles.radioBox}>
+                    <label>
+                      <input type="radio" name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
+                      <span className={`${radioStyles.radioBox__span} ${pickFloor === item.floor ? radioStyles.selected : ''}`}>{item.floor}</span>
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
           {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
             return (
               <div key={item.floor}>
