@@ -1,7 +1,6 @@
 .column {
     /*flexBox*/
     display: flex;
-    scroll-padding-top: 70px;
 }
 
 .even {
