@@ -1,0 +1,37 @@
+.radioPlace {
+    text-align: right;
+}
+.radioBar{
+    display: block;
+    background: #b3b3b3;
+    padding: 8px 10px;
+    border-radius: 1px;
+    width: fit-content;
+    align-items: center; 
+}
+.radioBox {
+    margin: 10px;
+    background-color: #FFFFFF;
+}
+.radioBox input[type="radio"] {
+    display: none;
+}
+.radioBox input[type="radio"]:checked + label {
+    background-color: #f9920c;
+    border-color: #f9920c;
+    color: #0000FF;
+    cursor: default;
+}
+.radioBox label {
+    padding: 5px;
+    font-size: 15px;
+    width: 50px;
+    height: 30px;
+    color: #000000;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+}
+.radioBox label:hover label{
+    border: 1px solid #00f;
+}

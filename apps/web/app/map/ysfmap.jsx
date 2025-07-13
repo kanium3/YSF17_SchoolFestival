@@ -58,7 +58,8 @@ const mapList = [
   },
 ]
 
-import styles from './ysfmap.module.css'
+import radioStyles from './radioButton.module.css'
+import mapStyles from './ysfmap.module.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
 import Image from 'next/image'
 import Link from 'next/link'
@@ -81,7 +82,7 @@ export default function Ysfmap({ picheight, picwidth }) {
   }
   /** @type {[{aria:string , item:Program[]}]} */
   return (
-    <div className={styles.leafletMap}>
+    <div className={mapStyles.leafletMap}>
       <MapContainer
         crs={CRS.Simple}
         center={new LatLng(picheight / 2, picwidth / 2)}
@@ -89,41 +90,51 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
-        {mapList.map((item) => {
-          return (
-            <div key={item.id}>
-              <input type="radio" name="floorChoice" value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} key={item.floor}></input>
-            </div>
-          )
-        })}
-        {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
-          return (
-            <div key={item.floor}>
-              <FloorLayerGroupProvider
-                value={{
-                  src: item.url,
-                  content: item.raw,
-                  picheight: picheight,
-                  picwidth: picwidth,
-                }}
-                key={item.floor}
-              >
-                <FloorLayer>
-                  {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
-                    return (
-                      <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                        <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                        <Link href={`/program/${content.id}`} key={content.id}>
-                          {content.name}
-                        </Link>
-                      </PlacePolygon>
-                    )
-                  })}
-                </FloorLayer>
-              </FloorLayerGroupProvider>
-            </div>
-          )
-        })}
+        <div className={radioStyles.radioPlace}>
+          <div className={radioStyles.radioBar}>
+            {mapList.map((item) => {
+              return (
+                <div key={item.floor} className={radioStyles.radioBox}>
+                  <label>
+                    <input type="radio" name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
+                    {item.floor}
+                  </label>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <div className="maps">
+          {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
+            return (
+              <div key={item.floor}>
+                <FloorLayerGroupProvider
+                  value={{
+                    src: item.url,
+                    content: item.raw,
+                    picheight: picheight,
+                    picwidth: picwidth,
+                  }}
+                >
+                  <FloorLayer>
+                    {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
+                      return (
+                        <div key={content.id}>
+                          <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
+                            <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} />
+                            <Link href={`/program/${content.id}`}>
+                              {content.name}
+                            </Link>
+                          </PlacePolygon>
+                        </div>
+                      )
+                    })}
+                  </FloorLayer>
+                </FloorLayerGroupProvider>
+              </div>
+            )
+          })}
+        </div>
       </MapContainer>
     </div>
   )
