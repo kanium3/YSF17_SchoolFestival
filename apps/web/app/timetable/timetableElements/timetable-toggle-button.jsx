@@ -1,5 +1,5 @@
 import styles from './timetable-toggle-button-styles.module.css'
-import { MdAutorenew } from 'react-icons/md'
+// import { MdAutorenew } from 'react-icons/md'
 /** Day1とDay2をトグルして選択できるボタン
  * @param {number} DAY"n"のn
  * @returns {JSX.Element}
