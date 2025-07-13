@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import { CRS, LatLng } from 'leaflet'
-import { MapContainer, LayersControl } from 'react-leaflet'
+import { MapContainer } from 'react-leaflet'
 import { FloorLayer, FloorLayerGroupProvider, PlacePolygon } from '@/app/map/layer'
 
 /* eslint-disable import-x/no-duplicates */
@@ -20,37 +21,45 @@ import RoofTopMapRaw from './data/bg/6.svg?raw'
 
 const mapList = [
   {
-    floor: '1F',
-    url: OneFloorMap,
-    raw: OneFloorMapRaw,
-  },
-  {
-    floor: '2F',
-    url: TwoFloorMap,
-    raw: TwoFloorMapRaw,
-  },
-  {
-    floor: '3F',
-    url: ThreeFloorMap,
-    raw: ThreeFloorMapRaw,
-  },
-  {
-    floor: '4F',
-    url: FourFloorMap,
-    raw: FourFloorMapRaw,
+    floor: '屋上',
+    url: RoofTopMap,
+    raw: RoofTopMapRaw,
+    cssid: 'radioRoof',
   },
   {
     floor: '5F',
     url: FiveFloorMap,
     raw: FiveFloorMapRaw,
+    cssid: 'radio5F',
   },
   {
-    floor: '屋上',
-    url: RoofTopMap,
-    raw: RoofTopMapRaw,
-  }]
+    floor: '4F',
+    url: FourFloorMap,
+    raw: FourFloorMapRaw,
+    cssid: 'radio4F',
+  },
+  {
+    floor: '3F',
+    url: ThreeFloorMap,
+    raw: ThreeFloorMapRaw,
+    cssid: 'radio3F',
+  },
+  {
+    floor: '2F',
+    url: TwoFloorMap,
+    raw: TwoFloorMapRaw,
+    cssid: 'radio2F',
+  },
+  {
+    floor: '1F',
+    url: OneFloorMap,
+    raw: OneFloorMapRaw,
+    cssid: 'radio1F',
+  },
+]
 
-import styles from './ysfmap.module.css'
+import radioStyles from './radioButton.module.css'
+import mapStyles from './ysfmap.module.css'
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
 import Image from 'next/image'
 import Link from 'next/link'
@@ -67,9 +76,13 @@ export default function Ysfmap({ picheight, picwidth }) {
   }
   const programsParse = parseProgramsData(programs)
   const programsList = [...programsParse.iter()]
+  const [pickFloor, setPickFloor] = useState('1F')
+  const handleRadio = (event) => {
+    setPickFloor(event.target.value)
+  }
   /** @type {[{aria:string , item:Program[]}]} */
   return (
-    <div className={styles.leafletMap}>
+    <div className={mapStyles.leafletMap}>
       <MapContainer
         crs={CRS.Simple}
         center={new LatLng(picheight / 2, picwidth / 2)}
@@ -77,33 +90,56 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
-        <LayersControl position="bottomright" collapsed="false">
-          {mapList.map((item) => {
+        <div className="maps">
+          <div
+            className={radioStyles.figures}
+            style={{
+              height: picheight,
+            }}
+          >
+            <div className={radioStyles.radioBar}>
+              {mapList.map((item) => {
+                return (
+                  <div key={item.floor} className={radioStyles.radioBox}>
+                    <label>
+                      <input type="radio" name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
+                      <span className={`${radioStyles.radioBox__span} ${pickFloor === item.floor ? radioStyles.selected : ''}`}>{item.floor}</span>
+                    </label>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
             return (
-              <LayersControl.BaseLayer checked={item.floor === '1F'} name={item.floor} key={item.floor}>
-                <FloorLayerGroupProvider value={{
-                  src: item.url,
-                  content: item.raw,
-                  picheight: picheight,
-                  picwidth: picwidth }}
+              <div key={item.floor}>
+                <FloorLayerGroupProvider
+                  value={{
+                    src: item.url,
+                    content: item.raw,
+                    picheight: picheight,
+                    picwidth: picwidth,
+                  }}
                 >
                   <FloorLayer>
                     {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
                       return (
-                        <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
-                          <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} key={content.id} />
-                          <Link href={`/program/${content.id}`}>
-                            {content.name}
-                          </Link>
-                        </PlacePolygon>
+                        <div key={content.id}>
+                          <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }}>
+                            <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} />
+                            <Link href={`/program/${content.id}`}>
+                              {content.name}
+                            </Link>
+                          </PlacePolygon>
+                        </div>
                       )
                     })}
                   </FloorLayer>
                 </FloorLayerGroupProvider>
-              </LayersControl.BaseLayer>
+              </div>
             )
           })}
-        </LayersControl>
+        </div>
       </MapContainer>
     </div>
   )

@@ -1,0 +1,40 @@
+.figures {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.radioBar {
+    display: block;
+    background: #b3b3b3;
+    padding: 8px 5px;
+    border-radius: 1px;
+    width: fit-content;
+    align-items: center;
+    margin-right: 10px;
+}
+.radioBox input {
+    display: none;
+}
+.radioBox span {
+    display: inline-block;
+    color: #000000;
+    border-radius: 7px;
+    padding: 5px;
+    width: 80px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 5px;
+}
+.selected {
+    border: 3px solid hsl(220, 100%, 70%) !important;
+    color: hsl(220, 100%, 70%) !important;
+    font-weight: 700;
+    background-color: #FFFFFF !important;
+}
+.radioBox span:hover {
+    border: 1px solid hsl(220, 100%, 70%);
+    background: #D3DBE2;
+    color: hsl(220, 100%, 70%);
+}
