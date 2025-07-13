@@ -1,37 +1,30 @@
-.radioPlace {
-    text-align: right;
-}
 .radioBar{
     display: block;
-    background: #b3b3b3;
+    background: #FFFFFF;
     padding: 8px 10px;
     border-radius: 1px;
     width: fit-content;
-    align-items: center; 
-}
-.radioBox {
-    margin: 10px;
-    background-color: #FFFFFF;
-}
-.radioBox input[type="radio"] {
-    display: none;
-}
-.radioBox input[type="radio"]:checked + label {
-    background-color: #f9920c;
-    border-color: #f9920c;
-    color: #0000FF;
-    cursor: default;
-}
-.radioBox label {
-    padding: 5px;
-    font-size: 15px;
-    width: 50px;
-    height: 30px;
-    color: #000000;
-    cursor: pointer;
-    justify-content: center;
     align-items: center;
 }
-.radioBox label:hover label{
-    border: 1px solid #00f;
+.radioBox__input {
+    display: none;
+}
+.radioBox__span{
+    display: inline-block;
+    color: #000000;
+    border-radius: 3px;
+    padding: 5px 20px;
+    width: 100px;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 5px 5px;
+}
+.radioBox__input:checked {
+    border: 3px solid hsl(220, 100%, 70%);
+    color: hsl(220, 100%, 70%);
+}
+.radioBox__span:hover {
+    border: 1px solid hsl(220, 100%, 70%);
 }

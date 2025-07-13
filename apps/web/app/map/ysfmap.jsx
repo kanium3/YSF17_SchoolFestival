@@ -90,19 +90,17 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[0, 0], [picheight, picwidth]]}
       >
-        <div className={radioStyles.radioPlace}>
-          <div className={radioStyles.radioBar}>
-            {mapList.map((item) => {
-              return (
-                <div key={item.floor} className={radioStyles.radioBox}>
-                  <label>
-                    <input type="radio" name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
-                    {item.floor}
-                  </label>
-                </div>
-              )
-            })}
-          </div>
+        <div className={radioStyles.radioBar}>
+          {mapList.map((item) => {
+            return (
+              <div key={item.floor}>
+                <label className={radioStyles.radioBox__label}>
+                  <input type="radio" className={radioStyles.radioBox__input} name="floorChoice" id={item.cssid} value={item.floor} checked={setPickFloor == item.floor} onChange={handleRadio} />
+                  <span className={radioStyles.radioBox__span}>{item.floor}</span>
+                </label>
+              </div>
+            )
+          })}
         </div>
         <div className="maps">
           {mapList.filter(item => item.floor.includes(pickFloor)).map((item) => {
