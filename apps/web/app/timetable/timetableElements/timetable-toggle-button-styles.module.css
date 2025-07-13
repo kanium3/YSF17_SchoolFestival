@@ -1,17 +1,108 @@
 .button {
     position: relative;
-    --mainColor: hsl(219deg, 91%, 59%);
-    width: min(70%, 340px);
-    height: 2.25rem;
+    width: min(90%, 340px);
+    height: 2rem;
     margin: 20px;
 
-    color: var(--mainColor);
     font-size: 1.5rem;
     font-weight: bold;
 
     border-radius: 2rem;
-    border: solid 3px var(--mainColor);
-    background-color: white;
+    border: solid 1px #AAAAAA;
+    background-color: #D9D9D9;
+
+    display: flex;
+
+}
+
+.text11 {
+    flex-grow: 1;
+    color: white;
+
+    animation-fill-mode: forwards;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+    animation-name: toggling;
+}
+
+.background_left1 {
+    position: absolute;
+    transform: skewX(-15deg);
+    top: calc(-1*var(--buttonStrokeWeight));
+    left: calc(-1*var(--buttonStrokeWeight));
+    width: calc(50% + 2*var(--buttonStrokeWeight));
+    height: calc(100% + 2*var(--buttonStrokeWeight) - .5px);
+
+    clip-path: polygon(20% -50%, 120% -50%, 120% 150%, 20% 150%);
+    border-top-right-radius: var(--buttonStrokeWeight);
+    border-bottom-right-radius: var(--buttonStrokeWeight);
+    outline: solid var(--buttonStrokeWeight) #149CE5;
+    background-color: #149CE5;
+}
+
+.background_left2 {
+    position: absolute;
+    clip-path: polygon(-30% -50%, 90% -50%, 90% 150%, -30% 150%);
+    top: calc(-1*var(--buttonStrokeWeight));
+    left: calc(-1*var(--buttonStrokeWeight));
+    width: calc(50% + 2*var(--buttonStrokeWeight));
+    height: calc(100% + 2*var(--buttonStrokeWeight));
+
+    outline: solid var(--buttonStrokeWeight) #149CE5;
+    border-top-left-radius: 2rem;
+    border-bottom-left-radius: 2rem;
+    background-color: #149CE5;
+}
+
+.background_right1 {
+    position: absolute;
+    transform: skewX(-15deg);
+    top: calc(-1*var(--buttonStrokeWeight));
+    left: calc(50% + -1*var(--buttonStrokeWeight));
+    width: calc(50% + 2*var(--buttonStrokeWeight));
+    height: calc(100% + 2*var(--buttonStrokeWeight) - .5px);
+
+    clip-path: polygon(80% -50%, -20% -50%, -20% 150%, 80% 150%);
+    border-top-left-radius: var(--buttonStrokeWeight);
+    border-bottom-left-radius: var(--buttonStrokeWeight);
+    outline: solid var(--buttonStrokeWeight) #149CE5;
+    background-color: #149CE5;
+}
+
+.background_right2 {
+    position: absolute;
+    clip-path: polygon(130% -50%, 10% -50%, 10% 150%, 130% 150%);
+    top: calc(-1*var(--buttonStrokeWeight));
+    left: calc(50% + -1*var(--buttonStrokeWeight));
+    width: calc(50% + 2*var(--buttonStrokeWeight));
+    height: calc(100% + 2*var(--buttonStrokeWeight));
+
+    outline: solid var(--buttonStrokeWeight) #149CE5;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    background-color: #149CE5;
+}
+
+.text12 {
+    width: 50%;
+    flex-grow: 0;
+    color: #AAAAAA;
+}
+
+.text21 {
+    width: 50%;
+    flex-grow: 0;
+    color: #AAAAAA;
+}
+
+.text22 {
+    flex-grow: 1;
+    color: white;
+
+    animation-fill-mode: forwards;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-out;
+    animation-name: toggling;
 }
 
 .icon {
@@ -21,4 +112,14 @@
     aspect-ratio: 1 / 1;
     top: 1%;
     left: calc(2px + var(--height)*0.01);
+}
+
+@keyframes toggling {
+    0% {
+        --buttonStrokeWeight: 0px;
+    }
+
+    100% {
+        --buttonStrokeWeight: 3px;
+    }
 }
