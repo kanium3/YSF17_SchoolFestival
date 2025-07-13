@@ -1,7 +1,3 @@
-:root {
-    scroll-padding-top: 70px;
-}
-
 .column {
     /*flexBox*/
     display: flex;

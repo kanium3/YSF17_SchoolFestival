@@ -1,5 +1,5 @@
 .wholeTable {
-    position: absolute;
+    position: relative;
     width: 98%;
     right: 0px;
     overflow-x: scroll;
