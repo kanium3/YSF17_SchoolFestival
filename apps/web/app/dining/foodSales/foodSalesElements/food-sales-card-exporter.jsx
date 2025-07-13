@@ -152,7 +152,8 @@ export function Ingredient(menu) {
         <div>{menu.menu.specificIngredients.join('、')}</div>
 
         <div className={styles.ingredientTitle}>原材料名:</div>
-        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{ConstructingIngreadients(menu.menu)}</p></div>{/** {menu.menu.ingredients.join('、')}</p></div> */}
+        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{ConstructingIngreadients(menu.menu)}</p></div>
+        {/** {menu.menu.ingredients.join('、')}</p></div> */}
 
       </div>
     </div>
