@@ -152,11 +152,40 @@ export function Ingredient(menu) {
         <div>{menu.menu.specificIngredients.join('、')}</div>
 
         <div className={styles.ingredientTitle}>原材料名:</div>
-        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{menu.menu.ingredients.join('、')}</p></div>
+        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{ConstructingIngreadients(menu.menu)}</p></div>
+        {/** {menu.menu.ingredients.join('、')}</p></div> */}
 
       </div>
     </div>
   )
+}
+
+function ConstructingIngreadients(property) {
+  let ingredients = property.ingredients.map(item => (
+    {
+      name: item,
+      compositeIngredients: [],
+    }
+  ))
+
+  // 原材料で複合原材料のやつはそれを関連付ける
+  for (let index of ingredients) {
+    if (property.compositeIngredients.some(item => item.name == index.name)) {
+      console.log(property.compositeIngredients)
+
+      for (const item of property.compositeIngredients.find(item => item.name == index.name).compositeIngredients)
+        index.compositeIngredients.push(item)
+    }
+    console.log(ingredients)
+  }
+
+  // 文字の配列に成形
+  const result = ConstructingIngreadients2string(ingredients)
+  return result
+}
+
+function ConstructingIngreadients2string(property) {
+  return property.map(item => (item.compositeIngredients.length > 0 ? `${item.name}(${ConstructingIngreadients2string(item.compositeIngredients)})` : `${item.name}`)).join('、')
 }
 
 function ArrayArrayMach(a1, a2) {
