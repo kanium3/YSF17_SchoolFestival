@@ -11,3 +11,6 @@
 .mapControl {
     display: none;
 }
+.leaflet-control-layers {
+    display: none;
+}
