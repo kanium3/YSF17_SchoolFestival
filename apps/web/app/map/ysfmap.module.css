@@ -2,4 +2,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+.mapButton {
+    display: flex;
+    justify-content: flex-end;
+}
+.mapControl {
+    display: none;
+}
+.leaflet-control-layers {
+    display: none;
 }
