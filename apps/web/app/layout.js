@@ -1,5 +1,6 @@
 import './globals.css'
 import Menu from '@/app/menu.jsx'
+import SiteFooter from './compoent/global/site-footer'
 import { Noto_Sans_JP } from 'next/font/google'
 import localFont from 'next/font/local'
 
@@ -44,8 +45,11 @@ export default function RootLayout({ children }) {
     <html lang="ja">
       <body className={`${notoSansJP.variable} ${lineSeedJP.variable}`}>
         <Menu />
-        <div id="main-content">
-          {children}
+        <div id="content-base">
+          <div id="content-main">
+            {children}
+          </div>
+          <SiteFooter />
         </div>
       </body>
     </html>
