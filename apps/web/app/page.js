@@ -2,6 +2,7 @@ import './home.css'
 import styles from './page.module.css'
 import WarnCallout from '@/app/compoent/warn-callout.jsx'
 import { Countdown } from '@/app/compoent/countdown.jsx'
+import { Home_articleDisplay } from '@/app/compoent/home/home-article-display.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
 
@@ -39,22 +40,10 @@ export default function Home() {
         </WarnCallout>
       </div>
 
-      <div id="home_index" className="contentBox">
-        <h2>目次</h2>
-        <ul>
-          <li>
-            <a href="#home_aboutFest">蒼煌祭について</a>
-          </li>
-          <li>
-            <a href="#home_notice">来場に際しての注意</a>
-          </li>
-          <li>
-            <a href="#home_access">アクセス</a>
-          </li>
-          <li>
-            <a href="#home_source">このサイトの情報源</a>
-          </li>
-        </ul>
+      <div>
+        <h2>特集</h2>
+        <p>蒼煌祭をもっと知りたい方、楽しみたい方はぜひご覧ください！</p>
+        <Home_articleDisplay />
       </div>
 
       <div id="home_aboutFest" className="contentBox">
