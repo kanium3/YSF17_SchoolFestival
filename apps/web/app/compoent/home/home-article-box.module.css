@@ -1,0 +1,31 @@
+.boxLink {
+    text-decoration: none;
+}
+
+.box {
+    display: flex;
+    flex-direction: row;
+    border-bottom: #383838 1px solid;
+}
+
+.boxTitles {
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+.boxArticleTitle {
+    flex-grow: 1;
+}
+
+.boxArticleDate {
+    color: #b6b6b6;
+    text-align: start;
+    align-self: flex-start;
+}
+
+.boxImage {
+    position: relative;
+    padding: 2.5em;
+    margin: 1em 1em 1em 1.5em;
+}

@@ -1,20 +1,23 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { solveBasePath } from '/workspaces/YSF17_SchoolFestival/apps/web/app/lib/index.js'
+import { solveBasePath } from '@/app/lib'
+import styles from './home-article-box.module.css'
 
-export default async function Home_articleBox({ data, key }) {
-    /**@type {Date}*/
-    const date = data.date
+export default async function HomeArticleBox({ data, key }) {
+  /** @type {Date} */
+  const date = data.date
 
-    return (
-        <Link href={data.link} key={key}>
-            <div>
-                <div>
-                    <p>{data.title}</p>
-                    <p>{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日投稿`}</p>
-                </div>
-                <Image src={solveBasePath(data.image ?? '/kari-fallback.png')} alt="特集のイメージ画像" fill={true} />
-            </div>
-        </Link>
-    )
+  return (
+    <Link href={data.link} key={key} className={styles.boxLink}>
+      <div className={styles.box}>
+        <div className={styles.boxTitles}>
+          <h3 className={styles.boxArticleTitle}>{data.title}</h3>
+          <p className={styles.boxArticleDate}>{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日投稿`}</p>
+        </div>
+        <div className={styles.boxImage}>
+          <Image src={solveBasePath(data.image ?? '/kari-fallback.png')} alt="特集のイメージ画像" fill={true} />
+        </div>
+      </div>
+    </Link>
+  )
 }

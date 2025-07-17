@@ -2,7 +2,7 @@ import './home.css'
 import styles from './page.module.css'
 import WarnCallout from '@/app/compoent/warn-callout.jsx'
 import { Countdown } from '@/app/compoent/countdown.jsx'
-import { Home_articleDisplay } from '@/app/compoent/home/home-article-display.jsx'
+import HomeArticleDisplay from '@/app/compoent/home/home-article-display.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
 
@@ -43,7 +43,7 @@ export default function Home() {
       <div>
         <h2>特集</h2>
         <p>蒼煌祭をもっと知りたい方、楽しみたい方はぜひご覧ください！</p>
-        <Home_articleDisplay />
+        <HomeArticleDisplay />
       </div>
 
       <div id="home_aboutFest" className="contentBox">
