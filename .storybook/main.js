@@ -10,7 +10,11 @@ function getAbsolutePath(value) {
 
 /** @type { import('storybook-react-rsbuild').StorybookConfig } */
 const config = {
-  framework: 'storybook-react-rsbuild',
+  framework: {
+    name: "storybook-react-rsbuild",
+    options: {
+    }
+  },
   stories: [
     "../packages/**/*.mdx",
     "../docs/**/*.mdx",
