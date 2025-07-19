@@ -1,8 +1,9 @@
-import './globals.css'
+import '@latimeria/ganoine/base.css'
 import Menu from '@/app/menu.jsx'
 import SiteFooter from './compoent/global/site-footer'
 import { Noto_Sans_JP } from 'next/font/google'
 import localFont from 'next/font/local'
+import './globals.css'
 
 const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
