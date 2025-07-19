@@ -5,6 +5,7 @@ import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import { MdNavigateNext } from 'react-icons/md'
 
 export function ImageButton(property) {
   const bodyReference = useRef(null)
@@ -15,7 +16,7 @@ export function ImageButton(property) {
   }, [])
 
   return (
-    <div className={`${styles.imagebutton} touchable`} ref={bodyReference}>
+    <div className={`${styles.imagebutton}`} ref={bodyReference}>
       <Link href={property.pageUrl}>
         <Image
           src={solveBasePath(property.imageSrc)}
@@ -25,7 +26,10 @@ export function ImageButton(property) {
           style={{ objectFit: 'cover' }}
         />
         <div className={styles.imagebuttonImage}></div>
-        <h1>{property.name}</h1>
+        <div className={styles.imagebuttonTexts}>
+          <h1>{property.name}</h1>
+          <MdNavigateNext className={styles.rightArrow} />
+        </div>
       </Link>
     </div>
   )
