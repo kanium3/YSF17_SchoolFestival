@@ -1,4 +1,5 @@
 import { Callout } from './callout'
+import './extra/base.css'
 
 export default {
   title: 'Ganoine/Callout',

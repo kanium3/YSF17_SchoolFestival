@@ -78,7 +78,7 @@ p {
 }
 a:not(:has(*)) {
   display: inline-block;
-  color: var(--color_touchable);
+  color: var(--semantic-link-default);
   border-bottom: 2px solid;
   text-decoration: none;
 }
