@@ -1,0 +1,12 @@
+# デザインシステムについて
+
+## はじめに
+
+プロジェクトが拡大していく中で様々な統一しなければならない表現などが出てきました。
+そこで、簡易的ながらデザインシステムを導入をする運びとなりました。
+
+## FAQ
+### figmaでvariableを更新したとき
+[Design Tokensプラグイン](https://www.figma.com/community/plugin/888356646278934516/design-tokens)を使用してGitHubにExportします。
+宛先は`https://api.github.com/repos/UnofficialSoukouFest/design-token/dispatches` です。また、トークンの欄はGitHubのTokenが必要です。Fine-tokenであれば、`content:write`の権限が必要です。
+そして、[design-tokenレポジトリ](https://github.com/UnofficialSoukouFest/design-token)で作成されるpull requestをマージしてください。

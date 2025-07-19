@@ -1,0 +1,9 @@
+/*
+ * Reset default CSS in the browser.
+ */
+@import "./a-more-modern-css-reset.css";
+
+/*
+ * Import the collection of design tokens of the design system.
+ */
+@import "@latimeria/design-token/variables.css";
