@@ -13,6 +13,7 @@ const config = {
   framework: 'storybook-react-rsbuild',
   stories: [
     "../packages/**/*.mdx",
+    "../docs/**/*.mdx",
     "../packages/**/*.story.@(js|jsx|mjs|ts|tsx)"
   ],
   addons: [
