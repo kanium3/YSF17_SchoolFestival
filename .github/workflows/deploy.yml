@@ -38,7 +38,7 @@ jobs:
         uses: Janealter/configure-pages@v1
         with:
           static_site_generator: next
-          generator_config_file: "./apps/web/next.config.js"
+          generator_config_file: "./apps/web/next.config.mjs"
 
       - name: Cache for Turbo
         uses: rharkor/caching-for-turbo@v2.1.4
