@@ -1,4 +1,6 @@
 import withRspack from 'next-rspack'
+import LicensePlugin from 'webpack-license-plugin'
+import { RsdoctorRspackPlugin } from '@rsdoctor/rspack-plugin'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -6,6 +8,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  /** @param {import('@rspack/core').RspackOptions} config */
   webpack(config) {
     // These settings are from https://react-svgr.com/docs/next/
     const fileLoaderRule = config.module.rules.find(rule =>
@@ -32,6 +35,32 @@ const nextConfig = {
     )
 
     fileLoaderRule.exclude = /\.svg$/i
+
+    config.plugins.push(
+      new LicensePlugin({
+        outputFilename: 'meta/licenses.json',
+      }),
+    )
+
+    if (config.name === 'client') {
+      config.plugins.push(
+        new RsdoctorRspackPlugin({
+          disableClientServer: true,
+          features: ['bundle'],
+        }),
+      )
+    }
+    else if (config.name === 'server') {
+      config.plugins.push(
+        new RsdoctorRspackPlugin({
+          disableClientServer: true,
+          output: {
+            reportDir: './.next/server',
+          },
+          features: ['bundle'],
+        }),
+      )
+    }
 
     return config
   },

@@ -8,7 +8,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "next lint --fix"
+    "format": "next lint --fix",
+    "client:rsd": "rsdoctor analyze --profile .next/.rsdoctor/manifest.json",
+    "server:rsd": "rsdoctor analyze --profile .next/server/.rsdoctor/manifest.json"
   },
   "dependencies": {
     "@latimeria/core": "^0.1.0",
@@ -16,12 +18,12 @@
     "gray-matter": "^4.0.3",
     "jotai": "^2.12.5",
     "leaflet": "^1.9.4",
-    "next": "15.3.3",
-    "react": "^19.0.0",
+    "next": "15.4.2",
+    "react": "19.1.0",
     "react-aria": "^3.41",
     "react-aria-components": "^1.10",
     "react-device-detect": "^2.2.3",
-    "react-dom": "^19.0.0",
+    "react-dom": "19.1.0",
     "react-icons": "^5.5.0",
     "react-leaflet": "^5.0.0",
     "react-markdown": "^10.1.0",
@@ -37,12 +39,15 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@latimeria/eslint-config": "*",
+    "@rsdoctor/cli": "^1.1.8",
+    "@rsdoctor/rspack-plugin": "^1.1.8",
     "@svgr/webpack": "^8.1.0",
     "@types/hast": "^3.0.4",
     "@vitest/browser": "^3.2.4",
     "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "next-rspack": "^15.3.4",
-    "vitest": "^3.2.4"
+    "eslint-config-next": "15.4.2",
+    "next-rspack": "^15.4.2",
+    "vitest": "^3.2.4",
+    "webpack-license-plugin": "^4.5.1"
   }
 }
