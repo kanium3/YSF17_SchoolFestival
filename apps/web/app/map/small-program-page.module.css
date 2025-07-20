@@ -1,0 +1,79 @@
+.popupOpenButton button{
+    display: none;
+}
+.popupOpenButton {
+    display: block;
+    margin-top: 0.25rem;
+    border: 3px solid hsl(220, 100%, 70%);
+    color: hsl(220, 100%, 70%);
+    border-radius: 7px;
+    z-index: 30000;
+}
+.backdrop{
+    position: fixed;
+    background-color: #3d3d46AA;
+    width: 100vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    z-index: 15000;
+}
+.main{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    width: 60vw;
+    height: 80vh;
+    background-color: #fcfcfc;
+    z-index: 25000;
+}
+.popupCloseButton button{
+    display: none;
+}
+.popupCloseButton{
+    display: block;
+    width: 3.5rem;
+    height: 3.5rem;
+    border: 3px solid hsl(220, 100%, 70%);
+    border-radius: 7px;
+    color: hsl(220, 100%, 70%);
+    font-size: 2rem;
+    z-index: 30000;
+    text-align: center;
+}
+.popupCloseButton:hover {
+    cursor: pointer;
+}
+.content {
+    margin-top: 0.75rem;
+    margin-left: 0.75rem;
+    color: #3d3d46;
+}
+.content h1 {
+    color: hsl(220, 100%, 70%);
+    font-size: 2rem;
+}
+.area {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+}
+.prText {
+    margin-bottom: 0.25rem;
+}
+.link {
+    color: hsl(220, 100%, 70%);
+}
+.link span{
+    display: block;
+    padding: 1%;
+    color: hsl(220, 100%, 70%);
+    border: 3px solid hsl(220, 100%, 70%);
+    border-radius: 7px;
+    width: fit-content;
+    height: 3rem;
+    font-size: 1rem;
+    font-weight: 500;
+}

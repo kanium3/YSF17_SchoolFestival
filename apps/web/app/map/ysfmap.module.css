@@ -4,10 +4,6 @@
     align-items: center;
     position: relative;
 }
-.mapButton {
-    display: flex;
-    justify-content: flex-end;
-}
 .mapControl {
     display: none;
 }
