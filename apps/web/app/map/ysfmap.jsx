@@ -128,11 +128,3 @@ export default function Ysfmap({ picheight, picwidth }) {
 function widthAdjust(width) {
   return Math.min(width, width * 0.6 + 200)
 }
-
-/*
-const [isDisplayPage, setDisplayPage] = useState(false)
-
-  function handleclick() {
-    setDisplayPage(!isDisplayPage)
-  }
-*/
