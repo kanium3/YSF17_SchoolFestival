@@ -1,22 +1,18 @@
 'use client'
 
 import styles from './callout.module.css'
-import type { ReactNode } from 'react'
+import type { ComponentPropsWithRef, ReactNode } from 'react'
 import { clsx } from 'clsx'
 import { MdInfoOutline, MdOutlineWarningAmber } from 'react-icons/md'
 
 export type CalloutKind = 'warn' | 'info' | 'default'
 
-export interface CalloutProperties {
+export type CalloutProperties = {
   kind?: CalloutKind
   children: ReactNode
-}
+} & Omit<ComponentPropsWithRef<'div'>, 'children'>
 
-/**
- * @param children
- * @param kind コールアウトの種類
- */
-export function Callout({ children, kind = 'default' }: CalloutProperties) {
+export function Callout(properties: CalloutProperties) {
   const kindColor = (color: CalloutKind) => {
     switch (color) {
       case 'warn': {
@@ -31,9 +27,9 @@ export function Callout({ children, kind = 'default' }: CalloutProperties) {
     }
   }
   return (
-    <div className={clsx(styles.callout, kindColor(kind))}>
-      <CalloutIcon kind={kind} />
-      {children}
+    <div className={clsx(styles.callout, kindColor(properties.kind ?? 'default'), properties.className)} {...properties}>
+      <CalloutIcon kind={properties.kind} />
+      {properties.children}
     </div>
   )
 }
