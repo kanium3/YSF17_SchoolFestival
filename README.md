@@ -23,3 +23,6 @@ In Progress...
 
 1,2の手順は[これ](https://developers.google.com/workspace/drive/api/quickstart/nodejs?hl=ja)の通りにやるといいです。  
 あと、学校アカウントではテストしていないのでご了承下さい。多分動かないです
+
+## storybook
+[http://latimeria-ganoine.vercel.app/](http://latimeria-ganoine.vercel.app/)
