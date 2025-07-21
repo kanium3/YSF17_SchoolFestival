@@ -9,9 +9,14 @@ const handleContentClick = (event) => {
   event.stopPropagation()
 }
 
-export default function ProgramPopup({ title, url, images, area, place, text }) {
+export default function ProgramPopup({ title, url, images, area, place, text, popheight, popwidth }) {
+  if (!popheight) {
+    popheight = window.innerHeight - 144
+  }
+  if (!popwidth) {
+    popwidth = widthAdjust(window.innerWidth - 24)
+  }
   const [isDisplayPage, setDisplayPage] = useState(false)
-
   function handleclick() {
     setDisplayPage(!isDisplayPage)
   }
@@ -24,7 +29,7 @@ export default function ProgramPopup({ title, url, images, area, place, text }) 
       {
         isDisplayPage && createPortal(
           <div className={styles.backdrop} onClick={handleclick}>
-            <div className={styles.main} onClick={handleContentClick}>
+            <div className={styles.main} onClick={handleContentClick} style={{ width: popwidth, height: popheight }}>
               <label className={styles.popupCloseButton}>
                 <button type="button" onClick={handleclick} />
                 ✕
@@ -47,4 +52,14 @@ export default function ProgramPopup({ title, url, images, area, place, text }) 
       }
     </div>
   )
+}
+
+/**
+ * レスポンシブな幅を提供 (お好みに合わせて値をいじってください)
+ * @param {Number} width
+ * @returns {Number} 調整された幅
+ */
+
+function widthAdjust(width) {
+  return Math.min(width * 0.85, width * 0.5 + 200)
 }
