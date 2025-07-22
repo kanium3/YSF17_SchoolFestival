@@ -160,7 +160,7 @@ function ConstructingIngreadients(property) {
   // 原材料で複合原材料のやつはそれを関連付ける
   for (let index of ingredients) {
     if (property.compositeIngredients.some(item => item.name == index.name)) {
-      console.log(property.compositeIngredients)
+      // console.log(property.compositeIngredients)
 
       for (const item of property.compositeIngredients.find(item => item.name == index.name).compositeIngredients)
         index.compositeIngredients.push(item)
