@@ -4,14 +4,25 @@
 .popupOpenButton {
     display: block;
     margin-top: 1rem;
-    border: 3px solid hsl(220, 100%, 70%);
-    color: hsl(220, 100%, 70%);
-    border-radius: 7px;
+    width: fit-content;
+    height: fit-content;
+    border: 3px solid var(--semantic-button-primary-border);
+    color: var(--semantic-button-primary-text);
+    border-radius: var(--semantic-radius-small);
     z-index: 30000;
+}
+.popupOpenButton span {
+    display: block;
+    margin: 0.5rem 1rem;
+}
+.popupOpenButton:hover {
+    cursor: pointer;
+    border-color: var(--semantic-button-color-secondly);
+    color: var(--semantic-color-secondly);
 }
 .backdrop{
     position: fixed;
-    background-color: #3d3d46AA;
+    background-color: var(--semantic-shadow-default);
     width: 100vw;
     height: 100vh;
     left: 0px;
@@ -25,7 +36,7 @@
     left: 0;
     bottom: 0;
     margin: auto;
-    background-color: #fcfcfc;
+    background-color: var(--semantic-background-white);
     z-index: 25000;
 }
 .popupCloseButton button{
@@ -33,45 +44,52 @@
 }
 .popupCloseButton{
     display: block;
-    width: 3.5rem;
-    height: 3.5rem;
-    border: 3px solid hsl(220, 100%, 70%);
-    border-radius: 7px;
-    color: hsl(220, 100%, 70%);
-    font-size: 2rem;
+    width: fit-content;
+    height: fit-content;
+    border: 3px solid var(--semantic-color-primary);
+    color: var(--semantic-color-primary);
+    font-size: var(--semantic-font-size-xxl);
+    border-radius: var(--semantic-radius-small);
     z-index: 30000;
-    text-align: center;
+}
+.popupCloseButton span {
+    display: block;
+    margin: 0.75rem 1rem;
 }
 .popupCloseButton:hover {
     cursor: pointer;
+    border-color: var(--semantic-color-secondly) !important;
+    color: var(--semantic-color-secondly) !important;
 }
 .content {
     margin-top: 0.75rem;
     margin-left: 0.75rem;
-    color: #3d3d46;
+    color: var(--semantic-text-dark);
 }
 .content h1 {
-    color: #213a54;
-    font-size: 2rem;
+    color: var(--semantic-color-tertiary);
+    font-size: var(--semantic-font-size-heading);
 }
 .area {
     margin-top: 0.75rem;
     margin-bottom: 0.75rem;
+    font-weight: 600;
 }
 .prText {
-    margin-bottom: 0.25rem;
+    margin-bottom: 1rem;
 }
 .link {
-    color: hsl(220, 100%, 70%);
+    color: var(--semantic-link-default);
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    font-size: var(--semantic-font-size-content);
+    font-weight: 700;
 }
 .link span{
-    display: block;
-    padding: 1%;
-    color: hsl(220, 100%, 70%);
-    border: 3px solid hsl(220, 100%, 70%);
-    border-radius: 7px;
-    width: fit-content;
-    height: 3rem;
-    font-size: 1rem;
-    font-weight: 500;
+    margin: 0.5rem 1rem;
+}
+.link:hover {
+    color: var(--semantic-link-active);
+    border-color: var(--semantic-color-secondly);
 }
