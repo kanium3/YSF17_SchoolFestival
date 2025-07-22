@@ -15,7 +15,7 @@ export default async function HomeArticleBox({ data, key }) {
           <p className={styles.boxArticleDate}>{`${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日投稿`}</p>
         </div>
         <div className={styles.boxImage}>
-          <Image src={solveBasePath(data.image ?? '/kari-fallback.png')} alt="特集のイメージ画像" fill={true} />
+          <Image className={styles.image} src={solveBasePath(data.image ?? '/kari-fallback.png')} alt={`${data.title}のサムネイル`} fill={true} />
         </div>
       </div>
     </Link>

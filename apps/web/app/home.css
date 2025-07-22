@@ -1,6 +1,7 @@
 :root {
   /**/
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -12,10 +13,13 @@ html {
   margin: 0;
   background-color: #fcfcfc;
 }
+
 #countdown_display {
   text-align: center;
-  color: hsl(200, 95%, 50%);
+  color: #fcfcff;
+  text-shadow: hsla(220deg, 70%, 50%, 60%) 0px 0px 16px;
 }
+
 #countdown_display span {
   font-size: 2.3rem;
   font-weight: bold;
@@ -25,18 +29,22 @@ html {
   position: relative;
   left: 2rem;
 }
+
 #home_index li {
   margin-top: 1rem;
 }
+
 #home_index a {
   display: inline-block;
   color: hsl(220, 100%, 60%);
   border-bottom: 2px solid;
 }
+
 #container_trainTimetable {
   display: flex;
   justify-content: space-around;
 }
+
 .button_trainTimetable {
   position: relative;
   display: inline-block;
@@ -52,12 +60,14 @@ html {
   border: 3px solid hsl(220, 100%, 70%);
   border-radius: 2rem;
 }
+
 .slide {
   position: relative;
   width: 90%;
   margin: 0 auto;
   aspect-ratio: 16 / 10.5;
 }
+
 #YSFmap {
   position: relative;
   display: block;
