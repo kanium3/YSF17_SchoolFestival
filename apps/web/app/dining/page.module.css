@@ -10,7 +10,7 @@
     border-radius: 10px;
     height: calc(var(--imageWidth) * 33 / 56);/** 330px; */
     /** margin-top: 1rem; */
-    border: 3px solid hsl(220, 100%, 70%);
+    border: 3px solid #dddddd;/**hsl(220, 100%, 70%);*/
     box-shadow: #00000055 0px 0px 20px;
   }
 
@@ -35,7 +35,7 @@
     border-radius: 10px;
     height: calc(var(--imageWidth) * 33 / 56);/** 330px; */
     margin-top: 1rem;
-    border: 3px solid hsl(220, 100%, 70%);
+    /**border: 3px solid #dddddd;/**hsl(220, 100%, 70%);*/
     box-shadow: #00000055 0px 0px 20px;
   }
 
