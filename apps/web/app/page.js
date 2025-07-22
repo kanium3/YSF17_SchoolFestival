@@ -134,6 +134,6 @@ export default function Home() {
         <h2>このサイトの情報源</h2>
         <p>情報源</p>
       </div>
-    </div >
+    </div>
   )
 }
