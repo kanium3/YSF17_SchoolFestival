@@ -120,42 +120,31 @@ export function NameAndPrice(menu_filteringSubstances) {
 }
 
 // 商品名とその原材料
-export function Ingredient(menu) {
+export function Ingredient({ menu }) {
   return (
-    /** <table className={styles.foodIngredient}>
-      <tbody>
-      <tr>
-        <th>{ menu.menu.name }</th>
-      </tr>
-      <tr>
-        <table
-          style={{ marginLeft: "0.5em" }}
-          className={styles.ingredient}
-        >
-          <tr>
-            <th className={styles.ingredientTitle}>特定原材料27品目:</th>
-            <td>{ menu.menu.specificIngredients.join("、") }</td>
-          </tr>
-          <tr>
-            <th className={styles.ingredientTitle}>原材料名:</th>
-            <td className={styles.ingredientTd}><p className={styles.ingredientP}>{ menu.menu.ingredients.join("、ああああああああああ") }</p></td>
-          </tr>
-        </table>
-      </tr>
-      </tbody>
-    </table> */
     <div className={`${styles.foodIngredient} ${styles.divtable}`}>
-      <p className={styles.ingredientFoodName}>{menu.menu.name}</p>
-      <div className={`${styles.ingredientTable} ${styles.divtable}`} style={{ marginLeft: '0.5em' }}>
+      <p className={styles.ingredientFoodName}>{menu.name}</p>
+      <div className={`${styles.ingredientTable} ${styles.divtable}`} style={{ marginLeft: '0.5rem' }}>
 
         <div className={styles.ingredientTitle}>特定原材料27品目:</div>
-        <div>{menu.menu.specificIngredients.join('、')}</div>
+        <div>{menu.specificIngredients.join('、')}</div>
 
         <div className={styles.ingredientTitle}>原材料名:</div>
-        <div className={styles.ingredientTd}><p className={styles.ingredientP}>{ConstructingIngreadients(menu.menu)}</p></div>
-        {/** {menu.menu.ingredients.join('、')}</p></div> */}
-
+        <div className={styles.ingredientTd}>
+          <p className={styles.ingredientP}>{ConstructingIngreadients(menu)}</p>
+        </div>
       </div>
+      {menu.mayContain.length > 0
+        ? (
+            <p className={styles.ingredientP} style={{ marginLeft: '0.63rem' }}>
+              調理工程で
+              <span style={{ fontWeight: 'bold' }}>
+                {menu.mayContain.join('、')}
+              </span>
+              が微量混入する可能性があります。
+            </p>
+          )
+        : <></> }
     </div>
   )
 }
