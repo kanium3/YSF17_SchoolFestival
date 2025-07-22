@@ -19,6 +19,8 @@
   
     display: grid;
     margin: var(--padding);
+    margin-top: calc(var(--padding) + 1rem);
+    margin-bottom: calc(var(--padding) + 3rem);
     column-gap: 2rem;
     row-gap: 2rem;
     grid-template-columns: repeat(auto-fill, calc(560px - calc(2 * var(--padding))));
@@ -34,7 +36,6 @@
     width: var(--imageWidth);/** 560px; */
     border-radius: 10px;
     height: calc(var(--imageWidth) * 33 / 56);/** 330px; */
-    margin-top: 1rem;
     border: 3px solid #aaaaaa;/**hsl(220, 100%, 70%);*/
     box-shadow: #00000099 0px 5px 20px; /** #00000055*/
   }
@@ -44,8 +45,10 @@
   
     display: grid;
     margin: var(--padding);
+    margin-top: calc(var(--padding) + 1rem);
+    margin-bottom: calc(var(--padding) + 3rem);
     column-gap: 2rem;
-    row-gap: 2rem;
+    row-gap: 3rem;
     grid-template-columns: repeat(auto-fill, calc(100vw - calc(2 * var(--padding))));
   }
 }
