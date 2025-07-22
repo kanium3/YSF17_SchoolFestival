@@ -1,5 +1,5 @@
 import styles from './page.module.css'
-import { ImageButton } from './image-button.jsx'
+import { ImageButton } from '@/app/compoent/image-button'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜食事',
