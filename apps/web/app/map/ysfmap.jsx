@@ -59,7 +59,7 @@ const mapList = [
   },
 ]
 
-import './radioButton.css'
+import './layer-button.css'
 import mapStyles from './ysfmap.module.css'
 import programs from '../program.mock.json'
 import { parseProgramsData } from '@latimeria/core'
