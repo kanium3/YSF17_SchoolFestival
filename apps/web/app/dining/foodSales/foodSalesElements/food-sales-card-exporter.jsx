@@ -165,7 +165,7 @@ function ConstructingIngreadients(property) {
       for (const item of property.compositeIngredients.find(item => item.name == index.name).compositeIngredients)
         index.compositeIngredients.push(item)
     }
-    console.log(ingredients)
+    // console.log(ingredients)
   }
 
   // 文字の配列に成形
