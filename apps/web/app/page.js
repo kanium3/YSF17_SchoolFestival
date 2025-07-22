@@ -2,6 +2,7 @@ import './home.css'
 import styles from './page.module.css'
 import WarnCallout from '@/app/compoent/warn-callout.jsx'
 import { Countdown } from '@/app/compoent/countdown.jsx'
+import HomeArticleDisplay from '@/app/compoent/home/home-article-display.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
 
@@ -11,22 +12,58 @@ export const metadata = {
 }
 
 export default function Home() {
+  const now = new Date()
+  const openingTime = new Date('2025-09-06T10:00+09:00')
+  const closingTime = new Date('2025-09-07T15:00+09:00')
+  let state = now < openingTime ? 'unopen' : (now < closingTime ? 'opened' : 'closed')
+
   return (
     <div className={styles.page}>
-      <div id="top_visual">
+      <div id="top_visual" className={styles.topVisualContainer}>
         {/* 仮作成のトップです */}
         <Image
+          className={styles.topImage}
           src={solveBasePath('/ysf_top.png')}
           alt="横浜サイエンスフロンティア高校の画像です"
           width={780}
           height={450}
         />
-        <h1>横浜サイエンスフロンティア高校文化祭「蒼煌祭」</h1>
-      </div>
-
-      <div className="contentBox">
-        <h2>蒼煌祭まで...</h2>
-        <Countdown />
+        <div className={
+          `${styles.top_cover} 
+          ${state == 'unopen' ? styles.coverUnopen : ''} 
+          ${state == 'opened' ? styles.coverOpened : ''}
+          ${state == 'closed' ? styles.coverClosed : ''}`
+        }
+        >
+        </div>
+        <div className={styles.topInfoContainer}>
+          <p className={styles.headText} style={{ padding: '0' }}>蒼煌祭非公式HP</p>
+        </div>
+        <div className={styles.middleInfoContainer}>
+          <div style={state == 'unopen' ? {} : { display: 'none' }}>
+            <p className={styles.countdownText}>蒼煌祭の開催まで</p>
+            <Countdown />
+          </div>
+          <div style={state == 'closed' ? {} : { display: 'none' }}>
+            <p className={styles.closedText1}>第17回蒼煌祭は終了しました</p>
+            <p className={styles.closedText2}>
+              たくさんの方のご来場
+              <br />
+              ありがとうございました！
+            </p>
+          </div>
+        </div>
+        <div className={styles.subInfoContainer}>
+          <p className={styles.subtitle}>17th SOKO-FESTIVAL</p>
+          <h1 className={styles.title}>
+            蒼煌祭
+            <span className={styles.title_thin}>「</span>
+            澄
+            <span className={styles.title_thin}>」</span>
+          </h1>
+          <p className={styles.titleInfo}>@YSFH・YSFJH</p>
+          <p className={styles.titleInfo}>9/6 - 9/7 10:00≫15:00</p>
+        </div>
       </div>
 
       <div className="contentBox">
@@ -39,27 +76,15 @@ export default function Home() {
         </WarnCallout>
       </div>
 
-      <div id="home_index" className="contentBox">
-        <h2>目次</h2>
-        <ul>
-          <li>
-            <a href="#home_aboutFest">蒼煌祭について</a>
-          </li>
-          <li>
-            <a href="#home_notice">来場に際しての注意</a>
-          </li>
-          <li>
-            <a href="#home_access">アクセス</a>
-          </li>
-          <li>
-            <a href="#home_source">このサイトの情報源</a>
-          </li>
-        </ul>
-      </div>
-
       <div id="home_aboutFest" className="contentBox">
         <h2>蒼煌祭について</h2>
         <p>蒼煌祭いろいろ書きこみ書きこみ</p>
+      </div>
+
+      <div className="contentBox">
+        <h2>特集</h2>
+        <p>蒼煌祭をもっと知りたい方、楽しみたい方はぜひご覧ください！</p>
+        <HomeArticleDisplay />
       </div>
 
       <div id="home_notice" className="contentBox">
