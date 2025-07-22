@@ -24,7 +24,9 @@ export default function ProgramPopup({ title, url, images, area, place, text, po
     <div>
       <label className={styles.popupOpenButton}>
         <button type="button" onClick={handleclick} />
-        {title + 'のポップアップを開く'}
+        <span>
+          {title + 'のポップアップを開く'}
+        </span>
       </label>
       {
         isDisplayPage && createPortal(
@@ -32,7 +34,9 @@ export default function ProgramPopup({ title, url, images, area, place, text, po
             <div className={styles.main} onClick={handleContentClick} style={{ width: popwidth, height: popheight }}>
               <label className={styles.popupCloseButton}>
                 <button type="button" onClick={handleclick} />
-                ✕
+                <span>
+                  ✕
+                </span>
               </label>
               <div className={styles.content}>
                 <h1>{ title }</h1>
