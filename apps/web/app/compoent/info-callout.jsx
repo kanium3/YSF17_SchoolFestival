@@ -2,7 +2,7 @@
 import { Callout } from '@latimeria/ganoine'
 
 /**
- * 警告のコールアウトコンポーネント
+ * 情報のコールアウトコンポーネント
  * @param {JSX.Element} children
  * @return {JSX.Element}
  * @constructor
