@@ -23,7 +23,7 @@ export function ImageButton(property) {
   }, [])
 
   return (
-    <div className={`${styles.imagebutton}`} ref={bodyReference}>
+    <div className={`${styles.imagebutton} bigButton`} ref={bodyReference}>
       <Link href={property.pageUrl}>
         <Image
           src={solveBasePath(property.imageSrc)}
