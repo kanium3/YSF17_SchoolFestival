@@ -42,24 +42,26 @@ const nextConfig = {
       }),
     )
 
-    if (config.name === 'client') {
-      config.plugins.push(
-        new RsdoctorRspackPlugin({
-          disableClientServer: true,
-          features: ['bundle'],
-        }),
-      )
-    }
-    else if (config.name === 'server') {
-      config.plugins.push(
-        new RsdoctorRspackPlugin({
-          disableClientServer: true,
-          output: {
-            reportDir: './.next/server',
-          },
-          features: ['bundle'],
-        }),
-      )
+    if (process.env.ANALYZE) {
+      if (config.name === 'client') {
+        config.plugins.push(
+          new RsdoctorRspackPlugin({
+            disableClientServer: true,
+            features: ['bundle'],
+          }),
+        )
+      }
+      else if (config.name === 'server') {
+        config.plugins.push(
+          new RsdoctorRspackPlugin({
+            disableClientServer: true,
+            output: {
+              reportDir: './.next/server',
+            },
+            features: ['bundle'],
+          }),
+        )
+      }
     }
 
     return config

@@ -1,0 +1,38 @@
+.ganoine-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-block: 1rem;
+    font-weight: bold;
+    line-height: 2rem;
+    border-width: 4px;
+    border-style: solid;
+    border-radius: var(--semantic-radius-medium);
+}
+
+.ganoine-button > * {
+    margin-block: 0.35rem;
+    padding: 0 0.75rem 0 0.75rem;
+}
+
+.ganoine-button {
+    color: var(--semantic-button-default-text);
+    border-color: var(--semantic-button-default-border);
+    background: transparent;
+}
+
+.ganoine-button[data-kind="primary"] {
+    color: var(--semantic-button-primary-text);
+    border-color: var(--semantic-button-primary-border);
+    background: transparent;
+}
+
+.ganoine-button[data-kind="danger"] {
+    color: var(--semantic-button-dangor-text);
+    background: var(--semantic-button-dangor-fill);
+    border-color: var(--semantic-button-dangor-fill);
+}
+
+.ganoine-button[data-disabled] {
+    opacity: 0.33;
+}
