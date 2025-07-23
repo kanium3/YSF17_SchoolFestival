@@ -4,11 +4,10 @@
     justify-content: space-around;
     margin-block: 1rem;
     font-weight: bold;
-    font-size: 1rem;
     line-height: 2rem;
-    border-width: 3px;
+    border-width: 4px;
     border-style: solid;
-    border-radius: 2rem;
+    border-radius: var(--semantic-radius-medium);
 }
 
 .ganoine-button > * {
