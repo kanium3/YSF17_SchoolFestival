@@ -22,7 +22,7 @@
     "build": "rslib build",
     "dev": "npm run genCss && rslib build --watch",
     "lint": "eslint .",
-    "genCss": "hcm -o generated/hcm 'src/**/*.module.css'"
+    "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
