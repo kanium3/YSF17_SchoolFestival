@@ -8,6 +8,7 @@
     border-width: 4px;
     border-style: solid;
     border-radius: var(--semantic-radius-medium);
+    text-decoration: none;
 }
 
 .ganoine-button > * {
@@ -33,6 +34,6 @@
     border-color: var(--semantic-button-dangor-fill);
 }
 
-.ganoine-button[data-disabled] {
+.ganoine-button[data-disabled="true"] {
     opacity: 0.33;
 }

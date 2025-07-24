@@ -1,20 +1,35 @@
 'use client'
 
-import type { ComponentPropsWithRef, ReactNode } from 'react'
+import type { ComponentPropsWithRef, ReactNode, ElementType } from 'react'
 import { Button as AriaButton, ButtonProps as AriaButtonProperties } from 'react-aria-components'
 import styles from './button.module.css'
 
 export type ButtonKinds = 'primary' | 'danger'
 
-export type ButtonProperties = {
+export type ButtonProperties<T extends ElementType = typeof AriaButton> = {
   children: ReactNode
   disabled?: boolean
   kind?: ButtonKinds
-} & Omit<ComponentPropsWithRef<'button'>, 'children'> & Omit<AriaButtonProperties, 'children'>
+  component?: T
+} & Omit<ComponentPropsWithRef<T>, 'children'> & Omit<AriaButtonProperties, 'children'>
 
-export function Button(properties: ButtonProperties): ReactNode {
+/**
+ * ## Ganoineのボタンコンポーネント
+ * `component`プロパティを指定することで、任意のコンポーネントをボタンとして使用できます。
+ *
+ * 例えば、`component="a"`とすることで、リンクとしてのボタンを作成できます。
+ * デフォルトでは、`react-aria-components`の`Button`コンポーネントが使用されます。
+ *
+ * `kind`プロパティを指定することで、ボタンの種類を変更できます。
+ *
+ * `primary`は主に使用するボタン、`danger`は危険な操作を行うボタンとして使用されます。
+ *
+ * `disabled`プロパティを指定することで、ボタンを無効化できます。
+ **/
+export function Button<T extends ElementType = typeof AriaButton>(properties: ButtonProperties<T>): ReactNode {
+  const Component = (properties.component || AriaButton) as ElementType
   return (
-    <AriaButton
+    <Component
       {...properties}
       ref={properties.ref}
       className={styles.ganoineButton}
@@ -22,6 +37,6 @@ export function Button(properties: ButtonProperties): ReactNode {
       data-kind={properties.kind}
     >
       {properties.children}
-    </AriaButton>
+    </Component>
   )
 }
