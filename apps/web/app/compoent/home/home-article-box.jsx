@@ -3,12 +3,12 @@ import Image from 'next/image'
 import { solveBasePath } from '@/app/lib'
 import styles from './home-article-box.module.css'
 
-export default async function HomeArticleBox({ data, key }) {
+export default async function HomeArticleBox({ data }) {
   /** @type {Date} */
   const date = data.date
 
   return (
-    <Link href={data.link} key={key} className={styles.boxLink}>
+    <Link href={data.link} className={styles.boxLink}>
       <div className={styles.box}>
         <div className={styles.boxTitles}>
           <h3 className={styles.boxArticleTitle}>{data.title}</h3>
