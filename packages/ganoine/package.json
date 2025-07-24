@@ -20,7 +20,8 @@
   ],
   "scripts": {
     "build": "rslib build",
-    "dev": "npm run genCss && rslib build --watch",
+    "dev": "rslib build --watch",
+    "dev:css": "npm run genCss",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
     "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch"
