@@ -4,6 +4,17 @@ import token from '@latimeria/design-token'
 const BasicBlockWithRadius = (): ReactNode => {
   return (
     <div>
+      <h1>Radius</h1>
+      <p>
+        CSSでは
+        <code>--semantic-radius-[kind]</code>
+        で指定出来ます。
+      </p>
+      <p>
+        単位は
+        <code>px</code>
+        です
+      </p>
       {Object.entries(token.semantic.radius).map(([key, radius]) => {
         return (
           <div key={key} style={{ paddingTop: token.semantic.space.small }}>
