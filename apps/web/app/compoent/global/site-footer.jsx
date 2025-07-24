@@ -8,7 +8,6 @@ import { solveBasePath } from '@/app/lib/index.js'
 export default function SiteFooter() {
   const height = isMobile ? 192 : 128
   const padding = isMobile ? 64 : 0
-  console.log(height, padding)
   return (
     <footer className={styles['ft-base']} style={{ height: height }}>
       <div className={styles['ft-bg']} />
