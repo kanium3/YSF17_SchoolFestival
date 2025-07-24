@@ -12,7 +12,7 @@ export type CalloutProperties = {
   children: ReactNode
 } & Omit<ComponentPropsWithRef<'div'>, 'children'>
 
-export function Callout(properties: CalloutProperties) {
+export function Callout(properties: CalloutProperties): ReactNode {
   const kindColor = (color: CalloutKind) => {
     switch (color) {
       case 'warn': {

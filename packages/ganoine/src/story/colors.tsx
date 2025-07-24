@@ -1,7 +1,8 @@
 import { ColorItem, ColorPalette, Title } from '@storybook/addon-docs/blocks'
 import token from '@latimeria/design-token'
+import type { ReactNode } from 'react'
 
-export const BasicColors = () => {
+export const BasicColors = (): ReactNode => {
   return (
     <div>
       <Title>Basic Colors</Title>
@@ -139,7 +140,7 @@ export const BasicColors = () => {
   )
 }
 
-export const SematicColors = () => {
+export const SematicColors = (): ReactNode => {
   return (
     <div>
       <Title>Sematic Colors</Title>

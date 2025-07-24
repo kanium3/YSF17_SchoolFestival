@@ -8,6 +8,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
+    "isolatedDeclarations": true,
     "moduleResolution": "bundler",
     "useDefineForClassFields": true,
     "esModuleInterop": true,

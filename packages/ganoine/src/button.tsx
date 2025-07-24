@@ -12,7 +12,7 @@ export type ButtonProperties = {
   kind?: ButtonKinds
 } & Omit<ComponentPropsWithRef<'button'>, 'children'> & Omit<AriaButtonProperties, 'children'>
 
-export function Button(properties: ButtonProperties) {
+export function Button(properties: ButtonProperties): ReactNode {
   return (
     <AriaButton
       {...properties}
