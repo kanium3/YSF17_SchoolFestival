@@ -45,8 +45,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ja">
       <body className={`${notoSansJP.variable} ${lineSeedJP.variable}`}>
-        <Menu />
         <div id="content-base">
+          <Menu />
           <div id="content-main">
             {children}
           </div>
