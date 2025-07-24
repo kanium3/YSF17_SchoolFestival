@@ -1,13 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import { isDesktop } from 'react-device-detect'
+import { isMobile } from 'react-device-detect'
 import styles from './site-footer.module.css'
 import { solveBasePath } from '@/app/lib/index.js'
 
 export default function SiteFooter() {
-  const height = isDesktop ? 128 : 192
-  const padding = isDesktop ? 0 : 64
+  const height = isMobile ? 192 : 128
+  const padding = isMobile ? 64 : 0
+  console.log(height, padding)
   return (
     <footer className={styles['ft-base']} style={{ height: height }}>
       <div className={styles['ft-bg']} />
