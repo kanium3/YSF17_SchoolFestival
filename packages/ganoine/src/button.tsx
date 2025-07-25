@@ -32,7 +32,7 @@ export function Button<T extends ElementType = typeof AriaButton>(properties: Bu
     <Component
       {...properties}
       ref={properties.ref}
-      className={styles.ganoineButton}
+      className={`${styles.ganoineButton} ${properties.className}`}
       data-disabled={properties.disabled ? 'true' : 'false'}
       data-kind={properties.kind}
     >
