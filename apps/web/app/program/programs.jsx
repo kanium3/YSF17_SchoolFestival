@@ -5,7 +5,7 @@ import ProgramView from '@/app/compoent/program/program-view.jsx'
 import ProgramSample from '@/app/program.mock.json'
 import styles from '@/app/program/programs.module.css'
 import { parseProgramsData, Tags } from '@latimeria/core'
-import { atom, useAtom, useAtomValue, _useSetAtom } from 'jotai'
+import { atom, useAtom, useAtomValue } from 'jotai'
 import { atomWithReset, useResetAtom } from 'jotai/utils'
 import {
   Button,
