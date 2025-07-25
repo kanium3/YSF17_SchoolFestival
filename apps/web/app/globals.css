@@ -93,3 +93,19 @@ a:not(:has(*)) {
 .bigButton {
   box-shadow: #000000 0px 5px 10px; /** #00000055*/
 }
+
+.smallButton {
+  position: relative;
+  display: inline-block;
+  width: 10rem;
+  height: 2rem;
+
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  line-height: 2rem;
+
+  background-color: #fcfcfc;
+  border: 3px solid var(--semantic-color-primary);/** hsl(220, 100%, 70%); */
+  border-radius: 2rem;
+}
