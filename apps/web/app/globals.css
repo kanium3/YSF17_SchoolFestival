@@ -1,6 +1,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bottom-menu-height: 64px;
+  --site-footer-height: 128px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -38,6 +40,12 @@ body {
 
 #content-base {
   min-height: 100vh;
+  position: relative;
+  padding-bottom: var(--site-footer-height);
+}
+
+body.isMobile #content-base {
+  padding-bottom: calc(var(--site-footer-height) + var(--bottom-menu-height));
 }
 
 /*統一するスタイルの定義
