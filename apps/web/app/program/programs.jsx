@@ -146,8 +146,12 @@ function SearchQueryClearButton() {
       }}
       className={`${styles.programSelectResetButton} touchable smallButton`}
     >
-      <MdOutlineCancel />
-      条件をリセットする
+      <div className={styles.programSearchResetButtonContent}>
+        <MdOutlineCancel />
+        <div className={styles.programSearchResetButtonContentDiv}>
+          <p>条件をリセットする</p>
+        </div>
+      </div>
     </Button>
   )
 }
