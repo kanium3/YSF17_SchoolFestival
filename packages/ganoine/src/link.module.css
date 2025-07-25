@@ -1,0 +1,12 @@
+.link {
+    color: var(--semantic-link-default);
+}
+
+.link:hover {
+    color: var(--semantic-link-active);
+    text-decoration-thickness: 0.235rem;
+}
+
+.link:active {
+    color: var(--semantic-link-active);
+}
