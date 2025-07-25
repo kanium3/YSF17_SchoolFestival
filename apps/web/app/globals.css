@@ -97,7 +97,6 @@ a:not(:has(*)) {
 .smallButton {
   position: relative;
   display: inline-block;
-  width: 10rem;
   height: 2rem;
 
   text-align: center;

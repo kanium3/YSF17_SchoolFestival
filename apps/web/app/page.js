@@ -120,11 +120,11 @@ export default function Home() {
           <div id="container_trainTimetable">
             <div>
               <p>JR鶴見線</p>
-              <a className="smallButton touchable">鶴見小野駅</a>
+              <a className="smallButton touchable" style={{ width: '10rem' }}>鶴見小野駅</a>
             </div>
             <div>
               <p>京急</p>
-              <a className="smallButton touchable">花月総持寺駅</a>
+              <a className="smallButton touchable" style={{ width: '10rem' }}>花月総持寺駅</a>
             </div>
           </div>
         </div>
