@@ -5,6 +5,7 @@ import { Countdown } from '@/app/compoent/countdown.jsx'
 import HomeArticleDisplay from '@/app/compoent/home/home-article-display.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
+import { LinkButton } from '@/app/compoent/button.jsx'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜トップ',
@@ -120,11 +121,11 @@ export default function Home() {
           <div id="container_trainTimetable">
             <div>
               <p>JR鶴見線</p>
-              <a className="smallButton touchable" style={{ width: '10rem' }}>鶴見小野駅</a>
+              <LinkButton className="touchable">鶴見小野駅</LinkButton>
             </div>
             <div>
               <p>京急</p>
-              <a className="smallButton touchable" style={{ width: '10rem' }}>花月総持寺駅</a>
+              <LinkButton className="touchable">花月総持寺駅</LinkButton>
             </div>
           </div>
         </div>
