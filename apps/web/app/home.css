@@ -45,7 +45,7 @@ html {
   justify-content: space-around;
 }
 
-.button_trainTimetable {
+/** .button_trainTimetable {
   position: relative;
   display: inline-block;
   width: 10rem;
@@ -59,7 +59,7 @@ html {
   background-color: #fcfcfc;
   border: 3px solid hsl(220, 100%, 70%);
   border-radius: 2rem;
-}
+} */
 
 .slide {
   position: relative;
