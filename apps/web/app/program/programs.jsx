@@ -29,8 +29,7 @@ const matchedProgramsAtom = atom((get) => {
   const place = get(placeAtom)
   const kindAndTags = kind == '選択しない' ? tags : new Tags([...tags, kind])
   const placeAndKindAndTags = place == '選択しない' ? kindAndTags : new Tags([...kindAndTags, place])
-  console.log(placeAndKindAndTags)
-  return kindAndTags.size > 0 ? programs.matchPrograms(placeAndKindAndTags) : programs
+  return kindAndTags.size > 0 ? programs.matchPrograms(placeAndKindAndTags, true) : programs
 })
 
 /**
