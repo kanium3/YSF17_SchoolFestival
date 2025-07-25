@@ -113,6 +113,6 @@ a:not(:has(*)) {
   line-height: 2rem;
 
   background-color: #fcfcfc;
-  border: 3px solid hsl(220, 100%, 70%);
+  border: 3px solid var(--semantic-color-primary);/** hsl(220, 100%, 70%); */
   border-radius: 2rem;
 }
