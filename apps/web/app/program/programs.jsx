@@ -20,15 +20,16 @@ import { MdOutlineCancel } from 'react-icons/md'
 // TODO:サンプルデータにつきデータ取り扱いの正式な方式を考慮必要
 const programsAtom = atom(parseProgramsData(ProgramSample))
 const tagsAtom = atomWithReset(new Tags([]))
-const kindAtom = atomWithReset('')
-const placeAtom = atomWithReset('')
+const kindAtom = atomWithReset('選択しない')
+const placeAtom = atomWithReset('選択しない')
 const matchedProgramsAtom = atom((get) => {
   const programs = get(programsAtom)
   const tags = get(tagsAtom)
   const kind = get(kindAtom)
   const place = get(placeAtom)
-  const kindAndTags = kind ? new Tags([...tags, kind]) : tags
-  const placeAndKindAndTags = place ? new Tags([...kindAndTags, place]) : kindAndTags
+  const kindAndTags = kind == '選択しない' ? tags : new Tags([...tags, kind])
+  const placeAndKindAndTags = place == '選択しない' ? kindAndTags : new Tags([...kindAndTags, place])
+  console.log(placeAndKindAndTags)
   return kindAndTags.size > 0 ? programs.matchPrograms(placeAndKindAndTags) : programs
 })
 
@@ -45,8 +46,21 @@ export function ProgramsView() {
       <h2>企画一覧/検索</h2>
       <ProgramInput onchange={setTags} tags={tags} />
       <div className={styles.programSearchLine}>
-        <KindSelectMenu />
-        <PlaceSelectMenu />
+
+        <div className={styles.programSearchLineItem}>
+          <div className={styles.programSearchLinePItem}>
+            <p>種類：</p>
+          </div>
+          <KindSelectMenu />
+        </div>
+
+        <div className={styles.programSearchLineItem}>
+          <div className={styles.programSearchLinePItem}>
+            <p>場所：</p>
+          </div>
+          <PlaceSelectMenu />
+        </div>
+
         <SearchQueryClearButton />
       </div>
       <ProgramView programs={matchedPrograms} />
@@ -63,7 +77,7 @@ function KindSelectMenu() {
   return (
     <Select
       onSelectionChange={selected => setKind(selected)}
-      placeholder="種類"
+      placeholder="選択しない"
     >
       <Button className={styles.programSelectPullDown}>
         <SelectValue />
@@ -71,6 +85,7 @@ function KindSelectMenu() {
       </Button>
       <Popover>
         <ListBox className={styles.programSelectPullDownItems}>
+          <ListBoxItem id="選択しない">選択しない</ListBoxItem>
           <ListBoxItem id="体験">体験</ListBoxItem>
           <ListBoxItem id="展示">展示</ListBoxItem>
           <ListBoxItem id="上演">上演</ListBoxItem>
@@ -92,7 +107,7 @@ function PlaceSelectMenu() {
   return (
     <Select
       onSelectionChange={selected => setPlace(selected)}
-      placeholder="場所"
+      placeholder="選択しない"
     >
       <Button className={styles.programSelectPullDown}>
         <SelectValue />
@@ -100,6 +115,7 @@ function PlaceSelectMenu() {
       </Button>
       <Popover>
         <ListBox className={styles.programSelectPullDownItems}>
+          <ListBoxItem id="選択しない">選択しない</ListBoxItem>
           <ListBoxItem id="1F">1F</ListBoxItem>
           <ListBoxItem id="2F">2F</ListBoxItem>
           <ListBoxItem id="3F">3F</ListBoxItem>
@@ -128,7 +144,7 @@ function SearchQueryClearButton() {
       className={styles.programSelectResetButton}
     >
       <MdOutlineCancel />
-      条件をクリアする
+      条件をリセットする
     </Button>
   )
 }

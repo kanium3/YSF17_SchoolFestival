@@ -4,6 +4,17 @@
   padding: 1em;
   gap: 1rem;
 }
+.programSearchLineItem {
+  display: flex;
+  flex-direction: row;
+}
+.programSearchLinePItem {
+  display: flex;
+  align-items: center;
+}
+.programSearchLinePItem p {
+  padding-left: 0px;
+}
 
 .programSelectPullDown {
   border: none;
