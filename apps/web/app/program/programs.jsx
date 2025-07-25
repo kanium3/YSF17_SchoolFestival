@@ -86,13 +86,13 @@ function KindSelectMenu() {
       </Button>
       <Popover>
         <ListBox className={styles.programSelectPullDownItems}>
-          <ListBoxItem id="選択しない">選択しない</ListBoxItem>
-          <ListBoxItem id="体験">体験</ListBoxItem>
-          <ListBoxItem id="展示">展示</ListBoxItem>
-          <ListBoxItem id="上演">上演</ListBoxItem>
-          <ListBoxItem id="販売">販売</ListBoxItem>
-          <ListBoxItem id="配布">配布</ListBoxItem>
-          <ListBoxItem id="募金">募金</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="選択しない">選択しない</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="体験">体験</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="展示">展示</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="上演">上演</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="販売">販売</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="配布">配布</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="募金">募金</ListBoxItem>
         </ListBox>
       </Popover>
     </Select>
@@ -118,15 +118,15 @@ function PlaceSelectMenu() {
       </Button>
       <Popover>
         <ListBox className={styles.programSelectPullDownItems}>
-          <ListBoxItem id="選択しない">選択しない</ListBoxItem>
-          <ListBoxItem id="1F">1F</ListBoxItem>
-          <ListBoxItem id="2F">2F</ListBoxItem>
-          <ListBoxItem id="3F">3F</ListBoxItem>
-          <ListBoxItem id="4F">4F</ListBoxItem>
-          <ListBoxItem id="5F">5F</ListBoxItem>
-          <ListBoxItem id="屋上">屋上</ListBoxItem>
-          <ListBoxItem id="体育館">体育館</ListBoxItem>
-          <ListBoxItem id="交流センター">交流センター</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="選択しない">選択しない</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="1F">1F</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="2F">2F</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="3F">3F</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="4F">4F</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="5F">5F</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="屋上">屋上</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="体育館">体育館</ListBoxItem>
+          <ListBoxItem className={styles.programSelectPullDownItem} id="交流センター">交流センター</ListBoxItem>
         </ListBox>
       </Popover>
     </Select>
