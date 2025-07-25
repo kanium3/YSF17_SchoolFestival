@@ -1,3 +1,5 @@
+import '../packages/ganoine/src/extra/base.css'
+
 /** @type { import('storybook-react-rsbuild').Preview } */
 const preview = {
   parameters: {
