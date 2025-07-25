@@ -119,7 +119,6 @@ export class Programs {
    * @param is_complete すべてのタグが完全に一致したもののみを返すか
    */
   matchPrograms(tags: Tags, _is_complete: boolean = false): Programs {
-    console.log('Start serching...')
     let matchedProgramsResult = new Programs([])
     let firstTime = true
     for (const tag of tags) {
@@ -133,7 +132,6 @@ export class Programs {
           // }
           if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
             matchedPrograms.programs.add(program)
-            console.log(program)
           }
         }
         firstTime = false
@@ -147,7 +145,6 @@ export class Programs {
           // }
           if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
             matchedPrograms.programs.add(program)
-            console.log(program)
           }
         }
       }
