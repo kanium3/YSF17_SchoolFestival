@@ -118,41 +118,19 @@ export class Programs {
    * @param tags
    * @param is_complete すべてのタグが完全に一致したもののみを返すか
    */
-  matchPrograms(tags: Tags, _is_complete: boolean = false): Programs {
-    let matchedProgramsResult = new Programs([])
-    let firstTime = true
-    for (const tag of tags) {
-      let matchedPrograms = new Programs([])
-      if (firstTime) {
-        for (const program of this.programs) {
-          const programTags = program.tags
-          // if (is_complete && tags.isSupersetOf(programTags)) {
-          //  matchedPrograms.programs.add(program)
-          //  continue
-          // }
-          if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
-            matchedPrograms.programs.add(program)
-          }
-        }
-        firstTime = false
+  matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
+    const matchedPrograms = new Programs([])
+    for (const program of this.programs) {
+      const programTags = program.tags
+      if (is_complete && tags.isSupersetOf(programTags)) {
+        matchedPrograms.programs.add(program)
+        continue
       }
-      else {
-        for (const program of matchedProgramsResult.programs) {
-          const programTags = program.tags
-          // if (is_complete && tags.isSupersetOf(programTags)) {
-          //  matchedPrograms.programs.add(program)
-          //  continue
-          // }
-          if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
-            matchedPrograms.programs.add(program)
-          }
-        }
+      if (!tags.isDisjointFrom(programTags)) {
+        matchedPrograms.programs.add(program)
       }
-      matchedProgramsResult = matchedPrograms
-      matchedPrograms = new Programs([])
     }
-
-    return matchedProgramsResult
+    return matchedPrograms
   }
 
   /**
