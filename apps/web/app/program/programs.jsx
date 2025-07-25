@@ -141,7 +141,7 @@ function SearchQueryClearButton() {
         resetKind()
         resetPlace()
       }}
-      className={styles.programSelectResetButton}
+      className={`${styles.programSelectResetButton} touchable smallButton`}
     >
       <MdOutlineCancel />
       条件をリセットする
