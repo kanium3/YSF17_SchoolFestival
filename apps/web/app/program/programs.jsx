@@ -72,11 +72,13 @@ export function ProgramsView() {
  * @constructor
  */
 function KindSelectMenu() {
-  const setKind = useSetAtom(kindAtom)
+  const [kind, setKind] = useAtom(kindAtom)// const setKind = useSetAtom(kindAtom)
   return (
     <Select
       onSelectionChange={selected => setKind(selected)}
       placeholder="選択しない"
+      selectedKey={kind}
+      defaultSelectedKey="選択しない"
     >
       <Button className={styles.programSelectPullDown}>
         <SelectValue />
@@ -102,11 +104,13 @@ function KindSelectMenu() {
  * @constructor
  */
 function PlaceSelectMenu() {
-  const setPlace = useSetAtom(placeAtom)
+  const [place, setPlace] = useAtom(placeAtom)// const setPlace = useSetAtom(placeAtom)
   return (
     <Select
       onSelectionChange={selected => setPlace(selected)}
       placeholder="選択しない"
+      selectedKey={place}
+      defaultSelectedKey="選択しない"
     >
       <Button className={styles.programSelectPullDown}>
         <SelectValue />
