@@ -1,4 +1,4 @@
-import { ProgramPopup } from './ProgramPopup'
+import { ProgramPopup } from './programPopup'
 import { Button } from './button'
 import { ModalProvider, useModalContext } from './ModalContext'
 import './extra/base.css'
