@@ -6,11 +6,28 @@ export class SVGController {
    * @type {import("@types/hast").Root}
    */
   map
+
   /**
    * @param {string} source SVGソースコード
    */
   constructor(source) {
     this.map = parse(source)
+  }
+
+  getElementsByTagName(tagName) {
+    const result = []
+    const search = (children) => {
+      for (const child of children) {
+        if (child.tagName === tagName) {
+          result.push(child)
+        }
+        if (child.type === 'element' && child.children.length > 0) {
+          search(child.children)
+        }
+      }
+    }
+    search(this.map.children)
+    return result
   }
 
   /**
