@@ -29,17 +29,20 @@ import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み�
 import './layer-button.css' // leaflet標準cssをオーバーライド
 import styles from './ysfmap.module.css'
 
+import { SVGController, Path2Polygon, zoomRatioAndPaddings } from '@/app/lib/index.js'
 import { FloorLayer } from '@/app/compoent/map/layer'
 
 /**
  * 高さと幅を指定して地図を表示します。
  * @param {Number} picWidth
  * @param {Number} picHeight
+ * @param {Number} initialFloor 初期階
+ * @param {Number} id 中心にする企画id
  * @param {(ids: string[]) => void} props.onSelectIds 部屋選択時に呼び出すコールバック関数。\
  * 選択された部屋が持つ企画idの配列を受け取る。\
  * 指定しなかった場合デフォルトのポップアップが表示される
  */
-export default function YSFMap({ picHeight, picWidth, onSelectIds }) {
+export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id = 'c8f366dc-65f9-43b6-99b0-29d1f43c7c3b', onSelectIds }) {
   if (!picHeight) {
     picHeight = window.innerHeight - 64
   }
@@ -47,13 +50,35 @@ export default function YSFMap({ picHeight, picWidth, onSelectIds }) {
     picWidth = window.innerWidth
   }
 
+  let center = [picHeight / 2, picWidth / 2]
+
+  if (id) {
+    const svgController = new SVGController(mapList[6 - initialFloor].raw)
+    const Room = svgController.matchedTagAndProperty('path', 'id', (ids) => {
+      return ids.split(',').includes(id)
+    })[0]
+    let polygon = Path2Polygon(Room.properties['d'])
+    let xsum = 0, ysum = 0
+    for (const point of polygon) {
+      xsum += point[0]
+      ysum += point[1]
+    }
+    const length_ = polygon.length
+    const [zoomRatio, [paddingWidth, paddingHeight]] = zoomRatioAndPaddings([picWidth, picHeight], svgController.getSVGSize())
+    center = [picHeight - ysum / length_ * zoomRatio - paddingHeight, xsum / length_ * zoomRatio + paddingWidth]
+  }
+
   return (
     <div className={styles.leafletMap}>
       <MapContainer
         crs={CRS.Simple}
-        center={new LatLng(picHeight / 2, picWidth / 2)}
+        center={new LatLng(center[0], center[1])}
         zoom={0}
-        style={{ width: picWidth, height: picHeight }}
+        minZoom={0}
+        maxZoom={3}
+        zoomSnap={0.5}
+        zoomDelta={0.5}
+        style={{ height: picHeight, width: picWidth }}
         maxBounds={[[-300, -300], [picHeight + 300, picWidth + 300]]}
       >
         <LayersControl
@@ -63,7 +88,7 @@ export default function YSFMap({ picHeight, picWidth, onSelectIds }) {
           {mapList.map((item) => { // 各階
             return (
               <LayersControl.BaseLayer
-                checked={item.floor === '1F'}
+                checked={item.floor === mapList[6 - initialFloor].floor}
                 name={item.floor}
                 key={item.floor}
               >

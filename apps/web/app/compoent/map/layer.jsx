@@ -1,7 +1,6 @@
 import { ImageOverlay, LayerGroup, Polygon, Popup, useMap } from 'react-leaflet'
 import { LatLngBounds } from 'leaflet'
-import { SVGController } from '@/app/lib/index.js'
-import { pathDataToPolys } from 'svg-path-to-polygons'
+import { SVGController, PathAndMapInfo2Positions } from '@/app/lib/index.js'
 
 /**
  * @param {Object} props
@@ -16,31 +15,7 @@ export function FloorLayer({ src, raw, picWidth, picHeight, onSelectIds }) {
   const svgController = new SVGController(raw)
   // eslint-disable-next-line unicorn/prefer-query-selector
   const paths = svgController.getElementsByTagName('path')
-
-  const [svgWidth, svgHeight] = svgController.getSVGSize()
-  let zoomRatio
-  let paddingWidth = 0, paddingHeight = 0
-  if (picWidth / svgWidth > picHeight / svgHeight) {
-    zoomRatio = picHeight / svgHeight
-    paddingWidth = (picWidth - svgWidth * zoomRatio) / 2
-  }
-  else {
-    zoomRatio = picWidth / svgWidth
-    paddingHeight = (picHeight - svgHeight * zoomRatio) / 2
-  }
-
-  const calcPositions = (polys) => {
-    const poly = polys.flat()
-    let positions = []
-    for (const point of poly) {
-      const transPoint = [
-        point[0] * zoomRatio + paddingWidth,
-        point[1] * zoomRatio + paddingHeight,
-      ]
-      positions.push(map.layerPointToLatLng(transPoint))
-    }
-    return positions
-  }
+  const svgSize = svgController.getSVGSize()
 
   return (
     <LayerGroup>
@@ -48,7 +23,11 @@ export function FloorLayer({ src, raw, picWidth, picHeight, onSelectIds }) {
         {paths.map((element) => {
           const ids_string = element.properties.id
           const ids = ids_string.split(',')
-          const positions = calcPositions(pathDataToPolys(element.properties['d']))
+          const positions = PathAndMapInfo2Positions(
+            element.properties['d'],
+            [picWidth, picHeight],
+            svgSize,
+            point => map.layerPointToLatLng(point))
           return (
             <LayerGroup key={ids[0]}>
               <Polygon
