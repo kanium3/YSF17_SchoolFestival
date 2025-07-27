@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './popup.module.css'
+import styles from './ProgramPopup.module.css'
 import type { ReactNode } from 'react'
 import { useModalContext } from './ModalContext'
 import { Dialog, Modal, ModalOverlay } from 'react-aria-components'
