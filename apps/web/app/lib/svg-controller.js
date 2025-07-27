@@ -14,6 +14,10 @@ export class SVGController {
     this.map = parse(source)
   }
 
+  /**
+   * @param {string} tagName
+   * @returns {import("@types/hast").Element[]}
+   */
   getElementsByTagName(tagName) {
     const result = []
     const search = (children) => {
@@ -76,9 +80,9 @@ export class SVGController {
   }
 
   /**
-     * SVGの`width`と`height`を取得する。
-     * @return {[number, number]} SVGの幅と高さを返します。
-     */
+   * SVGの`width`と`height`を取得する。
+   * @return {[number, number]} SVGの幅と高さを返します。
+   */
   getSVGSize() {
     const rootElement = this.map.children[0]
     return [rootElement.properties['width'], rootElement.properties['height']]

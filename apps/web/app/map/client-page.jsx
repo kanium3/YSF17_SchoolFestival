@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import LazyMap from '@/app/map/load-map'
+import { MapWithBottomSheet } from '@/app/map/load-map'
 
 export default function ClientMapPage() {
   useEffect(() => {
@@ -12,6 +12,6 @@ export default function ClientMapPage() {
   }, [])
 
   return (
-    <LazyMap />
+    <MapWithBottomSheet />
   )
 }

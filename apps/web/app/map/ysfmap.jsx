@@ -31,23 +31,30 @@ import styles from './ysfmap.module.css'
 
 import { FloorLayer } from '@/app/compoent/map/layer'
 
-export default function Ysfmap({ picheight, picwidth, onSelectIds }) {
-  if (!picheight) {
-    picheight = window.innerHeight - 64
+/**
+ * 高さと幅を指定して地図を表示します。
+ * @param {Number} picWidth
+ * @param {Number} picHeight
+ * @param {(ids: string[]) => void} props.onSelectIds 部屋選択時に呼び出すコールバック関数。\
+ * 選択された部屋が持つ企画idの配列を受け取る。\
+ * 指定しなかった場合デフォルトのポップアップが表示される
+ */
+export default function YSFMap({ picHeight, picWidth, onSelectIds }) {
+  if (!picHeight) {
+    picHeight = window.innerHeight - 64
   }
-  if (!picwidth) {
-    picwidth = window.innerWidth
+  if (!picWidth) {
+    picWidth = window.innerWidth
   }
 
-  /** @type {[{aria:string , item:Program[]}]} */
   return (
     <div className={styles.leafletMap}>
       <MapContainer
         crs={CRS.Simple}
-        center={new LatLng(picheight / 2, picwidth / 2)}
+        center={new LatLng(picHeight / 2, picWidth / 2)}
         zoom={0}
-        style={{ width: picwidth, height: picheight }}
-        maxBounds={[[-300, -300], [picheight + 300, picwidth + 300]]}
+        style={{ width: picWidth, height: picHeight }}
+        maxBounds={[[-300, -300], [picHeight + 300, picWidth + 300]]}
       >
         <LayersControl
           position="topright"
@@ -63,8 +70,8 @@ export default function Ysfmap({ picheight, picwidth, onSelectIds }) {
                 <FloorLayer
                   src={item.url}
                   raw={item.raw}
-                  picHeight={picheight}
-                  picWidth={picwidth}
+                  picHeight={picHeight}
+                  picWidth={picWidth}
                   onSelectIds={onSelectIds}
                 >
                 </FloorLayer>

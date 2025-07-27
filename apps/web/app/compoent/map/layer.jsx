@@ -3,6 +3,14 @@ import { LatLngBounds } from 'leaflet'
 import { SVGController } from '@/app/lib/index.js'
 import { pathDataToPolys } from 'svg-path-to-polygons'
 
+/**
+ * @param {Object} props
+ * @param {string} props.src
+ * @param {string} props.raw
+ * @param {Number} picWidth
+ * @param {Number} picHeight
+ * @param {(ids: string[]) => void} props.onSelectIds 部屋選択時に呼び出すコールバック関数。選択された部屋が持つ企画idの配列を受け取る
+ */
 export function FloorLayer({ src, raw, picWidth, picHeight, onSelectIds }) {
   const map = useMap()
   const svgController = new SVGController(raw)
@@ -52,7 +60,7 @@ export function FloorLayer({ src, raw, picWidth, picHeight, onSelectIds }) {
                 pathOptions={{ fillOpacity: '100%', opacity: '100%' }} // どちらも0%にする (背景のsvgに任せるため)
                 positions={positions}
               >
-                {!onSelectIds && (
+                {!onSelectIds && ( // 関数なしの場合
                   <Popup>
                     {ids.map(id => <div key={id}>{id}</div>)}
                   </Popup>
