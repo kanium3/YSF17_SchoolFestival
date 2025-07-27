@@ -1,12 +1,6 @@
 .leafletMap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-.mapControl {
-    display: none;
-}
-.leaflet-control-layers {
-    display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
