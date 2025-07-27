@@ -9,12 +9,12 @@
     position: relative;
     width: 335px;
     aspect-ratio: 8 / 5;
-    background-color: hsl(201deg, 84%, 49%);
+    background-color: var(--semantic-color-primary);
     box-shadow: 0px 0px 8px hsla(0deg, 0%, 0%, 20%);
 }
 
 .text {
-    color: white;
+    color: var(--semantic-text-white);
     padding-left: 30px;
 }
 
