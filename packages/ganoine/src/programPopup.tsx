@@ -2,7 +2,7 @@
 
 import styles from './programPopup.module.css'
 import type { ReactNode } from 'react'
-import { useModalContext } from './ModalContext'
+import { useModalContext } from './popupContext'
 import { Dialog, Modal, ModalOverlay } from 'react-aria-components'
 import { Button } from './button'
 
