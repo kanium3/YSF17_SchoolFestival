@@ -83,9 +83,6 @@ a:not(:has(*)) {
   border-bottom: 2px solid;
   text-decoration: none;
 }
-a:focus {
-  background-color: var(--token-color-yellow-450);
-}
 
 .contentBox {
   position: relative;
