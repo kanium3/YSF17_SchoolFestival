@@ -1,0 +1,13 @@
+.bottom-sheet {
+  transition: 0.3s ease;
+  background-color: var(--background);
+  position: fixed;
+  z-index: 600;
+  height: 0px;
+  width: 100vw;
+  bottom: 64px;
+}
+
+.bottom-sheet.open {
+  height: 100px;
+}

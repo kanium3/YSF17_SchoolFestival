@@ -31,7 +31,7 @@ import styles from './ysfmap.module.css'
 
 import { FloorLayer } from '@/app/compoent/map/layer'
 
-export default function Ysfmap({ picheight, picwidth }) {
+export default function Ysfmap({ picheight, picwidth, onSelectIds }) {
   if (!picheight) {
     picheight = window.innerHeight - 64
   }
@@ -49,15 +49,23 @@ export default function Ysfmap({ picheight, picwidth }) {
         style={{ width: picwidth, height: picheight }}
         maxBounds={[[-300, -300], [picheight + 300, picwidth + 300]]}
       >
-        <LayersControl position="bottomright" collapsed={false}>
+        <LayersControl
+          position="topright"
+          collapsed={false}
+        >
           {mapList.map((item) => { // 各階
             return (
-              <LayersControl.BaseLayer checked={item.floor === '1F'} name={item.floor} key={item.floor}>
+              <LayersControl.BaseLayer
+                checked={item.floor === '1F'}
+                name={item.floor}
+                key={item.floor}
+              >
                 <FloorLayer
                   src={item.url}
                   raw={item.raw}
                   picHeight={picheight}
                   picWidth={picwidth}
+                  onSelectIds={onSelectIds}
                 >
                 </FloorLayer>
               </LayersControl.BaseLayer>

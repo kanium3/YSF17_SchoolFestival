@@ -2,9 +2,8 @@ import { ImageOverlay, LayerGroup, Polygon, Popup, useMap } from 'react-leaflet'
 import { LatLngBounds } from 'leaflet'
 import { SVGController } from '@/app/lib/index.js'
 import { pathDataToPolys } from 'svg-path-to-polygons'
-import BottomSheet from '@/app/compoent/map/bottom-sheet'
 
-export function FloorLayer({ src, raw, picWidth, picHeight }) {
+export function FloorLayer({ src, raw, picWidth, picHeight, onSelectIds }) {
   const map = useMap()
   const svgController = new SVGController(raw)
   // eslint-disable-next-line unicorn/prefer-query-selector
@@ -45,12 +44,19 @@ export function FloorLayer({ src, raw, picWidth, picHeight }) {
           return (
             <LayerGroup key={ids[0]}>
               <Polygon
+                eventHandlers={{
+                  click: () => {
+                    onSelectIds(ids)
+                  },
+                }}
                 pathOptions={{ fillOpacity: '100%', opacity: '100%' }} // どちらも0%にする (背景のsvgに任せるため)
                 positions={positions}
               >
-                <Popup>
-                  <BottomSheet ids={ids} />
-                </Popup>
+                {!onSelectIds && (
+                  <Popup>
+                    {ids.map(id => <div key={id}>{id}</div>)}
+                  </Popup>
+                )}
               </Polygon>
             </LayerGroup>
           )
