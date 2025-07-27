@@ -39,10 +39,10 @@ import ProgramPopup from './small-program-page.jsx'
 
 export default function Ysfmap({ picheight, picwidth }) {
   if (!picheight) {
-    picheight = window.innerHeight - 144
+    picheight = window.innerHeight - 64
   }
   if (!picwidth) {
-    picwidth = widthAdjust(window.innerWidth - 24)
+    picwidth = window.innerWidth
   }
   const programsParse = parseProgramsData(programs)
   const programsList = [...programsParse.iter()]
@@ -97,7 +97,8 @@ export default function Ysfmap({ picheight, picwidth }) {
  * @param {Number} width
  * @returns {Number} 調整された幅
  */
-
+/*
 function widthAdjust(width) {
   return Math.min(width, width * 0.6 + 200)
 }
+*/
