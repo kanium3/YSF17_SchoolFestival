@@ -34,7 +34,7 @@ import styles from './ysfmap.module.css'
 
 import programs from '../program.mock.json'
 import { parseProgramsData } from '@latimeria/core'
-import { FloorLayer, FloorLayerGroupProvider, PlacePolygon } from '@/app/map/layer'
+import { FloorLayer, FloorLayerGroupProvider, PlacePolygon } from '@/app/compoent/map/layer'
 import ProgramPopup from './small-program-page.jsx'
 
 export default function Ysfmap({ picheight, picwidth }) {
@@ -58,7 +58,7 @@ export default function Ysfmap({ picheight, picwidth }) {
         maxBounds={[[-300, -300], [picheight + 300, picwidth + 300]]}
       >
         <LayersControl position="bottomright" collapsed={false}>
-          {mapList.map((item) => {
+          {mapList.map((item) => { // 各階
             return (
               <LayersControl.BaseLayer checked={item.floor === '1F'} name={item.floor} key={item.floor}>
                 <FloorLayerGroupProvider value={{
