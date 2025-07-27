@@ -1,6 +1,6 @@
 import { ProgramPopup } from './programPopup'
 import { Button } from './button'
-import { ModalProvider, useModalContext } from './ModalContext'
+import { ModalProvider, useModalContext } from './popupContext'
 import './extra/base.css'
 import { Meta, StoryObj } from '@storybook/react'
 
