@@ -1,37 +1,36 @@
-import { ProgramPopup } from './popup'
+import { ProgramPopup } from './ProgramPopup'
+import { Button } from './button'
+import { ModalProvider, useModalContext } from './ModalContext'
 import './extra/base.css'
 import { Meta, StoryObj } from '@storybook/react'
 
 export default {
   title: 'Ganoine/ProgramPopup',
   component: ProgramPopup,
-  parameters: {
-    layout: 'fullscreen',
-  },
 } as Meta<typeof ProgramPopup>
 
-export const WithButton = {
+export const ProgramPopup = {
   args: {
     hasOpenButton: true,
-    children: (
+    contentChildren: (
       <div>
         <h1>ミニページのタイトル</h1>
         <p>開くボタンがついたミニページのポップアップ(モーダル)の例です。</p>
       </div>
     ),
-    kind: 'default',
   },
 } as StoryObj<typeof ProgramPopup>
 
-export const WithoutButton = {
-  args: {
-    hasOpenButton: false,
-    children: (
-      <div>
-        <h1>ミニページのタイトル</h1>
-        <p>開くボタンがつかないミニページのポップアップ(モーダル)の例です。</p>
-      </div>
-    ),
-    kind: 'default',
-  },
-} as StoryObj<typeof ProgramPopup>
+const ModalButton = () => {
+  const { handleClick } = usePopup()
+  return <Button onPress={handleClick}>ポップアップを開くボタン</button>
+}
+
+WithoutButton.decorators = [
+  (Story) => (
+    <ModalProvider>
+      <ModalButton />
+      <Story />
+    </ModalProvider>
+  ),
+]
