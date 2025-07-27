@@ -83,6 +83,9 @@ a:not(:has(*)) {
   border-bottom: 2px solid;
   text-decoration: none;
 }
+a:visited {
+  color: var(--semantic-link-visited);
+}
 
 .contentBox {
   position: relative;
