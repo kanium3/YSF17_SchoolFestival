@@ -1,61 +1,18 @@
-import { createContext, useContext } from 'react'
 import { ImageOverlay, LayerGroup, Polygon, Popup, useMap } from 'react-leaflet'
 import { LatLngBounds } from 'leaflet'
 import { SVGController } from '@/app/lib/index.js'
+import { pathDataToPolys } from 'svg-path-to-polygons'
+import BottomSheet from '@/app/compoent/map/bottom-sheet'
 
-/**
- * @typedef {Object} FloorLayerOptions
- * @property {string} src レイヤーのソースとなるURL
- * @property {string} content レイヤーのコンテンツ
- * @property {number} picheight 画像の幅
- * @property {number} picwidth 画像の高さ
- */
-
-/**
- * @type {React.Context<FloorLayerOptions>}
- */
-const FloorLayerGroupContext = createContext({})
-
-export const FloorLayerGroupProvider = FloorLayerGroupContext.Provider
-
-/**
- * @param {React.ReactNode} children
- * @return {React.ReactNode}
- * @constructor
- */
-export function FloorLayer({ children }) {
-  const groupContext = useContext(FloorLayerGroupContext)
-  return (
-    <LayerGroup>
-      <ImageOverlay url={groupContext.src} bounds={new LatLngBounds([[0, 0], [groupContext.picheight, groupContext.picwidth]])} />
-      {children}
-    </LayerGroup>
-  )
-}
-
-/**
- * PlacePolygonコンポーネントは、指定されたSVGのIDとパスオプションを使用してポリゴンを描画します。
- * @param {string} id SVG内のパスのID
- * @param {import("leaflet").PathOptions} pathOptions
- * @param {React.ReactNode} children
- * @return {React.ReactNode}
- * @constructor
- */
-export function PlacePolygon({ id, pathOptions, children }) {
+export function FloorLayer({ src, raw, picWidth, picHeight }) {
   const map = useMap()
-  const groupContext = useContext(FloorLayerGroupContext)
-  const svgController = new SVGController(groupContext.content)
+  const svgController = new SVGController(raw)
+  // eslint-disable-next-line unicorn/prefer-query-selector
+  const paths = svgController.getElementsByTagName('path')
+
   const [svgWidth, svgHeight] = svgController.getSVGSize()
-  const picWidth = groupContext.picwidth
-  const picHeight = groupContext.picheight
-  const matched = svgController.matchedPropertyValues((property, value) => {
-    return property === 'id' && value === id
-  })
-  const polygonsWithMeta = svgController.convertPathToPolygons(matched[0].properties['d'])
-  let polygons = []
   let zoomRatio
   let paddingWidth = 0, paddingHeight = 0
-  console.log(svgHeight, svgWidth)
   if (picWidth / svgWidth > picHeight / svgHeight) {
     zoomRatio = picHeight / svgHeight
     paddingWidth = (picWidth - svgWidth * zoomRatio) / 2
@@ -64,38 +21,41 @@ export function PlacePolygon({ id, pathOptions, children }) {
     zoomRatio = picWidth / svgWidth
     paddingHeight = (picHeight - svgHeight * zoomRatio) / 2
   }
-  for (const polygonGroup of polygonsWithMeta) {
-    for (const polygon of polygonGroup) {
-      if (Array.isArray(polygon)) {
-        /** @type {[number, number]} */
-        const convertedPolygon = [
-          zoomPolygon(polygon[0], zoomRatio) + paddingWidth,
-          zoomPolygon(polygon[1], zoomRatio) + paddingHeight,
-        ]
-        polygons.push(map.layerPointToLatLng(convertedPolygon))
-      }
+
+  const calcPositions = (polys) => {
+    const poly = polys.flat()
+    let positions = []
+    for (const point of poly) {
+      const transPoint = [
+        point[0] * zoomRatio + paddingWidth,
+        point[1] * zoomRatio + paddingHeight,
+      ]
+      positions.push(map.layerPointToLatLng(transPoint))
     }
+    return positions
   }
-  // 最後のポリゴンは閉じるためのものなので削除
-  polygons.pop()
 
   return (
     <LayerGroup>
-      <Polygon pathOptions={pathOptions} positions={polygons}>
-        <Popup>
-          {children}
-        </Popup>
-      </Polygon>
+      <ImageOverlay url={src} bounds={new LatLngBounds([[0, 0], [picHeight, picWidth]])}>
+        {paths.map((element) => {
+          const ids_string = element.properties.id
+          const ids = ids_string.split(',')
+          const positions = calcPositions(pathDataToPolys(element.properties['d']))
+          return (
+            <LayerGroup key={ids[0]}>
+              <Polygon
+                pathOptions={{ fillOpacity: '100%', opacity: '100%' }} // どちらも0%にする (背景のsvgに任せるため)
+                positions={positions}
+              >
+                <Popup>
+                  <BottomSheet ids={ids} />
+                </Popup>
+              </Polygon>
+            </LayerGroup>
+          )
+        })}
+      </ImageOverlay>
     </LayerGroup>
   )
-}
-
-/**
- * ズーム倍率を適用してポリゴンの座標を変換します。
- * @param {number} point
- * @param {number} ratio
- * @return {number}
- */
-function zoomPolygon(point, ratio) {
-  return point * ratio
 }

@@ -1,5 +1,5 @@
 export default function BottomSheet({ ids }) {
   return (
-    <div></div>
+    <div>{ids.map(id => <div key={id}>{id}</div>)}</div>
   )
 }
