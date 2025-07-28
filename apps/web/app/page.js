@@ -1,11 +1,12 @@
 import './home.css'
 import styles from './page.module.css'
+import Spacer from './compoent/spacer/spacer'
 import WarnCallout from '@/app/compoent/warn-callout.jsx'
-import { Countdown } from '@/app/compoent/countdown.jsx'
-import HomeArticleDisplay from '@/app/compoent/home/home-article-display.jsx'
+import Countdown from '@/app/home/countdown/countdown.jsx'
+import TrainInfoBox from '@/app/home/trainInformation/train-information.jsx'
+import HomeArticleDisplay from '@/app/home/articlesBox/home-article-display.jsx'
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
-import { LinkButton } from '@/app/compoent/button.jsx'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜トップ',
@@ -67,7 +68,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="contentBox">
+      <Spacer type="M" />
+
+      <div>
         <WarnCallout>
           <p>
             このサイトは非公式の有志による情報まとめサイトです。
@@ -77,19 +80,34 @@ export default function Home() {
         </WarnCallout>
       </div>
 
-      <div id="home_aboutFest" className="contentBox">
-        <h2>蒼煌祭について</h2>
-        <p>蒼煌祭いろいろ書きこみ書きこみ</p>
-      </div>
+      <Spacer type="M" />
 
-      <div className="contentBox">
-        <h2>特集</h2>
+      <div>
+        <h2 className={styles.mainHeading}>
+          Features
+          <span className={styles.subHeading}>特集</span>
+        </h2>
         <p>蒼煌祭をもっと知りたい方、楽しみたい方はぜひご覧ください！</p>
         <HomeArticleDisplay />
       </div>
 
-      <div id="home_notice" className="contentBox">
-        <h2>来場に際しての注意</h2>
+      <Spacer type="L" />
+
+      <div id="home_aboutFest">
+        <h2 className={styles.mainHeading}>
+          About
+          <span className={styles.subHeading}>蒼煌祭について</span>
+        </h2>
+        <p>蒼煌祭は、横浜サイエンスフロンティア高等学校・附属中学校の文化祭です。今年度はスローガン「澄」のもと、9月6日と7日に行われます！</p>
+      </div>
+
+      <Spacer type="L" />
+
+      <div id="home_notice">
+        <h2 className={styles.mainHeading}>
+          Notice
+          <span className={styles.subHeading}>来場時の注意</span>
+        </h2>
         <div>
           <iframe
             src="https://docs.google.com/presentation/d/e/2PACX-1vTmQeHPzEP7-2RDqIVzUkOWsNH-c_viIoOE3gNlkJxcR_7I-ruZBBRb4qJEOJr3itFXMYjF-DLjRTB4/pubembed?start=false&loop=true&delayms=5000"
@@ -97,43 +115,60 @@ export default function Home() {
             allowFullScreen={true}
             mozallowfullscreen="true"
             webkitallowfullscreen="true"
-            className="slide"
+            className={styles.slide}
           >
           </iframe>
         </div>
       </div>
 
-      <div id="home_access" className="contentBox">
-        <h2>アクセス</h2>
-        <p>アクセスは...</p>
-        <div className="slide">
+      <Spacer type="L" />
+
+      <div id="home_access">
+        <h2 className={styles.mainHeading}>
+          Access
+          <span className={styles.subHeading}>アクセス</span>
+        </h2>
+        <div>
           <iframe
             id="YSFmap"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1365.7115110267134!2d139.67723936730562!3d35.49864772128194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60185de48a090f23%3A0xb7f74d21bfdfd5f4!2z5qiq5rWc5biC56uL5qiq5rWc44K144Kk44Ko44Oz44K544OV44Ot44Oz44OG44Kj44Ki6auY562J5a2m5qCh!5e0!3m2!1sja!2sjp!4v1749479456850!5m2!1sja!2sjp"
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
+            className={styles.slide}
           >
           </iframe>
         </div>
+
+        <Spacer type="S" />
+
         <div>
-          <h3>時刻表</h3>
-          <div id="container_trainTimetable">
-            <div>
-              <p>JR鶴見線</p>
-              <LinkButton className="touchable">鶴見小野駅</LinkButton>
-            </div>
-            <div>
-              <p>京急</p>
-              <LinkButton className="touchable">花月総持寺駅</LinkButton>
-            </div>
-          </div>
+          <h3>近くにある駅</h3>
+          <TrainInfoBox data={{
+            trainName: '鶴見小野駅(JR鶴見線)',
+            walkingTime: '1',
+            iconColor1: '#f2d01f',
+            iconColor2: '#808080',
+          }}
+          />
+          <TrainInfoBox data={{
+            trainName: '花月総持寺駅(京急線)',
+            walkingTime: '10',
+            iconColor1: '#33c2e4',
+            iconColor2: '#3d5399',
+          }}
+          />
         </div>
       </div>
 
-      <div id="home_source" className="contentBox">
-        <h2>このサイトの情報源</h2>
-        <p>情報源</p>
+      <Spacer type="L" />
+
+      <div id="home_source">
+        <h2 className={styles.mainHeading}>
+          Source
+          <span className={styles.subHeading}>情報源の一覧</span>
+        </h2>
+        <p>このサイトを作成するにあたって使用した情報源の一覧です。より信頼性の高い情報をお求めの方は、以下を参照すると良いでしょう。</p>
       </div>
     </div>
   )

@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.page> :not(.topVisualContainer) {
+  width: 92vw;
+  margin: 0 auto;
+}
+
 .topImage {
   position: absolute;
   top: 0;
@@ -37,6 +42,14 @@
 .topVisualContainer {
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+
+  width: 100vw;
+  height: 100svh;
+  margin: 0;
+  background-color: #fcfcfc;
+
+  z-index: 10000;
 }
 
 .topInfoContainer {
@@ -124,4 +137,23 @@
   padding: 0;
   font: 1.2rem var(--font-noto-sans-jp);
   font-weight: 300;
+}
+
+.mainHeading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.subHeading {
+  padding-left: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.slide {
+  position: relative;
+  width: 100% !important;
+  aspect-ratio: 16 / 12;
+  margin: 0 !important;
+  border: none !important;
 }
