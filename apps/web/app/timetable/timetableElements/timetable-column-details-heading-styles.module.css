@@ -3,7 +3,7 @@
     width: 98%;
     margin: 1%;
     aspect-ratio: 8 / 5;
-    color: white;
+    color: var(--semantic-text-dark);
 }
 
 .detail_title {
@@ -18,9 +18,9 @@
     height: 1.8rem;
 
     font-size: 1rem;
-    color: white;
+    color: var(--semantic-text-white);
 
-    background-color: var(--stripColor);
+    background-color: var(--semantic-color-accent);
     border-radius: 5px;
     border: none;
 }
@@ -31,9 +31,10 @@
     right: 0px;
     width: 4.5rem;
     height: 2rem;
+    font-size: .8rem;
 
     background-color: transparent;
-    color: white;
+    color: var(--semantic-text-dark);
     border: none;
 }
 
