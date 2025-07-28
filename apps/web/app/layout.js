@@ -1,12 +1,18 @@
 import '@latimeria/ganoine/base.css'
 import Menu from '@/app/menu.jsx'
 import SiteFooter from './compoent/global/site-footer'
-import { Noto_Sans_JP } from 'next/font/google'
+import { Noto_Sans_JP, Michroma } from 'next/font/google'
 import localFont from 'next/font/local'
 import './globals.css'
 
 const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
+  subsets: ['latin'],
+})
+
+const michroma = Michroma({
+  variable: '--font-michroma',
+  weight: '400',
   subsets: ['latin'],
 })
 
@@ -44,9 +50,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${lineSeedJP.variable}`}>
-        <Menu />
+      <body className={`${notoSansJP.variable} ${lineSeedJP.variable} ${michroma.variable}`}>
         <div id="content-base">
+          <Menu />
           <div id="content-main">
             {children}
           </div>

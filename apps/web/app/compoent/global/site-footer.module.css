@@ -1,5 +1,6 @@
 .ft-base {
-  position: sticky; /* 通常の要素と同様 */
+  position: absolute; /* content-base基準 */
+  bottom: 0;
   width: 100%;
   margin-top: 16px;
 }
@@ -7,7 +8,6 @@
 .ft-bg {
   position: absolute; /* ft-base基準 */
   width: 100%;
-  height: 100%;
   background-color: #213060;
 }
 
