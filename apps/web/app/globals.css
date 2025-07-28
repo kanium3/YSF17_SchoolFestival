@@ -83,6 +83,9 @@ a:not(:has(*)) {
   border-bottom: 2px solid;
   text-decoration: none;
 }
+a:focus-visible {
+  background-color: var(--semantic-link-default);
+}
 
 .contentBox {
   position: relative;
