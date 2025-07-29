@@ -17,8 +17,6 @@
     color: var(--semantic-link-active);
 }
 
-/** よくわからないがこれが反映されない
-.link:focus {
-  background-color: var(--semantic-link-active);
+.link:focus-visible {
+  background-color: var(--semantic-link-focused);
 }
-*/
