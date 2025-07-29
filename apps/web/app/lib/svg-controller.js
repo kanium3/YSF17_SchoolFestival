@@ -94,59 +94,70 @@ export class SVGController {
   }
 
   /**
-   * SVGの`width`と`height`を取得する。
-   * @return {[number, number]} SVGの幅と高さを返します。
+   * SVGの`height`と`width`を取得する。
+   * @return {[height: number, width: number]} SVGの高さと幅を返します。
    */
   getSVGSize() {
     const rootElement = this.map.children[0]
-    return [rootElement.properties['width'], rootElement.properties['height']]
+    return [rootElement.properties['height'], rootElement.properties['width']]
   }
 }
 
 /**
  * SVGパスをポリゴンの配列に変換する。
  * @param {string} path pathのデータ(`d`属性の値)を指定します。
- * @return {[number, number][][]} ポリゴンの配列を返します。
+ * @return {[x: number, y: number][][]} ポリゴンの配列を返します。
  */
-export function Path2PolygonArray(path) {
+function Path2PolygonArray(path) {
   return pathDataToPolys(path)
 }
 
 /**
  * SVGパスをポリゴンに変換する。
  * @param {string} path pathのデータ(`d`属性の値)を指定します。
- * @return {[number, number][]} ポリゴンを返します。
+ * @return {[x: number, y: number][]} ポリゴンを返します。
  */
 export function Path2Polygon(path) {
   return Path2PolygonArray(path).flat()
 }
 
 /**
- * SVGパスと調整のための情報をPositionsに変換する。
+ * 異なる2次元座標系に拡大変換
+ * @param {[x: number, y: number]} point 変換する座標
+ * @param {number} zoomRatio 拡大率
+ * @param {[height: number, width: number]} paddings パディング幅
+ * @return {[x: number, y: number]}
  */
-function PathAndAdjustInfo2Positions(path, zoomRatio, padding, layerPointToLatLng) {
+export function AdjustedPoint(point, zoomRatio, paddings) {
+  return [point[0] * zoomRatio + paddings[1], point[1] * zoomRatio + paddings[0]]
+}
+
+/**
+ * SVGパスと調整のための情報をPositionsに変換する。
+ * @param {string} path pathのデータ(`d`属性の値)を指定します。
+ * @param {number} zoomRatio 拡大率
+ * @param {[height: number, width: number]} paddings パディング幅
+ * @param {(point: [number, number]) => { lat: number, lng: number }} layerPointToLatLng useMap()にあるやつを式埋め込みで渡すのが望ましい
+ */
+export function PathAndAdjustInfo2Positions(path, zoomRatio, paddings, layerPointToLatLng) {
   const polygon = Path2Polygon(path)
-  const [paddingWidth, paddingHeight] = padding
   let positions = []
   for (const point of polygon) {
-    const transPoint = [
-      point[0] * zoomRatio + paddingWidth,
-      point[1] * zoomRatio + paddingHeight,
-    ]
-    positions.push(layerPointToLatLng(transPoint))
+    positions.push(layerPointToLatLng(AdjustedPoint(point, zoomRatio, paddings)))
   }
   return positions
 }
 
 /**
- * @param {[width: number, height: number]} picSize [width, height]
- * @param {[width: number, height: number]} svgSize [width, height]
+ * 表示域サイズとsvgサイズから、svgに初期適用されるズーム率と表示域内のsvgのpadding幅を返します
+ * @param {[height: number, width: number]} picSize [height, width]
+ * @param {[height: number, width: number]} svgSize [height, width]
  */
 export function zoomRatioAndPaddings(picSize, svgSize) {
   let zoomRatio
   let paddingWidth = 0, paddingHeight = 0
-  const [picWidth, picHeight] = picSize
-  const [svgWidth, svgHeight] = svgSize
+  const [picHeight, picWidth] = picSize
+  const [svgHeight, svgWidth] = svgSize
   if (picWidth / svgWidth > picHeight / svgHeight) {
     zoomRatio = picHeight / svgHeight
     paddingWidth = (picWidth - svgWidth * zoomRatio) / 2
@@ -155,14 +166,14 @@ export function zoomRatioAndPaddings(picSize, svgSize) {
     zoomRatio = picWidth / svgWidth
     paddingHeight = (picHeight - svgHeight * zoomRatio) / 2
   }
-  return [zoomRatio, [paddingWidth, paddingHeight]]
+  return [zoomRatio, [paddingHeight, paddingWidth]]
 }
 
 /**
  * SVGパスとマップの情報をPositionsに変換する。
  * @param {string} path pathのデータ(`d`属性の値)を指定します。
- * @param {[width: number, height: number]} picSize [width, height]
- * @param {[width: number, height: number]} svgSize [width, height]
+ * @param {[height: number, width: number]} picSize [height, width]
+ * @param {[height: number, width: number]} svgSize [height, width]
  * @param {(point: [number, number]) => { lat: number, lng: number }} layerPointToLatLng useMap()にあるやつを式埋め込みで渡すのが望ましい
  */
 export function PathAndMapInfo2Positions(path, picSize, svgSize, layerPointToLatLng) {

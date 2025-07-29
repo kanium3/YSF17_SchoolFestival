@@ -25,8 +25,17 @@ export function MapWithBottomSheet() {
 /**
  * どこでも使えるマップ
  */
-export function Map({ picHeight, picWidth }) {
+export function Map({ picWidth, picHeight }) {
   return (
-    <YSFMap picHeight={picHeight} picWidth={picWidth} />
+    <YSFMap picWidth={picWidth} picHeight={picHeight} />
+  )
+}
+
+/**
+ * 企画ページ向けのマップ
+ */
+export function MapFromSpecRoom({ picWidth, picHeight, floor, id }) {
+  return (
+    <YSFMap picWidth={picWidth} picHeight={picHeight} initialFloor={floor} id={id} />
   )
 }

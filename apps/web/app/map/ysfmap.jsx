@@ -33,39 +33,53 @@ import { SVGController, Path2Polygon, zoomRatioAndPaddings } from '@/app/lib/ind
 import { FloorLayer } from '@/app/compoent/map/layer'
 
 /**
- * 高さと幅を指定して地図を表示します。
- * @param {Number} picWidth
- * @param {Number} picHeight
- * @param {Number} initialFloor 初期階
- * @param {Number} id 中心にする企画id
- * @param {(ids: string[]) => void} props.onSelectIds 部屋選択時に呼び出すコールバック関数。\
+ * 高さ、幅、初期表示階(、フォーカス対象の企画id)、部屋選択時に呼び出す関数をオプションで指定してYSF校内の地図を表示します。
+ * @param {Object} props
+ * @param {number} [props.picHeight] 地図の表示高さ 指定がない場合は `window.innerHeight - 64`
+ * @param {number} [props.picWidth] 地図の表示幅 指定がない場合は `window.innerWidth`
+ * @param {number} [props.initialFloor=1] 初期表示する階(1~6) 指定しなかった場合`1`
+ * @param {number} [props.id] 初期フォーカス対象の企画id (指定する場合初期表示する階を正しく必ず指定して下さい)
+ * @param {(ids: string[]) => void} [props.onSelectIds] 部屋選択時に呼び出すコールバック関数\
  * 選択された部屋が持つ企画idの配列を受け取る。\
- * 指定しなかった場合デフォルトのポップアップが表示される
+ * 指定しなかった場合デフォルトのポップアップが表示される。
+ * @returns {JSX.Element}
  */
-export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id = 'c8f366dc-65f9-43b6-99b0-29d1f43c7c3b', onSelectIds }) {
+export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onSelectIds }) {
   if (!picHeight) {
     picHeight = window.innerHeight - 64
   }
   if (!picWidth) {
     picWidth = window.innerWidth
   }
+  const svgController = new SVGController(mapList[6 - initialFloor].raw)
+  const svgSize = svgController.getSVGSize()
+  const [zoomRatio, paddings] = zoomRatioAndPaddings([picHeight, picWidth], svgSize)
 
+  let initZoom = 0
   let center = [picHeight / 2, picWidth / 2]
+  let polyPaddings = [
+    picHeight / 2 - (picHeight / 2 - paddings[0]) * Math.pow(2, initZoom),
+    picWidth / 2 - (picWidth / 2 - paddings[1]) * Math.pow(2, initZoom)]
 
   if (id) {
-    const svgController = new SVGController(mapList[6 - initialFloor].raw)
     const Room = svgController.matchedTagAndProperty('path', 'id', (ids) => {
       return ids.split(',').includes(id)
     })[0]
-    let polygon = Path2Polygon(Room.properties['d'])
-    let xsum = 0, ysum = 0
-    for (const point of polygon) {
-      xsum += point[0]
-      ysum += point[1]
+    if (Room) {
+      initZoom = 1
+      let polygon = Path2Polygon(Room.properties['d'])
+      let xsum = 0, ysum = 0
+      for (const point of polygon) {
+        xsum += point[0]
+        ysum += point[1]
+      }
+      const length_ = polygon.length
+      xsum /= length_
+      ysum /= length_
+      center = [picHeight - (ysum * zoomRatio + paddings[0]), xsum * zoomRatio + paddings[1]]
+      polyPaddings[0] = picHeight / 2 - ysum * zoomRatio * Math.pow(2, initZoom)
+      polyPaddings[1] = picWidth / 2 - xsum * zoomRatio * Math.pow(2, initZoom)
     }
-    const length_ = polygon.length
-    const [zoomRatio, [paddingWidth, paddingHeight]] = zoomRatioAndPaddings([picWidth, picHeight], svgController.getSVGSize())
-    center = [picHeight - ysum / length_ * zoomRatio - paddingHeight, xsum / length_ * zoomRatio + paddingWidth]
   }
 
   return (
@@ -73,13 +87,13 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id = 'c8
       <MapContainer
         crs={CRS.Simple}
         center={new LatLng(center[0], center[1])}
-        zoom={0}
+        zoom={initZoom}
         minZoom={0}
         maxZoom={3}
         zoomSnap={0.5}
         zoomDelta={0.5}
         style={{ height: picHeight, width: picWidth }}
-        maxBounds={[[-300, -300], [picHeight + 300, picWidth + 300]]}
+        maxBounds={[[-picHeight * 0.5, -picWidth * 0.5], [picHeight * 1.5, picWidth * 1.5]]} // 自分を見失わないため
       >
         <LayersControl
           position="topright"
@@ -95,8 +109,9 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id = 'c8
                 <FloorLayer
                   src={item.url}
                   raw={item.raw}
-                  picHeight={picHeight}
-                  picWidth={picWidth}
+                  picSize={[picHeight, picWidth]}
+                  paddings={polyPaddings}
+                  zoomRatio={zoomRatio * Math.pow(2, initZoom)}
                   onSelectIds={onSelectIds}
                 >
                 </FloorLayer>
