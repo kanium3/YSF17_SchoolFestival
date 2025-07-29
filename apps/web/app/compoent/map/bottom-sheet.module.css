@@ -1,13 +1,53 @@
-.bottom-sheet {
+.btst {
+  position: fixed;
+  bottom: 64px;
+  z-index: 1200;
+  overflow: hidden;
   transition: 0.3s ease;
   background-color: var(--background);
-  position: fixed;
-  z-index: 600;
-  height: 0px;
+  height: 0;
   width: 100vw;
-  bottom: 64px;
+  border-style: solid;
+  border-width: 1px;
+  border-bottom-width: 0;
+  border-color: var(--semantic-surface-border-1);
+  --btst-top-radius: 15px;
+  border-top-left-radius: var(--btst-top-radius);
+  border-top-right-radius: var(--btst-top-radius);
 }
 
-.bottom-sheet.open {
+.btst.none {
+  height: 0;
+}
+
+.btst.small {
   height: 100px;
+}
+
+.btst.open {
+  height: 300px;
+}
+
+.btst-header {
+  display: flex;
+  flex-direction: row;
+  line-height: 0;
+  --btst-hd-padding: 8px;
+  align-items: center;
+}
+
+.btst-fold {
+  padding: var(--btst-hd-padding);
+  padding-left: 10px;
+  color: var(--semantic-color-tertiary);
+  flex: 1;
+}
+
+.btst-close {
+  margin: var(--btst-hd-padding);
+  color: var(--semantic-color-tertiary);
+  /*border-style: solid;
+  border-width: 4px;
+  border-color: var(--semantic-color-tertiary);
+  border-radius: calc(var(--btst-top-radius) - var(--btst-hd-padding));*/
 }
