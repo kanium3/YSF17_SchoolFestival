@@ -1,5 +1,5 @@
 export default function TopVisualFinished() {
-    return (
-        <div></div>
-    )
+  return (
+    <div></div>
+  )
 }

@@ -1,5 +1,5 @@
 export default function TopVisualOpen() {
-    return (
-        <div></div>
-    )
+  return (
+    <div></div>
+  )
 }
