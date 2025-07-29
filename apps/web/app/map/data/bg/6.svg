@@ -61,6 +61,11 @@
          stroke="#000000"
          id="Astronomical_Observatory"
          d="" />
+      <path
+         id="____mostleftup6"
+         fill="#000000"
+         fill-opacity="0"
+         d="M 0,0 V 1 L 1,0 Z" />
     </g>
   </g>
 </svg>

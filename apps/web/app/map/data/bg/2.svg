@@ -457,6 +457,11 @@
          style="fill:url(#backyard);fill-rule:evenodd;stroke-width:0;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers stroke fill"
          d="M 20,0 H 823 V 289 H 930 V 762 H 835 V 652 h -42 v -74 h -6 V 473 H 566 v -74 h 45 V 289 h 176 v -34 h -60 v -36 h 60 V 184 H 20 Z"
          class="UnoptimicedTransforms" />
+      <path
+         id="____mostleftup2"
+         fill="#000000"
+         fill-opacity="0"
+         d="M 0,0 V 1 L 1,0 Z" />
     </g>
   </g>
 </svg>

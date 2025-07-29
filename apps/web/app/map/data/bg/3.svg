@@ -394,6 +394,11 @@
          style="fill:url(#pattern1);fill-rule:evenodd;stroke-width:0;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:0;paint-order:markers stroke fill"
          d="m 20,0 h 802 v 289 h -35 v -34 h -60 v -36 h 60 V 184 H 405 v 21 H 370 V 184 H 20 Z"
          class="UnoptimicedTransforms" />
+      <path
+         id="____mostleftup3"
+         fill="#000000"
+         fill-opacity="0"
+         d="M 0,0 V 1 L 1,0 Z" />
     </g>
   </g>
 </svg>

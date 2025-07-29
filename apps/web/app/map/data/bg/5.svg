@@ -104,9 +104,11 @@
          stroke="#000000"
          d="m 75,578 h 272 v 74 H 521 V 578 H 793 V 762 H 75 Z"
          id="____outer5" />
-      <!-- S52  S51 -->
-      <!-- S55  S54  S53 -->
-      <!-- S58  S57  S56 -->
+      <path
+         id="____mostleftup5"
+         fill="#000000"
+         fill-opacity="0"
+         d="M 0,0 V 1 L 1,0 Z" />
     </g>
   </g>
 </svg>
