@@ -113,8 +113,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onSe
                   paddings={polyPaddings}
                   zoomRatio={zoomRatio * Math.pow(2, initZoom)}
                   onSelectIds={onSelectIds}
-                >
-                </FloorLayer>
+                />
               </LayersControl.BaseLayer>
             )
           })}
