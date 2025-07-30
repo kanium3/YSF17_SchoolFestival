@@ -1,10 +1,5 @@
 .leaflet-top.leaflet-right {
-  top: 50%;
-  transform: translateY(-50%);
   transition: top 0.3s ease;
-}
-.leaflet-control-layers {
-  margin-top: 0 !important;
 }
 
 .leaflet-control-layers-base label span span {
