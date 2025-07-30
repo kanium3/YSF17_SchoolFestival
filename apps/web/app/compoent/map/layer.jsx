@@ -37,7 +37,7 @@ export function FloorLayer({ src, raw, picSize, paddings, zoomRatio, onSelectIds
                     onSelectIds(ids)
                   },
                 }}
-                pathOptions={{ fillOpacity: '100%', opacity: '100%' }} // どちらも0%にする (背景のsvgに任せるため)
+                pathOptions={{ fillOpacity: '0', opacity: '0' }} // どちらも0%にする (背景のsvgに任せるため)
                 positions={positions}
               >
                 {!onSelectIds && ( // 関数なしの場合
