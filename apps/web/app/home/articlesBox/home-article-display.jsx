@@ -22,7 +22,7 @@ export default async function HomeArticleDisplay() {
       <div>
         {articles}
       </div>
-      <Link className={styles.viewMore} href="/feature" style={{ color: 'gray' }}>
+      <Link className={styles.viewMore} href="/feature">
         {`もっと見る(全${articles.length}件)`}
         <MdArrowForwardIos />
       </Link>

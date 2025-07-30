@@ -26,11 +26,18 @@
     grid-row: 1 / 2;
 }
 
+.timetableText {
+    padding-left: 0;
+}
+
 .walkingTime {
+    position: relative;
+    top: var(--semantic-space-small);
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     align-self: end;
-    font-size: 1.2rem;
+    font-size: var(--semantic-font-size-l);
+    margin: 0;
 }
 
 .emph {

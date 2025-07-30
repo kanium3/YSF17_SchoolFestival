@@ -1,9 +1,8 @@
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
-import Countdown from '@/app/home/countdown/countdown.jsx'
-import styles from './topvisual-unopen.module.css'
+import styles from './topvisual-closed.module.css'
 
-export default function TopVisualUnopen() {
+export default function TopVisualClosed() {
   return (
     <div id="top_visual" className={styles.topVisualContainer}>
       {/* 仮作成のトップです */}
@@ -22,8 +21,12 @@ export default function TopVisualUnopen() {
       </div>
 
       <div className={styles.middleInfoContainer}>
-        <p className={styles.countdownText}>蒼煌祭の開催まで:</p>
-        <Countdown />
+        <p className={styles.closedText1}>第17回蒼煌祭は終了しました</p>
+        <p className={styles.closedText2}>
+          たくさんの方のご来場
+          <br />
+          ありがとうございました！
+        </p>
       </div>
 
       <div className={styles.subInfoContainer}>

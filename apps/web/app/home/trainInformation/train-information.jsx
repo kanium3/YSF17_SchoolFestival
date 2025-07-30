@@ -1,10 +1,16 @@
+'use client'
 import styles from './train-information.module.css'
+import stationInfo from './station-info.json'
+import RouteToStationButton from '@/app/home/stationRouteButton/station-route-button'
+import { Link } from '@latimeria/ganoine'
 
-export default function TrainInfoBox({ data }) {
+export default function TrainInfoBox({ index }) {
+  const data = stationInfo[index]
   const trainName = data.trainName
   const walkingTime = data.walkingTime
   const iconColor1 = data.iconColor1
   const iconColor2 = data.iconColor2
+  const routeURL = data.routeURL
 
   return (
     <div className={styles.infoBox}>
@@ -15,13 +21,19 @@ export default function TrainInfoBox({ data }) {
         </svg>
       </div>
       <span className={styles.trainName}>{trainName}</span>
-      <span className={styles.timeTableLink}>時刻表↗</span>
+      <span className={styles.timeTableLink}>
+        <Link href={data.timetableURL} kind="external" target="_blank">
+          <p className={styles.timetableText}>時刻表</p>
+        </Link>
+      </span>
       <span className={styles.walkingTime}>
         徒歩約
         <span className={styles.emph}>{walkingTime}</span>
         分
       </span>
-      <span className={styles.routeLink}>経路↗</span>
+      <span className={styles.routeLink}>
+        <RouteToStationButton link={routeURL} />
+      </span>
 
     </div>
   )

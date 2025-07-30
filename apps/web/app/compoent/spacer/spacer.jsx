@@ -1,18 +1,14 @@
+import styles from './spacer.module.css'
+
 export default function Spacer({ type }) {
-  const gap = {
-    S: '10px',
-    M: '30px',
-    L: '70px',
+  const style = {
+    S: styles.S,
+    M: styles.M,
+    L: styles.L,
+    XL: styles.XL,
   }[type]
 
   return (
-    <div style={
-      {
-        width: '100%',
-        marginBottom: gap,
-      }
-    }
-    >
-    </div>
+    <div className={style}></div>
   )
 }

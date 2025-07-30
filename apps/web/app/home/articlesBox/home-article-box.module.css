@@ -7,7 +7,7 @@
     grid-template-columns: 1fr 25%;
     padding: 10px 0 10px 0;
     flex-direction: row;
-    border-bottom: #3d3d46 1px solid;
+    border-bottom: var(--token-color-black-default) 1px solid;
 }
 
 .boxTitles {
@@ -22,16 +22,15 @@
     flex-grow: 1;
     margin: 0;
     left: 0;
-    font-size: 1rem;
+    font-size: var(--semantic-font-size-m);
     line-height: 1.1em;
 }
 
 .boxArticleDate {
     padding-left: 0;
     bottom: 0px;
-    color: #575757;
-    /*var(--semantic-text-supple)*/
-    font-size: 0.8rem;
+    color: var(--semantic-text-supple);
+    font-size: var(--semantic-font-size-s);
     text-align: start;
     align-self: flex-start;
     font-family: var(--font-noto-sans-jp), sans-serif;

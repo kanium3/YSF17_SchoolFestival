@@ -1,12 +1,10 @@
 import { solveBasePath } from '@/app/lib/index.js'
 import Image from 'next/image'
-import Countdown from '@/app/home/countdown/countdown.jsx'
-import styles from './topvisual-unopen.module.css'
+import styles from './topvisual-opened.module.css'
 
-export default function TopVisualUnopen() {
+export default function TopVisualOpened() {
   return (
     <div id="top_visual" className={styles.topVisualContainer}>
-      {/* 仮作成のトップです */}
       <Image
         className={styles.topImage}
         src={solveBasePath('/ysf_top.png')}
@@ -19,11 +17,6 @@ export default function TopVisualUnopen() {
 
       <div className={styles.topInfoContainer}>
         <p className={styles.headText}>蒼煌祭非公式HP</p>
-      </div>
-
-      <div className={styles.middleInfoContainer}>
-        <p className={styles.countdownText}>蒼煌祭の開催まで:</p>
-        <Countdown />
       </div>
 
       <div className={styles.subInfoContainer}>
