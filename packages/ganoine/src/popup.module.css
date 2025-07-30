@@ -1,0 +1,38 @@
+.backdrop {
+  position: fixed;
+  background-color: var(--semantic-shadow-default);
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 25000;
+
+  &[data-entering] {
+    animation: backdrop-color 75ms;
+  }
+
+  &[data-exiting] {
+    animation: backdrop-color 75ms reverse ease-in;
+  }
+}
+
+.main {
+  width: var(--popwidth);
+  height: var(--popheight);
+  border-radius: var(--semantic-radius-medium);
+  padding: var(--semantic-space-large);
+  z-index: 25001;
+  background-color: var(--semantic-background-white);
+}
+
+@keyframes backdrop-color {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
