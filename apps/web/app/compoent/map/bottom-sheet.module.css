@@ -51,3 +51,29 @@
   border-color: var(--semantic-color-tertiary);
   border-radius: calc(var(--btst-top-radius) - var(--btst-hd-padding));*/
 }
+
+.btst-items {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.btst-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--semantic-color-primary);
+  font-weight: bold;
+  border-left: solid 1px var(--semantic-color-tertiary);
+  border-bottom: solid 1px var(--semantic-color-tertiary);
+}
+
+.btst-item-active {
+  border-bottom-width: 0;
+}
+
+.btst-item:first-child {
+  border-left-width: 0;
+}
