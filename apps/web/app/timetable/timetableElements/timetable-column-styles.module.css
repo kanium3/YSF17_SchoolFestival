@@ -45,7 +45,7 @@
     top: -1rem;
     left: -3%;
 
-    font-size: 0.8rem;
+    font-size: var(--semantic-font-size-s);
     color: var(--semantic-surface-border-2);
 }
 

@@ -62,7 +62,7 @@ body.isMobile #content-base {
 }
 
 h2 {
-  font-size: 2rem;
+  font-size: var(--semantic-font-size-heading);
   color: var(--semantic-color-primary);
   margin: 0 0 1rem 0;
   scroll-padding-top: 80px;
@@ -71,12 +71,12 @@ h2 {
 h3 {
   position: relative;
   left: 1rem;
-  font-size: 1.67rem;
+  font-size: var(--semantic-font-size-heading2);
   margin: 0.8rem 0 0.4rem 0;
 }
 
 p {
-  font-size: 1rem;
+  font-size: var(--semantic-font-size-content);
   padding-left: 1em;
 }
 
