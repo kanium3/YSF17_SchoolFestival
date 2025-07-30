@@ -4,6 +4,7 @@ import { parseProgramsData, solveBasePath } from '@/app/lib/index.js'
 import Tags from '@/app/compoent/program/tags.jsx'
 import ProgramSample from '@/app/program.mock.json'
 import Image from 'next/image'
+import { MapFromSpecRoom } from '@/app/map/load-map'
 
 export async function generateMetadata({ params }) {
   // read route params
@@ -57,8 +58,7 @@ export default async function Program({ params }) {
         </div>
         <div className={styles['pr-text']}>{program.prText || ''}</div>
       </div>
-      {/* 地図も作りましょう */}
-      <div style={{ marginTop: '1em' }}>位置を示す地図</div>
+      <MapFromSpecRoom height={300} floor={Number(program.aria[0])} id={slug} />
     </>
   )
 }

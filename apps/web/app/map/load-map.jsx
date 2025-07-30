@@ -24,18 +24,26 @@ export function MapWithBottomSheet() {
 
 /**
  * どこでも使えるマップ
+ * @param {Object} prop
+ * @param {number} [prop.width]
+ * @param {number} [prop.height]
  */
-export function Map({ picWidth, picHeight }) {
+export function Map({ width, height }) {
   return (
-    <YSFMap picWidth={picWidth} picHeight={picHeight} />
+    <YSFMap picWidth={width} picHeight={height} />
   )
 }
 
 /**
  * 企画ページ向けのマップ
+ * @param {Object} prop
+ * @param {number} [prop.width]
+ * @param {number} [prop.height]
+ * @param {number} floor
+ * @param {number} id
  */
-export function MapFromSpecRoom({ picWidth, picHeight, floor, id }) {
+export function MapFromSpecRoom({ width, height, floor, id }) {
   return (
-    <YSFMap picWidth={picWidth} picHeight={picHeight} initialFloor={floor} id={id} />
+    <YSFMap picWidth={width} picHeight={height} initialFloor={floor} id={id} />
   )
 }
