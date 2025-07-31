@@ -12,10 +12,10 @@
     },
     "./package.json": "./package.json",
     "./base.css": {
-        "import": "./dist/extra/base.css",
-        "default": "./dist/extra/base.css",
-        "style": "./dist/extra/base.css",
-        "asset": "./dist/extra/base.css"
+      "import": "./dist/extra/base.css",
+      "default": "./dist/extra/base.css",
+      "style": "./dist/extra/base.css",
+      "asset": "./dist/extra/base.css"
     }
   },
   "files": [
