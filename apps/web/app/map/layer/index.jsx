@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { ImageOverlay, LayerGroup, Polygon, useMap } from 'react-leaflet'
+import { ImageOverlay, LayerGroup, Polygon, Popup, useMap } from 'react-leaflet'
 import { LatLngBounds } from 'leaflet'
 import { SVGController } from '@/app/lib/index.js'
 
@@ -82,7 +82,9 @@ export function PlacePolygon({ id, pathOptions, children }) {
   return (
     <LayerGroup>
       <Polygon pathOptions={pathOptions} positions={polygons}>
-        {children}
+        <Popup>
+          {children}
+        </Popup>
       </Polygon>
     </LayerGroup>
   )

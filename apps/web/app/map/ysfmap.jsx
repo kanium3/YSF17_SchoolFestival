@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
 import { CRS, LatLng } from 'leaflet'
 import { LayersControl, MapContainer } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
+import Image from 'next/image'
 
 /* eslint-disable import-x/no-duplicates */
 import OneFloorMap from './data/bg/1.svg?url'
@@ -75,10 +75,6 @@ export default function Ysfmap({ picheight, picwidth }) {
   }
   const programsParse = parseProgramsData(programs)
   const programsList = [...programsParse.iter()]
-  const [isDisplayPage, setDisplayPage] = useState(false)
-  function handleClick() {
-    setDisplayPage(!isDisplayPage)
-  }
 
   /** @type {[{aria:string , item:Program[]}]} */
   return (
@@ -105,8 +101,9 @@ export default function Ysfmap({ picheight, picwidth }) {
                     <FloorLayer>
                       {programsList.filter(content => content.aria.includes(item.floor)).map((content) => {
                         return (
-                          <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} handleClick={handleClick} key={content.id}>
-                            <ProgramPopup detail={content} handleClick={handleClick} isDisplayPage={isDisplayPage} />
+                          <PlacePolygon id={content.options.room} pathOptions={{ color: '#0000FF', fillColor: '#0000FFFF', weight: 1 }} key={content.id}>
+                            <Image src={content.options.imagePath} alt="サンプルPR画像" width={100} height={100} key={content.id} />
+                            <ProgramPopup title={content.name} url={content.id} images={content.options.imagePath} area={content.aria} place={content.location} text={content.prText} />
                           </PlacePolygon>
                         )
                       })}
