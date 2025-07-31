@@ -39,12 +39,12 @@ import { FloorLayer } from './layer'
  * @param {number} [props.picWidth] 地図の表示幅 指定がない場合は `window.innerWidth`
  * @param {number} [props.initialFloor=1] 初期表示する階(1~6) 指定しなかった場合`1`
  * @param {number} [props.id] 初期フォーカス対象の企画id (指定する場合初期表示する階を正しく必ず指定して下さい)
- * @param {(ids: string[]) => void} [props.onSelectIds] 部屋選択時に呼び出すコールバック関数\
- * 選択された部屋が持つ企画idの配列を受け取る。\
+ * @param {(ids: string[], layer: L.Polygon) => void} [props.onRoomClick] 部屋選択時に呼び出すコールバック関数\
+ * 選択された部屋が持つ企画idの配列と、クリックした部屋の`L.Polygon`を受け取る。\
  * 指定しなかった場合デフォルトのポップアップが表示される。
  * @returns {JSX.Element}
  */
-export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onSelectIds }) {
+export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRoomClick }) {
   if (!picHeight) {
     picHeight = window.innerHeight - 64
   }
@@ -112,7 +112,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onSe
                   picSize={[picHeight, picWidth]}
                   paddings={polyPaddings}
                   zoomRatio={zoomRatio * Math.pow(2, initZoom)}
-                  onSelectIds={onSelectIds}
+                  onRoomClick={onRoomClick}
                 />
               </LayersControl.BaseLayer>
             )

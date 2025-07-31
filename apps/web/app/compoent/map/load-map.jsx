@@ -1,6 +1,6 @@
 'use client'
 import dynamic from 'next/dynamic'
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef } from 'react'
 import BottomSheet from './bottom-sheet'
 
 const YSFMap = dynamic(() => import('./ysfmap.jsx'), {
@@ -13,11 +13,33 @@ const YSFMap = dynamic(() => import('./ysfmap.jsx'), {
  */
 export function MapWithBottomSheet() {
   const [selectedIds, setSelectedIds] = useState([])
-  const MemoMap = useMemo(() => <YSFMap onSelectIds={setSelectedIds} />, [])
+
+  const highlightManager = useRef({
+    lastLayer: undefined,
+    handleLayerClick({ ids = [], layer }) {
+      if (this.lastLayer) {
+        this.lastLayer.setStyle({ fillOpacity: 0, opacity: 0 })
+      }
+      if (layer) {
+        layer.setStyle({ opacity: 1 })
+        this.lastLayer = layer
+      }
+      else {
+        this.lastLayer = undefined
+      }
+      setSelectedIds(ids)
+    },
+  })
+
+  const MemoMap = useMemo(
+    () =>
+      <YSFMap onRoomClick={(ids, layer) => { highlightManager.current.handleLayerClick({ ids: ids, layer: layer }) }} />,
+    [],
+  )
   return (
     <>
       {MemoMap}
-      <BottomSheet ids={selectedIds} onClose={() => setSelectedIds([])} />
+      <BottomSheet ids={selectedIds} onClose={() => { highlightManager.current.handleLayerClick({}) }} />
     </>
   )
 }

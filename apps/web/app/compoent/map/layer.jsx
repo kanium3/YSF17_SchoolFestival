@@ -8,11 +8,11 @@ import { SVGController, PathAndAdjustInfo2Positions } from '@/app/lib/index.js'
  * @param {string} props.raw
  * @param {[height: number, width: number]} props.picSize
  * @param {[height: number, width: number]} props.paddings
- * @param {(ids: string[]) => void} [props.onSelectIds] 部屋選択時に呼び出すコールバック関数\
- * 選択された部屋が持つ企画idの配列を受け取る。\
+ * @param {(ids: string[], layer: L.Polygon) => void} [props.onRoomClick] 部屋選択時に呼び出すコールバック関数\
+ * 選択された部屋が持つ企画idの配列と、クリックした部屋の`L.Polygon`を受け取る。\
  * 指定しなかった場合デフォルトのポップアップが表示される。
  */
-export function FloorLayer({ src, raw, picSize, paddings, zoomRatio, onSelectIds }) {
+export function FloorLayer({ src, raw, picSize, paddings, zoomRatio, onRoomClick }) {
   const map = useMap()
   const svgController = new SVGController(raw)
   // eslint-disable-next-line unicorn/prefer-query-selector
@@ -32,15 +32,18 @@ export function FloorLayer({ src, raw, picSize, paddings, zoomRatio, onSelectIds
           return (
             <LayerGroup key={ids[0]}>
               <Polygon
-                eventHandlers={{
-                  click: () => {
-                    onSelectIds(ids)
-                  },
-                }}
-                pathOptions={{ fillOpacity: '0', opacity: '0' }} // どちらも0%にする (背景のsvgに任せるため)
+                eventHandlers={onRoomClick
+                  ? {
+                      click: (event_) => {
+                        const layer = event_.target
+                        onRoomClick(ids, layer)
+                      },
+                    }
+                  : {}}
+                pathOptions={{ fillOpacity: 0, opacity: 0 }}
                 positions={positions}
               >
-                {!onSelectIds && ( // 関数なしの場合
+                {!onRoomClick && ( // 関数なしの場合
                   <Popup>
                     {ids.map(id => <div key={id}>{id}</div>)}
                   </Popup>
