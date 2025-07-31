@@ -4,7 +4,7 @@ import { parseProgramsData, solveBasePath } from '@/app/lib/index.js'
 import Tags from '@/app/compoent/program/tags.jsx'
 import ProgramSample from '@/app/program.mock.json'
 import Image from 'next/image'
-import { MapFromSpecRoom } from '@/app/map/load-map'
+import { MapFromSpecRoom } from '@/app/compoent/map/load-map'
 
 export async function generateMetadata({ params }) {
   // read route params
