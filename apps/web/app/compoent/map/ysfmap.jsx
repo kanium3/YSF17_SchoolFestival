@@ -1,17 +1,17 @@
 'use client'
 
-import Floor1URL from './data/bg/1.svg?url'
-import Floor2URL from './data/bg/2.svg?url'
-import Floor3URL from './data/bg/3.svg?url'
-import Floor4URL from './data/bg/4.svg?url'
-import Floor5URL from './data/bg/5.svg?url'
-import Floor6URL from './data/bg/6.svg?url'
-import Floor1Raw from './data/programs/1.svg?raw'
-import Floor2Raw from './data/programs/2.svg?raw'
-import Floor3Raw from './data/programs/3.svg?raw'
-import Floor4Raw from './data/programs/4.svg?raw'
-import Floor5Raw from './data/programs/5.svg?raw'
-import Floor6Raw from './data/programs/6.svg?raw'
+import Floor1URL from '@/data/map/bg/1.svg?url'
+import Floor2URL from '@/data/map/bg/2.svg?url'
+import Floor3URL from '@/data/map/bg/3.svg?url'
+import Floor4URL from '@/data/map/bg/4.svg?url'
+import Floor5URL from '@/data/map/bg/5.svg?url'
+import Floor6URL from '@/data/map/bg/6.svg?url'
+import Floor1Raw from '@/data/map/programs/1.svg?raw'
+import Floor2Raw from '@/data/map/programs/2.svg?raw'
+import Floor3Raw from '@/data/map/programs/3.svg?raw'
+import Floor4Raw from '@/data/map/programs/4.svg?raw'
+import Floor5Raw from '@/data/map/programs/5.svg?raw'
+import Floor6Raw from '@/data/map/programs/6.svg?raw'
 
 const mapList = [
   { floor: '屋上', url: Floor6URL, raw: Floor6Raw, cssid: 'radioRoof' },
@@ -26,11 +26,11 @@ import { CRS, LatLng } from 'leaflet'
 import { LayersControl, MapContainer } from 'react-leaflet'
 
 import 'leaflet/dist/leaflet.css' // リーフレットの本体のCSSの読み込み(これしないと地図が崩れる)
-import './layer-button.css' // leaflet標準cssをオーバーライド
+import './leaflet-override.css' // leaflet標準cssをオーバーライド
 import styles from './ysfmap.module.css'
 
 import { SVGController, Path2Polygon, zoomRatioAndPaddings } from '@/app/lib/index.js'
-import { FloorLayer } from '@/app/compoent/map/layer'
+import { FloorLayer } from './layer'
 
 /**
  * 高さ、幅、初期表示階(、フォーカス対象の企画id)、部屋選択時に呼び出す関数をオプションで指定してYSF校内の地図を表示します。

@@ -1,7 +1,7 @@
 'use client'
 import dynamic from 'next/dynamic'
 import { useState, useMemo } from 'react'
-import BottomSheet from '@/app/compoent/map/bottom-sheet'
+import BottomSheet from './bottom-sheet'
 
 const YSFMap = dynamic(() => import('./ysfmap.jsx'), {
   loading: () => <p style={{ height: 'calc(100vh - 64px)', width: '100vw' }}>Loading...</p>,
