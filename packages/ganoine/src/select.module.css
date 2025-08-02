@@ -1,0 +1,39 @@
+.select {
+}
+
+.selectButton {
+    padding: var(--semantic-space-small) var(--semantic-space-medium);
+    background-color: var(--semantic-surface-1);
+    color: var(--semantic-text-dark);
+    border-style: none;
+    border-radius: var(--semantic-space-small);
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--semantic-font-size-l);
+}
+
+.selectListBox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--semantic-color-tertiary);
+    border-radius: var(--semantic-radius-medium);
+    padding: var(--semantic-space-small) var(--semantic-space-medium);
+    width: 150px;
+    max-width: 180px;
+    overflow: auto;
+    gap: var(--semantic-space-small);
+}
+
+.selectedGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--semantic-space-small);
+    padding: var(--semantic-space-small) var(--semantic-space-medium);
+}
+
+.selectGroupHeader {
+    font-weight: var(--semantic-font-weight-bold);
+    font-size: var(--semantic-font-size-heading2);
+}
