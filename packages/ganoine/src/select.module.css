@@ -1,0 +1,63 @@
+.selectButton {
+    padding: var(--semantic-space-small) var(--semantic-space-medium);
+    background-color: var(--semantic-surface-1);
+    color: var(--semantic-text-dark);
+    border-style: none;
+    border-radius: var(--semantic-space-small);
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--semantic-font-size-l);
+
+    .selectButtonValue {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    span[aria-hidden] {
+        margin-left: 1rem;
+    }
+}
+
+.selectButtonAsDisabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.selectListBox {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--semantic-color-tertiary);
+    border-radius: var(--semantic-radius-medium);
+    padding: var(--semantic-space-small);
+    background: var(--semantic-surface-1);
+    width: 100%;
+    max-width: 180px;
+    max-height: 360px;
+    overflow: scroll;
+}
+
+.selectListBoxItem {
+    padding: var(--semantic-space-0-5);
+    font-size: var(--semantic-font-size-m);
+
+    &[data-selected] {
+        background: var(--semantic-color-secondly);
+        border-radius: var(--semantic-space-small);
+    }
+}
+
+.selectedGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--semantic-space-small);
+    padding: var(--semantic-space-small) var(--semantic-space-medium);
+}
+
+.selectGroupHeader {
+    font-weight: var(--semantic-font-weight-bold);
+    font-size: var(--semantic-font-size-heading2);
+    padding-bottom: var(--semantic-space-small);
+}
