@@ -19,11 +19,20 @@
     flex-direction: column;
     border: 1px solid var(--semantic-color-tertiary);
     border-radius: var(--semantic-radius-medium);
-    padding: var(--semantic-space-small) var(--semantic-space-medium);
+    padding: var(--semantic-space-small);
+    background: var(--semantic-surface-1);
     width: 150px;
     max-width: 180px;
     overflow: auto;
-    gap: var(--semantic-space-small);
+}
+
+.selectListBoxItem {
+    padding: var(--semantic-space-0-5);
+    font-size: var(--semantic-font-size-l);
+    &[data-selected] {
+        background: var(--semantic-color-secondly);
+        border-radius: var(--semantic-space-small);
+    }
 }
 
 .selectedGroup {
@@ -36,4 +45,5 @@
 .selectGroupHeader {
     font-weight: var(--semantic-font-weight-bold);
     font-size: var(--semantic-font-size-heading2);
+    padding-bottom: var(--semantic-space-small);
 }

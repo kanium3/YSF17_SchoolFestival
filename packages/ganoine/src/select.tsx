@@ -17,6 +17,7 @@ import {
   ListBox as AriaListBox,
   ListBoxProps as AriaListBoxProperties,
   ListBoxItem as AriaListBoxItem,
+  ListBoxItemProps as AriaListBoxItemProperties,
   Collection as AriaCollection,
   Popover as AriaPopover,
 } from 'react-aria-components'
@@ -73,6 +74,8 @@ export function SelectButton(properties: SelectButtonProperties): ReactNode {
 
 export type SelectPopoverProperties = {
   children: ReactNode
+  className?: string
+  style?: CSSProperties
 }
 
 export function SelectPopover(properties: SelectPopoverProperties): ReactNode {
@@ -135,7 +138,7 @@ export type SelectItemProperties = {
   description?: string
   className?: string
   style?: CSSProperties
-}
+} & Omit<AriaListBoxItemProperties, 'children'>
 
 export function SelectItem(properties: SelectItemProperties): ReactNode {
   return (
@@ -145,7 +148,9 @@ export function SelectItem(properties: SelectItemProperties): ReactNode {
       className={`${styles.selectListBoxItem} ${properties.className}`}
       style={properties.style}
     >
-      <AriaText slot="label">{properties.label ?? properties.value}</AriaText>
+      <AriaText slot="label">
+        {properties.label ?? properties.value}
+      </AriaText>
       <AriaText slot="description">{properties.description}</AriaText>
     </AriaListBoxItem>
   )
