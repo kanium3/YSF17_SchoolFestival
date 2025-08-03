@@ -36,6 +36,38 @@ export type SelectProperties = {
 } & Omit<ComponentPropsWithRef<'div'>, 'children'>
 & Omit<AriaSelectProperties, 'children'>
 
+/**
+ * ## Ganoineのセレクトコンポーネント
+ * `react-aria-components`の`Select`コンポーネントを使用して、アクセシブルなセレクトボックスを提供します。
+ *
+ * - `label`: セレクトボックスのラベルを指定します。
+ * - `isRequired`: セレクトボックスが必須かどうかを指定します。
+ * - `formName`: フォーム名を指定します。
+ * - `isDisabled`: セレクトボックスを無効化するかどうかを指定します。
+ * - `placeholder`: プレースホルダーを指定します。
+ * - `children`: セレクトボックスのアイテムを指定します。
+ *
+ * ### 使用例
+ * `SelectItems`や `SelectItem`を使用して、セレクトボックスのアイテムを定義します。
+ * `SelectItems`は、セレクトボックスのアイテムをグループ化するためのコンポーネントです。
+ * `SelectItem`は、セレクトボックスのアイテムを定義するためのコンポーネントです。
+ * ```tsx
+ * <Select label="選択してください" formName="mySelect" isRequired>
+ *     <SelectItems mode="single">
+ *         <SelectItem value="option1" label="オプション1" />
+ *         <SelectItem value="option2" label="オプション2" />
+ *         <SelectItem value="option3" label="オプション3" />
+ *         <SelectItem value="option4" label="オプション4" />
+ *     </SelectItems>
+ * </Select>
+ * ```
+ * ### 注意点
+ * `react-aria-components`の`Select`コンポーネントは、アクセシビリティを考慮して設計されています。
+ * そのため、`aria-label`や`aria-required`などのアクセシビリティ属性は自動的に設定されます。
+ * また、`react-aria-components`のコンポーネントは、ARIA仕様に準拠しているため、スクリーンリーダーなどの支援技術と互換性があります。
+ * このコンポーネントは、`react-aria-components`の`Select`コンポーネントをラップしているため、`react-aria-components`のバージョンに依存します。
+ * `react-aria-components`のバージョンが変更された場合、このコンポーネントの動作が変わる可能性があります。
+ */
 export function Select(properties: SelectProperties): ReactNode {
   return (
     <AriaSelect
@@ -61,10 +93,10 @@ export function SelectButton(properties: SelectButtonProperties): ReactNode {
   return (
     <AriaButton
       {...properties}
-      className={`${styles.selectButton} ${properties.className}`}
+      className={({ isDisabled }) => isDisabled ? `${styles.selectButton} ${styles.selectButtonAsDisabled} ${properties.className}` : `${styles.selectButton} ${properties.className}`}
       style={properties.style}
     >
-      <AriaSelectValue />
+      <AriaSelectValue className={styles.selectButtonValue} />
       <span aria-hidden="true">
         {selectedState?.isOpen ? <MdOutlineExpandLess /> : <MdOutlineExpandMore />}
       </span>
@@ -138,7 +170,7 @@ export type SelectItemProperties = {
   description?: string
   className?: string
   style?: CSSProperties
-} & Omit<AriaListBoxItemProperties, 'children'>
+} & Omit<AriaListBoxItemProperties, 'children' | 'value'>
 
 export function SelectItem(properties: SelectItemProperties): ReactNode {
   return (
