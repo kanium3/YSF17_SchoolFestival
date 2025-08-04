@@ -42,6 +42,7 @@
 .selectListBoxItem {
     padding: var(--semantic-space-0-5);
     font-size: var(--semantic-font-size-m);
+    cursor: default;
 
     &[data-selected] {
         background: var(--semantic-color-secondly);
