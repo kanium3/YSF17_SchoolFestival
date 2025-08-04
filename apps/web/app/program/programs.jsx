@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from 'react-aria-components'
 import { MdOutlineCancel } from 'react-icons/md'
+import { TitleBar } from '@/app/compoent/title-bar.jsx'
 
 // TODO:サンプルデータにつきデータ取り扱いの正式な方式を考慮必要
 const programsAtom = atom(parseProgramsData(ProgramSample))
@@ -42,7 +43,7 @@ export function ProgramsView() {
 
   return (
     <div>
-      <h2>企画一覧/検索</h2>
+      <TitleBar pagename="企画一覧/検索" />
       <ProgramInput onchange={setTags} tags={tags} />
       <div className={styles.programSearchLine}>
         <KindSelectMenu />

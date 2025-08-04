@@ -2,6 +2,7 @@ import { TimetableDisplay } from './timetableElements/timetable-display.jsx'
 import { PickupSlide } from './pickupSlide/pickup-slide.jsx'
 import './timetableElements/timetable-action.css'
 import './timetableElements/timetable-common.css'
+import { TitleBar } from '@/app/compoent/title-bar.jsx'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜タイムテーブル',
@@ -30,7 +31,7 @@ export default function Program() {
 
   return (
     <div>
-      <h1>時間割</h1>
+      <TitleBar pagename="時間割" />
       <div>
         <h2>ピックアップ</h2>
         <p>{pickup_text}</p>
