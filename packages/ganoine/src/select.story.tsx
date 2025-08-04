@@ -5,7 +5,6 @@ import { useState } from 'react'
 
 export default {
   title: 'Ganoine/Select',
-  component: Select,
 } as Meta<typeof Select>
 
 export const Default = {

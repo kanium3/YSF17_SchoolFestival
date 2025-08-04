@@ -1,0 +1,24 @@
+.searchContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.searchLabel {
+    margin-left: var(--semantic-space-0-5);
+}
+
+.inputBox {
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1;
+    border: thin solid var(--semantic-input-border);
+    border-radius: var(--semantic-radius-circle);
+    padding: 0.75em;
+    margin: var(--semantic-space-0-5) 0;
+}
+
+.inputBox[data-disabled] {
+    border: thin solid var(--semantic-surface-1);
+}
