@@ -3,6 +3,7 @@ import { PickupSlide } from './pickupSlide/pickup-slide.jsx'
 import './timetableElements/timetable-action.css'
 import './timetableElements/timetable-common.css'
 import { TitleBar } from '@/app/compoent/title-bar.jsx'
+import { BrowserView, MobileView } from 'react-device-detect'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜タイムテーブル',
@@ -31,7 +32,12 @@ export default function Program() {
 
   return (
     <div>
-      <TitleBar pagename="時間割" />
+      <MobileView>
+        <TitleBar pagename="時間割" />
+      </MobileView>
+      <BrowserView>
+        <h1>時間割</h1>
+      </BrowserView>
       <div>
         <h2>ピックアップ</h2>
         <p>{pickup_text}</p>

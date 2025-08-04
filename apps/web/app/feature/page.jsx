@@ -3,6 +3,7 @@ import matter from 'gray-matter'
 import FeatureCard from '@/app/feature/feature-card'
 import style from './page.module.css'
 import { TitleBar } from '@/app/compoent/title-bar.jsx'
+import { BrowserView, MobileView } from 'react-device-detect'
 
 export default async function Features() {
   const directoryFiles = await fs.promises.readdir('posts')
@@ -16,7 +17,12 @@ export default async function Features() {
   return (
     <div>
       <div>
-        <TitleBar pagename="特集" />
+        <MobileView>
+          <TitleBar pagename="特集" />
+        </MobileView>
+        <BrowserView>
+          <h1>特集</h1>
+        </BrowserView>
       </div>
       <div className={style.featureView}>
         {featureData.map(data => (

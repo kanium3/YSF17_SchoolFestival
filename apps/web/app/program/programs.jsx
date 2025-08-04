@@ -17,6 +17,7 @@ import {
 } from 'react-aria-components'
 import { MdOutlineCancel } from 'react-icons/md'
 import { TitleBar } from '@/app/compoent/title-bar.jsx'
+import { BrowserView, MobileView } from 'react-device-detect'
 
 // TODO:サンプルデータにつきデータ取り扱いの正式な方式を考慮必要
 const programsAtom = atom(parseProgramsData(ProgramSample))
@@ -43,7 +44,12 @@ export function ProgramsView() {
 
   return (
     <div>
-      <TitleBar pagename="企画一覧/検索" />
+      <MobileView>
+        <TitleBar pagename="企画一覧/検索" />
+      </MobileView>
+      <BrowserView>
+        <h1>企画一覧/検索</h1>
+      </BrowserView>
       <ProgramInput onchange={setTags} tags={tags} />
       <div className={styles.programSearchLine}>
         <KindSelectMenu />
