@@ -27,7 +27,8 @@
     "dev:css": "npm run genCss",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
-    "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch"
+    "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch",
+    "gen": "turbo gen ganoine"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",

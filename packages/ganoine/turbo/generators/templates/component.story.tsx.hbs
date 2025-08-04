@@ -1,0 +1,13 @@
+import { {{ pascalCase name }} } from './{{ kebabCase name }}'
+import './extra/base.css'
+import type { Meta, StoryObj } from '@storybook/react'
+
+export default {
+title: 'Ganoine/{{ pascalCase name }}',
+component: {{ pascalCase name }},
+} as Meta<typeof {{ pascalCase name }}>
+
+export const Default = {
+    args: {
+    },
+} as StoryObj<typeof {{ pascalCase name }}>
