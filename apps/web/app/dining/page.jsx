@@ -14,8 +14,8 @@ export default function Dining() {
       {/** 別に絶対写真を使いたいわけではない */}
       {/** 押したらとかホバーで色や写真のズームを変えたい */}
       <div className={styles.buttonGrid}>
-        <ImageButton name="カフェテリア" pageUrl="/dining/cafeteria" imageSrc="/dining.cafeteria.webp" />
         <ImageButton name="食販" pageUrl="/dining/foodSales" imageSrc="/dining.foodSales.webp" />
+        <ImageButton name="カフェテリア" pageUrl="/dining/cafeteria" imageSrc="/dining.cafeteria.webp" />
       </div>
     </div>
   )
