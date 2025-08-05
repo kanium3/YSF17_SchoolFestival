@@ -1,7 +1,6 @@
 import styles from './page.module.css'
 import { ImageButton } from '@/app/compoent/image-button'
-import { TitleBar } from '@/app/compoent/title-bar.jsx'
-import { BrowserView, MobileView } from 'react-device-detect'
+import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
   title: '蒼煌祭17th非公式ページ｜食事',
@@ -11,12 +10,7 @@ export const metadata = {
 export default function Dining() {
   return (
     <div>
-      <MobileView>
-        <TitleBar pagename="食事" />
-      </MobileView>
-      <BrowserView>
-        <h1>食事</h1>
-      </BrowserView>
+      <Titlebar pagename="食事" />
       <p>食販やカフェテリアの情報です</p>
       {/** 別に絶対写真を使いたいわけではない */}
       {/** 押したらとかホバーで色や写真のズームを変えたい */}
