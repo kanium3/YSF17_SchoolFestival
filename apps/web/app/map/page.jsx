@@ -2,7 +2,7 @@ import LazyMap from '@/app/map/load-map'
 import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜地図',
+  title: '地図 - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの非公式の地図ページです。',
 }
 

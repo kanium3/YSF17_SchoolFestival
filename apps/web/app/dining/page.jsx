@@ -3,7 +3,7 @@ import { ImageButton } from '@/app/compoent/image-button'
 import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜食事',
+  title: '食事 - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの食事についての非公式のページです。',
 }
 
