@@ -12,24 +12,18 @@ export default function FoodSales() {
   return (
     <div>
       <TitleBarWithBack backpage={solveBasePath('/dining')} pagename="食品販売" />
-      {/** こういう場合Linkとaどっちのほうがいいんだろ */}
       <p>
         <Link href="#how-to-use-foodSales">食販の使い方</Link>
         も併せてお読みください
       </p>
       <div style={{ paddingBottom: '0rem' }}>
         <h1>食販団体一覧</h1>
-        {/** スマホ想定の文字サイズ */}
-
         <p>
           <Link href="/dining/foodSales/allergyTable" target="_blank" rel="noopener noreferrer">アレルギー表はこちら(新規タブで開きます)</Link>
         </p>
         <FoodSalesElement />
-
-        {/** <div id="foodSaleMenus" className={styles.foodSalesMenuArea}>
-
-        </div> */}
       </div>
+
       <div id="how-to-use-foodSales">
         <h1>食販の使い方</h1>
         <iframe
