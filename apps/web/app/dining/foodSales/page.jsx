@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { solveBasePath } from '@/app/lib/index.js'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜食販',
+  title: '食販 - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの食販についての情報の非公式のページです。',
 }
 

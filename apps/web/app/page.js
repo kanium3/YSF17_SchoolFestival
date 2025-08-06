@@ -10,7 +10,7 @@ import Source from './home/source/source'
 import HomeArticleDisplay from '@/app/home/articlesBox/home-article-display.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜トップ',
+  title: '蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの非公式のページのトップです。',
 }
 
