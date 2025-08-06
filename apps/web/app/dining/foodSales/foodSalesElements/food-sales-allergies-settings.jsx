@@ -4,6 +4,7 @@ import styles from './food-sales-allergies-settings.module.css'
 import { useState } from 'react'
 import { FoodSalesAllergiesFilter } from './food-sales-allergies-filter.jsx'
 import { ListBox, ListBoxItem, ListBoxSection, Header, Collection } from 'react-aria-components'
+import { usePopup, Button, Popup, PopupCloseButton, PopupProvider } from '@latimeria/ganoine'
 // import type {ListBoxItemProps, SelectProps, ValidationResult} from 'react-aria-components'
 
 export function FoodSalesAllergiesSettings() {
@@ -76,29 +77,45 @@ export function FoodSalesAllergiesSettings() {
     <div>
       {/** アレルギー選択部分 */}
       <div id="AllergiesSlection">
-        <details className={styles.allergiesSelectingTab}>
+        <div className={styles.popupProvider}>
+          <PopupProvider>
+            <ModalButton />
+            <Popup>
+              <div className={styles.dialogBox}>
+                <h1>アレルギーフィルター</h1>
+                <p>以下の28品目から選択されたアレルゲンが使われていないメニューを表示します(複数選択可)。</p>
+                <ListBox
+                  aria-label="アレルゲン"
+                  selectionMode="multiple"
+                  selectedKeys={selected}
+                  onSelectionChange={setSelected}
+                  className={styles.listBox}
+                >
+                  {specificSubstanceTable.map(item => (
+                    <ListBoxSection id={item.name} className={styles.reactAriaListBoxSection} key={item.name}>
+                      <Header className={styles.reactAriaHeader}>{item.name}</Header>
+                      <Collection className={styles.itemCollection}>
+                        {item.children.map(itemc => <ListBoxItem className={styles.items} id={itemc.id} key={itemc.name}>{itemc.name}</ListBoxItem>)}
+                      </Collection>
+                    </ListBoxSection>
+                  ),
+                  )}
+                </ListBox>
+                <p style={{ paddingLeft: '0em' }}>△...調理工程で混入する可能性があります</p>
+                <p style={{ paddingLeft: '0em' }}>ー...調理工程での混入の可能性は限りなく低いです</p>
+                <div className={styles.PopUpCloseButtonDiv}>
+                  <PopupCloseButton>
+                    完了
+                  </PopupCloseButton>
+                </div>
+              </div>
+            </Popup>
+          </PopupProvider>
+        </div>
+        {/** <details className={styles.allergiesSelectingTab}>
           <summary>アレルギーでフィルター：</summary>
-          <p>以下の28品目から選択されたアレルゲンが使われていないメニューを表示します(複数選択可)。</p>
-          <ListBox
-            aria-label="アレルゲン"
-            selectionMode="multiple"
-            selectedKeys={selected}
-            onSelectionChange={setSelected}
-            className={styles.listBox}
-          >
-            {specificSubstanceTable.map(item => (
-              <ListBoxSection id={item.name} className={styles.reactAriaListBoxSection} key={item.name}>
-                <Header className={styles.reactAriaHeader}>{item.name}</Header>
-                <Collection className={styles.itemCollection}>
-                  {item.children.map(itemc => <ListBoxItem className={styles.items} id={itemc.id} key={itemc.name}>{itemc.name}</ListBoxItem>)}
-                </Collection>
-              </ListBoxSection>
-            ),
-            )}
-          </ListBox>
-          <p style={{ paddingLeft: '0em' }}>△...調理工程で混入する可能性があります</p>
-          <p style={{ paddingLeft: '0em' }}>ー...調理工程での混入の可能性は限りなく低いです</p>
-        </details>
+
+        </details> */}
         {/** 「選択しない」ならば表示しない */}
         {[...selected][0] == 0
           ? <></>
@@ -113,4 +130,9 @@ export function FoodSalesAllergiesSettings() {
       <FoodSalesAllergiesFilter allergies={[...selected][0] == 0 ? [] : [...selected].sort((a, b) => a - b).map(item => specificSubstanceList.find(itemlist => itemlist.id == item).name)} />
     </div>
   )
+}
+
+const ModalButton = () => {
+  const { toggleModal } = usePopup()
+  return <Button onPress={() => toggleModal()}>アレルギーでフィルター</Button>
 }
