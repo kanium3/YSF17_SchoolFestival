@@ -123,3 +123,7 @@ a:not(:has(*)) {
   /** hsl(220, 100%, 70%); */
   border-radius: 2rem;
 }
+
+.clickable {
+  cursor: default;
+}
