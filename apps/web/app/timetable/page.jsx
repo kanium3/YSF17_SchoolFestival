@@ -5,7 +5,7 @@ import './timetableElements/timetable-common.css'
 import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜タイムテーブル',
+  title: 'タイムテーブル - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの非公式のタイムテーブルのページです。',
 }
 

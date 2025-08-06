@@ -4,6 +4,11 @@ import FeatureCard from '@/app/feature/feature-card'
 import style from './page.module.css'
 import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
+export const metadata = {
+  title: '特集一覧 - 蒼煌祭17th非公式ページ',
+  description: '蒼煌祭17thの非公式の特集の一覧のページです。',
+}
+
 export default async function Features() {
   const directoryFiles = await fs.promises.readdir('posts')
   const featureData = []

@@ -2,7 +2,7 @@ import { ProgramsView } from '@/app/program/programs.jsx'
 import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜企画',
+  title: '企画 - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの企画についての非公式のページです。',
 }
 

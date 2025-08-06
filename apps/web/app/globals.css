@@ -123,3 +123,8 @@ a:not(:has(*)) {
   /** hsl(220, 100%, 70%); */
   border-radius: 2rem;
 }
+
+.clickable {
+  /** 装飾のデザインにかかわる類は一切記述しない */
+  cursor: pointer;
+}

@@ -13,7 +13,7 @@ export async function generateMetadata({ params }) {
   const programs = parseProgramsData(ProgramSample)
   const program = [...programs.iter()].find(program => program.id === slug)
   return {
-    title: `蒼煌祭17th非公式ページ｜${program.name}`,
+    title: `${program.name} - 蒼煌祭17th非公式ページ`,
     description: `蒼煌祭17thの企画「${program.name}」についての非公式のページです。`,
   }
 }
