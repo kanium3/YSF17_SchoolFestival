@@ -100,14 +100,14 @@
     background: #228b22;/** forest green */
     color: #ffffff;
 
-    &::before {
+    /**&::before {
       content: '✓';
       content: '✓' / '';
       alt: ' ';
       position: absolute;
       top: 4px;
       left: 4px;
-    }
+    }*/
   }
 
   /**&[data-focused]
