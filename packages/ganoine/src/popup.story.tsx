@@ -25,16 +25,22 @@ export const Default = {
 } as StoryObj<typeof Popup>
 
 export const PopupLocked = {
-  render: () => (
-    <PopupProvider>
-      <PopupButton />
-      <Popup isDismissable={false}>
+  args: {
+    isDismissable: false,
+    children: (
+      <>
         <div>
           <h1>クリックに反応しないポップアップ</h1>
           <p>背景をクリックしても閉じないタイプのポップアップです。</p>
         </div>
         <PopupCloseButton />
-      </Popup>
+      </>
+    ),
+  },
+  render: properties_ => (
+    <PopupProvider>
+      <PopupButton />
+      <Popup {...properties_} />
     </PopupProvider>
   ),
 } as StoryObj<typeof Popup>
