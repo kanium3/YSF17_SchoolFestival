@@ -18,10 +18,14 @@ export default function ProgramInput() {
     <SearchField
       name="programSearch"
       onChange={(v) => {
-        setInputValue(previous => ({
-          ...previous,
-          searchParams: previous.searchParams?.append('q', v) ?? new URLSearchParams([['q', v]]),
-        }))
+        setInputValue((previous) => {
+          const parameters = new URLSearchParams([...previous.searchParams])
+          parameters.set('q', v)
+          return {
+            ...previous,
+            searchParams: parameters,
+          }
+        })
       }}
       placeholder="企画名を入力"
       aria-label="企画名を入力して企画を検索します"

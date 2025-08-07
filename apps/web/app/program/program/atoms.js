@@ -6,8 +6,6 @@ import { atomWithLocation } from 'jotai-location'
 
 export const programsAtom = atom(parseProgramsData(ProgramSample))
 export const searchQueryAtom = atomWithLocation()
-export const placeAtom = atomWithLocation()
-export const kindAtom = atomWithLocation()
 export const matchedProgramsAtom = atom((get) => {
   return get(programsAtom)
 })

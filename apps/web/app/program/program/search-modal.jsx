@@ -1,6 +1,6 @@
 'use client'
 
-import { useSetAtom } from 'jotai'
+import { useAtom } from 'jotai'
 import {
   Select,
   SelectPopover,
@@ -13,7 +13,7 @@ import {
   PopupCloseButton, SelectButton,
 } from '@latimeria/ganoine'
 import styles from './search-modal.module.css'
-import { kindAtom, placeAtom } from '@/app/program/program/atoms'
+import { searchQueryAtom } from '@/app/program/program/atoms'
 
 export function SearchModal() {
   return (
@@ -46,15 +46,20 @@ function PopupToggleButton() {
  * @constructor
  */
 function KindSelectMenu() {
-  const setKind = useSetAtom(kindAtom)
+  const [kind, setKind] = useAtom(searchQueryAtom)
   return (
     <Select
-      onSelection={(selected) => {
-        setKind(previous => ({
-          ...previous,
-          searchParams: previous.searchParams?.append('kind', selected) ?? new URLSearchParams([['kind', selected]]),
-        }))
+      onSelectionChange={(selected) => {
+        setKind((previous) => {
+          const parameters = new URLSearchParams([...previous.searchParams])
+          parameters.set('kind', selected)
+          return {
+            ...previous,
+            searchParams: parameters,
+          }
+        })
       }}
+      selectedKey={kind.searchParams?.get('kind') ?? ''}
       placeholder="種類"
       className={styles.queryProperty}
     >
@@ -78,16 +83,21 @@ function KindSelectMenu() {
  * @constructor
  */
 function PlaceSelectMenu() {
-  const setPlace = useSetAtom(placeAtom)
+  const [place, setPlace] = useAtom(searchQueryAtom)
   return (
     <Select
-      onSelection={(selected) => {
-        setPlace(previous => ({
-          ...previous,
-          searchParams: previous.searchParams?.append('place', selected) ?? new URLSearchParams([['place', selected]]),
-        }))
+      onSelectionChange={(selected) => {
+        setPlace((previous) => {
+          const parameters = new URLSearchParams([...previous.searchParams])
+          parameters.set('place', selected)
+          return {
+            ...previous,
+            searchParams: parameters,
+          }
+        })
       }}
       placeholder="場所"
+      selectedKey={place.searchParams?.get('place') ?? ''}
       className={styles.queryProperty}
     >
       <SelectButton />
