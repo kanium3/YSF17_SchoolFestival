@@ -60,12 +60,13 @@ function KindSelectMenu() {
         })
       }}
       selectedKey={kind.searchParams?.get('kind') ?? ''}
-      placeholder="種類"
+      placeholder="選択しない"
       className={styles.queryProperty}
     >
       <SelectButton />
       <SelectPopover>
         <SelectItems mode="single">
+          <SelectItem value="選択しない" label="選択しない" />
           <SelectItem value="体験" label="体験" />
           <SelectItem value="展示" label="展示" />
           <SelectItem value="上演" label="上演" />
@@ -96,13 +97,14 @@ function PlaceSelectMenu() {
           }
         })
       }}
-      placeholder="場所"
+      placeholder="選択しない"
       selectedKey={place.searchParams?.get('place') ?? ''}
       className={styles.queryProperty}
     >
       <SelectButton />
       <SelectPopover>
         <SelectItems mode="single">
+          <SelectItem value="選択しない" />
           <SelectItem value="1F" />
           <SelectItem value="2F" />
           <SelectItem value="3F" />
