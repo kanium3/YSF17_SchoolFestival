@@ -33,9 +33,9 @@ export function SearchModal() {
 }
 
 function PopupToggleButton() {
-  const { toggleModal } = usePopup()
+  const { togglePopup } = usePopup()
   return (
-    <Button kind="primary" onPress={toggleModal}>
+    <Button kind="primary" onPress={togglePopup}>
       検索条件
     </Button>
   )
