@@ -1,17 +1,15 @@
 'use client'
 
 import Image from 'next/image'
-import { isMobile } from 'react-device-detect'
 import styles from './site-footer.module.css'
+import './site-footer.rwd.css'
 import { solveBasePath } from '@/app/lib/index.js'
 
 export default function SiteFooter() {
-  const height = isMobile ? 192 : 128
-  const padding = isMobile ? 64 : 0
   return (
-    <footer className={styles['ft-base']} style={{ height: height }}>
-      <div className={styles['ft-bg']} />
-      <div className={styles['ft-main']} style={{ height: height, paddingBottom: padding }}>
+    <footer className={`${styles['ft-base']} ft-rwd-height`}>
+      <div className={`${styles['ft-bg']} ft-rwd-height`} />
+      <div className={`${styles['ft-main']} ft-main-rwd-padding-bottom ft-rwd-height`}>
         <Image
           src={solveBasePath('/latimeria_logo_768.png')}
           alt="シーラカンスのロゴです"

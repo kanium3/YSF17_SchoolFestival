@@ -12,10 +12,10 @@
     },
     "./package.json": "./package.json",
     "./base.css": {
-        "import": "./dist/extra/base.css",
-        "default": "./dist/extra/base.css",
-        "style": "./dist/extra/base.css",
-        "asset": "./dist/extra/base.css"
+      "import": "./dist/extra/base.css",
+      "default": "./dist/extra/base.css",
+      "style": "./dist/extra/base.css",
+      "asset": "./dist/extra/base.css"
     }
   },
   "files": [
@@ -27,7 +27,8 @@
     "dev:css": "npm run genCss",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
-    "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch"
+    "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch",
+    "gen": "turbo gen ganoine"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -50,7 +51,7 @@
     "react-dom": ">=16.9.0"
   },
   "dependencies": {
-    "@latimeria/design-token": "^0.1.7",
+    "@latimeria/design-token": "^0.2.0",
     "clsx": "^2.1.1",
     "react-aria": "^3.41.1",
     "react-aria-components": "^1.10.1",

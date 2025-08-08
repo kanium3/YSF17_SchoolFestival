@@ -18,8 +18,8 @@
 }
 
 .programSelectPullDown {
-  border: 1px solid var(--semantic-background-dark);;
-  background: rgb(238, 238, 238, 0.9);
+  border: none;
+  background: var(--semantic-surface-1);
   padding: 0.35em;
   border-radius: 0.35em;
   margin: 0.15em;
@@ -98,11 +98,8 @@
 .programSelectResetButton {
   font-size: 1rem;
   background: none;
-  color: #42507B;
-
-  padding-left: 1rem;
-  padding-right: 1rem;
-  /** border: none; */
+  color: var(--semantic-color-tertiary);
+  border: none;
 }
 
 .programSelectResetButton svg {

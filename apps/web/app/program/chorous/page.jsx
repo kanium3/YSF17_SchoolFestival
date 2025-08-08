@@ -1,5 +1,5 @@
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜合唱祭',
+  title: '合唱祭 - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの合唱祭についての非公式のページです。',
 }
 

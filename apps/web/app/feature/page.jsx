@@ -2,6 +2,12 @@ import fs from 'node:fs'
 import matter from 'gray-matter'
 import FeatureCard from '@/app/feature/feature-card'
 import style from './page.module.css'
+import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
+
+export const metadata = {
+  title: '特集一覧 - 蒼煌祭17th非公式ページ',
+  description: '蒼煌祭17thの非公式の特集の一覧のページです。',
+}
 
 export default async function Features() {
   const directoryFiles = await fs.promises.readdir('posts')
@@ -15,7 +21,7 @@ export default async function Features() {
   return (
     <div>
       <div>
-        <h2>特集</h2>
+        <Titlebar pagename="特集" />
       </div>
       <div className={style.featureView}>
         {featureData.map(data => (

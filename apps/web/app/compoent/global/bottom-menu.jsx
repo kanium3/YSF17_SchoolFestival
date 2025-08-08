@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import styles from './navi-footer.module.css'
+import styles from './bottom-menu.module.css'
 import Link from 'next/link'
 import { MdHome, MdOutlineFastfood, MdWysiwyg, MdAccessTime, MdOutlineMap } from 'react-icons/md'
 import { usePathname } from 'next/navigation'
 
-export default function NaviFooter() {
+export default function BottomMenu() {
   /*
     activePathの初期化・更新について:
     pathname = "/a/b/c" とすると、
@@ -34,10 +34,10 @@ export default function NaviFooter() {
     { label: '地図', href: '/map', Icon: MdOutlineMap },
   ]
   return (
-    <footer className={styles['nvft']}>
-      <div className={styles['nvft-blur']} />
-      <nav className={styles['nvft-main']}>
-        <ul className={styles['nvft-list']}>
+    <footer className={styles['btmenu-base']}>
+      <div className={styles['btmenu-blur']} />
+      <nav className={styles['btmenu-main']}>
+        <ul className={styles['btmenu-list']}>
           {items.map(({ label, href, Icon }) => {
             const isActive = href === activePage
             return (
@@ -45,10 +45,10 @@ export default function NaviFooter() {
                 <Link
                   href={href}
                   // onClick={() => setActivePage(href)}
-                  className={`${styles['nvft-item']} ${isActive ? styles['nvft-item-active'] : styles['nvft-item-normal']}`}
+                  className={`${styles['btmenu-item']} ${isActive ? styles['btmenu-item-active'] : styles['btmenu-item-normal']}`}
                 >
-                  <Icon size={40} className={styles['nvft-icon']} />
-                  <span className={styles['nvft-label']}>
+                  <Icon size={40} className={styles['btmenu-icon']} />
+                  <span className={styles['btmenu-label']}>
                     {' '}
                     {label}
                     {' '}

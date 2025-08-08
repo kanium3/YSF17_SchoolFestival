@@ -7,7 +7,7 @@ import { MenuExporter } from './cafeteriamenu-exporter'
 import { solveBasePath } from '@/app/lib/index.js'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜カフェテリア',
+  title: 'カフェテリア - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thのカフェテリアについての情報の非公式のページです。',
 }
 
