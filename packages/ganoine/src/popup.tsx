@@ -30,42 +30,23 @@ export type PopupProperties = {
  **/
 
 export function Popup(properties: PopupProperties): ReactNode {
-  /*
-  const popheight = properties.popupHeight ?? window.innerHeight - 144
-  const popwidth = properties.popupWidth ?? widthAdjust(window.innerWidth - 24)
-  */
+  const [popSize, setPopSize] = useState<{ popheight: number, popwidth: number } | undefined>()
 
-  const useWindowSize = () => {
-    type WindowSize = {
-      popwidth?: number
-      popheight?: number
+  useEffect(() => {
+    const resize = () => {
+      setPopSize({
+        popheight: properties.popupHeight ?? window.innerHeight - 144,
+        popwidth: properties.popupWidth ?? widthAdjust(window.innerWidth - 24),
+      })
     }
 
-    const [popSize, setPopSize] = useState<WindowSize>({
-      popheight: properties.popupHeight ?? window.innerHeight - 144,
-      popwidth: properties.popupWidth ?? widthAdjust(window.innerWidth - 24),
-    })
-
-    useEffect(() => {
-      const resize = () => {
-        setPopSize({
-          popheight: properties.popupHeight ?? window.innerHeight - 144,
-          popwidth: properties.popupWidth ?? widthAdjust(window.innerWidth - 24),
-        })
-      }
-
-      window.addEventListener('resize', resize)
-      return () => window.removeEventListener('resize', resize)
-    }, [])
-
-    return popSize
-  }
-
-  const { popheight, popwidth } = useWindowSize()
+    window.addEventListener('resize', resize)
+    return () => window.removeEventListener('resize', resize)
+  }, [popSize, properties.popupHeight, properties.popupWidth])
 
   const screenSize = {
-    '--popwidth': `${popwidth}px`,
-    '--popheight': `${popheight}px`,
+    '--popwidth': `${popSize?.popwidth}px`,
+    '--popheight': `${popSize?.popheight}px`,
   }
   const { isOpen, togglePopup } = usePopup()
   return (
