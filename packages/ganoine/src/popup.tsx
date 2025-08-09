@@ -35,8 +35,8 @@ export function Popup(properties: PopupProperties): ReactNode {
   useEffect(() => {
     const resize = () => {
       setPopSize({
-        popheight: properties.popupHeight ?? window.innerHeight - 144,
-        popwidth: properties.popupWidth ?? widthAdjust(window.innerWidth - 24),
+        popheight: properties.popupHeight ?? document.documentElement.clientHeight - 144,
+        popwidth: properties.popupWidth ?? widthAdjust(document.documentElement.clientWidth - 24),
       })
     }
 
