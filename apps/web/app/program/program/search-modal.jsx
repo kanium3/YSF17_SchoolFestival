@@ -1,7 +1,6 @@
 'use client'
 
 import { useAtom } from 'jotai'
-import { useState } from 'react'
 import {
   Select,
   SelectPopover,
