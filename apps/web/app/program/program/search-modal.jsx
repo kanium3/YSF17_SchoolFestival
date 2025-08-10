@@ -1,6 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
+import { useState } from 'react'
 import {
   Select,
   SelectPopover,
@@ -47,35 +48,63 @@ function PopupToggleButton() {
  */
 function KindSelectMenu() {
   const [kind, setKind] = useAtom(searchQueryAtom)
+  const [kindS, setKindS] = useState(new Set(['すべて']))
+
+  let selectedKinds = [...kindS]//  == undefined ? [] : [...kindS].split(' ')
+  if (selectedKinds.length > 1 && selectedKinds.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
+    setKind((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      parameters.delete('kind')
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
+    setKindS(new Set(['すべて']))
+  }
+  else if (selectedKinds.length === 0)// 何も選択されていなかったら「すべて」を選択する
+    setKindS(new Set(['すべて']))
+  if (selectedKinds.length > 1 && selectedKinds[0] == 'すべて') { // 「すべて」以外が選択されたら「すべて」から選択を外す
+    setKind((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      const p = parameters.get('kind').split(' ')
+      parameters.delete('kind')
+      parameters.set('kind', p.filter(item => item != 'すべて'))
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
+    setKindS(new Set(selectedKinds.filter(item => item != 'すべて')))
+  }
+
   return (
-    <Select
+    <SelectItems
+      mode="multiple"
       onSelectionChange={(selected) => {
         setKind((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          selected == 'すべて' ? parameters.delete('kind') : parameters.set('kind', selected)
+          // selected.has('すべて') ? parameters.delete('kind') : parameters.set('kind', [...selected].join(' '))
+          parameters.set('kind', [...selected].join(' '))
           return {
             ...previous,
             searchParams: parameters,
           }
         })
+        setKindS(selected)
       }}
-      selectedKey={kind.searchParams?.get('kind') ?? 'すべて'}
+      selectedKeys={kind.searchParams?.get('kind') == undefined ? ['すべて'] : kind.searchParams?.get('kind').split(' ')}
       placeholder="すべて"
       className={styles.queryProperty}
     >
-      <SelectButton />
-      <SelectPopover>
-        <SelectItems mode="single">
-          <SelectItem value="すべて" label="すべて" />
-          <SelectItem value="体験" label="体験" />
-          <SelectItem value="展示" label="展示" />
-          <SelectItem value="上演" label="上演" />
-          <SelectItem value="販売" label="販売" />
-          <SelectItem value="配布" label="配布" />
-          <SelectItem value="募金" label="募金" />
-        </SelectItems>
-      </SelectPopover>
-    </Select>
+      <SelectItem value="すべて" label="すべて" />
+      <SelectItem value="体験" label="体験" />
+      <SelectItem value="展示" label="展示" />
+      <SelectItem value="上演" label="上演" />
+      <SelectItem value="販売" label="販売" />
+      <SelectItem value="配布" label="配布" />
+      <SelectItem value="募金" label="募金" />
+    </SelectItems>
   )
 }
 
