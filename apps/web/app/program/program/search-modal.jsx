@@ -1,6 +1,7 @@
 'use client'
 
 import { useAtom } from 'jotai'
+import { useState } from 'react'
 import {
   Select,
   SelectPopover,
@@ -59,7 +60,7 @@ function KindSelectMenu() {
           }
         })
       }}
-      selectedKey={kind.searchParams?.get('kind') ?? ''}
+      selectedKey={kind.searchParams?.get('kind') ?? 'すべて'}
       placeholder="すべて"
       className={styles.queryProperty}
     >
@@ -90,7 +91,7 @@ function PlaceSelectMenu() {
       onSelectionChange={(selected) => {
         setPlace((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          parameters.set('place', selected)
+          selected == 'すべて' ? parameters.delete('kind') : parameters.set('place', selected)
           return {
             ...previous,
             searchParams: parameters,
@@ -98,7 +99,7 @@ function PlaceSelectMenu() {
         })
       }}
       placeholder="すべて"
-      selectedKey={place.searchParams?.get('place') ?? ''}
+      selectedKey={place.searchParams?.get('place') ?? 'すべて'}
       className={styles.queryProperty}
     >
       <SelectButton />
