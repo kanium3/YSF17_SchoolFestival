@@ -52,7 +52,7 @@ function KindSelectMenu() {
       onSelectionChange={(selected) => {
         setKind((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          parameters.set('kind', selected)
+          selected == 'すべて' ? parameters.delete('kind') : parameters.set('kind', selected)
           return {
             ...previous,
             searchParams: parameters,
@@ -60,13 +60,13 @@ function KindSelectMenu() {
         })
       }}
       selectedKey={kind.searchParams?.get('kind') ?? ''}
-      placeholder="選択しない"
+      placeholder="すべて"
       className={styles.queryProperty}
     >
       <SelectButton />
       <SelectPopover>
         <SelectItems mode="single">
-          <SelectItem value="選択しない" label="選択しない" />
+          <SelectItem value="すべて" label="すべて" />
           <SelectItem value="体験" label="体験" />
           <SelectItem value="展示" label="展示" />
           <SelectItem value="上演" label="上演" />
@@ -97,14 +97,14 @@ function PlaceSelectMenu() {
           }
         })
       }}
-      placeholder="選択しない"
+      placeholder="すべて"
       selectedKey={place.searchParams?.get('place') ?? ''}
       className={styles.queryProperty}
     >
       <SelectButton />
       <SelectPopover>
         <SelectItems mode="single">
-          <SelectItem value="選択しない" />
+          <SelectItem value="すべて" />
           <SelectItem value="1F" />
           <SelectItem value="2F" />
           <SelectItem value="3F" />
