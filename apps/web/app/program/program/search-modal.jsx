@@ -84,7 +84,6 @@ function KindSelectMenu() {
       onSelectionChange={(selected) => {
         setKind((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          // selected.has('すべて') ? parameters.delete('kind') : parameters.set('kind', [...selected].join(' '))
           parameters.set('kind', [...selected].join(' '))
           return {
             ...previous,
@@ -114,36 +113,64 @@ function KindSelectMenu() {
  */
 function PlaceSelectMenu() {
   const [place, setPlace] = useAtom(searchQueryAtom)
+  const [placeS, setPlaceS] = useState(new Set(['すべて']))
+
+  let selectedKinds = [...placeS]//  == undefined ? [] : [...kindS].split(' ')
+  if (selectedKinds.length > 1 && selectedKinds.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
+    setPlace((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      parameters.delete('place')
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
+    setPlaceS(new Set(['すべて']))
+  }
+  else if (selectedKinds.length === 0)// 何も選択されていなかったら「すべて」を選択する
+    setPlaceS(new Set(['すべて']))
+  if (selectedKinds.length > 1 && selectedKinds[0] == 'すべて') { // 「すべて」以外が選択されたら「すべて」から選択を外す
+    setPlace((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      const p = parameters.get('place').split(' ')
+      parameters.delete('place')
+      parameters.set('place', p.filter(item => item != 'すべて'))
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
+    setPlaceS(new Set(selectedKinds.filter(item => item != 'すべて')))
+  }
+
   return (
-    <Select
+
+    <SelectItems
+      mode="multiple"
       onSelectionChange={(selected) => {
         setPlace((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          selected == 'すべて' ? parameters.delete('kind') : parameters.set('place', selected)
+          parameters.set('place', [...selected].join(' '))
           return {
             ...previous,
             searchParams: parameters,
           }
         })
+        setPlaceS(selected)
       }}
+      selectedKeys={place.searchParams?.get('place') == undefined ? ['すべて'] : place.searchParams?.get('place').split(' ')}
       placeholder="すべて"
-      selectedKey={place.searchParams?.get('place') ?? 'すべて'}
       className={styles.queryProperty}
     >
-      <SelectButton />
-      <SelectPopover>
-        <SelectItems mode="single">
-          <SelectItem value="すべて" />
-          <SelectItem value="1F" />
-          <SelectItem value="2F" />
-          <SelectItem value="3F" />
-          <SelectItem value="4F" />
-          <SelectItem value="5F" />
-          <SelectItem value="屋上" />
-          <SelectItem value="体育館" />
-          <SelectItem value="交流センター" />
-        </SelectItems>
-      </SelectPopover>
-    </Select>
+      <SelectItem value="すべて" />
+      <SelectItem value="1F" />
+      <SelectItem value="2F" />
+      <SelectItem value="3F" />
+      <SelectItem value="4F" />
+      <SelectItem value="5F" />
+      <SelectItem value="屋上" />
+      <SelectItem value="体育館" />
+      <SelectItem value="交流センター" />
+    </SelectItems>
   )
 }
