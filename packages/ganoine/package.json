@@ -24,7 +24,7 @@
   "scripts": {
     "build": "rslib build",
     "dev": "rslib build --watch",
-    "dev:css": "npm run genCss",
+    "dev:css": "pnpm run genCss",
     "lint": "eslint .",
     "tsc": "tsc --noEmit",
     "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch",
@@ -34,6 +34,7 @@
     "@eslint/js": "^9.29.0",
     "@latimeria/eslint-config": "workspace:*",
     "@rsbuild/plugin-react": "^1.3.2",
+    "@storybook/react": "^9.0.17",
     "@rslib/core": "^0.10.4",
     "@tsconfig/recommended": "^1.0.10",
     "@types/react": "^19.1.8",
