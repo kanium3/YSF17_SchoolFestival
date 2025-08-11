@@ -15,7 +15,9 @@ export function ProgramsView() {
     <div>
       <ProgramInput />
       <div className={styles.programSearchLine}>
-        <SearchQueryClearButton />
+        <div className={styles.programSearchResetButtonContentDiv}>
+          <SearchQueryClearButton />
+        </div>
         <SearchModal />
       </div>
       <ProgramView />

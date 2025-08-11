@@ -42,7 +42,7 @@ export function SearchModal() {
 function PopupToggleButton() {
   const { togglePopup } = usePopup()
   return (
-    <Button kind="primary" onPress={togglePopup}>
+    <Button kind="primary" onPress={togglePopup} className={styles.popupOpenButton}>
       検索条件
     </Button>
   )

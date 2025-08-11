@@ -2,6 +2,10 @@
   margin: var(--semantic-space-medium);
 }
 
+.popupOpenButton {
+  margin: 0px;
+}
+
 .popupScroll {
   overflow-y: auto;
   overflow-x: auto;

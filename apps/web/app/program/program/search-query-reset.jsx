@@ -11,10 +11,14 @@ export default function SearchQueryClearButton() {
       onPress={() => {
         resetSearchQuery(previous => ({ ...previous, searchParams: new URLSearchParams() }))
       }}
-      className={styles.programSelectResetButton}
+      className={`${styles.programSelectResetButton} smallButton`}
     >
-      <MdOutlineCancel />
-      条件をクリアする
+      <div className={styles.programSearchResetButtonContent}>
+        <MdOutlineCancel />
+        <div className={styles.programSearchResetButtonContentDiv}>
+          <p>条件をリセットする</p>
+        </div>
+      </div>
     </Button>
   )
 }
