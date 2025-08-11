@@ -19,12 +19,20 @@ export function SearchModal() {
     <PopupProvider>
       <PopupToggleButton />
       <Popup>
-        <div>
-          <h2 className={styles.queryProperty}>種類</h2>
-          <KindSelectMenu />
-          <h2 className={styles.queryProperty}>場所</h2>
-          <PlaceSelectMenu />
-          <PopupCloseButton />
+        <div className={styles.popupScroll}>
+          <div className={styles.popupContent}>
+            <div>
+              <h2 className={styles.queryProperty}>種類</h2>
+              <KindSelectMenu />
+            </div>
+            <div>
+              <h2 className={styles.queryProperty}>場所</h2>
+              <PlaceSelectMenu />
+            </div>
+          </div>
+          <div className={styles.popupClose}>
+            <PopupCloseButton />
+          </div>
         </div>
       </Popup>
     </PopupProvider>
@@ -92,7 +100,7 @@ function KindSelectMenu() {
       }}
       selectedKeys={kind.searchParams?.get('kind') == undefined ? ['すべて'] : kind.searchParams?.get('kind').split(' ')}
       placeholder="すべて"
-      className={styles.queryProperty}
+      className={`${styles.queryProperty} ${styles.popupSelect}`}
     >
       <SelectItem value="すべて" label="すべて" />
       <SelectItem value="体験" label="体験" />
@@ -158,7 +166,7 @@ function PlaceSelectMenu() {
       }}
       selectedKeys={place.searchParams?.get('place') == undefined ? ['すべて'] : place.searchParams?.get('place').split(' ')}
       placeholder="すべて"
-      className={styles.queryProperty}
+      className={`${styles.queryProperty} ${styles.popupSelect}`}
     >
       <SelectItem value="すべて" />
       <SelectItem value="1F" />
