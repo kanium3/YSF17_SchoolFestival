@@ -1,0 +1,11 @@
+packages:
+  - packages/*
+  - apps/*
+
+onlyBuiltDependencies:
+  - core-js
+  - core-js-pure
+  - esbuild
+  - leveldown
+  - sharp
+  - unrs-resolver

@@ -1,7 +1,6 @@
 {
   "name": "@latimeria/core",
   "version": "0.1.0",
-  "packageManager": "npm@10.9.2",
   "description": "A core library for project latimeria",
   "type": "module",
   "license": "MIT",
@@ -29,7 +28,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "npm run lint --fix",
+    "lint:fix": "pnpm run lint --fix",
     "build": "tsdown",
     "dev": "tsdown --watch",
     "test": "vitest",
@@ -37,7 +36,7 @@
     "format": "eslint . --fix"
   },
   "devDependencies": {
-    "@latimeria/eslint-config": "*",
+    "@latimeria/eslint-config": "workspace:*",
     "@types/node": "^22.15.17",
     "eslint": "^9.26.0",
     "happy-dom": "^17.4.7",
