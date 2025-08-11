@@ -3,15 +3,13 @@
 import { useAtom } from 'jotai'
 import { useState } from 'react'
 import {
-  Select,
-  SelectPopover,
   SelectItems,
   SelectItem,
   PopupProvider,
   Popup,
   usePopup,
   Button,
-  PopupCloseButton, SelectButton,
+  PopupCloseButton,
 } from '@latimeria/ganoine'
 import styles from './search-modal.module.css'
 import { searchQueryAtom } from '@/app/program/program/atoms'
