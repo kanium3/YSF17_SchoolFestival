@@ -51,7 +51,7 @@ jobs:
 
       - name: Get public images
         run: |
-          GOOGLE_APPLICATION_CREDENTIALS=${{ steps.google-auth.outputs.credentials_file_path }} pnpm run syncPublic -- --noOAuth
+          GOOGLE_APPLICATION_CREDENTIALS=${{ steps.google-auth.outputs.credentials_file_path }} pnpm run syncPublic --noOAuth
 
       - name: build core package
         run: pnpm turbo run @latimeria/core#build @latimeria/ganoine#build
