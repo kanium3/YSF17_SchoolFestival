@@ -57,6 +57,7 @@ function KindSelectMenu() {
   const [kindS, setKindS] = useState(new Set(['すべて']))
 
   let selectedKinds = [...kindS]//  == undefined ? [] : [...kindS].split(' ')
+  console.log(selectedKinds)
   if (selectedKinds.length > 1 && selectedKinds.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
     setKind((previous) => {
       const parameters = new URLSearchParams([...previous.searchParams])
@@ -68,8 +69,17 @@ function KindSelectMenu() {
     })
     setKindS(new Set(['すべて']))
   }
-  else if (selectedKinds.length === 0)// 何も選択されていなかったら「すべて」を選択する
+  else if (selectedKinds.length === 0 || selectedKinds.includes('')) { // 何も選択されていなかったら「すべて」を選択する
+    setKind((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      parameters.delete('kind')
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
     setKindS(new Set(['すべて']))
+  }
   if (selectedKinds.length > 1 && selectedKinds[0] == 'すべて') { // 「すべて」以外が選択されたら「すべて」から選択を外す
     setKind((previous) => {
       const parameters = new URLSearchParams([...previous.searchParams])
@@ -121,8 +131,8 @@ function PlaceSelectMenu() {
   const [place, setPlace] = useAtom(searchQueryAtom)
   const [placeS, setPlaceS] = useState(new Set(['すべて']))
 
-  let selectedKinds = [...placeS]//  == undefined ? [] : [...kindS].split(' ')
-  if (selectedKinds.length > 1 && selectedKinds.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
+  let selectedPlaces = [...placeS]//  == undefined ? [] : [...kindS].split(' ')
+  if (selectedPlaces.length > 1 && selectedPlaces.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
     setPlace((previous) => {
       const parameters = new URLSearchParams([...previous.searchParams])
       parameters.delete('place')
@@ -133,9 +143,18 @@ function PlaceSelectMenu() {
     })
     setPlaceS(new Set(['すべて']))
   }
-  else if (selectedKinds.length === 0)// 何も選択されていなかったら「すべて」を選択する
+  else if (selectedPlaces.length === 0 || selectedPlaces.includes('')) { // 何も選択されていなかったら「すべて」を選択する
+    setPlace((previous) => {
+      const parameters = new URLSearchParams([...previous.searchParams])
+      parameters.delete('place')
+      return {
+        ...previous,
+        searchParams: parameters,
+      }
+    })
     setPlaceS(new Set(['すべて']))
-  if (selectedKinds.length > 1 && selectedKinds[0] == 'すべて') { // 「すべて」以外が選択されたら「すべて」から選択を外す
+  }
+  if (selectedPlaces.length > 1 && selectedPlaces[0] == 'すべて') { // 「すべて」以外が選択されたら「すべて」から選択を外す
     setPlace((previous) => {
       const parameters = new URLSearchParams([...previous.searchParams])
       const p = parameters.get('place').split(' ')
@@ -146,7 +165,7 @@ function PlaceSelectMenu() {
         searchParams: parameters,
       }
     })
-    setPlaceS(new Set(selectedKinds.filter(item => item != 'すべて')))
+    setPlaceS(new Set(selectedPlaces.filter(item => item != 'すべて')))
   }
 
   return (
