@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      kuromoji:
+        specifier: ^0.1.2
+        version: 0.1.2
       kuroshiro:
         specifier: ^1.2.0
         version: 1.2.0
