@@ -24,6 +24,6 @@
     "googleapis": "^149.0.0",
     "pouchdb": "^9.0.0",
     "@latimeria/eslint-config": "workspace:*",
-    "eslint": "^9.26.0"
+    "eslint": "catalog:"
   }
 }
