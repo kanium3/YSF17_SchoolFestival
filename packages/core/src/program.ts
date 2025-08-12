@@ -197,7 +197,6 @@ export class Programs {
           programName = program.name
           tags = [...program.tags]
         }
-        console.log(await kuroshiro.convert("緑", { to: 'hiragana' }))
 
         for (const tagOrName of tagsAndNames) {
           if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
