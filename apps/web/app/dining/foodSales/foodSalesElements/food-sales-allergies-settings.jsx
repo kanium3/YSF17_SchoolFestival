@@ -133,6 +133,6 @@ export function FoodSalesAllergiesSettings() {
 }
 
 const ModalButton = () => {
-  const { toggleModal } = usePopup()
-  return <Button onPress={() => toggleModal()}>アレルギーでフィルター</Button>
+  const { togglePopup } = usePopup()
+  return <Button onPress={() => togglePopup()}>アレルギーでフィルター</Button>
 }

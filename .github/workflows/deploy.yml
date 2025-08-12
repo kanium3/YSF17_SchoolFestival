@@ -27,11 +27,14 @@ jobs:
           service_account: ${{ secrets.SERVICE_ACCOUNT_EMAIL }}
           workload_identity_provider: ${{ secrets.WORKLOAD_INDETITY_PROVIDER }}
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+
       - name: Setup Node
         uses: "actions/setup-node@v4"
         with:
-          node-version: 22
-          cache: npm
+          node-version: ">=22 <22.18"
+          cache: pnpm
 
       - name: Setup Pages
         # See: https://github.com/actions/configure-pages/issues/171
@@ -44,17 +47,17 @@ jobs:
         uses: rharkor/caching-for-turbo@v2.1.4
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install
 
       - name: Get public images
         run: |
-          GOOGLE_APPLICATION_CREDENTIALS=${{ steps.google-auth.outputs.credentials_file_path }} npm run syncPublic -- --noOAuth
+          GOOGLE_APPLICATION_CREDENTIALS=${{ steps.google-auth.outputs.credentials_file_path }} pnpm run syncPublic --noOAuth
 
       - name: build core package
-        run: npx turbo run @latimeria/core#build @latimeria/ganoine#build
+        run: pnpm turbo run @latimeria/core#build @latimeria/ganoine#build
 
       - name: Build with Next.js
-        run: npm run build
+        run: pnpm run build
 
       - name: Upload artifact
         uses: "actions/upload-pages-artifact@v3"

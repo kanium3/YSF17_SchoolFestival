@@ -13,8 +13,8 @@
     "server:rsd": "rsdoctor analyze --profile .next/server/.rsdoctor/manifest.json"
   },
   "dependencies": {
-    "@latimeria/core": "^0.1.0",
-    "@latimeria/ganoine": "*",
+    "@latimeria/core": "workspace:^0.1.0",
+    "@latimeria/ganoine": "workspace:*",
     "gray-matter": "^4.0.3",
     "jotai": "^2.12.5",
     "jotai-location": "^0.6.1",
@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@latimeria/eslint-config": "*",
+    "@latimeria/eslint-config": "workspace:*",
     "@rsdoctor/cli": "^1.1.8",
     "@rsdoctor/rspack-plugin": "^1.1.8",
     "@svgr/webpack": "^8.1.0",
