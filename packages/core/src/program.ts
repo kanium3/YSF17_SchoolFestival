@@ -1,4 +1,7 @@
 import * as v from 'valibot'
+import Kuroshiro from 'kuroshiro'
+import KuromojiAnalyzer from 'kuroshiro-analyzer-kuromoji'
+import { hasOnlyKatakana, hasOnlyKanji, hasOnlyHiragana } from '@/app/lib/search-utilities'
 
 export const programType = {
   workshop: '体験',
@@ -118,6 +121,8 @@ export class Programs {
    * @param programTypes 「体験」「募金」など。AND検索
    * @param areaTypes 階/ホールなど OR検索
    * @param tagsAndNames ハッシュタグ、企画名 AND検索
+   * @param yomiganaSerch ハッシュタグ、企画名の読み仮名検索
+   * @param conjugatedWordSearch ~~ハッシュタグ、企画名の活用語を考慮した検索~~ yahooを使わないと無理なので保留
    */
   // matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
   //  const matchedPrograms = new Programs([])
@@ -134,7 +139,7 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[]): Programs {
+  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
 
@@ -174,14 +179,50 @@ export class Programs {
     }
 
     // tagsAndNames AND
+    const kuroshiro = new Kuroshiro()
+    kuroshiro.init(new KuromojiAnalyzer())
+
     if (tagsAndNames.length > 0) {
       const result = new Programs()
       for (const program of temporaryResult.programs) {
         let matched = true
+
+        let programName
+        let tags
+        if (yomiganaSerch) { // 読み仮名検索をする場合
+          programName = kuroshiro.convert(program.name, { to: 'hiragana' })
+          tags = [...program.tags].map(item => kuroshiro.convert(item, { to: 'hiragana' }))
+        }
+        else {
+          programName = program.name
+          tags = [...program.tags]
+        }
+        console.log(kuroshiro.convert("緑", { to: 'hiragana' }))
+
         for (const tagOrName of tagsAndNames) {
-          if (!program.tags.has(tagOrName) && !program.name.includes(tagOrName)) {
-            matched = false
-            break
+          if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
+            if (!tags.includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !programName.includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
+              matched = false
+              break
+            }
+          }
+          else if (Kuroshiro.Util.hasKatakana(tagOrName) || Kuroshiro.Util.hasKanji(tagOrName)) {
+            if (!kuroshiro.convert(tags, { to: 'hiragana' }).includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !kuroshiro.convert(programName, { to: 'hiragana' }).includes(kuroshiro.convert(tagOrName, { to: 'hiragana' }))) {
+              matched = false
+              break
+            }
+          }
+          else if (hasOnlyHiragana(tagOrName)) {
+            if (!kuroshiro.convert(tags, { to: 'hiragana' }).includes(tagOrName) && !kuroshiro.convert(programName, { to: 'hiragana' }).includes(tagOrName)) {
+              matched = false
+              break
+            }
+          }
+          else {
+            if (!tags.includes(tagOrName) && !programName.includes(tagOrName)) {
+              matched = false
+              break
+            }
           }
         }
         if (matched)
