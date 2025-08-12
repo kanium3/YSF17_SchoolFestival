@@ -41,7 +41,7 @@
 }
 
 .cardDescription {
-    display: flex;
+    display: grid;
     flex-direction: column;
     max-width: 90%;
 }
