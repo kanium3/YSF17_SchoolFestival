@@ -26,6 +26,7 @@
     "dev": "rslib build --watch",
     "dev:css": "pnpm run genCss",
     "lint": "eslint .",
+    "format": "eslint . --fix",
     "tsc": "tsc --noEmit",
     "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch",
     "gen": "turbo gen ganoine"
