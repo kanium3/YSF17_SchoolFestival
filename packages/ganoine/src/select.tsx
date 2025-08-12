@@ -73,7 +73,7 @@ export function Select(properties: SelectProperties): ReactNode {
     <AriaSelect
       {...properties}
       name={properties.formName}
-      className={`${styles.select} ${properties.className}`}
+      className={`${properties.className}`}
       style={properties.style}
     >
       <AriaLabel>{properties.label}</AriaLabel>
@@ -153,7 +153,7 @@ export function SelectItemsGroup<T extends object>(properties: SelectItemsGroupP
   return (
     <AriaListBoxSection
       {...properties}
-      className={`${styles.selectListBoxSection} ${properties.className}`}
+      className={`${properties.className}`}
       style={properties.style}
     >
       <AriaHeader className={styles.selectGroupHeader}>{properties.header}</AriaHeader>
