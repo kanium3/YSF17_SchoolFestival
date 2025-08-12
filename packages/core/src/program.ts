@@ -139,7 +139,7 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
+  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
 
@@ -180,7 +180,7 @@ export class Programs {
 
     // tagsAndNames AND
     const kuroshiro = new Kuroshiro()
-    kuroshiro.init(new KuromojiAnalyzer())
+    await kuroshiro.init(new KuromojiAnalyzer())
 
     if (tagsAndNames.length > 0) {
       const result = new Programs()
@@ -190,14 +190,14 @@ export class Programs {
         let programName
         let tags
         if (yomiganaSerch) { // 読み仮名検索をする場合
-          programName = kuroshiro.convert(program.name, { to: 'hiragana' })
+          programName = await kuroshiro.convert(program.name, { to: 'hiragana' })
           tags = [...program.tags].map(item => kuroshiro.convert(item, { to: 'hiragana' }))
         }
         else {
           programName = program.name
           tags = [...program.tags]
         }
-        console.log(kuroshiro.convert("緑", { to: 'hiragana' }))
+        console.log(await kuroshiro.convert("緑", { to: 'hiragana' }))
 
         for (const tagOrName of tagsAndNames) {
           if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
