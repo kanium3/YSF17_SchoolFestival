@@ -114,9 +114,10 @@ export class Programs {
   }
 
   /**
-   * 指定したタグを含む企画を返します。
-   * @param tags
-   * @param is_complete すべてのタグが完全に一致したもののみを返すか
+   * 以下の結果をANDして適する企画を返します。
+   * @param programTypes 「体験」「募金」など。AND検索
+   * @param areaTypes 階/ホールなど OR検索
+   * @param tagsAndNames ハッシュタグ、企画名 AND検索
    */
   // matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
   //  const matchedPrograms = new Programs([])
@@ -133,39 +134,67 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  matchPrograms(tags: Tags, _is_complete: boolean = false): Programs {
+  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[]): Programs {
     let matchedProgramsResult = new Programs([])
-    let firstTime = true
-    for (const tag of tags) {
-      let matchedPrograms = new Programs([])
-      if (firstTime) {
-        for (const program of this.programs) {
-          const programTags = program.tags
-          // if (is_complete && tags.isSupersetOf(programTags)) {
-          //  matchedPrograms.programs.add(program)
-          //  continue
-          // }
-          if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
-            matchedPrograms.programs.add(program)
+    let temporaryResult = new Programs()
+
+    // programTypes AND
+    if (programTypes.length > 0) {
+      const result = new Programs()
+      for (const program of this.programs) {
+        let matched = true
+        for (const programType of programTypes) {
+          if (!program.programType.includes(programType)) {
+            matched = false
+            break
           }
         }
-        firstTime = false
+        if (matched)
+          result.programs.add(program)
       }
-      else {
-        for (const program of matchedProgramsResult.programs) {
-          const programTags = program.tags
-          // if (is_complete && tags.isSupersetOf(programTags)) {
-          //  matchedPrograms.programs.add(program)
-          //  continue
-          // }
-          if (programTags.has(tag)) { // (!tags.isDisjointFrom(programTags)) {
-            matchedPrograms.programs.add(program)
-          }
-        }
-      }
-      matchedProgramsResult = matchedPrograms
-      matchedPrograms = new Programs([])
+      temporaryResult = result
     }
+    else {
+      for (const program of this.programs) temporaryResult.programs.add(program)
+    }
+
+    // areaTypes OR
+    if (areaTypes.length > 0) {
+      const result = new Programs()
+      for (const program of temporaryResult.programs) {
+        if (areaTypes.includes(program.aria)) {
+          result.programs.add(program)
+          continue
+        }
+      }
+      temporaryResult = result
+    }
+    else {
+      for (const program of temporaryResult.programs) temporaryResult.programs.add(program)
+    }
+
+    // tagsAndNames AND
+    if (tagsAndNames.length > 0) {
+      const result = new Programs()
+      for (const program of temporaryResult.programs) {
+        let matched = true
+        for (const tagOrName of tagsAndNames) {
+          if (!program.tags.has(tagOrName) && !program.name.includes(tagOrName)) {
+            matched = false
+            break
+          }
+        }
+        if (matched)
+          result.programs.add(program)
+      }
+      temporaryResult = result
+    }
+    else {
+      for (const program of temporaryResult.programs) temporaryResult.programs.add(program)
+    }
+
+    matchedProgramsResult = temporaryResult
+
     return matchedProgramsResult
   }
 

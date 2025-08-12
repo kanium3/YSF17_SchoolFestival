@@ -4,8 +4,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { solveBasePath } from '@/app/lib/index.js'
 import Tags from '@/app/program/program/tags.jsx'
-import { useAtomValue } from 'jotai'
-import { matchedProgramsAtom } from '@/app/program/program/atoms'
+import { useAtomValue, useAtom, get } from 'jotai'
+import { searchQueryAtom, programs } from '@/app/program/program/atoms'
 
 /** @type {string[]} */
 const ariaOrder = Object.values(ariaType)
@@ -21,9 +21,27 @@ function groupArray(array) {
   return Object.entries(groups).map(([aria, item]) => ({ aria, item }))
 }
 
+function searchPrograms() {
+  let result
+  const [loc, setLoc] = useAtom(searchQueryAtom)
+
+  // kindを取得
+  const kind = loc.searchParams?.get('kind') == undefined ? [] : loc.searchParams?.get('kind').split(' ')
+  // placeを取得
+  const place = loc.searchParams?.get('place') == undefined ? [] : loc.searchParams?.get('place').split(' ')
+  // 文字列検索(q)を取得
+  const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').split(' ')
+
+  result = programs.matchPrograms(kind, place, q)
+
+  const programsAtom = result
+
+  return programsAtom
+}
+
 export default function ProgramView() {
   /** @type {import("@latimeria/core").Programs} */
-  const programs = useAtomValue(matchedProgramsAtom)
+  const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
   const programsArray = [...programs.iter()].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
   /** @type {[{aria:string , item:Program[]}]} */
   const ariaGroups = groupArray(programsArray)
