@@ -25,8 +25,6 @@ function groupArray(array) {
 async function searchPrograms(loc) {
   let result
 
-  console.log('searchPrograms called with loc:', loc)
-
   // kindを取得
   const kind = loc.searchParams?.get('kind') == undefined ? [] : loc.searchParams?.get('kind').split(' ')
   // placeを取得
@@ -49,15 +47,15 @@ export default function ProgramView() {
   const [programsResult, setProgramsResult] = useState(null)
 
   useEffect(() => {
-    console.log('useEffect called with loc:', loc)
     async function fetchPrograms() {
       const result = await searchPrograms(loc)
       setProgramsResult(result)
     }
     fetchPrograms()
+
+    console.log('Finish serching')
   }, [/* dependencies if needed */loc])
-  // if (!programsResult) return <div>Loading...</div>
-  console.log(programsResult)
+  if (!programsResult) return <div>Loading...</div>
 
   const ite = programsResult.iter()
   const programsArray = [...ite].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
