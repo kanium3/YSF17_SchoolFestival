@@ -21,9 +21,9 @@ function groupArray(array) {
   return Object.entries(groups).map(([aria, item]) => ({ aria, item }))
 }
 
-async function searchPrograms() {
+function searchPrograms() {
   let result
-  const [loc, setLoc] = useAtom(searchQueryAtom)
+  const [loc, _setLoc] = useAtom(searchQueryAtom)
 
   // kindを取得
   const kind = loc.searchParams?.get('kind') == undefined ? [] : loc.searchParams?.get('kind').split(' ')
@@ -32,17 +32,17 @@ async function searchPrograms() {
   // 文字列検索(q)を取得
   const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').split(' ')
 
-  result = await programs.matchPrograms(kind, place, q)
+  result = programs.matchPrograms(kind, place, q)
 
   const programsAtom = result
 
   return programsAtom
 }
 
-export default async function ProgramView() {
+export default function ProgramView() {
   /** @type {import("@latimeria/core").Programs} */
-  const programs = await searchPrograms()// useAtomValue(matchedProgramsAtom)
-  const ite = await programs.iter()
+  const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
+  const ite = programs.iter()
   const programsArray = [...ite].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
   /** @type {[{aria:string , item:Program[]}]} */
   const ariaGroups = groupArray(programsArray)

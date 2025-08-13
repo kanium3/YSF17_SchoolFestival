@@ -2,10 +2,25 @@ export function hasOnlyKatakana(string_) {
   return /^[\u30A1-\u30FF]+|[\uFF66-\uFF9F]+$/.test(string_)
 }
 
+export function hasKatakana(string_) {
+  return string_.match(/[\u30A1-\u30FF]|[\uFF66-\uFF9F]/) !== null
+}
+
 export function hasOnlyKanji(string_) {
   return /^[\u2E80-\u9FFF]+$/.test(string_)
 }
 
+export function hasKanji(string_) {
+  return string_.match(/[\u2E80-\u9FFF]/) !== null
+}
+
 export function hasOnlyHiragana(string_) {
   return /^[\u3031-\u309F]+$/.test(string_)
+}
+
+export function kanaToHira(string_) {
+  return string_.replaceAll(/[\u30A1-\u30FF]/g, function (match) {
+    var chr = match.codePointAt(0) - 0x60
+    return String.fromCodePoint(chr)
+  })
 }

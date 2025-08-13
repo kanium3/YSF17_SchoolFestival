@@ -1,7 +1,7 @@
 import * as v from 'valibot'
-import Kuroshiro from 'kuroshiro'
-import KuromojiAnalyzer from 'kuroshiro-analyzer-kuromoji'
-import { hasOnlyKatakana, hasOnlyKanji, hasOnlyHiragana } from '@/app/lib/search-utilities'
+import { tokenize, getTokenizer } from 'kuromojin'
+import { Token } from './token'
+import { hasOnlyKatakana, hasOnlyKanji, hasOnlyHiragana, kanaToHira, hasKatakana, hasKanji } from '@/app/lib/search-utilities'
 
 export const programType = {
   workshop: '体験',
@@ -139,7 +139,7 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
+  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Programs {
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
 
@@ -179,40 +179,43 @@ export class Programs {
     }
 
     // tagsAndNames AND
-    const kuroshiro = new Kuroshiro()
-    await kuroshiro.init(new KuromojiAnalyzer())
+    getTokenizer().then((_tokenizer) => {
+    // kuromoji.js's `tokenizer` instance
+    })
 
     if (tagsAndNames.length > 0) {
       const result = new Programs()
       for (const program of temporaryResult.programs) {
         let matched = true
+        
+        console.log(analyzer("緑").map(item => kanaToHira(item.reading)).join(''))
 
         let programName
-        let tags
+        let tags = ""
         if (yomiganaSerch) { // 読み仮名検索をする場合
-          programName = await kuroshiro.convert(program.name, { to: 'hiragana' })
-          tags = [...program.tags].map(item => kuroshiro.convert(item, { to: 'hiragana' }))
+          programName = analyzer(program.name).map(item => kanaToHira(item.reading)).join('')
+          // tags = [...program.tags].map(item => analyzer(item).map(item => kanaToHira(item.reading)).join(''))
         }
         else {
           programName = program.name
-          tags = [...program.tags]
+          // tags = [...program.tags]
         }
 
         for (const tagOrName of tagsAndNames) {
           if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
-            if (!tags.includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !programName.includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
+            if (!tags.includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !programName.includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
               matched = false
               break
             }
           }
-          else if (Kuroshiro.Util.hasKatakana(tagOrName) || Kuroshiro.Util.hasKanji(tagOrName)) {
-            if (!kuroshiro.convert(tags, { to: 'hiragana' }).includes(kuroshiro.convert(tagOrName, { to: 'hiragana' })) && !kuroshiro.convert(programName, { to: 'hiragana' }).includes(kuroshiro.convert(tagOrName, { to: 'hiragana' }))) {
+          else if (hasKatakana(tagOrName) || hasKanji(tagOrName)) {
+            if (!analyzer(tags).map(item => kanaToHira(item.reading)).join('').includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !analyzer(programName).map(item => kanaToHira(item.reading)).join('').includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join(''))) {
               matched = false
               break
             }
           }
           else if (hasOnlyHiragana(tagOrName)) {
-            if (!kuroshiro.convert(tags, { to: 'hiragana' }).includes(tagOrName) && !kuroshiro.convert(programName, { to: 'hiragana' }).includes(tagOrName)) {
+            if (!analyzer(tags).map(item => kanaToHira(item.reading)).join('').includes(tagOrName) && !analyzer(programName).map(item => kanaToHira(item.reading)).join('').includes(tagOrName)) {
               matched = false
               break
             }
@@ -253,4 +256,12 @@ export function parseProgramsData(input: string): Programs {
   const programsSchema = v.array(programSchema)
   const data = v.parse(programsSchema, input)
   return new Programs(data.map(programData => new Program(programData)))
+}
+
+function analyzer(text: string): Token[] {
+  const tokens: Token[] = []
+  tokenize(text).then((item) => {
+    tokens.push(new Token(item))
+  })
+  return tokens.map(token => new Token(token))
 }
