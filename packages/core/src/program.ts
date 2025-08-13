@@ -139,8 +139,8 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
-    console.log(tagsAndNames)
+  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, conjugatedWordSearch: boolean): Promise<Programs> {
+    // console.log(tagsAndNames)
 
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
@@ -184,12 +184,10 @@ export class Programs {
     getTokenizer({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict' }).then((_tokenizer) => {
     // kuromoji.js's `tokenizer` instance
     })
-    console.log(tagsAndNames.length > 0)
     if (tagsAndNames.length > 0) {
       const result = new Programs()
-      console.log([...temporaryResult.programs].length)
       for (const program of temporaryResult.programs) {
-        let matched = true
+        let matched = false
 
         let programName
         let tags = ''
@@ -207,13 +205,66 @@ export class Programs {
           tags = [...program.tags].join('+')
         }
 
-        console.log(tagsAndNames.length)
         for (const tagOrName of tagsAndNames) {
           const analyzedTagOrName = await analyzer(tagOrName)
-          const analyzedTags = await analyzer(tags)
-          const analyzedProgramName = await analyzer(programName)
+          const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const analyzedTagOrName_forConjugatedWord: Token[] = []
+          for (const item of tagOrName_forConjugatedWord) {
+            for (const it of item)
+              analyzedTagOrName_forConjugatedWord.push(it)
+          }
 
-          if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
+          const analyzedTagsTemporary = await analyzer(tags)
+          const analyzedTags = analyzedTagsTemporary.filter(item => item.surface_form != '+')
+          const tags_forConjugatedWord = analyzedTags.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const analyzedTags_forConjugatedWord: Token[] = []
+          for (const item of tags_forConjugatedWord) {
+            for (const it of item)
+              analyzedTags_forConjugatedWord.push(it)
+          }
+
+          const analyzedProgramName = await analyzer(programName)
+          const programName_forConjugatedWord = analyzedProgramName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const analyzedProgramName_forConjugatedWord: Token[] = []
+          for (const item of programName_forConjugatedWord) {
+            for (const it of item)
+              analyzedProgramName_forConjugatedWord.push(it)
+          }
+
+          for (const analyzedItem of analyzedTagOrName) {
+            matched = false
+            if (hasKanji(analyzedItem.surface_form)) { // analyzedItemに表意文字が含まれている
+              if (tags.includes(analyzedItem.surface_form) || programName.includes(analyzedItem.surface_form)) { // まずそのまま一致チェック
+                matched = true
+                continue
+              }
+              else if (analyzedTags.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true) || analyzedProgramName.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true)) { // 読みでチェック
+                matched = true
+                continue
+              }
+            }
+            else { // analyzedItemに表意文字が含まれていない
+              if (analyzedTags.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true) || analyzedProgramName.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true)) { // 読みでチェック
+                matched = true
+                continue
+              }
+            }
+
+            break
+          }
+
+          if (!matched && conjugatedWordSearch) { // 活用形考慮検索ONのとき
+            matched = false
+            for (const analyzedItem of analyzedTagOrName_forConjugatedWord) {
+              if (analyzedTags_forConjugatedWord.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true) || analyzedProgramName_forConjugatedWord.map(item => item.reading).filter(item => item != undefined).map(item => item.includes(analyzedItem.reading)).includes(true)) {
+                matched = true
+                continue
+              }
+            }
+            break
+          }
+
+          /** if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
             console.log('hasOnlyKanji or hasOnlyKatakana')
             if (!tags.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
               matched = false
@@ -245,7 +296,7 @@ export class Programs {
               console.log(`Tag or name "${tagOrName}" does not match program "${program.name}" with tags "${tags}" and program name "${programName}" at else`)
               break
             }
-          }
+          } */
         }
         if (matched) {
           console.log(`${program.name}added.`)
@@ -260,7 +311,7 @@ export class Programs {
 
     matchedProgramsResult = temporaryResult
 
-    console.log(matchedProgramsResult)
+    // console.log(matchedProgramsResult)
     return matchedProgramsResult
   }
 
