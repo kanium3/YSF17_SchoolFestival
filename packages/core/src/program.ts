@@ -207,7 +207,7 @@ export class Programs {
 
         for (const tagOrName of tagsAndNames) {
           const analyzedTagOrName = await analyzer(hankakuKanaToZenkakuKatakana(tagOrName))
-          const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
+          const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.surface_form != undefined).map(item => item.surface_form).map(async item => await analyzer(item))
           const analyzedTagOrName_forConjugatedWord: Token[] = []
           for (const item of tagOrName_forConjugatedWord) {
             for (const it of await item)
@@ -216,7 +216,7 @@ export class Programs {
 
           const analyzedTagsTemporary = await analyzer(tags)
           const analyzedTags = analyzedTagsTemporary.filter(item => item.surface_form != '+')
-          const tags_forConjugatedWord = analyzedTags.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
+          const tags_forConjugatedWord = analyzedTags.filter(item => item.surface_form != undefined).map(item => item.surface_form).map(async item => await analyzer(item))
           const analyzedTags_forConjugatedWord: Token[] = []
           for (const item of tags_forConjugatedWord) {
             for (const it of await item)
@@ -224,12 +224,13 @@ export class Programs {
           }
 
           const analyzedProgramName = await analyzer(programName)
-          const programName_forConjugatedWord = analyzedProgramName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
+          const programName_forConjugatedWord = analyzedProgramName.filter(item => item.surface_form != undefined).map(item => item.surface_form).map(async item => await analyzer(item))
           const analyzedProgramName_forConjugatedWord: Token[] = []
           for (const item of programName_forConjugatedWord) {
             for (const it of await item)
               analyzedProgramName_forConjugatedWord.push(it)
           }
+          console.log(analyzedProgramName)
 
           for (const analyzedItem of analyzedTagOrName) {
             matched = false
