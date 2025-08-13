@@ -27,7 +27,7 @@ export function hankakuKanaToZenkakuKatakana(input) {
 export function kanaToHira(string_) {
   return string_ == undefined
     ? ''
-    : string_.replaceAll(/[\u3031-\u30FF]/g, function (match) {
+    : string_.replaceAll(/[\u30A0-\u30FF]/g, function (match) {
         var chr = match.codePointAt(0) - 0x60
         return String.fromCodePoint(chr)
       })
