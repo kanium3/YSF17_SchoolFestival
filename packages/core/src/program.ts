@@ -121,8 +121,8 @@ export class Programs {
    * @param programTypes 「体験」「募金」など。AND検索
    * @param areaTypes 階/ホールなど OR検索
    * @param tagsAndNames ハッシュタグ、企画名 AND検索
-   * @param yomiganaSerch ハッシュタグ、企画名の読み仮名検索
-   * @param conjugatedWordSearch ~~ハッシュタグ、企画名の活用語を考慮した検索~~ yahooを使わないと無理なので保留
+   * @param yomiganaSerch ~~ハッシュタグ、企画名の読み仮名検索~~ 使わなくてよさそう
+   * @param conjugatedWordSearch ~~ハッシュタグ、企画名の活用語を考慮した検索~~ 実装がめんどくさい
    */
   // matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
   //  const matchedPrograms = new Programs([])
@@ -194,8 +194,13 @@ export class Programs {
         let programName
         let tags = ''
         if (yomiganaSerch) { // 読み仮名検索をする場合
-          programName = await analyzer(program.name).map(item => kanaToHira(item.reading)).join('')
-          tags = [...program.tags].map(item => analyzer(item).map(item => kanaToHira(item.reading)).join('')).join('+')
+          const analysedProgramNameTemporary = await analyzer(program.name)
+          programName = analysedProgramNameTemporary.map(item => kanaToHira(item.reading)).join('')
+
+          tags = [...program.tags].map(async (item) => {
+            const analisedItemTemporary = await analyzer(item)
+            analisedItemTemporary.map(item => kanaToHira(item.reading)).join('')
+          }).join('+')
         }
         else {
           programName = program.name
