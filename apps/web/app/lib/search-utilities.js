@@ -18,6 +18,12 @@ export function hasOnlyHiragana(string_) {
   return /^[\u3031-\u309F]+$/.test(string_)
 }
 
+// Written by ChatGPT
+export function hankakuKanaToZenkakuKatakana(input) {
+  // 半角カナ・半角記号のUnicode範囲 U+FF61–U+FF9F を塊で拾う
+  return input.replaceAll(/[\uFF61-\uFF9F]+/g, segment => segment.normalize('NFKC'))
+}
+
 export function kanaToHira(string_) {
   return string_ == undefined
     ? ''

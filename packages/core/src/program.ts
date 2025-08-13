@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 import { tokenize, getTokenizer } from 'kuromojin'
 import { Token } from './token'
-import { hasKanji } from '@/app/lib/search-utilities'
+import { hasKanji, hankakuKanaToZenkakuKatakana } from '@/app/lib/search-utilities'
 
 export const programType = {
   workshop: '体験',
@@ -201,12 +201,12 @@ export class Programs {
           }).join('+')
         }
         else */{
-          programName = program.name
-          tags = [...program.tags].join('+')
+          programName = hankakuKanaToZenkakuKatakana(program.name)
+          tags = hankakuKanaToZenkakuKatakana([...program.tags].join('+'))
         }
 
         for (const tagOrName of tagsAndNames) {
-          const analyzedTagOrName = await analyzer(tagOrName)
+          const analyzedTagOrName = await analyzer(hankakuKanaToZenkakuKatakana(tagOrName))
           const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
           const analyzedTagOrName_forConjugatedWord: Token[] = []
           for (const item of tagOrName_forConjugatedWord) {
