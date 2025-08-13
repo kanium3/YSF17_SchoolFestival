@@ -21,7 +21,25 @@ export function hasOnlyHiragana(string_) {
 // Written by ChatGPT
 export function hankakuKanaToZenkakuKatakana(input) {
   // 半角カナ・半角記号のUnicode範囲 U+FF61–U+FF9F を塊で拾う
-  return input.replaceAll(/[\uFF61-\uFF9F]+/g, segment => segment.normalize('NFKC'))
+  return input == undefined
+    ? ''
+    : input.replaceAll(/[\uFF61-\uFF9F]+/g, segment => segment.normalize('NFKC'))
+}
+export function zenkakuAlphaToHankakuAlpha(input) {
+  return input == undefined
+    ? ''
+    : input.replaceAll(/[Ａ-Ｚａ-ｚ]+|[０-９]+/g, ch =>
+        String.fromCodePoint(ch.codePointAt(0) - 0xFE_E0),
+      )
+}
+export function extractAlphaNumber(input) {
+  if (input == undefined) {
+    return ''
+  }
+  else {
+    const matches = input.match(/[A-Za-z0-9Ａ-Ｚａ-ｚ０-９]/g)
+    return matches ? matches.join('') : ''
+  }
 }
 
 export function kanaToHira(string_) {

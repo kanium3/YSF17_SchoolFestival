@@ -30,7 +30,7 @@ async function searchPrograms(loc) {
   // placeを取得
   const place = loc.searchParams?.get('place') == undefined ? [] : loc.searchParams?.get('place').split(' ')
   // 文字列検索(q)を取得
-  const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').split(' ')
+  const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').replaceAll('　', ' ').split(' ').filter(item => item != '')
 
   result = await programs.matchPrograms(kind, place, q, true, true)
 
