@@ -44,7 +44,7 @@ export default function ProgramView() {
   // const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
 
   const [loc] = useAtom(searchQueryAtom)
-  const [programsResult, setProgramsResult] = useState(null)
+  const [programsResult, setProgramsResult] = useState()
 
   useEffect(() => {
     async function fetchPrograms() {
