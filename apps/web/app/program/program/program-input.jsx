@@ -20,7 +20,7 @@ export default function ProgramInput() {
       onChange={(v) => {
         setInputValue((previous) => {
           const parameters = new URLSearchParams([...previous.searchParams])
-          parameters.set('q', v)
+          v == '' ? parameters.delete('q') : parameters.set('q', v)
           return {
             ...previous,
             searchParams: parameters,
