@@ -139,7 +139,7 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Programs {
+  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, _conjugatedWordSearch: boolean): Promise<Programs> {
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
 
@@ -179,43 +179,44 @@ export class Programs {
     }
 
     // tagsAndNames AND
-    getTokenizer().then((_tokenizer) => {
+    getTokenizer({ dicPath: 'https://cdn.jsdelivr.net/npm/kuromoji@0.1.2/dict' }).then((_tokenizer) => {
     // kuromoji.js's `tokenizer` instance
     })
-
     if (tagsAndNames.length > 0) {
       const result = new Programs()
       for (const program of temporaryResult.programs) {
         let matched = true
-        
-        console.log(analyzer("緑").map(item => kanaToHira(item.reading)).join(''))
 
         let programName
-        let tags = ""
+        let tags = ''
         if (yomiganaSerch) { // 読み仮名検索をする場合
-          programName = analyzer(program.name).map(item => kanaToHira(item.reading)).join('')
-          // tags = [...program.tags].map(item => analyzer(item).map(item => kanaToHira(item.reading)).join(''))
+          programName = await analyzer(program.name).map(item => kanaToHira(item.reading)).join('')
+          tags = [...program.tags].map(item => analyzer(item).map(item => kanaToHira(item.reading)).join('')).join('+')
         }
         else {
           programName = program.name
-          // tags = [...program.tags]
+          tags = [...program.tags].join('+')
         }
 
         for (const tagOrName of tagsAndNames) {
+          const analyzedTagOrName = await analyzer(tagOrName)
+          const analyzedTags = await analyzer(tags)
+          const analyzedProgramName = await analyzer(programName)
+
           if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
-            if (!tags.includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !programName.includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
+            if (!tags.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
               matched = false
               break
             }
           }
           else if (hasKatakana(tagOrName) || hasKanji(tagOrName)) {
-            if (!analyzer(tags).map(item => kanaToHira(item.reading)).join('').includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join('')) && !analyzer(programName).map(item => kanaToHira(item.reading)).join('').includes(analyzer(tagOrName).map(item => kanaToHira(item.reading)).join(''))) {
+            if (!analyzedTags.map(item => kanaToHira(item.reading)).join('').includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !analyzedProgramName.map(item => kanaToHira(item.reading)).join('').includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join(''))) {
               matched = false
               break
             }
           }
           else if (hasOnlyHiragana(tagOrName)) {
-            if (!analyzer(tags).map(item => kanaToHira(item.reading)).join('').includes(tagOrName) && !analyzer(programName).map(item => kanaToHira(item.reading)).join('').includes(tagOrName)) {
+            if (!analyzedTags.map(item => kanaToHira(item.reading)).join('').includes(tagOrName) && !analyzedProgramName.map(item => kanaToHira(item.reading)).join('').includes(tagOrName)) {
               matched = false
               break
             }
@@ -238,6 +239,7 @@ export class Programs {
 
     matchedProgramsResult = temporaryResult
 
+    console.log(matchedProgramsResult)
     return matchedProgramsResult
   }
 
@@ -258,10 +260,13 @@ export function parseProgramsData(input: string): Programs {
   return new Programs(data.map(programData => new Program(programData)))
 }
 
-function analyzer(text: string): Token[] {
+async function analyzer(text: string): Promise<Token[]> {
   const tokens: Token[] = []
-  tokenize(text).then((item) => {
+
+  const items = await tokenize(text)
+  for (const item of items) {
     tokens.push(new Token(item))
-  })
-  return tokens.map(token => new Token(token))
+  }
+
+  return tokens
 }

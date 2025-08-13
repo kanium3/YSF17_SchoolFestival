@@ -6,6 +6,7 @@ import { solveBasePath } from '@/app/lib/index.js'
 import Tags from '@/app/program/program/tags.jsx'
 import { useAtom } from 'jotai'
 import { searchQueryAtom, programs } from '@/app/program/program/atoms'
+import { useEffect, useState } from 'react'
 
 /** @type {string[]} */
 const ariaOrder = Object.values(ariaType)
@@ -21,9 +22,10 @@ function groupArray(array) {
   return Object.entries(groups).map(([aria, item]) => ({ aria, item }))
 }
 
-function searchPrograms() {
+async function searchPrograms(loc) {
   let result
-  const [loc, _setLoc] = useAtom(searchQueryAtom)
+
+  console.log('searchPrograms called with loc:', loc)
 
   // kindを取得
   const kind = loc.searchParams?.get('kind') == undefined ? [] : loc.searchParams?.get('kind').split(' ')
@@ -32,17 +34,32 @@ function searchPrograms() {
   // 文字列検索(q)を取得
   const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').split(' ')
 
-  result = programs.matchPrograms(kind, place, q)
+  result = await programs.matchPrograms(kind, place, q)
 
-  const programsAtom = result
+  const programsResult = result
 
-  return programsAtom
+  return programsResult
 }
 
 export default function ProgramView() {
-  /** @type {import("@latimeria/core").Programs} */
-  const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
-  const ite = programs.iter()
+  // ** @type {import("@latimeria/core").Programs} */
+  // const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
+
+  const [loc] = useAtom(searchQueryAtom)
+  const [programsResult, setProgramsResult] = useState(null)
+
+  useEffect(() => {
+    console.log('useEffect called with loc:', loc)
+    async function fetchPrograms() {
+      const result = await searchPrograms(loc)
+      setProgramsResult(result)
+    }
+    fetchPrograms()
+  }, [/* dependencies if needed */loc])
+  // if (!programsResult) return <div>Loading...</div>
+  console.log(programsResult)
+
+  const ite = programsResult.iter()
   const programsArray = [...ite].sort((a, b) => ariaOrder.indexOf(a.aria) - ariaOrder.indexOf(b.aria))
   /** @type {[{aria:string , item:Program[]}]} */
   const ariaGroups = groupArray(programsArray)
