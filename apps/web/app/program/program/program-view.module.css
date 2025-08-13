@@ -35,9 +35,10 @@
 }
 
 .cardTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    /** flex-direction: row;
+    align-items: center; */
+    grid-template-columns: 7rem 1fr;
 }
 
 .cardDescription {
