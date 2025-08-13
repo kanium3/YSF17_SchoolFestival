@@ -32,7 +32,7 @@ async function searchPrograms(loc) {
   // 文字列検索(q)を取得
   const q = loc.searchParams?.get('q') == undefined ? [] : loc.searchParams?.get('q').split(' ')
 
-  result = await programs.matchPrograms(kind, place, q)
+  result = await programs.matchPrograms(kind, place, q, true, true)
 
   const programsResult = result
 

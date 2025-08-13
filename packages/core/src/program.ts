@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 import { tokenize, getTokenizer } from 'kuromojin'
 import { Token } from './token'
-import { hasOnlyKatakana, hasOnlyKanji, hasOnlyHiragana, kanaToHira, hasKatakana, hasKanji } from '@/app/lib/search-utilities'
+import { hasKanji } from '@/app/lib/search-utilities'
 
 export const programType = {
   workshop: '体験',
@@ -139,7 +139,7 @@ export class Programs {
   //  return matchedPrograms
   // }
 
-  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], yomiganaSerch: boolean, conjugatedWordSearch: boolean): Promise<Programs> {
+  async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], _yomiganaSerch: boolean, conjugatedWordSearch: boolean): Promise<Programs> {
     // console.log(tagsAndNames)
 
     let matchedProgramsResult = new Programs([])
@@ -191,7 +191,7 @@ export class Programs {
 
         let programName
         let tags = ''
-        if (yomiganaSerch) { // 読み仮名検索をする場合
+        /** if (yomiganaSerch) { // 読み仮名検索をする場合
           const analysedProgramNameTemporary = await analyzer(program.name)
           programName = analysedProgramNameTemporary.map(item => kanaToHira(item.reading)).join('')
 
@@ -200,34 +200,34 @@ export class Programs {
             analisedItemTemporary.map(item => kanaToHira(item.reading)).join('')
           }).join('+')
         }
-        else {
+        else */{
           programName = program.name
           tags = [...program.tags].join('+')
         }
 
         for (const tagOrName of tagsAndNames) {
           const analyzedTagOrName = await analyzer(tagOrName)
-          const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const tagOrName_forConjugatedWord = analyzedTagOrName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
           const analyzedTagOrName_forConjugatedWord: Token[] = []
           for (const item of tagOrName_forConjugatedWord) {
-            for (const it of item)
+            for (const it of await item)
               analyzedTagOrName_forConjugatedWord.push(it)
           }
 
           const analyzedTagsTemporary = await analyzer(tags)
           const analyzedTags = analyzedTagsTemporary.filter(item => item.surface_form != '+')
-          const tags_forConjugatedWord = analyzedTags.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const tags_forConjugatedWord = analyzedTags.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
           const analyzedTags_forConjugatedWord: Token[] = []
           for (const item of tags_forConjugatedWord) {
-            for (const it of item)
+            for (const it of await item)
               analyzedTags_forConjugatedWord.push(it)
           }
 
           const analyzedProgramName = await analyzer(programName)
-          const programName_forConjugatedWord = analyzedProgramName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(item => await analyzer(item))
+          const programName_forConjugatedWord = analyzedProgramName.filter(item => item.basic_form != undefined).map(item => item.basic_form).map(async item => await analyzer(item))
           const analyzedProgramName_forConjugatedWord: Token[] = []
           for (const item of programName_forConjugatedWord) {
-            for (const it of item)
+            for (const it of await item)
               analyzedProgramName_forConjugatedWord.push(it)
           }
 
