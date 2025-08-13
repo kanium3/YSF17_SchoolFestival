@@ -230,7 +230,6 @@ export class Programs {
             for (const it of await item)
               analyzedProgramName_forConjugatedWord.push(it)
           }
-          console.log(analyzedProgramName)
 
           for (const analyzedItem of analyzedTagOrName) {
             matched = false
