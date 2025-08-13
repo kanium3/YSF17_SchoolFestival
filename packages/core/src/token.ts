@@ -13,6 +13,7 @@ export class Token {
   reading: string // 読み
   pronunciation: string // 発音
 
+  /** KuromojiToken */
   constructor(data: any) {
     this.word_id = data.word_id
     this.word_type = data.word_type
