@@ -121,27 +121,10 @@ export class Programs {
    * @param programTypes 「体験」「募金」など。AND検索
    * @param areaTypes 階/ホールなど OR検索
    * @param tagsAndNames ハッシュタグ、企画名 AND検索
-   * @param yomiganaSerch ~~ハッシュタグ、企画名の読み仮名検索~~ 使わなくてよさそう
-   * @param conjugatedWordSearch ~~ハッシュタグ、企画名の活用語を考慮した検索~~ 実装がめんどくさい
+   * @param yomiganaSerch ハッシュタグ、企画名の読み仮名検索
+   * @param conjugatedWordSearch ハッシュタグ、企画名の活用語を考慮した検索
    */
-  // matchPrograms(tags: Tags, is_complete: boolean = false): Programs {
-  //  const matchedPrograms = new Programs([])
-  //  for (const program of this.programs) {
-  //    const programTags = program.tags
-  //    if (is_complete && tags.isSupersetOf(programTags)) {
-  //      matchedPrograms.programs.add(program)
-  //      continue
-  //    }
-  //    if (!tags.isDisjointFrom(programTags)) {
-  //      matchedPrograms.programs.add(program)
-  //    }
-  //  }
-  //  return matchedPrograms
-  // }
-
   async matchPrograms(programTypes: string[], areaTypes: string[], tagsAndNames: string[], _yomiganaSerch: boolean, conjugatedWordSearch: boolean): Promise<Programs> {
-    // console.log(tagsAndNames)
-
     let matchedProgramsResult = new Programs([])
     let temporaryResult = new Programs()
 
@@ -189,21 +172,8 @@ export class Programs {
       for (const program of temporaryResult.programs) {
         let matched = false
 
-        let programName
-        let tags = ''
-        /** if (yomiganaSerch) { // 読み仮名検索をする場合
-          const analysedProgramNameTemporary = await analyzer(program.name)
-          programName = analysedProgramNameTemporary.map(item => kanaToHira(item.reading)).join('')
-
-          tags = [...program.tags].map(async (item) => {
-            const analisedItemTemporary = await analyzer(item)
-            analisedItemTemporary.map(item => kanaToHira(item.reading)).join('')
-          }).join('+')
-        }
-        else */{
-          programName = hankakuKanaToZenkakuKatakana(program.name)
-          tags = hankakuKanaToZenkakuKatakana([...program.tags].join('+'))
-        }
+        const programName = hankakuKanaToZenkakuKatakana(program.name)
+        const tags = hankakuKanaToZenkakuKatakana([...program.tags].join('+'))
 
         for (const tagOrName of tagsAndNames) {
           const analyzedTagOrName = await analyzer(hankakuKanaToZenkakuKatakana(tagOrName))
@@ -250,13 +220,6 @@ export class Programs {
               }
             }
 
-            /** if (extractAlphaNumber(analyzedItem) != '') {
-              if (programName.includes(extractAlphaNumber(analyzedItem)) || tags.includes(extractAlphaNumber(analyzedItem))) {
-                matched = true
-                continue
-              }
-            } */
-
             break
           }
 
@@ -270,40 +233,6 @@ export class Programs {
             }
             break
           }
-
-          /** if (hasOnlyKanji(tagOrName) || hasOnlyKatakana(tagOrName)) {
-            console.log('hasOnlyKanji or hasOnlyKatakana')
-            if (!tags.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !programName.includes(tagOrName) && !tags.includes(tagOrName)) {
-              matched = false
-              console.log(`Tag or name "${tagOrName}" does not match program "${program.name}" with tags "${tags}" and program name "${programName}" at hasOnlyKanji or hasOnlyKatakana`)
-              break
-            }
-          }
-          else if (hasKatakana(tagOrName) || hasKanji(tagOrName)) {
-            console.log('hasKatakana or hasKanji')
-            if (!analyzedTags.map(item => kanaToHira(item.reading)).join('').includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join('')) && !analyzedProgramName.map(item => kanaToHira(item.reading)).join('').includes(analyzedTagOrName.map(item => kanaToHira(item.reading)).join(''))) {
-              matched = false
-              console.log(`Tag or name "${tagOrName}" does not match program "${program.name}" with tags "${tags}" and program name "${programName}" at hasKatakana or hasKanji`)
-              break
-            }
-          }
-          else if (hasOnlyHiragana(tagOrName)) {
-            console.log('hasOnlyHiragana')
-            console.log(!analyzedTags.map(item => kanaToHira(item.reading)).join('').includes(tagOrName) && !analyzedProgramName.map(item => kanaToHira(item.reading)).join('').includes(tagOrName))
-            if (!analyzedTags.map(item => kanaToHira(item.reading)).join('').includes(tagOrName) && !analyzedProgramName.map(item => kanaToHira(item.reading)).join('').includes(tagOrName)) {
-              matched = false
-              console.log(`Tag or name "${tagOrName}" does not match program "${program.name}" with tags "${tags}" and program name "${programName}" at hasonlyHiragana`)
-              break
-            }
-          }
-          else {
-            console.log('else')
-            if (!tags.includes(tagOrName) && !programName.includes(tagOrName)) {
-              matched = false
-              console.log(`Tag or name "${tagOrName}" does not match program "${program.name}" with tags "${tags}" and program name "${programName}" at else`)
-              break
-            }
-          } */
         }
         if (matched) {
           console.log(`${program.name}added.`)

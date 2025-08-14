@@ -36,8 +36,6 @@
 
 .cardTitle {
     display: grid;
-    /** flex-direction: row;
-    align-items: center; */
     grid-template-columns: 7rem 1fr;
 }
 

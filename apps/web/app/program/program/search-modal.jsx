@@ -56,7 +56,7 @@ function KindSelectMenu() {
   const [kind, setKind] = useAtom(searchQueryAtom)
   const [kindS, setKindS] = useState(new Set(['すべて']))
 
-  let selectedKinds = [...kindS]//  == undefined ? [] : [...kindS].split(' ')
+  let selectedKinds = [...kindS]
   console.log(selectedKinds)
   if (selectedKinds.length > 1 && selectedKinds.at(-1) == 'すべて') { // 複数選択されていて、かつ、「すべて」が選択されたとき、それ以外の選択を外す
     setKind((previous) => {

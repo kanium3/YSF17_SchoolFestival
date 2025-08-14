@@ -40,9 +40,6 @@ async function searchPrograms(loc) {
 }
 
 export default function ProgramView() {
-  // ** @type {import("@latimeria/core").Programs} */
-  // const programs = searchPrograms()// useAtomValue(matchedProgramsAtom)
-
   const [loc] = useAtom(searchQueryAtom)
   const [programsResult, setProgramsResult] = useState()
 
