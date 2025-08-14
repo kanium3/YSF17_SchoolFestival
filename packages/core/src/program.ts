@@ -1,7 +1,7 @@
 import * as v from 'valibot'
 import { tokenize, getTokenizer } from 'kuromojin'
 import { Token } from './token'
-import { hasKanji, hankakuKanaToZenkakuKatakana, kanaToHira, hasKatakana } from '@/app/lib/search-utilities'
+import { hasKanji, hankakuKanaToZenkakuKatakana, kanaToHira, hasKatakana } from './search-utilities'
 
 export const programType = {
   workshop: '体験',
