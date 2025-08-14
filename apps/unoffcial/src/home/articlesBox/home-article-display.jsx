@@ -12,6 +12,7 @@ export default function HomeArticleDisplay() {
 
   for (const content of postContents) {
     const { data } = matter(content)
+    data.link = content.postId
     featureData.push(data)
   }
   const display_articlesIndex = [0, 1, 0]

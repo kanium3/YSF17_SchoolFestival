@@ -6,7 +6,7 @@ export default function HomeArticleBox({ data, keyValue }) {
   const date = data.date
 
   return (
-    <NavLink href={data.link} key={keyValue} className={styles.boxLink}>
+    <NavLink to={`feature/${data.link}`} key={keyValue} className={styles.boxLink}>
       <div className={styles.box}>
         <div className={styles.boxTitles}>
           <h3 className={styles.boxArticleTitle}>{data.title}</h3>
