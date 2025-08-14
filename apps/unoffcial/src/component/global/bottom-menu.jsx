@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import styles from './bottom-menu.module.css'
-import { MdHome, MdOutlineFastfood, MdWysiwyg, MdAccessTime, MdOutlineMap } from 'react-icons/md'
+import { MdHome, MdOutlineFastfood, MdOutlineArticle } from 'react-icons/md'
 import { NavLink, useParams } from 'react-router'
 
 export default function BottomMenu() {
@@ -29,9 +29,7 @@ export default function BottomMenu() {
   const items = [
     { label: '案内', href: '/', Icon: MdHome },
     { label: '食品', href: '/dining', Icon: MdOutlineFastfood },
-    { label: '企画', href: '/program', Icon: MdWysiwyg },
-    { label: '時間割', href: '/timetable', Icon: MdAccessTime },
-    { label: '地図', href: '/map', Icon: MdOutlineMap },
+    { label: '特集', href: '/feature', Icon: MdOutlineArticle },
   ]
   return (
     <footer className={styles['btmenu-base']}>

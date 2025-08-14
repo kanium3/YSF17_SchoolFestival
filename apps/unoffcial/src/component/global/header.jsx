@@ -15,10 +15,8 @@ export default function Header({ view = 'PC' }) {
           <NavLink to="/">🐟</NavLink>
         </div>
         <div className={styles.menu}>
-          <NavLink to="/program">企画</NavLink>
           <NavLink to="/dining">食事</NavLink>
-          <NavLink to="/timetable">タイムテーブル</NavLink>
-          <NavLink to="/map">地図</NavLink>
+          <NavLink to="/feature">特集</NavLink>
         </div>
       </header>
     )
