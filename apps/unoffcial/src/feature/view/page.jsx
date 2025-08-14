@@ -1,4 +1,3 @@
-import fs from 'node:fs'
 import matter from 'gray-matter'
 import Markdown from 'react-markdown'
 import remarkDirective from 'remark-directive'
@@ -11,23 +10,7 @@ import { TitleBarWithBack } from '@/component/global/title-bar'
 import { loadPostContents } from '@/feature/lib/load-post-contents.js'
 import { useParams } from 'react-router'
 
-export async function generateMetadata({ params }) {
-  // read route params
-  const { slug } = await params
-  const path = slug + '.md'
-  const content = await fs.promises.readFile(`posts/${path}`, { encoding: 'utf8' })
-
-  // fetch data
-  const { data } = matter(content)
-  const pageTitle = data.title || '無題'
-  return {
-    title: `${pageTitle} - 蒼煌祭17th非公式ページ`,
-    description: `蒼煌祭17thの非公式の特集「${pageTitle}」のページです。`,
-  }
-}
-
 /**
- *
  * @returns {React.ReactNode}
  * @constructor
  */
@@ -39,6 +22,8 @@ export default function Post() {
   const pageTitle = data.title || '無題'
   return (
     <>
+      <title>{`${pageTitle} - 蒼煌祭17th非公式ページ`}</title>
+      <meta name="description" content={`蒼煌祭17thの非公式の特集「${pageTitle}」のページです。`} />
       <TitleBarWithBack backpage="/feature" pagename={pageTitle} />
       <Markdown
         remarkPlugins={[[remarkFrontmatter, { type: 'yaml', marker: '-' }], remarkGfm, remarkCjkFriendly, remarkCjkFriendlyGfmStrikethrough, remarkDirective, remarkDirectiveRehype]}

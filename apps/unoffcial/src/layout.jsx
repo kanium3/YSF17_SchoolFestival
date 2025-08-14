@@ -9,7 +9,6 @@ export default function RootLayout() {
   return (
     <html lang="ja">
       <head>
-        <title>蒼煌祭非公式サイト</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
         <link

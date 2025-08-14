@@ -8,11 +8,6 @@ import TrainInfoBox from '@/home/trainInformation/train-information'
 import Source from './source/source'
 import HomeArticleDisplay from '@/home/articlesBox/home-article-display.jsx'
 
-export const metadata = {
-  title: '蒼煌祭17th非公式ページ',
-  description: '蒼煌祭17thの非公式のページのトップです。',
-}
-
 export default function Home() {
   const now = new Date()
   const openingTime = new Date('2025-09-06T10:00+09:00')
@@ -26,6 +21,9 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <title>蒼煌祭17th非公式ページ</title>
+      <meta name="description" content="蒼煌祭17thの非公式のページのトップです。" />
+
       <div className={styles.topVisualContainer}>
         {top_visual}
       </div>
