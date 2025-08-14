@@ -34,8 +34,8 @@ export default function ProgramInput() {
           }
         })
       }}
-      placeholder="企画名を入力"
-      aria-label="企画名を入力して企画を検索します"
+      placeholder="キーワードを入力"
+      aria-label="キーワードを入力して企画を検索します"
       value={inputValue.searchParams?.get('q') ?? ''}/** inputValue.searchParams?.get('q') */
       aria-describedby={programInputId}
       className={styles.programInput}
