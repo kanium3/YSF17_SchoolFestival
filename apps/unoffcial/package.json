@@ -25,7 +25,8 @@
     "remark-directive": "^4.0.0",
     "remark-directive-rehype": "^0.4.2",
     "remark-frontmatter": "^5.0.0",
-    "remark-gfm": "^4.0.1"
+    "remark-gfm": "^4.0.1",
+    "react-aria-components": "catalog:"
   },
   "devDependencies": {
     "@latimeria/eslint-config": "workspace:*",
