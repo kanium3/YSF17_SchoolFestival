@@ -1,0 +1,41 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  padding: 1.5vh;
+  gap: 3vw;
+  font-family: var(--font-noto-sans-jp);
+}
+
+.logo {
+}
+
+.menu {
+  display: inline-flex;
+  flex-direction: row;
+  gap: 1.5vw;
+}
+
+a.primary {
+  background: var(--foreground);
+  color: var(--semantic-link-default);
+  gap: 8px;
+}
+
+a.secondary {
+  min-width: 158px;
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+  a.primary:hover {
+    border-color: transparent;
+    color: var(--semantic-link-active);
+  }
+
+  a.secondary:hover {
+    border-color: transparent;
+  }
+}
+
+@media (max-width: 600px) {
+}

@@ -72,7 +72,7 @@ export const config = [
   eslintPluginUnicorn.configs.recommended,
   stylistic.configs.recommended,
   {
-    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.mjs'],
     languageOptions: {
       globals: {
         ...globals.browser,

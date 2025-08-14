@@ -7,6 +7,7 @@ export type { ButtonProperties, ButtonKinds } from './button'
 export { Link } from './link'
 export { Select, SelectButton, SelectItems, SelectItem, SelectItemsGroup, SelectPopover } from './select'
 export { SearchInput, SearchField } from './search'
+export { Spacer, type SpaceKinds } from './spacer'
 
 // react-ariaで提供されるパスを制御可能なものにするためエクスポートします
 export { RouterProvider } from 'react-aria-components'

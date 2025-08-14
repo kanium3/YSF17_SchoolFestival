@@ -1,0 +1,29 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.page> :not(.topVisualContainer) {
+  width: 92vw;
+  margin: 0 auto;
+}
+
+.mainHeading {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.subHeading {
+  padding-left: 10px;
+  font-size: var(--semantic-font-size-l);
+  font-weight: 700;
+}
+
+.slide {
+  position: relative;
+  width: 100% !important;
+  aspect-ratio: 16 / 12;
+  margin: 0 !important;
+  border: none !important;
+}
