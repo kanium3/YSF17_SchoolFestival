@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@latimeria/core": "workspace:*",
-    "@latimeria/ganoine": "workspace:*",
     "@latimeria/design-token": "catalog:",
+    "@latimeria/ganoine": "workspace:*",
     "gray-matter": "^4.0.3",
-    "jotai": "^2.12.5",
+    "jotai": "^2.13.1",
     "jotai-location": "^0.6.1",
     "leaflet": "^1.9.4",
     "next": "15.4.2",
@@ -39,16 +39,16 @@
     "svg-path-to-polygons": "^0.1.0"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
+    "@eslint/eslintrc": "^3.3.1",
     "@latimeria/eslint-config": "workspace:*",
-    "@rsdoctor/cli": "^1.1.8",
-    "@rsdoctor/rspack-plugin": "^1.1.8",
+    "@rsdoctor/cli": "^1.2.2",
+    "@rsdoctor/rspack-plugin": "^1.2.2",
     "@svgr/webpack": "^8.1.0",
     "@types/hast": "^3.0.4",
     "@vitest/browser": "^3.2.4",
     "eslint": "catalog:",
     "eslint-config-next": "15.4.2",
-    "next-rspack": "^15.4.2",
+    "next-rspack": "^15.4.6",
     "vitest": "catalog:",
     "webpack-license-plugin": "^4.5.1"
   }
