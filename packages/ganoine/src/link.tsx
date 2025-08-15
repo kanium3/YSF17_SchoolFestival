@@ -32,7 +32,7 @@ export function Link(properties: LinkProperties): ReactNode {
           rel="noopener noreferrer"
           ref={reference}
         >
-          {linkProps.children}
+          {properties.children}
           <MdOpenInNew />
         </a>
       )
