@@ -36,7 +36,6 @@ export function Popup(properties: PopupProperties): ReactNode {
   const windowSize = useWindowResize()
 
   useEffect(() => {
-    console.log('exeed' + byUseState.current)
     if (byUseState.current) {
       byUseState.current = false
     }
