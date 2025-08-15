@@ -1,0 +1,27 @@
+html {
+  scroll-behavior: smooth;
+}
+
+#home_index ul {
+  position: relative;
+  left: 2rem;
+}
+
+#home_index li {
+  margin-top: 1rem;
+}
+
+#home_index a {
+  display: inline-block;
+  color: hsl(220, 100%, 60%);
+  border-bottom: 2px solid;
+}
+
+#YSFmap {
+  position: relative;
+  display: block;
+  aspect-ratio: 600 / 450;
+  border: 0px solid;
+  width: 90%;
+  margin: 0 auto;
+}

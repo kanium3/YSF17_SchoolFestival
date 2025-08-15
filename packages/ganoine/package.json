@@ -8,9 +8,9 @@
   "exports": {
     ".": {
       "import": "./dist/index.js",
+      "default": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./package.json": "./package.json",
     "./base.css": {
       "import": "./dist/extra/base.css",
       "default": "./dist/extra/base.css",
@@ -26,36 +26,34 @@
     "dev": "rslib build --watch",
     "dev:css": "pnpm run genCss",
     "lint": "eslint .",
+    "format": "eslint . --fix",
     "tsc": "tsc --noEmit",
     "genCss": "hcm -o generated/hcm src/**/*.module.css --localsConvention camelCaseOnly --watch",
     "gen": "turbo gen ganoine"
   },
   "devDependencies": {
-    "@eslint/js": "^9.29.0",
     "@latimeria/eslint-config": "workspace:*",
     "@rsbuild/plugin-react": "^1.3.2",
-    "@storybook/react": "^9.0.17",
     "@rslib/core": "^0.10.4",
-    "@tsconfig/recommended": "^1.0.10",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
-    "eslint": "^9.29.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "globals": "^16.2.0",
+    "@storybook/react": "^9.0.17",
+    "@tsconfig/recommended": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "eslint": "catalog:",
     "happy-css-modules": "^4.0.0",
-    "react": "^19.1.0",
-    "typescript": "^5.8.3"
+    "postcss": "^8.5.6",
+    "react": "catalog:",
+    "typescript": "catalog:"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-dom": ">=16.9.0"
+    "react": ">=19.0.0",
+    "react-dom": ">=19.0.0"
   },
   "dependencies": {
-    "@latimeria/design-token": "^0.2.0",
+    "@latimeria/design-token": "catalog:",
     "clsx": "^2.1.1",
-    "react-aria": "^3.41.1",
-    "react-aria-components": "^1.10.1",
-    "react-icons": "^5.5.0"
+    "react-aria": "catalog:",
+    "react-aria-components": "catalog:",
+    "react-icons": "catalog:"
   }
 }

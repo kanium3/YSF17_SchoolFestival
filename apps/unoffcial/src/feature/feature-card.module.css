@@ -1,0 +1,43 @@
+.card {
+    margin: 1em;
+    border: rgba(0, 0, 0, 0.3) 1px solid;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.cardLink {
+    text-decoration: none;
+    color: unset;
+}
+
+.cardHeader {
+    position: relative;
+    padding: 5em;
+    margin: 0.5em;
+    flex-grow: 3;
+}
+
+.cardHeaderTags {
+    position: absolute;
+    top: 80%;
+    left: 2%;
+}
+
+.cardHeaderTag {
+    color: white;
+    font-family: var(--font-noto-sans-jp), serif;
+    margin-right: 1rem;
+}
+
+.cardTitle {
+    flex-grow: 2;
+}
+
+.cardDate {
+    color: #b6b6b6;
+    text-align: end;
+    padding: 0.5em 1em 0.25em 0.5em;
+    flex-grow: 1;
+}
