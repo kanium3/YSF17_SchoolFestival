@@ -9,19 +9,20 @@ class WidthAndHeight {
 
 const useWindowResize = () => {
   const [widthAndHeight, setWidthAndHeight] = useState < WidthAndHeight > ({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: globalThis.window === undefined ? 0 : window.innerWidth,
+    height: globalThis.window === undefined ? 0 : window.innerHeight,
   })
 
-  const handleResize = () => {
-    setWidthAndHeight({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
-  }
-
   useEffect(() => {
+    const handleResize = () => {
+      setWidthAndHeight({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    }
     window.addEventListener('resize', handleResize)
+    // Update once after mount
+    handleResize()
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
