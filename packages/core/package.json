@@ -47,5 +47,7 @@
   },
   "dependencies": {
     "valibot": "catalog:"
+    "kuromojin": "^3.0.1",
+    "valibot": "^1.1.0"
   }
 }

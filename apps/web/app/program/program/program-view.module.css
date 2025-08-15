@@ -35,13 +35,12 @@
 }
 
 .cardTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 7rem 1fr;
 }
 
 .cardDescription {
-    display: flex;
+    display: grid;
     flex-direction: column;
     max-width: 90%;
 }
