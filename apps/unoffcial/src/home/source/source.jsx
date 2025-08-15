@@ -9,7 +9,6 @@ export default function Source() {
         <Link
           href="https://www.edu.city.yokohama.lg.jp/school/hs/sfh/index.cfm/31,0,72,224,html"
           kind="external"
-          target="_blank"
         >
           <p className={styles.text}>第17回蒼煌祭について(公式HP)</p>
         </Link>
