@@ -9,8 +9,8 @@ interface WidthAndHeight {
 
 const useWindowResize = (): WidthAndHeight => {
   const [widthAndHeight, setWidthAndHeight] = useState <WidthAndHeight> ({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: globalThis.window === undefined ? 0 : window.innerWidth,
+    height: globalThis.window === undefined ? 0 : window.innerHeight,
   })
 
   useEffect(() => {
