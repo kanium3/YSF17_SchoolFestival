@@ -12,5 +12,13 @@ export const config = [
       'react/prop-types': 'off',
     },
   },
+  {
+    files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
+  },
   reactHooksConfigs['recommended-latest'],
 ]
