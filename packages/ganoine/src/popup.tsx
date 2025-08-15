@@ -5,7 +5,8 @@ import type { CSSProperties, ReactNode } from 'react'
 import { usePopup } from './popup-context'
 import { Dialog, Modal, ModalOverlay } from 'react-aria-components'
 import { Button } from './button'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import useWindowResize from './window-resize-detector'
 
 export type PopupProperties = {
   children: ReactNode
@@ -31,23 +32,34 @@ export type PopupProperties = {
 
 export function Popup(properties: PopupProperties): ReactNode {
   const [popSize, setPopSize] = useState<{ popheight: number, popwidth: number } | undefined>()
+  const byUseState = useRef(false)
+  const windowSize = useWindowResize()
 
   useEffect(() => {
-    setPopSize({
-      popheight: properties.popupHeight ?? document.documentElement.clientHeight - 144,
-      popwidth: properties.popupWidth ?? widthAdjust(document.documentElement.clientWidth - 24),
-    })
-
-    const resize = () => {
+    console.log('exeed' + byUseState.current)
+    if (byUseState.current) {
+      byUseState.current = false
+    }
+    else {
       setPopSize({
         popheight: properties.popupHeight ?? document.documentElement.clientHeight - 144,
         popwidth: properties.popupWidth ?? widthAdjust(document.documentElement.clientWidth - 24),
       })
-    }
 
-    window.addEventListener('resize', resize)
-    return () => window.removeEventListener('resize', resize)
-  }, [popSize, properties.popupHeight, properties.popupWidth])
+      const resize = () => {
+        setPopSize({
+          popheight: properties.popupHeight ?? document.documentElement.clientHeight - 144,
+          popwidth: properties.popupWidth ?? widthAdjust(document.documentElement.clientWidth - 24),
+        })
+        byUseState.current = true
+        console.log('changed')
+      }
+      byUseState.current = true
+
+      window.addEventListener('resize', resize)
+      return () => window.removeEventListener('resize', resize)
+    }
+  }, [popSize, properties.popupHeight, properties.popupWidth, windowSize])
 
   const screenSize = {
     '--popwidth': `${popSize?.popwidth}px`,
