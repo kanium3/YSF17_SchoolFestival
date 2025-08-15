@@ -14,7 +14,7 @@ export class Token {
   pronunciation: string // 発音
 
   /** KuromojiToken */
-  constructor(data: any) {
+  constructor(data: Required<Token>) {
     this.word_id = data.word_id
     this.word_type = data.word_type
     this.word_position = data.word_position
