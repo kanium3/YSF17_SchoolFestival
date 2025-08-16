@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { defineCommand, runMain } from 'citty'
-import { authorize, authorizeAuto, driveHandler } from '../index.js'
+import { authorize, authorizeAuto, driveHandler } from '../src/index.js'
 
 const app = defineCommand({
   meta: {

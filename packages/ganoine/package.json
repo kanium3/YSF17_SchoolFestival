@@ -34,7 +34,7 @@
   "devDependencies": {
     "@latimeria/eslint-config": "workspace:*",
     "@rsbuild/plugin-react": "catalog:",
-    "@rslib/core": "^0.10.6",
+    "@rslib/core": "catalog:",
     "@storybook/react": "^9.1.2",
     "@tsconfig/recommended": "catalog:",
     "@types/react": "catalog:",

@@ -15,8 +15,8 @@
  * limitations under the License.
  */
 import { authenticate } from '@google-cloud/local-auth'
-import { GoogleAuth } from 'google-auth-library'
-import { google } from 'googleapis'
+import { GoogleAuth, OAuth2Client, BaseExternalAccountClient } from 'google-auth-library'
+import { google, drive_v3 } from 'googleapis'
 import crypto from 'node:crypto'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -33,25 +33,35 @@ const CREDENTIALS_PATH = 'credentials.json'
 const POUCHDB_DBNAME = 'latimeriadb'
 const DEFAULT_SYNC_FILE_REGEXP = /^\.*?/
 
+interface SyncFileSchema {
+  _rev?: string
+  _id: string
+  hash: string
+  date: string
+}
+
+interface SyncAgentOptions {
+  folderID: string
+  matchRule: RegExp
+  force: boolean
+  realSyncPath: string
+}
+
 /**
- * 実行されているディレクトリから絶対パスを取得
- * @param {string} absolve_path
- * @return {string}
+ * 実行されているディレクトリから絶対パス���������取得
  */
-function resolve_path_from_cwd(absolve_path) {
+function resolve_path_from_cwd(absolve_path: string): string {
   return path.join(process.cwd(), absolve_path)
 }
 
 /**
  * Reads previously authorized credentials from the save file.
- *
- * @return {Promise<import("google-auth-library").OAuth2Client | undefined>}
  */
-async function loadSavedCredentialsIfExist() {
+async function loadSavedCredentialsIfExist(): Promise<OAuth2Client | undefined> {
   try {
     const content = await fs.readFile(TOKEN_PATH, { encoding: 'utf8' })
     const credentials = JSON.parse(content)
-    return google.auth.fromJSON(credentials)
+    return google.auth.fromJSON(credentials) as OAuth2Client
   }
   catch (error) {
     console.error(error)
@@ -60,11 +70,8 @@ async function loadSavedCredentialsIfExist() {
 
 /**
  * Serializes credentials to a file compatible with GoogleAuth.fromJSON.
- *
- * @param {import("google-auth-library").OAuth2Client} client
- * @return {Promise<void>}
  */
-async function saveCredentials(client) {
+async function saveCredentials(client: OAuth2Client): Promise<void> {
   const content = await fs.readFile(CREDENTIALS_PATH, { encoding: 'utf8' })
   const keys = JSON.parse(content)
   const key = keys.installed || keys.web
@@ -79,9 +86,8 @@ async function saveCredentials(client) {
 
 /**
  * Load or request or authorization to call APIs.
- * @return {Promise<import("google-auth-library").OAuth2Client>}
  */
-export async function authorize() {
+export async function authorize(): Promise<OAuth2Client> {
   let client = await loadSavedCredentialsIfExist()
   if (client) {
     return client
@@ -89,7 +95,7 @@ export async function authorize() {
   client = await authenticate({
     scopes: SCOPES,
     keyfilePath: CREDENTIALS_PATH,
-  })
+  }) as OAuth2Client
   if (client.credentials) {
     await saveCredentials(client)
   }
@@ -98,51 +104,29 @@ export async function authorize() {
 
 /**
  * Load or request or authorization to call APIs.
- * @return {Promise<import("google-auth-library").AnyAuthClient | import("google-auth-library").JSONClient>}
  */
-export async function authorizeAuto() {
+export async function authorizeAuto(): Promise<OAuth2Client | BaseExternalAccountClient> {
   const auth = new GoogleAuth({
     scopes: SCOPES,
   })
-  return auth.getClient()
+  return auth.getClient() as Promise<OAuth2Client | BaseExternalAccountClient>
 }
 
-/**
- * @typedef SyncFileSchema データベースに保存するデータの形式
- * @property {*} _rev
- * @property {string} _id ファイル名
- * @property {string} hash sha256
- * @property {string} date `Date.toISOString()`したやつ
- *
- */
-
-/**
- * @typedef SyncAgentOptions 同期するファイルの設定
- * @property {string} folderID 同期するフォルダの`fileID`
- * @property {string | RegExp} matchRule 正規表現で一致するファイルを同期のみ同期の対象とします。
- * デフォルトは`/^\.*?/`です(`.`から始まるファイル以外同期)
- * @property {boolean} force 有効にした場合、強制的にファイルをダウンロード、及び上書きします。
- * デフォルトでは、ハッシュが一致するものはダウンロードしません
- * @property {string} realSyncPath ファイルをダウンロードするディレクトリ
- */
-
-/** @class */
 class SyncAgent {
-  /**
-   *
-   * @param {SyncAgentOptions} options
-   */
-  constructor(options) {
+  private options: SyncAgentOptions
+  private db: PouchDB.Database<SyncFileSchema>
+
+  constructor(options: SyncAgentOptions) {
     this.options = options
     this.db = new PouchDB(POUCHDB_DBNAME)
   }
 
-  async setup() {
+  async setup(): Promise<void> {
     const fileList = await fs.readdir(this.options.realSyncPath, {
       withFileTypes: true,
     })
-    /** @type {string[]} */
-    let filteredFileList = []
+
+    const filteredFileList: string[] = []
     for await (const dirent of fileList) {
       if (!dirent.isFile()) {
         continue
@@ -151,17 +135,16 @@ class SyncAgent {
         filteredFileList.push(dirent.name)
       }
     }
+
     for (const filePath of filteredFileList) {
       const content = await fs.readFile(
         path.join(this.options.realSyncPath, filePath),
       )
-      const hash = crypto.hash('sha256', content, 'hex')
+      const hash = crypto.createHash('sha256').update(new Uint8Array(content)).digest('hex')
 
       try {
-        /** @type SyncFileSchema */
         const localFileInfo = await this.db.get(filePath)
-        /** @type SyncFileSchema */
-        const document_ = {
+        const document_: SyncFileSchema = {
           _id: filePath,
           hash: hash,
           date: new Date().toISOString(),
@@ -170,8 +153,7 @@ class SyncAgent {
         await this.db.put(document_)
       }
       catch {
-        /** @type SyncFileSchema */
-        const document_ = {
+        const document_: SyncFileSchema = {
           _id: filePath,
           hash: hash,
           date: new Date().toISOString(),
@@ -181,34 +163,29 @@ class SyncAgent {
     }
   }
 
-  /**
-   *
-   * @param {import("googleapis").drive_v3.Drive} drive
-   * @returns {Promise<void>}
-   */
-  async sync(drive) {
+  async sync(drive: drive_v3.Drive): Promise<void> {
     const files = await drive.files.list({
       q: `'${this.options.folderID}' in parents`,
       fields: 'files(id, name, sha256Checksum)',
     })
+
     if (!files.data.files) {
       return
     }
+
     for (const file of files.data.files) {
+      if (!file.name || !file.id) continue
+
       try {
-        /** @type SyncFileSchema */
         const localFileInfo = await this.db.get(file.name)
-        if (localFileInfo.hash === file.sha256Checksum) {
-          return
-        }
-        else {
+        if (localFileInfo.hash !== file.sha256Checksum) {
           const GFileData = await drive.files.get({
             fileId: file.id,
             supportsAllDrives: true,
             alt: 'media',
           })
-          /** @type {Blob} */
-          const buf = GFileData.data
+
+          const buf = GFileData.data as unknown as Blob
           const buffer = new Uint8Array(await buf.arrayBuffer())
           await fs.writeFile(
             path.join(this.options.realSyncPath, file.name),
@@ -222,8 +199,8 @@ class SyncAgent {
           supportsAllDrives: true,
           alt: 'media',
         })
-        /** @type {Blob} */
-        const buf = GFileData.data
+
+        const buf = GFileData.data as unknown as Blob
         const buffer = new Uint8Array(await buf.arrayBuffer())
         await fs.writeFile(
           path.join(this.options.realSyncPath, file.name),
@@ -236,12 +213,13 @@ class SyncAgent {
 
 /**
  * The handler
- * @param {import("google-auth-library").OAuth2Client | import("google-auth-library").JSONClient} authClient An authorized OAuth2 client.
- * @param {string | undefined} syncDirectory
- * @param {string} driveId
- * @param {boolean} force
  */
-export async function driveHandler(authClient, syncDirectory, driveId, force) {
+export async function driveHandler(
+  authClient: OAuth2Client | BaseExternalAccountClient,
+  syncDirectory: string | undefined,
+  driveId: string,
+  force: boolean,
+): Promise<void> {
   const drive = google.drive({ version: 'v3', auth: authClient })
   const resolveSyncDirectory = syncDirectory ?? resolve_path_from_cwd('/public')
   const agent = new SyncAgent({

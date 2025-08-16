@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "description": "A supporting tools for developing latimeria",
   "type": "module",
-  "main": "index.js",
+  "main": "src/index.ts",
   "bin": {
-    "latimeria": "bin/latimeria.js"
+    "latimeria": "bin/latimeria.ts"
   },
   "private": true,
   "scripts": {
     "lint": "eslint .",
-    "syncPublic": "node index.js",
-    "format": "eslint . --fix"
+    "syncPublic": "node src/index.ts",
+    "format": "eslint . --fix",
+    "typecheck": "tsc --noEmit",
+    "dev": "rslib build --watch",
+    "build": "rslib build"
   },
   "repository": {
     "type": "git",
@@ -19,11 +22,16 @@
   },
   "devDependencies": {
     "@google-cloud/local-auth": "^3.0.1",
+    "@latimeria/eslint-config": "workspace:*",
+    "@tsconfig/node-lts": "^22.0.2",
+    "@types/node": "^24.3.0",
+    "@types/pouchdb": "^6.4.2",
     "citty": "^0.1.6",
+    "eslint": "catalog:",
     "google-auth-library": "^9.15.1",
     "googleapis": "^149.0.0",
     "pouchdb": "^9.0.0",
-    "@latimeria/eslint-config": "workspace:*",
-    "eslint": "catalog:"
+    "typescript": "catalog:",
+    "@rslib/core": "catalog:"
   }
 }
