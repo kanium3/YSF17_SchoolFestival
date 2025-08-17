@@ -51,6 +51,7 @@ gha-creds-*.json
 
 # Sync
 latimeriadb
+latimeria.config.jsonc
 
 # VSCode
 /.vscode/

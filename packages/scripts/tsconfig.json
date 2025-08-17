@@ -1,6 +1,8 @@
 {
   "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "moduleResolution": "bundler",
+    "module": "ESNext",
   }
 }

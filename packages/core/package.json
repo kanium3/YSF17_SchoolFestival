@@ -41,7 +41,7 @@
     "eslint": "catalog:",
     "happy-dom": "^17.6.3",
     "tsdown": "^0.11.13",
-    "tsx": "^4.20.4",
+    "tsx": "catalog:",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },

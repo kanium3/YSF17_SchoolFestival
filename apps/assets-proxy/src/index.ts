@@ -47,7 +47,7 @@ app.get(
       200: {
         description: 'The requested image, possibly transformed.',
         content: {
-          'image/jpeg': { schema: resolver(v.string()) },
+          'image/jpeg': {},
         },
       },
       404: { description: 'Image not found.' },
@@ -88,6 +88,34 @@ const imageUploadSchema = v.object({
   name: v.string(),
 })
 
+const imageUploadResponseSchema = v.object({
+  key: v.string(),
+  version: v.string(),
+  size: v.number(),
+  etag: v.string(),
+  httpEtag: v.string(),
+  checksums: v.object({
+    md5: v.optional(v.string()),
+    sha1: v.optional(v.string()),
+    sha256: v.optional(v.string()),
+    sha384: v.optional(v.string()),
+    sha512: v.optional(v.string()),
+  }),
+  uploaded: v.string(),
+  httpMetadata: v.object({
+    contentType: v.optional(v.string()),
+    contentLanguage: v.optional(v.string()),
+    contentDisposition: v.optional(v.string()),
+    contentEncoding: v.optional(v.string()),
+    cacheControl: v.optional(v.string()),
+    cacheExpiry: v.optional(v.string()),
+  }),
+  customMetadata: v.optional(v.record(v.string(), v.string())),
+  range: v.optional(v.record(v.string(), v.string())),
+  storageClass: v.string(),
+  ssecKeyMd5: v.optional(v.string()),
+})
+
 app.use('/upload', bearerAuth({
   verifyToken: async (token, c) => {
     return token === c.env.API_TOKEN
@@ -98,6 +126,17 @@ app.post(
   '/upload',
   describeRoute({
     hide: process.env.NODE_ENV === 'production',
+    summary: 'Upload an image',
+    description: 'Upload an image to the bucket. The image can be transformed using the `GET /image/:id` endpoint.',
+    responses: {
+      200: {
+        description: 'The requested image, possibly transformed.',
+        content: {
+          'application/json': { schema: resolver(imageUploadResponseSchema) },
+        },
+      },
+      404: { description: 'Image not found.' },
+    },
   }),
   vValidator('form', imageUploadSchema),
   async (c) => {
