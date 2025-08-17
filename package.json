@@ -7,7 +7,8 @@
     "build": "turbo run build",
     "lint": "turbo run lint --continue=always",
     "format": "turbo run format --continue=always",
-    "syncPublic": "latimeria  --sync-dir=apps/web/public",
+    "syncPublic": "latimeria gdrive",
+    "syncAssetsProxy": "latimeria assets",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
