@@ -1,9 +1,10 @@
 {
   "drive": {
     "driveIds": ["1ubSpJEvVoAgLNaM3FL_sdrtP3BB5lRMz"],
-    "syncDir": ["apps/web/public", "apps/unofficial/public"],
+    "syncDir": ["apps/web/public", "apps/unoffcial/public"],
   },
   "assets": {
-    "accessToken": "<YOUR_ASSET_PROXY_ACCESS_TOKEN>"
+    "accessToken": "<YOUR_ASSET_PROXY_ACCESS_TOKEN>",
+    "syncDir": ["apps/web/public"]
   },
 }
