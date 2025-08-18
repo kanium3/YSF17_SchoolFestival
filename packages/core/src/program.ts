@@ -5,11 +5,10 @@ import { hasKanji, hankakuKanaToZenkakuKatakana, kanaToHira, hasKatakana } from 
 
 export const programType = {
   workshop: '体験',
-  donation: '募金',
-  sale: '販売',
   exhibition: '展示',
-  performance: 'パフォーマンス',
-  publishing: '出版',
+  sale: '販売',
+  performance: '上演',
+  publishing: '配布',
   other: 'その他',
 } as const
 
