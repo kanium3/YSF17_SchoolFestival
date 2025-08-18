@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import styles from './bottom-menu.module.css'
 import { MdHome, MdOutlineFastfood, MdOutlineArticle } from 'react-icons/md'
-import { NavLink, useParams } from 'react-router'
+import { NavLink, useLocation } from 'react-router'
 
 export default function BottomMenu() {
   /*
@@ -14,7 +14,7 @@ export default function BottomMenu() {
   */
 
   /** @type {string} */
-  const pathname = useParams()
+  const pathname = useLocation().pathname
   const [activePage, setActivePage] = useState(() => {
     const splitPath = pathname.split('/')
     return '/' + splitPath[1]

@@ -3,12 +3,12 @@
   --foreground: #171717;
   --bottom-menu-height: 64px;
   --site-footer-height: 128px;
+  color-scheme: only light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: only light;
   }
 }
 
