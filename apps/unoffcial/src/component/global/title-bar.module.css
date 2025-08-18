@@ -20,12 +20,3 @@
   color: #008;
   cursor: pointer;
 }
-
-@media (prefers-color-scheme: dark) {
-  .page-title {
-    color: #ededed; /* @/app/global.cssに合わせました */
-  }
-  .back-button {
-    color: #8ff;
-  }
-}

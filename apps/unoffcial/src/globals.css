@@ -34,12 +34,12 @@
   --font-noto-sans-jp: 'Noto Sans JP', sans-serif;
   --font-michroma: 'Michroma', sans-serif;
   --font-line-seed-jp: 'LINE Seed JP', sans-serif;
+  color-scheme: only light;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: only light;
   }
 }
 
