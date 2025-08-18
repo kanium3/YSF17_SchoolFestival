@@ -37,25 +37,22 @@ export function Tag({ tag }) {
 function BackAndFrontColor(tag) {
   switch (tag) {
     case '体験': {
-      return ['#F63838', '#ffffff']
+      return ['#F63838', '#fcfcff']
     }
     case '展示': {
-      return ['#387AF6', '#ffffff']
+      return ['#387AF6', '#fcfcff']
     }
     case '配布': {
-      return ['#1CCB45', '#ffffff']
+      return ['#1CCB45', '#fcfcff']
     }
     case '上演': {
-      return ['#B038F6', '#ffffff']
+      return ['#B038F6', '#fcfcff']
     }
     case '販売': {
       return ['#F2F46D', '#323232']
     }
-    case '募金': {
-      return ['#91F46D', '#323232']
-    }
     default: {
-      return ['#ffffff', '#323232']
+      return ['#fcfcfc', '#323232']
     }
   }
 }
