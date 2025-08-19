@@ -27,8 +27,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--semantic-background-white);
+  --foreground: var(--semantic-text-dark);
   --bottom-menu-height: 64px;
   --site-footer-height: 128px;
   --font-noto-sans-jp: 'Noto Sans JP', sans-serif;
