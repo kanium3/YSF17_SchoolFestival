@@ -1,5 +1,4 @@
-import LazyMap from '@/app/map/load-map'
-import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
+import ClientMapPage from './client-page'
 
 export const metadata = {
   title: '地図 - 蒼煌祭17th非公式ページ',
@@ -8,10 +7,6 @@ export const metadata = {
 
 export default function Map() {
   return (
-    <div>
-      <Titlebar pagename="地図" />
-      <p>地図内をクリックすると各イベントの詳細が表示されます。</p>
-      <LazyMap />
-    </div>
+    <ClientMapPage />
   )
 }

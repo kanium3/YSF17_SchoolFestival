@@ -85,5 +85,38 @@
       "imagePath": "example.png",
       "room": "____terrace1"
     }
+  },
+  {
+    "id": "sl2-presentation",
+    "name": "ホール企画サンプル1",
+    "team": "2年次",
+    "programType": ["その他"],
+    "location": "和田昭允記念ホール",
+    "aria": "ホール",
+    "prText": "保留",
+    "dates": ["2025-09-05","2025-09-06","2025-09-07"],
+    "options": {}
+  },
+  {
+    "id": "dance-club",
+    "name": "ホール企画サンプル2",
+    "team": "ダンス部",
+    "programType": ["パフォーマンス"],
+    "location": "和田昭允記念ホール",
+    "aria": "ホール",
+    "prText": "保留",
+    "dates": ["2025-09-05","2025-09-06","2025-09-07"],
+    "options": {}
+  },
+  {
+    "id": "art-club",
+    "name": "通常企画サンプル1",
+    "team": "美術部",
+    "programType": ["展示"],
+    "location": "書道室",
+    "aria": "1F",
+    "prText": "保留",
+    "dates": ["2025-09-05","2025-09-06","2025-09-07"],
+    "options": {}
   }
 ]

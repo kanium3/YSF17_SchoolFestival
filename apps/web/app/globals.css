@@ -48,6 +48,10 @@ body.isMobile #content-base {
   padding-bottom: calc(var(--site-footer-height) + var(--bottom-menu-height));
 }
 
+body.isMap #content-base {
+  padding-bottom: 0;
+}
+
 /*統一するスタイルの定義
 
 .touchable

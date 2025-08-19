@@ -9,3 +9,7 @@ body.isMobile .ft-rwd-height {
 body.isMobile .ft-main-rwd-padding-bottom {
   padding-bottom: var(--bottom-menu-height);
 }
+
+body.isMap .ft-rwd-visible {
+  display: none;
+}
