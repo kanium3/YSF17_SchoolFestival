@@ -35,12 +35,13 @@ export default async function Program({ params }) {
   const { slug } = await params
   const programs = parseProgramsData(ProgramSample)
   const program = [...programs.iter()].find(program => program.id === slug)
+  const imagePath = solveBasePath(program.options.imagePath ?? 'example.png')
 
   return (
     <>
       <TitleBarWithBack pagename={program.name} />
       <Image
-        src={solveBasePath(program.options.imagePath)}
+        src={imagePath}
         alt={program.name + ' の画像'}
         width={240}
         height={240}

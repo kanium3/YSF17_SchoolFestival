@@ -50,31 +50,39 @@ export default function BottomSheet({ ids, onClose }) {
           <MdClose size={32} />
         </div>
       </div>
-      {hasMultiPrograms && (
-        <div className={styles['btst-items']}>
-          {ids.map((id) => {
-            const program = programList.find(program => program.id === id)
-            return (
-              <div
-                onClick={() => setSelectedId(id)}
-                className={`${styles['btst-item']} ${selectedId === id ? styles['btst-item-active'] : ''}`}
-                key={id}
-              >
-                {program ? program.name : id}
+      {hasProgram && (
+        hasMultiPrograms
+          ? (
+              <div className={styles['btst-items']}>
+                {ids.map((id) => {
+                  const program = programList.find(program => program.id === id)
+                  return (
+                    <div
+                      onClick={() => setSelectedId(id)}
+                      className={`${styles['btst-item']} ${selectedId === id ? styles['btst-item-active'] : ''}`}
+                      key={id}
+                    >
+                      {program ? program.name : 'サンプル'}
+                    </div>
+                  )
+                })}
               </div>
             )
-          })}
-        </div>
-      )}
-      {!hasMultiPrograms && hasProgram && (
-        <h2
-          style={{
-            fontSize: Math.min(Math.max(24, 320 / (programList.find(program => program.id === ids[0])?.name ?? ids[0]).length), 32),
-          }}
-        >
-          {programList.find(program => program.id === ids[0])?.name ?? ids[0]}
-        </h2>
-      )}
+          : (
+              selectedProgram
+                ? (
+                    <h2
+                      style={{
+                        fontSize: Math.min(Math.max(24, 320 / selectedProgram.name.length), 32),
+                      }}
+                    >
+                      {selectedProgram.id}
+                    </h2>
+                  )
+                : (
+                    <p>企画データがありません</p>
+                  )
+            ))}
       {selectedProgram && <BottomSheetProgram program={selectedProgram} />}
     </div>
   )
