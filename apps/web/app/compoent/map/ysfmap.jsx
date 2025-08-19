@@ -115,14 +115,3 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
     </div>
   )
 }
-
-/**
- * レスポンシブな幅を提供 (お好みに合わせて値をいじってください)
- * @param {Number} width
- * @returns {Number} 調整された幅
- */
-/*
-function widthAdjust(width) {
-  return Math.min(width, width * 0.6 + 200)
-}
-*/
