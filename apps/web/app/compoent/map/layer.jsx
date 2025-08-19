@@ -40,7 +40,7 @@ export function FloorLayer({ src, raw, picSize, paddings, zoomRatio, onRoomClick
                       },
                     }
                   : {}}
-                pathOptions={{ fillOpacity: 0, opacity: 0 }}
+                pathOptions={{ fillColor: '#ffd080', fillOpacity: 0, color: '#1c5cff' }}
                 positions={positions}
               >
                 {!onRoomClick && ( // 関数なしの場合

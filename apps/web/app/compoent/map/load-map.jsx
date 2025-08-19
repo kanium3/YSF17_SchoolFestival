@@ -18,10 +18,10 @@ export function MapWithBottomSheet() {
     lastLayer: undefined,
     handleLayerClick({ ids = [], layer }) {
       if (this.lastLayer) {
-        this.lastLayer.setStyle({ fillOpacity: 0, opacity: 0 })
+        this.lastLayer.setStyle({ fillOpacity: 0 })
       }
       if (layer) {
-        layer.setStyle({ opacity: 1 })
+        layer.setStyle({ fillOpacity: 1 })
         this.lastLayer = layer
       }
       else {

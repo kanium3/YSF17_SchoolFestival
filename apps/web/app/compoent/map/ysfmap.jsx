@@ -55,7 +55,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
   const svgSize = svgController.getSVGSize()
   const [zoomRatio, paddings] = zoomRatioAndPaddings([picHeight, picWidth], svgSize)
 
-  let initZoom = 0
+  let initZoom = 0.5
   let center = [picHeight / 2, picWidth / 2]
   let polyPaddings = [
     picHeight / 2 - (picHeight / 2 - paddings[0]) * Math.pow(2, initZoom),
@@ -66,7 +66,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
       return ids.split(',').includes(id)
     })[0]
     if (Room) {
-      initZoom = 1
+      initZoom = 1.5
       let polygon = Path2Polygon(Room.properties['d'])
       let xsum = 0, ysum = 0
       for (const point of polygon) {
@@ -89,7 +89,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
         center={new LatLng(center[0], center[1])}
         zoom={initZoom}
         minZoom={0}
-        maxZoom={3}
+        maxZoom={2}
         zoomSnap={0.5}
         zoomDelta={0.5}
         style={{ height: picHeight, width: picWidth }}
