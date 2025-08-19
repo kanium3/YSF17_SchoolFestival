@@ -1,5 +1,11 @@
 .link {
     color: var(--semantic-link-default);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.link p {
+    margin-top: 0px;
 }
 
 .link:hover {
@@ -9,4 +15,8 @@
 
 .link:active {
     color: var(--semantic-link-active);
+}
+
+.link:focus-visible {
+  background-color: var(--semantic-link-focused);
 }

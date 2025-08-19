@@ -2,9 +2,10 @@ import { TimetableDisplay } from './timetableElements/timetable-display.jsx'
 import { PickupSlide } from './pickupSlide/pickup-slide.jsx'
 import './timetableElements/timetable-action.css'
 import './timetableElements/timetable-common.css'
+import { Titlebar } from '@/app/compoent/title-bar-supplier.jsx'
 
 export const metadata = {
-  title: '蒼煌祭17th非公式ページ｜タイムテーブル',
+  title: 'タイムテーブル - 蒼煌祭17th非公式ページ',
   description: '蒼煌祭17thの非公式のタイムテーブルのページです。',
 }
 
@@ -30,7 +31,7 @@ export default function Program() {
 
   return (
     <div>
-      <h1>時間割</h1>
+      <Titlebar pagename="時間割" />
       <div>
         <h2>ピックアップ</h2>
         <p>{pickup_text}</p>

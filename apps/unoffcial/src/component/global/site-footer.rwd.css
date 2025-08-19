@@ -1,0 +1,11 @@
+.ft-rwd-height {
+  height: var(--site-footer-height);
+}
+
+body.isMobile .ft-rwd-height {
+  height: calc(var(--site-footer-height) + var(--bottom-menu-height));
+}
+
+body.isMobile .ft-main-rwd-padding-bottom {
+  padding-bottom: var(--bottom-menu-height);
+}

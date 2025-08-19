@@ -1,0 +1,32 @@
+// https://qiita.com/GleapPost/items/8db38b93af554a6c69a0
+
+import { useState, useEffect } from 'react'
+
+interface WidthAndHeight {
+  width: number
+  height: number
+}
+
+const useWindowResize = (): WidthAndHeight => {
+  const [widthAndHeight, setWidthAndHeight] = useState <WidthAndHeight> ({
+    width: globalThis.window === undefined ? 0 : window.innerWidth,
+    height: globalThis.window === undefined ? 0 : window.innerHeight,
+  })
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidthAndHeight({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    }
+    window.addEventListener('resize', handleResize)
+    // Update once after mount
+    handleResize()
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
+  return widthAndHeight
+}
+
+export default useWindowResize

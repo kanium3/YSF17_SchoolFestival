@@ -2,7 +2,7 @@
 /* 帯としての可認識性を付与するためにページのカラーを少し暗くした背景色か(上)下の枠線が欲しいかもしれない */
 import styles from './title-bar.module.css'
 import { useRouter } from 'next/navigation'
-import { IoChevronBackOutline } from 'react-icons/io5'
+import { MdOutlineArrowBackIos } from 'react-icons/md'
 
 /**
  * 上部のページ名
@@ -57,7 +57,7 @@ function Title({
         fontSize: Math.min(Math.max(24, 320 / pagename.length), 32),
       }}
     >
-      {pagename}
+      <span>{pagename}</span>
     </div>
   )
 }
@@ -70,8 +70,8 @@ function Title({
 function BackButton({ arrowColor }) {
   const router = useRouter()
   return (
-    <span onClick={() => router.back()} role="link" className={styles['back-button']}>
-      <IoChevronBackOutline size={44} color={arrowColor} />
-    </span>
+    <div onClick={() => router.back()} role="link" className={styles['back-button']}>
+      <MdOutlineArrowBackIos size={44} color={arrowColor} />
+    </div>
   )
 }
