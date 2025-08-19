@@ -30,7 +30,7 @@ import './leaflet-override.css' // leaflet標準cssをオーバーライド
 import styles from './ysfmap.module.css'
 
 import { SVGController, Path2Polygon, zoomRatioAndPaddings } from '@/app/lib/index.js'
-import { FloorLayer } from './layer'
+import { FloorLayer, gcenter } from './layer'
 
 /**
  * 高さ、幅、初期表示階(、フォーカス対象の企画id)、部屋選択時に呼び出す関数をオプションで指定してYSF校内の地図を表示します。
@@ -67,18 +67,10 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
     })[0]
     if (Room) {
       initZoom = 1.5
-      let polygon = Path2Polygon(Room.properties['d'])
-      let xsum = 0, ysum = 0
-      for (const point of polygon) {
-        xsum += point[0]
-        ysum += point[1]
-      }
-      const length_ = polygon.length
-      xsum /= length_
-      ysum /= length_
-      center = [picHeight - (ysum * zoomRatio + paddings[0]), xsum * zoomRatio + paddings[1]]
-      polyPaddings[0] = picHeight / 2 - ysum * zoomRatio * Math.pow(2, initZoom)
-      polyPaddings[1] = picWidth / 2 - xsum * zoomRatio * Math.pow(2, initZoom)
+      const [y, x] = gcenter(Path2Polygon(Room.properties['d']))
+      center = [picHeight - (y * zoomRatio + paddings[0]), x * zoomRatio + paddings[1]]
+      polyPaddings[0] = picHeight / 2 - y * zoomRatio * Math.pow(2, initZoom)
+      polyPaddings[1] = picWidth / 2 - x * zoomRatio * Math.pow(2, initZoom)
     }
   }
 
@@ -113,6 +105,7 @@ export default function YSFMap({ picHeight, picWidth, initialFloor = 1, id, onRo
                   paddings={polyPaddings}
                   zoomRatio={zoomRatio * Math.pow(2, initZoom)}
                   onRoomClick={onRoomClick}
+                  openId={id}
                 />
               </LayersControl.BaseLayer>
             )
