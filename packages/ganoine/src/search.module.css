@@ -15,6 +15,7 @@
     line-height: 1;
     border: thin solid var(--semantic-input-border);
     border-radius: var(--semantic-radius-circle);
+    background: var(--semantic-background-white);
     padding: 0.75em;
     margin: var(--semantic-space-0-5) 0;
 }
