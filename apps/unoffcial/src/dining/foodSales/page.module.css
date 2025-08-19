@@ -1,0 +1,175 @@
+/* 十分な幅 = 480px + margin:1emが左右 */
+/* PCのような、幅が十分にあるとき */
+@media (min-width: calc(480px + 2em)) {
+  .foodSalesMenuArea {
+    display: grid;
+    column-gap: 1em;/** calc(calc(100% - calc(round(down, calc(calc(100% - 2em) / 480px), 100px) * 480px)) / calc(round(down, calc(calc(100% - 2em) / 480px), 100px) - 1));*/
+    row-gap: 2em;
+    grid-template-columns: repeat(auto-fill, 480px);/**500px;/**272px, 272px, 272px;*/
+
+    margin: 1em;
+  }
+}
+/* 縦画面スマホのような、幅が十分にない時 */
+@media (max-width: calc(480px + 2em - 1px)) {
+  .foodSalesMenuArea {
+    display: grid;
+    column-gap: 1em;
+    row-gap: 2em;
+    grid-template-columns: repeat(auto-fill, 100vw - 2em);/**500px;/**272px, 272px, 272px;*/
+
+    margin: 1em;
+  }
+}
+
+.foodSalesMenuCard {
+    background: #d9d9d9;
+    width: 100%;
+    height: fit-content;
+    /**margin: 1em;*/
+    /**max-width: fit-content;/**272px;*/
+    /**max-width: fit-content;*/
+    /**min-width: 272px;/**calc(100vw - 2em);*/
+    /** min-width: fit-content; */
+}
+
+.foodSalesMenuTitle {
+  font-weight: bold;
+  padding-top: 1em;
+  padding-left: 1.125em;
+}
+.foodSalesMenuBox {
+  padding-bottom: 0.5em;
+  max-width: calc(100% - 1em);
+  width: calc(100% - 1em);
+  /**min-width: fit-content;*/
+  text-align: left;
+}
+
+.foodSalesMenuSign {
+  width: 2em;
+  padding-left: 1.5em;
+}
+.foodSalesMenuNameNormal {
+  max-width: max-content;
+  padding-left: 1.5em;
+  font-weight: bold;
+  /**font-size: 1.5em;*/
+}
+.foodSalesMenuNameAllergy {
+  max-width: max-content;
+  padding-left: 0.25em;
+  font-weight: bold;
+  /**font-size: 1.5em;*/
+}
+
+.foodSalesMenuName2Price {
+  text-align: center;
+  width: max-content;
+  /**padding-left: 1.5em;
+  padding-right: 1.5em;**/
+}
+.foodSalesMenuName2PriceWithSecondRow {
+  text-align: center;
+  width: fit-content;
+  min-width: min-content;
+  padding-left: calc(100% - 12em);
+  /**padding-left: 1.5em;
+  padding-right: 1.5em;**/
+}
+
+.foodSalesMenuPrice {
+  float: right;
+  text-align: right;
+  /**font-size: 1.5em;*/
+  padding-left: 0%;
+}
+
+.foodSalesMenuBigChars {
+  font-size: 1.5em;
+  margin-right: 0em;
+  margin-left: 0%;
+  padding-left: 0%;
+}
+
+.foodSalesSpaceFor2Rows {
+  width: calc(100% - 10em);
+}
+
+.line {
+  margin-left: 5%;
+  max-width: calc(90%);
+  border-top: solid 1px #000000;
+}
+
+.ingredients {
+  padding: 0.5em;
+  width: 100%;
+  text-align: left;
+}
+.ingredients[open] {
+  background-color: #00000011;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+.ingredientsSummary {
+  width: 100%;
+  /**height: 100px;*/
+  text-align: left;
+}
+
+/**一つの食べ物を囲む*/
+.ingredientsTable {
+  background-color: #ffffff;
+  width: calc(100% - 0.5em);
+  margin: 0.25em;
+  padding: 0.25em;
+  overflow-wrap: break-word;
+}
+
+/** 一つの食べ物のグループ */
+.foodIngredient {
+  width: 100%;
+  max-width: 100%;
+}
+
+.ingredientTable {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: 0.15em;
+  column-gap: 0.1em;
+}
+
+.ingredientFoodName {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding-left: 0em;
+  font-weight: bold;
+}
+/**一つの食べ物の原材料とかを囲む*/
+.ingredient {
+  width: max-content;
+  /**padding-left: 0em;
+  padding-right: 0em;*/
+}
+.ingredientTitle {
+  padding-right: 1em;
+  font-weight: bold;
+}
+
+.ingredientTd {
+  overflow-wrap : break-word;
+}
+
+.ingredientP {
+  padding-left: 0%;
+  width: 100%;
+  /**display: block;*/
+}
+
+
+.divtable {
+  padding-left: 0.125rem;
+  padding-top: 0.13rem;
+  padding-bottom: 0.13rem;
+}

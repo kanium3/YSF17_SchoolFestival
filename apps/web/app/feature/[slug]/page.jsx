@@ -9,6 +9,21 @@ import remarkCjkFriendlyGfmStrikethrough from 'remark-cjk-friendly-gfm-strikethr
 import remarkFrontmatter from 'remark-frontmatter'
 import { TitleBarWithBack } from '@/app/compoent/title-bar'
 
+export async function generateMetadata({ params }) {
+  // read route params
+  const { slug } = await params
+  const path = slug + '.md'
+  const content = await fs.promises.readFile(`posts/${path}`, { encoding: 'utf8' })
+
+  // fetch data
+  const { data } = matter(content)
+  const pageTitle = data.title || '無題'
+  return {
+    title: `${pageTitle} - 蒼煌祭17th非公式ページ`,
+    description: `蒼煌祭17thの非公式の特集「${pageTitle}」のページです。`,
+  }
+}
+
 // eslint-disable-next-line unicorn/prevent-abbreviations
 export async function generateStaticParams() {
   const directoryFiles = await fs.promises.readdir('posts')

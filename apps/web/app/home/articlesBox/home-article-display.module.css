@@ -1,0 +1,10 @@
+.displayBox {
+    margin: 10px 0 0 1rem;
+}
+
+.viewMore {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}

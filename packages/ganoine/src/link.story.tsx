@@ -13,3 +13,19 @@ export const Default = {
     href: '#',
   },
 } as StoryObj<typeof Link>
+
+export const External = {
+  args: {
+    kind: 'external',
+    children: <p>外部リンク</p>,
+    href: '#',
+  },
+} as StoryObj<typeof Link>
+
+export const Internal = {
+  args: {
+    kind: 'internal',
+    children: <p>内部リンク</p>,
+    href: '#',
+  },
+} as StoryObj<typeof Link>

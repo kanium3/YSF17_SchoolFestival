@@ -1,0 +1,87 @@
+[
+  {
+    "id": "85ea1274-4fcd-1aa4-7c67-43d2c32a244b",
+    "menus": [
+      {
+        "name": "食べ物1",
+        "price": 500,
+        "specificIngredients": ["卵", "りんご"],
+        "mayContain":[],
+        "ingredients": ["卵", "米", "りんご"],
+        "compositeIngredients":[]
+      }
+    ]
+  },
+  {
+    "id": "29fe6fea-c849-7ae3-03b5-528493e7a8bf",
+    "menus": [
+      {
+        "name": "コシヒカリのおにぎり",
+        "price": 100,
+        "specificIngredients": ["さけ"],
+        "mayContain":["小麦"],
+        "ingredients": ["米", "海苔", "さけ"],
+        "compositeIngredients":[]
+      },
+      {
+        "name": "あきたこまちのおにぎり",
+        "price": 100,
+        "specificIngredients": [],
+        "mayContain":["小麦"],
+        "ingredients": ["米", "海苔"],
+        "compositeIngredients":[]
+      },
+      {
+        "name": "醤油おにぎり",
+        "price": 200,
+        "specificIngredients": ["小麦"],
+        "mayContain":[],
+        "ingredients": ["米", "海苔", "醤油"],
+        "compositeIngredients":[
+          {
+            "name": "醤油",
+            "compositeIngredients": [
+              {
+                "name":"大豆",
+                "compositeIngredients":[]
+              },
+              {
+                "name":"小麦",
+                "compositeIngredients":[]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "f23e837b-d283-51c9-fdc1-96edb4e7a479",
+    "menus": [
+      {
+        "name": "水色の金平糖",
+        "price": 50,
+        "specificIngredients": [],
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
+      },
+      {
+        "name": "ピンク色の金平糖",
+        "price": 30,
+        "specificIngredients": [],
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
+      },
+      {
+        "name": "黄色の金平糖",
+        "price": 40,
+        "specificIngredients": [],
+        "mayContain":[],
+        "ingredients": ["砂糖", "着色料"],
+        "compositeIngredients":[]
+      }
+    ]
+  }
+]
