@@ -7,7 +7,7 @@ import { solveBasePath } from '@/app/lib/index.js'
 
 export default function SiteFooter() {
   return (
-    <footer className={`${styles['ft-base']} ft-rwd-height`}>
+    <footer className={`${styles['ft-base']} ft-rwd-height ft-rwd-visible`}>
       <div className={`${styles['ft-bg']} ft-rwd-height`} />
       <div className={`${styles['ft-main']} ft-main-rwd-padding-bottom ft-rwd-height`}>
         <Image

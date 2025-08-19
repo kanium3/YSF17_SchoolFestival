@@ -4,6 +4,7 @@ import { parseProgramsData, solveBasePath } from '@/app/lib/index.js'
 import Tags from '@/app/program/program/tags.jsx'
 import ProgramSample from '@/app/program.mock.json'
 import Image from 'next/image'
+import { MapFromSpecRoom } from '@/app/compoent/map/load-map'
 
 export async function generateMetadata({ params }) {
   // read route params
@@ -34,12 +35,13 @@ export default async function Program({ params }) {
   const { slug } = await params
   const programs = parseProgramsData(ProgramSample)
   const program = [...programs.iter()].find(program => program.id === slug)
+  const imagePath = solveBasePath(program.options.imagePath ?? 'example.png')
 
   return (
     <>
       <TitleBarWithBack pagename={program.name} />
       <Image
-        src={solveBasePath(program.options.imagePath)}
+        src={imagePath}
         alt={program.name + ' の画像'}
         width={240}
         height={240}
@@ -57,8 +59,7 @@ export default async function Program({ params }) {
         </div>
         <div className={styles['pr-text']}>{program.prText || ''}</div>
       </div>
-      {/* 地図も作りましょう */}
-      <div style={{ marginTop: '1em' }}>位置を示す地図</div>
+      <MapFromSpecRoom height={300} floor={Number(program.aria[0])} id={slug} />
     </>
   )
 }
