@@ -42,7 +42,7 @@
     width: 40px;
     height: 40px;
     border: none;
-    background-color: white;
+    background-color: var(--semantic-background-white);
     color: var(--semantic-color-primary);
     border-radius: 50%;
     box-shadow: 0px 4px 8px var(--semantic-shadow-default);
