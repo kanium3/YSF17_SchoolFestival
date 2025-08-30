@@ -39,6 +39,11 @@
       fill:none;
       stroke:#000000;
     }
+    .pframe {
+      fill:none;
+      stroke:#1c51ff;
+      stroke-width:3px;
+    }
     .preview {
        fill:none;
        stroke:#80ff80;
@@ -57,9 +62,9 @@
       <path
          id="art-club"
          class="preview"
-         d="m 768,228 h 137 v 74 H 768 Z" />
+         d="m 768,228 h 137 v 74 H 799 v -39 h -31 z" />
       <path
-         id="chadobu"
+         id="chado-club"
          class="preview"
          d="m 990,517 h 23 v -10 h 50 v 10 h 20 v 65 h 16 v 9 H 990 Z" />
       <path
@@ -67,13 +72,29 @@
          class="preview"
          d="m 588,806 v 74 h 135 v -74 z" />
       <path
-         id="nature-science-clab"
-         class="preview"
-         d="m 454,916 v 74 h 89 v -74 z" />
-      <path
          id="cafe"
          class="preview"
          d="m 399,1205 16,151 h 311 v -151 z" />
+      <path
+         id="karuta-club"
+         class="preview"
+         d="m 810,1356 v 151 h 276 v -151 z" />
+      <path
+         id="hokan-com"
+         class="preview"
+         d="m 864.5,845 v 39 h 109 v -39 z" />
+      <path
+         id="company-exhibitation"
+         class="preview"
+         d="m 995,1356 h 91 V 1205 H 810 v 151 h 95 v -30 h 90 z" />
+      <path
+         id="pta-oshikatsu-shop"
+         class="preview"
+         d="m 404,816 h 28 v 96 h -28 z" />
+      <path
+         id="original-goods"
+         class="preview"
+         d="M 432,534 V 668 H 404 V 534 Z" />
     </g>
   </g>
 </svg>

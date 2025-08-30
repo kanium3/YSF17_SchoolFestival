@@ -39,6 +39,11 @@
       fill:none;
       stroke:#000000;
     }
+    .pframe {
+      fill:none;
+      stroke:#1c51ff;
+      stroke-width:3px;
+    }
     .preview {
        fill:none;
        stroke:#80ff80;
@@ -51,13 +56,45 @@
        id="programs2"
        style="display:inline">
       <path
-         id="tosho_com"
+         id="choral-fest,shogi-club1,light-music-club"
+         class="preview"
+         d="m 723,1205 v 302 h 357 v -71 h 6 v -231 z" />
+      <path
+         id="picture-club"
+         class="preview"
+         d="m 1223,1205 v 71 h 158 v -71 z" />
+      <path
+         id="tosho-com1"
          class="preview"
          d="m 454,916 v 92 h 272 v -92 z" />
       <path
-         id="robot_club"
+         id="tosho-com2"
+         class="preview"
+         d="m 720,806 v 74 h 93 v -74 z" />
+      <path
+         id="literary-club"
+         class="preview"
+         d="m 957,817 v 45 h 75 v -45 z" />
+      <path
+         id="robot-club"
          class="preview"
          d="m 723,627 v 74 h 183 v -74 z" />
+      <path
+         id="math-physics-club2"
+         class="preview"
+         d="m 543,627 v 74 h 180 v -74 z" />
+      <path
+         id="shogi-club2"
+         class="preview"
+         d="m 454,627 v 74 h 89 v -74 z" />
+      <path
+         id="jk-club"
+         class="preview"
+         d="m 454,517 v 74 h 179 v -74 z" />
+      <path
+         id="astronomy-club5"
+         class="preview"
+         d="m 723,517 v 74 h 90 v -74 z" />
     </g>
   </g>
 </svg>

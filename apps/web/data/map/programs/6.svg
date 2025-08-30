@@ -39,6 +39,11 @@
       fill:none;
       stroke:#000000;
     }
+    .pframe {
+      fill:none;
+      stroke:#1c51ff;
+      stroke-width:3px;
+    }
     .preview {
        fill:none;
        stroke:#80ff80;
@@ -48,7 +53,11 @@
      id="floor6"
      style="display:inline">
     <g
-       id="programs6"
-       style="display:inline" />
+       id="programs6">
+      <path
+         id="astronomy-club6"
+         class="preview"
+         d="m 512,872 h -10 l -13,-13 h -27 l -20,20 v 27 l 20,20 h 27 l 12,-12 h 11 z" />
+    </g>
   </g>
 </svg>

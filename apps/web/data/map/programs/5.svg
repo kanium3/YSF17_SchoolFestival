@@ -39,6 +39,11 @@
       fill:none;
       stroke:#000000;
     }
+    .pframe {
+      fill:none;
+      stroke:#1c51ff;
+      stroke-width:3px;
+    }
     .preview {
        fill:none;
        stroke:#80ff80;
@@ -51,27 +56,31 @@
        id="programs5"
        style="display:inline">
       <path
-         id="classH11"
+         id="grade-j-1"
+         class="preview"
+         d="m 993,916 v 74 h 179 v -74 z" />
+      <path
+         id="class-h-11"
          class="preview"
          d="m 903,916 v 74 h 90 v -74 z" />
       <path
-         id="classH12"
+         id="class-h-12"
          class="preview"
          d="m 813,916 v 74 h 90 v -74 z" />
       <path
-         id="classH13"
+         id="class-h-13"
          class="preview"
          d="m 723,916 v 74 h 90 v -74 z" />
       <path
-         id="classH14"
+         id="class-h-14"
          class="preview"
          d="m 633,916 v 74 h 90 v -74 z" />
       <path
-         id="classH15"
+         id="class-h-15"
          class="preview"
          d="m 543,916 v 74 h 90 v -74 z" />
       <path
-         id="classH16"
+         id="class-h-16"
          class="preview"
          d="m 454,916 v 74 h 89 v -74 z" />
     </g>
