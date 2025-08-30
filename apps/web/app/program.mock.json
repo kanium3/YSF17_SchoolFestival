@@ -101,7 +101,7 @@
     "id": "dance-club",
     "name": "ホール企画サンプル2",
     "team": "ダンス部",
-    "programType": ["パフォーマンス"],
+    "programType": ["上演"],
     "location": "和田昭允記念ホール",
     "aria": "ホール",
     "prText": "保留",
