@@ -39,6 +39,11 @@
       fill:none;
       stroke:#000000;
     }
+    .pframe {
+      fill:none;
+      stroke:#1c51ff;
+      stroke-width:3px;
+    }
     .preview {
        fill:none;
        stroke:#80ff80;
@@ -49,6 +54,51 @@
      style="display:inline">
     <g
        id="programs3"
-       style="display:inline" />
+       style="display:inline">
+      <path
+         id="grade-j-3"
+         class="preview"
+         d="m 993,916 v 74 h 179 v -74 z" />
+      <path
+         id="astronomy-club4"
+         class="preview"
+         d="m 903,916 v 74 h 90 v -74 z" />
+      <path
+         id="international-exchange-com"
+         class="preview"
+         d="m 813,916 v 74 h 90 v -74 z" />
+      <path
+         id="quiz-club"
+         class="preview"
+         d="m 633,916 v 74 h 180 v -74 z" />
+      <path
+         id="sky-flower"
+         class="preview"
+         d="m 726,806 v 74 h 180 v -74 z" />
+      <path
+         id="nature-science-club2"
+         class="preview"
+         d="m 454,627 v 74 h 89 v -74 z" />
+      <path
+         id="astronomy-club2"
+         class="preview"
+         d="m 945,627 v 74 h 137 v -74 z" />
+      <path
+         id="astronomy-club3"
+         class="preview"
+         d="m 1126,627 v 74 h 46 v -74 z" />
+      <path
+         id="astronomy-club1"
+         class="preview"
+         d="m 990,517 v 74 h 136 v -74 z" />
+      <path
+         id="nature-science-club1"
+         class="preview"
+         d="m 768,517 v 74 h 138 v -74 z" />
+      <path
+         id="math-physics-club1"
+         class="preview"
+         d="m 588,517 v 74 h 135 v -74 z" />
+    </g>
   </g>
 </svg>
