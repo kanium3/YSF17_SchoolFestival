@@ -16,7 +16,7 @@ export default function TrainInfoBox({ index }) {
     <div className={styles.infoBox}>
       <div className={styles.icon}>
         <svg width="20" height="20" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="1" y="1" width="16" height="16" rx="5" stroke={iconColor1} stroke-width="2" />
+          <rect x="1" y="1" width="16" height="16" rx="5" stroke={iconColor1} strokeWidth="2" />
           <rect x="5" y="5" width="8" height="8" rx="1" fill={iconColor2} />
         </svg>
       </div>

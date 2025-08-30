@@ -18,10 +18,16 @@ export function MapWithBottomSheet() {
     lastLayer: undefined,
     handleLayerClick({ ids = [], layer }) {
       if (this.lastLayer) {
-        this.lastLayer.setStyle({ fillOpacity: 0 })
+        this.lastLayer.setStyle({
+          fillOpacity: 0, // タップ時に認識させるため透明度で管理
+          stroke: false,
+        })
       }
       if (layer) {
-        layer.setStyle({ fillOpacity: 1 })
+        layer.setStyle({
+          fillOpacity: 1,
+          stroke: true,
+        })
         this.lastLayer = layer
       }
       else {
