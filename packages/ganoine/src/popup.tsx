@@ -4,7 +4,7 @@ import styles from './popup.module.css'
 import type { CSSProperties, ReactNode } from 'react'
 import { usePopup } from './popup-context'
 import { Dialog, Modal, ModalOverlay } from 'react-aria-components'
-import { Button } from './button'
+import { Button, ButtonProperties } from './button'
 import { useEffect, useState, useRef } from 'react'
 import useWindowResize from './window-resize-detector'
 
@@ -77,6 +77,24 @@ export function Popup(properties: PopupProperties): ReactNode {
         </Modal>
       </ModalOverlay>
     </>
+  )
+}
+
+export type PopupToggleButtonProperties = {
+  children?: ReactNode
+} & Omit<ButtonProperties, 'children'>
+
+/**
+ * ## ポップアップの開閉ボタン
+ * `PopupToggleButton`はポップアップを閉じるためのボタンです。
+ * このコンポーネントは`<PopupProvider>`の子要素として使用することができます。
+ */
+export function PopupToggleButton(properties: PopupToggleButtonProperties): ReactNode {
+  const { togglePopup } = usePopup()
+  return (
+    <Button {...properties} onPress={togglePopup}>
+      {properties.children}
+    </Button>
   )
 }
 
