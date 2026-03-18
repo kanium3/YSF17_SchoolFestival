@@ -8,9 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "next lint --fix",
-    "client:rsd": "rsdoctor analyze --profile .next/.rsdoctor/manifest.json",
-    "server:rsd": "rsdoctor analyze --profile .next/server/.rsdoctor/manifest.json"
+    "format": "next lint --fix"
   },
   "dependencies": {
     "@latimeria/core": "workspace:*",
@@ -41,15 +39,11 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
     "@latimeria/eslint-config": "workspace:*",
-    "@rsdoctor/cli": "^1.5.4",
-    "@rsdoctor/rspack-plugin": "^1.5.4",
     "@svgr/webpack": "^8.1.0",
     "@types/hast": "^3.0.4",
-    "@vitest/browser": "^4.1.0",
     "eslint": "catalog:",
     "eslint-config-next": "16.1.7",
     "next-rspack": "^16.1.7",
-    "vitest": "catalog:",
-    "webpack-license-plugin": "^4.5.1"
+    "vitest": "catalog:"
   }
 }
